@@ -147,6 +147,6 @@ class _ChangeProfileDetailsState extends State<ChangeProfileDetails> {
           image: selectedBase64Image,
           phoneNumber: phoneController.text,
         ));
-    context.read<UserCubit>().getCurrentUser();
+    context.read<UserCubit>().getCurrentUser(); 
   }
 }
