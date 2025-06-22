@@ -1,0 +1,26 @@
+export enum UserType{
+  Adminstrator = 0,
+  Sales,
+  Supporter,
+  Dispatcher,
+  Trial,
+  User
+}
+
+export enum SalesType{
+  Bags = 0,
+  Bulk,
+  Both,
+}
+
+public enum UserRoles
+    {
+        Adminstrator = 0,
+        Developer,
+        Manager,
+        Supporter,
+        Sales,
+        Dispatcher,
+        Trial,
+
+    }

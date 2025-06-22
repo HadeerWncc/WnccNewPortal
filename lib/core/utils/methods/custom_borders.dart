@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+
+OutlineInputBorder inputBorder() {
+  return OutlineInputBorder(
+      borderSide: const BorderSide(
+        color: Color.fromARGB(255, 230, 229, 229),
+      ),
+      borderRadius: BorderRadius.circular(8));
+}
+
+RoundedRectangleBorder drawerBorde() {
+  return const RoundedRectangleBorder(
+    borderRadius: BorderRadius.only(
+      topRight: Radius.circular(8),
+      bottomRight: Radius.circular(8),
+    ),
+  );
+}
+
+OutlineInputBorder changePassowrdInputBorder() {
+  return OutlineInputBorder(
+    borderSide: const BorderSide(
+      color: Color.fromARGB(255, 189, 189, 189),
+    ),
+    borderRadius: BorderRadius.circular(8),
+  );
+}
