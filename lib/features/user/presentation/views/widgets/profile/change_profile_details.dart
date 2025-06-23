@@ -67,6 +67,7 @@ class _ChangeProfileDetailsState extends State<ChangeProfileDetails> {
             CustomPlaceholderInput(
               controller: phoneController,
               labelText: 'Phone Number',
+              keyboardType: TextInputType.number,
               // width: MediaQuery.of(context).size.width * .5,
             ),
             const SizedBox(height: 15),
@@ -88,8 +89,10 @@ class _ChangeProfileDetailsState extends State<ChangeProfileDetails> {
             BlocBuilder<GetCitiesCubit, GetCitiesState>(
               builder: (context, state) {
                 if (state is GetCitiesSuccess) {
+                  bool found = state.cities.contains(widget.user.city);
+                  selectedCity = found ? widget.user.city:state.cities[0];
                   return CustomDropDownInput(
-                    selectedValue: state.cities[0],
+                    selectedValue: selectedCity,
                     items: state.cities,
                     title: 'City',
                     // width: MediaQuery.of(context).size.width * .5,
@@ -147,6 +150,5 @@ class _ChangeProfileDetailsState extends State<ChangeProfileDetails> {
           image: selectedBase64Image,
           phoneNumber: phoneController.text,
         ));
-    context.read<UserCubit>().getCurrentUser(); 
   }
 }
