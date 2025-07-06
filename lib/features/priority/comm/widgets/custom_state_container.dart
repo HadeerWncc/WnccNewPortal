@@ -9,6 +9,7 @@ class CustomStateContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(5),
+      margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
         color: bgColor,
         borderRadius: BorderRadius.circular(5),

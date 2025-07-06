@@ -3,29 +3,29 @@ import 'package:wncc_portal/features/priority/comm/widgets/custom_state_containe
 
 class CustomUserNameWidget extends StatelessWidget {
   const CustomUserNameWidget({
-    super.key,
+    super.key, required this.child,
   });
-
+  final String child;
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
         Text(
-          "Admindtrator",
-          style: TextStyle(
+          child,
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w900,
             color: Colors.black,
           ),
         ),
-        SizedBox(width: 5),
-        Icon(
+        const SizedBox(width: 5),
+        const Icon(
           Icons.verified_sharp,
           color: Colors.blue,
           size: 18,
         ),
-        SizedBox(width: 7),
-        CustomStateContainer(
+        const SizedBox(width: 7),
+        const CustomStateContainer(
           title: "Available",
           color: Colors.green,
           bgColor: Color(0xffD9FDE3),

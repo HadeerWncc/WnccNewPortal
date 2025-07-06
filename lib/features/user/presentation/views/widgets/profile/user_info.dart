@@ -13,7 +13,9 @@ class UserInfo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CustomUserNameWidget(),
+        CustomUserNameWidget(
+          child: user.fullName ?? "N/A",
+        ),
         const SizedBox(height: 10),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,11 +35,22 @@ class UserInfo extends StatelessWidget {
               icon: Symbols.alternate_email,
             ),
             const SizedBox(height: 10),
-            CustomStateContainer(
-              title: user.roles!.isNotEmpty? user.roles![0] : 'N/A',
-              color: const Color.fromARGB(255, 32, 128, 207),
-              bgColor: const Color.fromARGB(255, 225, 242, 255),
-            ),
+            SizedBox(
+              height: 32,
+              width: MediaQuery.of(context).size.width *.6,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: user.roles?.length,
+                itemBuilder: (context, index) {
+                  
+                  return CustomStateContainer(
+                    title:  user.roles![index] ,
+                    color: const Color.fromARGB(255, 32, 128, 207),
+                    bgColor: const Color.fromARGB(255, 225, 242, 255),
+                  );
+                },
+              ),
+            )
           ],
         ),
       ],
