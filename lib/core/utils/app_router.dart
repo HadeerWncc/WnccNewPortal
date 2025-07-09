@@ -3,6 +3,7 @@ import 'package:wncc_portal/features/authentication/data/models/validate_code_mo
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
+import 'package:wncc_portal/features/requests/presentation/views/pages/requests_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/change_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/forget_password_page.dart';
@@ -33,6 +34,7 @@ abstract class AppRouter {
   static const pickupPath = '/pickupPath';
   static const detailsPage = '/detailsPagePath';
   static const profile = '/profile';
+  static const requests = '/requests';
 
   static final router = GoRouter(
     routes: [
@@ -100,9 +102,13 @@ abstract class AppRouter {
         path: detailsPage,
         builder: (context, state) => const DetailsPage(),
       ),
-        GoRoute(
+      GoRoute(
         path: profile,
         builder: (context, state) => const ProfilePage(),
+      ),
+      GoRoute(
+        path: requests,
+        builder: (context, state) => const RequestsPage(),
       ),
     ],
   );

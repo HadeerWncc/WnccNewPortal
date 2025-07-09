@@ -6,7 +6,6 @@ import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
 import 'package:wncc_portal/features/user/domain/entities/profile_entity.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_cities_cubit/get_cities_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/update_profile_cubit/update_profile_cubit.dart';
-import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/profile/change_profile_bloc_consumer.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/profile/custom_change_image_picker.dart';
 
