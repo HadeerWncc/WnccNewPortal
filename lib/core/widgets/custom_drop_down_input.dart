@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/constants/constants.dart';
+import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 
 class CustomDropDownInput extends StatelessWidget {
   const CustomDropDownInput({
@@ -26,7 +27,9 @@ class CustomDropDownInput extends StatelessWidget {
         style: const TextStyle(
             fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
         decoration: InputDecoration(
-          border: const OutlineInputBorder(borderSide: BorderSide.none),
+          enabledBorder: inputBorder(),
+          focusedBorder: customfocusedBorder(),
+              
           fillColor: const Color(0xffF9F9F9),
           filled: true,
           labelText: title,

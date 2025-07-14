@@ -8,6 +8,15 @@ OutlineInputBorder inputBorder() {
       borderRadius: BorderRadius.circular(8));
 }
 
+OutlineInputBorder customfocusedBorder() {
+  return const OutlineInputBorder(
+    borderSide: BorderSide(
+      width: 1,
+      color: Color.fromARGB(255, 171, 171, 171),
+    ),
+  );
+}
+
 RoundedRectangleBorder drawerBorde() {
   return const RoundedRectangleBorder(
     borderRadius: BorderRadius.only(

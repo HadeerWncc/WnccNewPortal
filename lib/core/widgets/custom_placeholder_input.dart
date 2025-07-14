@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/constants/constants.dart';
+import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/utils/methods/validate_password_with_regex.dart';
-
 class CustomPlaceholderInput extends StatelessWidget {
   const CustomPlaceholderInput(
       {super.key,
@@ -32,6 +32,7 @@ class CustomPlaceholderInput extends StatelessWidget {
         SizedBox(
           width: width ?? defaultWidth,
           child: TextFormField(
+            autofocus: false,
             onChanged: onChanged,
             enabled: enable,
             validator: (value) {
@@ -47,18 +48,13 @@ class CustomPlaceholderInput extends StatelessWidget {
             obscureText: secure,
             cursorColor: Colors.black,
             style: const TextStyle(
-              fontSize: 15,
+              // fontSize: 15,
               fontWeight: FontWeight.bold,
             ),
             decoration: InputDecoration(
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(
-                  width: .7,
-                  color: Color.fromARGB(255, 153, 153, 153),
-                ),
-              ),
+              focusedBorder: customfocusedBorder(),
               fillColor: const Color(0xffF9F9F9),
-              border: const OutlineInputBorder(borderSide: BorderSide.none),
+                enabledBorder: inputBorder(),
               filled: true,
               labelText: labelText,
               labelStyle: const TextStyle(
