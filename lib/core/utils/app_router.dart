@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/features/authentication/data/models/validate_code_model.dart';
+import 'package:wncc_portal/features/complains/presentation/views/pages/complain_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
@@ -35,6 +36,7 @@ abstract class AppRouter {
   static const detailsPage = '/detailsPagePath';
   static const profile = '/profile';
   static const requests = '/requests';
+  static const complains = '/complains';
 
   static final router = GoRouter(
     routes: [
@@ -109,6 +111,10 @@ abstract class AppRouter {
       GoRoute(
         path: requests,
         builder: (context, state) => const RequestsPage(),
+      ),
+      GoRoute(
+        path: complains,
+        builder: (context, state) => const ComplainPage(),
       ),
     ],
   );

@@ -8,12 +8,14 @@ class RequestsPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: const [
-        AddRequestSection(),
-        RequestsFilter(),
-        RequestsTable(),
-      ],
+    return const SingleChildScrollView(
+      child: Column(
+        children: [
+          AddRequestSection(),
+          RequestsFilter(),
+          RequestsTable(),
+        ],
+      ),
     );
   }
 }

@@ -12,43 +12,40 @@ class RequestsTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        
-        scrollDirection: Axis.horizontal,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width < 800
-              ? 800
-              : MediaQuery.of(context).size.width,
-          child: DataTable2(
-            columnSpacing: 0,
-            horizontalMargin: 0,
-            minWidth: 800,
-            showCheckboxColumn: true,
-            dataRowHeight: 60,
-            border: const TableBorder.symmetric(
-                outside:
-                    BorderSide(color: Color.fromARGB(255, 195, 193, 193))),
-            headingRowColor: WidgetStateProperty.all(
-              const Color(0xffF9FAFC),
-            ),
-            columns: const [
-              DataColumn(label: DataColumnText(text: 'Payer')),
-              DataColumn(label: DataColumnText(text: 'Level')),
-              DataColumn(label: DataColumnText(text: 'Status')),
-              DataColumn(label: DataColumnText(text: 'No')),
-              DataColumn(label: DataColumnText(text: 'Created At')),
-              DataColumn(label: DataColumnText(text: 'Actions')),
-            ],
-            rows: List<DataRow>.generate(
-              20,
-              (index) {
-                final color = index.isOdd
-                    ? const Color(0xffF8F8FA)
-                    : const Color(0xffFFFFFF);
-                // final item = widget.pendingOrders[index];
-                return DataRow(
+    return SizedBox(
+        height: MediaQuery.of(context).size.height * .4,
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width < 800
+                ? 800
+                : MediaQuery.of(context).size.width,
+            child: DataTable2(
+              columnSpacing: 0,
+              horizontalMargin: 0,
+              minWidth: 800,
+              showCheckboxColumn: true,
+              dataRowHeight: 60,
+              border: const TableBorder.symmetric(
+                  outside: BorderSide(color: Color.fromARGB(255, 195, 193, 193))),
+              headingRowColor: WidgetStateProperty.all(
+                const Color(0xffF9FAFC),
+              ),
+              columns: const [
+                DataColumn(label: DataColumnText(text: 'Payer')),
+                DataColumn(label: DataColumnText(text: 'Level')),
+                DataColumn(label: DataColumnText(text: 'Status')),
+                DataColumn(label: DataColumnText(text: 'No')),
+                DataColumn(label: DataColumnText(text: 'Created At')),
+                DataColumn(label: DataColumnText(text: 'Actions')),
+              ],
+              rows: List<DataRow>.generate(
+                10,
+                (index) {
+                  final color = index.isOdd
+                      ? const Color(0xffF8F8FA)
+                      : const Color(0xffFFFFFF);
+                  return DataRow(
                     color: WidgetStateProperty.all(color),
                     cells: const [
                       DataCell(CustomDataCellWidget(
@@ -83,12 +80,13 @@ class RequestsTable extends StatelessWidget {
                           orderId: '14',
                         ),
                       ),
-                    ]);
-              },
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }
