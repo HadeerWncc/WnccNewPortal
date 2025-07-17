@@ -5,6 +5,9 @@ import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
 import 'package:wncc_portal/features/requests/presentation/views/pages/requests_page.dart';
+import 'package:wncc_portal/features/requests/presentation/views/widgets/add_request_page.dart';
+import 'package:wncc_portal/features/requests/presentation/views/widgets/edit_request_form.dart';
+import 'package:wncc_portal/features/requests/presentation/views/widgets/edit_request_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/change_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/forget_password_page.dart';
@@ -37,6 +40,8 @@ abstract class AppRouter {
   static const profile = '/profile';
   static const requests = '/requests';
   static const complains = '/complains';
+  static const addRequestPage = '/addRequestPage';
+  static const editRequestPage = '/editRequestPage';
 
   static final router = GoRouter(
     routes: [
@@ -115,6 +120,14 @@ abstract class AppRouter {
       GoRoute(
         path: complains,
         builder: (context, state) => const ComplainPage(),
+      ),
+      GoRoute(
+        path: addRequestPage,
+        builder: (context, state) => const AddRequestPage(),
+      ),
+      GoRoute(
+        path: editRequestPage,
+        builder: (context, state) => const EditRequestPage(),
       ),
     ],
   );

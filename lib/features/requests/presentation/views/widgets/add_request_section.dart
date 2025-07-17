@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
+import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/widgets/custom_button.dart';
 
 class AddRequestSection extends StatelessWidget {
@@ -30,7 +32,6 @@ class AddRequestSection extends StatelessWidget {
             height: MediaQuery.of(context).size.width * .4,
             decoration: const BoxDecoration(
               color: Colors.white,
-              // borderRadius: BorderRadius.circular(8),
               image:  DecorationImage(
                   image: AssetImage('assets/images/requestImage.jpeg'),
                   fit: BoxFit.fill,
@@ -41,7 +42,9 @@ class AddRequestSection extends StatelessWidget {
           CustomButton(
             contant: 'Create new request',
             color: kBtnColor,
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.addRequestPage);
+            },
           ),
         ],
       ),
