@@ -43,7 +43,7 @@ class _CustomButtonWithIconState extends State<CustomButtonWithIcon> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         decoration: BoxDecoration(
           color: isPressed ? widget.onHoverColor : widget.bgColor,
           borderRadius: BorderRadius.circular(8),

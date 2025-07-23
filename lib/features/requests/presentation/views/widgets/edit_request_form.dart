@@ -15,8 +15,9 @@ class EditRequestForm extends StatelessWidget {
         children: [
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: TextEditingController(),
+            controller: TextEditingController(text: "1000049"),
             labelText: 'Select Payer',
+            enable: false,
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(

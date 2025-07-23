@@ -12,39 +12,40 @@ class RequestsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: BlocBuilder<UserCubit, UserState>(
-      builder: (context, state) {
-        if (state is UserSuccess) {
-          return Scaffold(
-            appBar: AppBar(
-              actionsPadding: const EdgeInsets.all(5),
-              title: const Text('Requests'),
-              actions: [
-                CustomAppbarActions(
+    return SafeArea(
+      child: BlocBuilder<UserCubit, UserState>(
+        builder: (context, state) {
+          if (state is UserSuccess) {
+            return Scaffold(
+              appBar: AppBar(
+                actionsPadding: const EdgeInsets.all(5),
+                title: const Text('Requests'),
+                actions: [
+                  CustomAppbarActions(
+                    user: state.user,
+                  ),
+                  const SizedBox(width: 10),
+                ],
+              ),
+              drawer: Drawer(
+                shape: drawerBorde(),
+                child: CustomMenusList(
+                  activeTab: "Requests",
                   user: state.user,
                 ),
-                const SizedBox(width: 10),
-              ],
-            ),
-            drawer: Drawer(
-              shape: drawerBorde(),
-              child: CustomMenusList(
-                activeTab: "Requests",
-                user: state.user,
               ),
-            ),
-            body: const RequestsPageBody(),
+              body: const RequestsPageBody(),
+            );
+          } else if (state is UserFailure) {
+            return Center(
+              child: Text(state.error),
+            );
+          }
+          return const LoadingPage(
+            title: 'Requests',
           );
-        }
-        else if (state is UserFailure) {
-          return Center(
-            child: Text(state.error),
-          );
-        }
-        return const LoadingPage(
-          title: 'Requests',
-        );
-      },
-    ));
+        },
+      ),
+    );
   }
 }

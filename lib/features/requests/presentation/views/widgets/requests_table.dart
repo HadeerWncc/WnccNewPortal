@@ -1,9 +1,10 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/custom_state_container.dart';
+import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/pending_delivey.dart/custom_pending_delivery_actions.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/custom_request_actions.dart';
 
 class RequestsTable extends StatelessWidget {
@@ -48,12 +49,9 @@ class RequestsTable extends StatelessWidget {
                     ? const Color(0xffF8F8FA)
                     : const Color(0xffFFFFFF);
                 return DataRow(
-                  onSelectChanged: (value){
-                    print(value);
+                  onSelectChanged: (value) {
+                    GoRouter.of(context).push(AppRouter.requestDetailsPage);
                   },
-                  // onLongPress: (){
-                  //   print('Hello');
-                  // },
                   color: WidgetStateProperty.all(color),
                   cells: [
                     DataCell(
@@ -61,45 +59,51 @@ class RequestsTable extends StatelessWidget {
                         onTap: () {
                           //Go To Details
                         },
-                        child: Center(
-                            child: Text(
-                          '12908',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                        child: const Center(
+                          child: Text(
+                            '12908',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        )),
+                        ),
                       ),
                     ),
-                    DataCell(
+                    const DataCell(
                       CustomDataCellWidget(
                           title: "Ahmed Ali", subTitle: "1000049"),
                     ),
-                    DataCell(
+                    const DataCell(
                       Center(
-                        child: CustomStateContainer(
+                        child: CustomMarkedColorContainer(
                           title: 'Critical',
                           color: Color.fromARGB(255, 18, 159, 22),
                           bgColor: Color(0xffD9FDE3),
                         ),
                       ),
                     ),
-                    DataCell(
+                    const DataCell(
                       Center(
-                        child: CustomStateContainer(
+                        child: CustomMarkedColorContainer(
                           title: 'New',
                           color: Color.fromARGB(255, 0, 139, 253),
                           bgColor: Color.fromARGB(255, 223, 236, 248),
                         ),
                       ),
                     ),
-                    DataCell(Center(
+                    const DataCell(
+                      Center(
                         child: Text(
-                      '145236',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ))),
-                    DataCell(CustomDataCellWidget(
-                        title: "Apr 20 2025", subTitle: "time: 12:30}")),
-                    DataCell(
+                          '145236',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
+                    const DataCell(
+                      CustomDataCellWidget(
+                          title: "Apr 20 2025", subTitle: "time: 12:30}"),
+                    ),
+                    const DataCell(
                       CustomRequestActions(
                         requestId: '14',
                       ),

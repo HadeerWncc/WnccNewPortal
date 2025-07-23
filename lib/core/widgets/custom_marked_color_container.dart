@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomStateContainer extends StatelessWidget {
-  const CustomStateContainer({super.key, required this.title, required this.color, required this.bgColor});
+class CustomMarkedColorContainer extends StatelessWidget {
+  const CustomMarkedColorContainer({super.key, required this.title, required this.color, required this.bgColor});
   final String title;
   final Color color;
   final Color bgColor;

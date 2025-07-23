@@ -4,6 +4,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/widgets/custom_button.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
+import 'package:wncc_portal/features/requests/presentation/views/widgets/edit_request_form.dart';
 
 class EditRequestPage extends StatelessWidget {
   const EditRequestPage({super.key});
@@ -39,7 +40,7 @@ class EditRequestPage extends StatelessWidget {
               ),
             ),
             const Divider(),
-            const EditRequestPage(),
+            const EditRequestForm(),
             const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

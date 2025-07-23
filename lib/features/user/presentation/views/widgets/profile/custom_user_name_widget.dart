@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/custom_state_container.dart';
+import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 
 class CustomUserNameWidget extends StatelessWidget {
   const CustomUserNameWidget({
@@ -25,7 +25,7 @@ class CustomUserNameWidget extends StatelessWidget {
           size: 18,
         ),
         const SizedBox(width: 7),
-        const CustomStateContainer(
+        const CustomMarkedColorContainer(
           title: "Available",
           color: Colors.green,
           bgColor: Color(0xffD9FDE3),

@@ -1,7 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/custom_state_container.dart';
+import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/dispatched_delivery_order.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
@@ -103,7 +103,7 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                 DataCell(Center(child: Text(item.truckNo.toString()))),
                 const DataCell(
                   Center(
-                    child: CustomStateContainer(
+                    child: CustomMarkedColorContainer(
                       title: 'CheckIn',
                       color: Colors.green,
                       bgColor: Color(0xffD9FDE3),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/custom_state_container.dart';
+import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/profile/custom_user_name_widget.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/profile/user_info_item.dart';
 
@@ -43,7 +43,7 @@ class UserInfo extends StatelessWidget {
                 itemCount: user.roles?.length,
                 itemBuilder: (context, index) {
                   
-                  return CustomStateContainer(
+                  return CustomMarkedColorContainer(
                     title:  user.roles![index] ,
                     color: const Color.fromARGB(255, 32, 128, 207),
                     bgColor: const Color.fromARGB(255, 225, 242, 255),

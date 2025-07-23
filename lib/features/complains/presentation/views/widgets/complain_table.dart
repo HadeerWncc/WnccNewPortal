@@ -1,7 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/custom_state_container.dart';
+import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/pending_delivey.dart/custom_pending_delivery_actions.dart';
 
@@ -56,7 +56,7 @@ class ComplainTable extends StatelessWidget {
                     ),
                     DataCell(
                       Center(
-                        child: CustomStateContainer(
+                        child: CustomMarkedColorContainer(
                           title: 'Created',
                           color: Color.fromARGB(255, 0, 139, 253),
                           bgColor: Color.fromARGB(255, 223, 236, 248),

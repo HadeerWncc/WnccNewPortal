@@ -13,7 +13,7 @@ class CustomPlaceholderInput extends StatelessWidget {
       this.passwordRgex = false,
       this.enable = true,
       this.onChanged,
-      this.keyboardType, this.linesNum});
+      this.keyboardType, this.linesNum, this.xAxis});
   final TextEditingController controller;
   final String labelText;
   final double? width;
@@ -24,11 +24,13 @@ class CustomPlaceholderInput extends StatelessWidget {
   final void Function(String)? onChanged;
   final TextInputType? keyboardType;
   final int? linesNum;
+  final MainAxisAlignment? xAxis;
   @override
   Widget build(BuildContext context) {
     double defaultWidth =
         MediaQuery.of(context).size.width * 1 - (kHorizontalPadding * 2);
     return Row(
+      mainAxisAlignment: xAxis ?? MainAxisAlignment.start,
       children: [
         SizedBox(
           width: width ?? defaultWidth,
@@ -52,19 +54,18 @@ class CustomPlaceholderInput extends StatelessWidget {
             obscureText: secure,
             cursorColor: Colors.black,
             style: const TextStyle(
-              // fontSize: 15,
               fontWeight: FontWeight.bold,
             ),
             decoration: InputDecoration(
               focusedBorder: customfocusedBorder(),
               fillColor: const Color(0xffF9F9F9),
                 enabledBorder: inputBorder(),
+                disabledBorder: inputBorder(),
               filled: true,
               labelText: labelText,
               alignLabelWithHint: true,
               labelStyle: const TextStyle(
                 color: Color.fromARGB(255, 83, 83, 83),
-                // fontWeight: FontWeight.bold,
               ),
             ),
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/custom_state_container.dart';
+import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/custom_details_heading_icon.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/custom_details_text.dart';
 
@@ -24,7 +24,7 @@ class CustomDetailsHeading extends StatelessWidget {
             ),
           ],
         ),
-        CustomStateContainer(
+        CustomMarkedColorContainer(
           title: 'Delivered',
           color: Colors.green,
           bgColor: Color(0xffD9FDE3),
