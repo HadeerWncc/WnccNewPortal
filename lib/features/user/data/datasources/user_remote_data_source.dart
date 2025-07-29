@@ -15,8 +15,8 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource {
   UserRemoteDataSourceImpl({required this.apiService});
   @override
   Future<UserModel> completeProfile() async {
-    var result =
-        await apiService.put(endPoint: 'api/CurrentUser/CompleteProfile', data: {});
+    var result = await apiService
+        .put(endPoint: 'api/CurrentUser/CompleteProfile', data: {});
     UserModel userModel = UserModel.fromJson(result['data']);
     return userModel;
   }

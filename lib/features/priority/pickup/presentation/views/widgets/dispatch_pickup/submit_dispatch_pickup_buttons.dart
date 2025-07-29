@@ -6,7 +6,8 @@ import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubit
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubits/undispatch_pickup_cubit/undispatch_pickup_cubit.dart';
 
 class SubmitDispatchPickupButtons extends StatelessWidget {
-  const SubmitDispatchPickupButtons({super.key, required this.selectedOrders, required this.date});
+  const SubmitDispatchPickupButtons(
+      {super.key, required this.selectedOrders, required this.date});
   final List<String> selectedOrders;
   final String date;
   @override

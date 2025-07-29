@@ -12,7 +12,7 @@ class PickupRepoImpl extends PickupRepo {
 
   PickupRepoImpl({required this.pickupDataSource});
   @override
-  Future<Either<Failure, bool>> addPickupPriority(List<String> orderIds) async{
+  Future<Either<Failure, bool>> addPickupPriority(List<String> orderIds) async {
     try {
       bool success = await pickupDataSource.addPickupPriority(orderIds);
       return Right(success);
@@ -25,7 +25,8 @@ class PickupRepoImpl extends PickupRepo {
   }
 
   @override
-  Future<Either<Failure, bool>> deletepickupPriority(List<String> orderIds) async{
+  Future<Either<Failure, bool>> deletepickupPriority(
+      List<String> orderIds) async {
     try {
       bool success = await pickupDataSource.deletePickupPriority(orderIds);
       return Right(success);
@@ -38,7 +39,8 @@ class PickupRepoImpl extends PickupRepo {
   }
 
   @override
-  Future<Either<Failure, bool>> dispatchPickupOrders(List<String> orders) async{
+  Future<Either<Failure, bool>> dispatchPickupOrders(
+      List<String> orders) async {
     try {
       bool success = await pickupDataSource.dispatchPickupOrders(orders);
       return Right(success);
@@ -51,9 +53,11 @@ class PickupRepoImpl extends PickupRepo {
   }
 
   @override
-  Future<Either<Failure, List<DispatchPickupOrder>>> getDispatchPickupByDate(String date) async{
+  Future<Either<Failure, List<DispatchPickupOrder>>> getDispatchPickupByDate(
+      String date) async {
     try {
-      List<DispatchPickupOrder> orders = await pickupDataSource.getDispatchPickupOrdersByDate(date);
+      List<DispatchPickupOrder> orders =
+          await pickupDataSource.getDispatchPickupOrdersByDate(date);
       return Right(orders);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -64,9 +68,11 @@ class PickupRepoImpl extends PickupRepo {
   }
 
   @override
-  Future<Either<Failure, DispatchPickupOrder>> getDispatchPickupById(String id) async{
+  Future<Either<Failure, DispatchPickupOrder>> getDispatchPickupById(
+      String id) async {
     try {
-      DispatchPickupOrder order = await pickupDataSource.getDispatchPickupOrdersById(id);
+      DispatchPickupOrder order =
+          await pickupDataSource.getDispatchPickupOrdersById(id);
       return Right(order);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -77,9 +83,10 @@ class PickupRepoImpl extends PickupRepo {
   }
 
   @override
-  Future<Either<Failure, List<PendingOrder>>> getPendingPickupOrders() async{
+  Future<Either<Failure, List<PendingOrder>>> getPendingPickupOrders() async {
     try {
-      List<PendingOrder> orders = await pickupDataSource.getPendingPickupOrders();
+      List<PendingOrder> orders =
+          await pickupDataSource.getPendingPickupOrders();
       return Right(orders);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -90,9 +97,11 @@ class PickupRepoImpl extends PickupRepo {
   }
 
   @override
-  Future<Either<Failure, PendingOrder>> getPendingPickupOrdersById(String id) async{
+  Future<Either<Failure, PendingOrder>> getPendingPickupOrdersById(
+      String id) async {
     try {
-      PendingOrder order = await pickupDataSource.getPendingPickupOrdersById(id);
+      PendingOrder order =
+          await pickupDataSource.getPendingPickupOrdersById(id);
       return Right(order);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -103,9 +112,11 @@ class PickupRepoImpl extends PickupRepo {
   }
 
   @override
-  Future<Either<Failure, PriorityPickupOrder>> getPriorityPickupById(String id) async{
+  Future<Either<Failure, PriorityPickupOrder>> getPriorityPickupById(
+      String id) async {
     try {
-      PriorityPickupOrder order = await pickupDataSource.getPriorityPickupOrdersById(id);
+      PriorityPickupOrder order =
+          await pickupDataSource.getPriorityPickupOrdersById(id);
       return Right(order);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -116,9 +127,11 @@ class PickupRepoImpl extends PickupRepo {
   }
 
   @override
-  Future<Either<Failure, List<PriorityPickupOrder>>> getPriorityPickupOrders() async{
+  Future<Either<Failure, List<PriorityPickupOrder>>>
+      getPriorityPickupOrders() async {
     try {
-      List<PriorityPickupOrder> orders = await pickupDataSource.getPriorityPickupOrders();
+      List<PriorityPickupOrder> orders =
+          await pickupDataSource.getPriorityPickupOrders();
       return Right(orders);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -129,8 +142,9 @@ class PickupRepoImpl extends PickupRepo {
   }
 
   @override
-  Future<Either<Failure, bool>> undispatchPickupOrders(List<String> orders) async {
-      try {
+  Future<Either<Failure, bool>> undispatchPickupOrders(
+      List<String> orders) async {
+    try {
       bool success = await pickupDataSource.undispatchPickupOrders(orders);
       return Right(success);
     } on Exception catch (e) {

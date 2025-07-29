@@ -13,7 +13,6 @@ class RequestTypeActionItem extends StatelessWidget {
     return IconButton(
       onPressed: () {},
       padding: const EdgeInsets.all(0),
-      
       icon: Icon(
         icon,
         size: 20,
@@ -30,6 +29,5 @@ class RequestTypeActionItem extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

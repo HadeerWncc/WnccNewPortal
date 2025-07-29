@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class ProfileDetailsHeader extends StatelessWidget {
   const ProfileDetailsHeader({
-    super.key, required this.title,
+    super.key,
+    required this.title,
   });
   final String title;
   @override

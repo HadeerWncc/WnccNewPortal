@@ -8,13 +8,15 @@ sealed class DispatchPickupOrderState extends Equatable {
 }
 
 final class DispatchPickupOrderInitial extends DispatchPickupOrderState {}
+
 final class DispatchPickupOrderLoading extends DispatchPickupOrderState {}
+
 final class DispatchPickupOrderFaliure extends DispatchPickupOrderState {
   final String error;
 
   const DispatchPickupOrderFaliure({required this.error});
-
 }
+
 final class DispatchPickupOrderSuccess extends DispatchPickupOrderState {
   final String message;
 

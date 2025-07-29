@@ -192,5 +192,3 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
     }
   }
 }
-
-

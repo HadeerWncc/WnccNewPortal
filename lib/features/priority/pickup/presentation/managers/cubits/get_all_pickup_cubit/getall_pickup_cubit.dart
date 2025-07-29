@@ -17,23 +17,28 @@ class GetallPickupCubit extends Cubit<GetallPickupState> {
     final result = await pickupRepo.getPendingPickupOrders();
     result.fold(
       (failure) => emit(GetallPickupFailure(errorMessage: failure.msg)),
-      (pendingOrders) => emit(GetallPendingPickupSuccess(pendingPickupOrders: pendingOrders)),
+      (pendingOrders) =>
+          emit(GetallPendingPickupSuccess(pendingPickupOrders: pendingOrders)),
     );
   }
+
   Future<void> getAllPriorityPickupOrders() async {
     emit(GetallPickupLoading());
     final result = await pickupRepo.getPriorityPickupOrders();
     result.fold(
       (failure) => emit(GetallPickupFailure(errorMessage: failure.msg)),
-      (priorityOrders) => emit(GetallPriorityPickupSuccess(priorityPickupOrders: priorityOrders)),
+      (priorityOrders) => emit(
+          GetallPriorityPickupSuccess(priorityPickupOrders: priorityOrders)),
     );
   }
+
   Future<void> getAllDispatchPickupOrders(String date) async {
     emit(GetallPickupLoading());
     final result = await pickupRepo.getDispatchPickupByDate(date);
     result.fold(
       (failure) => emit(GetallPickupFailure(errorMessage: failure.msg)),
-      (dispatchOrders) => emit(GetallDispatchPickupSuccess(dispatchPickupOrders: dispatchOrders)),
+      (dispatchOrders) => emit(
+          GetallDispatchPickupSuccess(dispatchPickupOrders: dispatchOrders)),
     );
   }
 }

@@ -91,12 +91,12 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
                     title: item.quantity.toString(),
                     subTitle: "Price: ${item.price}")),
                 DataCell(CustomDataCellWidget(
-                    title: DateFormat('MMMM d, y').format(item.registerDate?? DateTime.now()),
+                    title: DateFormat('MMMM d, y')
+                        .format(item.registerDate ?? DateTime.now()),
                     subTitle: "Time: 12:00 PM")),
                 DataCell(
                   CustomPendingDeliveryActions(
                     orderId: item.id!,
-                    
                   ),
                 ),
               ]);
@@ -107,4 +107,3 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
     );
   }
 }
-

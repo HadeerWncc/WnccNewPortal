@@ -20,8 +20,8 @@ class PriorityPickupSubmitButtons extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
               );
-              BlocProvider.of<GetallPickupCubit>(context).getAllPriorityPickupOrders();
-
+              BlocProvider.of<GetallPickupCubit>(context)
+                  .getAllPriorityPickupOrders();
             } else if (state is DeletePickupPriorityFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Error: ${state.error}')),
@@ -59,7 +59,8 @@ class PriorityPickupSubmitButtons extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
               );
-              BlocProvider.of<GetallPickupCubit>(context).getAllPriorityPickupOrders();
+              BlocProvider.of<GetallPickupCubit>(context)
+                  .getAllPriorityPickupOrders();
             } else if (state is DispatchPickupOrderFaliure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Error: ${state.error}')),

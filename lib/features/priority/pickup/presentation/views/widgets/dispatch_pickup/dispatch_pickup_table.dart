@@ -3,7 +3,8 @@ import 'package:wncc_portal/features/priority/pickup/data/models/dispatch_pickup
 import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/dispatch_pickup/grouped_dispatch_table.dart';
 
 class DispatchPickupTable extends StatelessWidget {
-  const DispatchPickupTable({super.key, required this.onSelectOrders, required this.orders});
+  const DispatchPickupTable(
+      {super.key, required this.onSelectOrders, required this.orders});
   final Function(List<String> ordersId) onSelectOrders;
   final List<DispatchPickupOrder> orders;
   @override

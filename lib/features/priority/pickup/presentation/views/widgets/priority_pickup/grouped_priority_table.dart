@@ -9,8 +9,9 @@ import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/
 class GroupedPriorityTable extends StatefulWidget {
   final List<PriorityPickupOrder> orders;
   final Function(List<String> ordersId) onSelectOrders;
- 
-  const GroupedPriorityTable({super.key, required this.orders, required this.onSelectOrders});
+
+  const GroupedPriorityTable(
+      {super.key, required this.orders, required this.onSelectOrders});
 
   @override
   State<GroupedPriorityTable> createState() => _GroupedPriorityTableState();

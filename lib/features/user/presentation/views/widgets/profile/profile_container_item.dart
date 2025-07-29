@@ -12,9 +12,8 @@ class ProfileContainerItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IntrinsicWidth(
-      
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 13,vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
@@ -46,8 +45,8 @@ class ProfileContainerItem extends StatelessWidget {
               opacity: .4,
               child: Text(
                 subTitle,
-                style: const TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w900),
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w900),
               ),
             ),
           ],

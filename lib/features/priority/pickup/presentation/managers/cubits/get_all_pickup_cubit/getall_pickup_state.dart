@@ -12,9 +12,9 @@ final class GetallPickupInitial extends GetallPickupState {}
 final class GetallPickupFailure extends GetallPickupState {
   final String errorMessage;
   const GetallPickupFailure({required this.errorMessage});
-} 
+}
 
-final class GetallPickupLoading extends GetallPickupState {} 
+final class GetallPickupLoading extends GetallPickupState {}
 
 final class GetallPendingPickupSuccess extends GetallPickupState {
   final List<PendingOrder> pendingPickupOrders;

@@ -52,7 +52,11 @@ class _DispatchDeliverySectionState extends State<DispatchDeliverySection> {
                 padding: const EdgeInsets.only(left: 10),
                 child: CustomSubmitDispatchButton(
                   selectedOrders: selectedOrders,
-                  date: state.dispatchedOrders.isNotEmpty? DateFormat('MMMM d, y').format(state.dispatchedOrders[0].dispatchDate?? DateTime.now()): DateFormat('MMMM d, y').format(DateTime.now()),
+                  date: state.dispatchedOrders.isNotEmpty
+                      ? DateFormat('MMMM d, y').format(
+                          state.dispatchedOrders[0].dispatchDate ??
+                              DateTime.now())
+                      : DateFormat('MMMM d, y').format(DateTime.now()),
                 ),
               ),
               const SizedBox(height: 30),

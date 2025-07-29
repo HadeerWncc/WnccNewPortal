@@ -89,7 +89,7 @@ class _ChangeProfileDetailsState extends State<ChangeProfileDetails> {
               builder: (context, state) {
                 if (state is GetCitiesSuccess) {
                   bool found = state.cities.contains(widget.user.city);
-                  selectedCity = found ? widget.user.city:state.cities[0];
+                  selectedCity = found ? widget.user.city : state.cities[0];
                   return CustomDropDownInput(
                     selectedValue: selectedCity,
                     items: state.cities,

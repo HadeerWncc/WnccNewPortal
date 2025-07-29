@@ -5,7 +5,8 @@ import 'package:wncc_portal/features/priority/pickup/domain/repositories/pickup_
 part 'dispatch_pickup_order_state.dart';
 
 class DispatchPickupOrderCubit extends Cubit<DispatchPickupOrderState> {
-  DispatchPickupOrderCubit(this.pickupRepo) : super(DispatchPickupOrderInitial());
+  DispatchPickupOrderCubit(this.pickupRepo)
+      : super(DispatchPickupOrderInitial());
 
   final PickupRepo pickupRepo;
 
@@ -15,7 +16,8 @@ class DispatchPickupOrderCubit extends Cubit<DispatchPickupOrderState> {
     result.fold(
       (failure) => emit(DispatchPickupOrderFaliure(error: failure.msg)),
       (success) => emit(
-        const DispatchPickupOrderSuccess(message: 'Pickup order dispatched successfully'),
+        const DispatchPickupOrderSuccess(
+            message: 'Pickup order dispatched successfully'),
       ),
     );
   }

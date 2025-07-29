@@ -22,7 +22,7 @@ class CustomRequestActionSection extends StatelessWidget {
             onHoverColor: Color.fromARGB(255, 207, 207, 207),
           ),
           SizedBox(width: 10),
-           CustomButtonWithIcon(
+          CustomButtonWithIcon(
             child: 'Reject All',
             textColor: Colors.black,
             bgColor: Color(0xffF9F9F9),
@@ -30,7 +30,7 @@ class CustomRequestActionSection extends StatelessWidget {
             onHoverColor: Color.fromARGB(255, 207, 207, 207),
           ),
           SizedBox(width: 10),
-           CustomButtonWithIcon(
+          CustomButtonWithIcon(
             child: 'Approve All',
             textColor: Colors.black,
             bgColor: Color(0xffF9F9F9),

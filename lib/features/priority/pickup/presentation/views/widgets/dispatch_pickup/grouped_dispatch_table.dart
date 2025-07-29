@@ -9,8 +9,9 @@ import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/
 class GroupedDispatchTable extends StatefulWidget {
   final List<DispatchPickupOrder> orders;
   final Function(List<String> ordersId) onSelectOrders;
-  
-  const GroupedDispatchTable({super.key, required this.orders, required this.onSelectOrders});
+
+  const GroupedDispatchTable(
+      {super.key, required this.orders, required this.onSelectOrders});
 
   @override
   State<GroupedDispatchTable> createState() => _GroupedDispatchTableState();
@@ -23,7 +24,7 @@ class _GroupedDispatchTableState extends State<GroupedDispatchTable> {
   Widget build(BuildContext context) {
     Map<String, List<DispatchPickupOrder>> grouped = {};
     for (var order in widget.orders) {
-      grouped.putIfAbsent(order.payerName??"", () => []).add(order);
+      grouped.putIfAbsent(order.payerName ?? "", () => []).add(order);
     }
 
     return SingleChildScrollView(
@@ -176,7 +177,8 @@ class _GroupedDispatchTableState extends State<GroupedDispatchTable> {
           ),
           Expanded(
             child: CustomDataCellWidget(
-              title: DateFormat('MMMM d, y').format(order.dispatchDate?? DateTime.now()),
+              title: DateFormat('MMMM d, y')
+                  .format(order.dispatchDate ?? DateTime.now()),
               subTitle: 'time: 12:00 PM',
             ),
           ),

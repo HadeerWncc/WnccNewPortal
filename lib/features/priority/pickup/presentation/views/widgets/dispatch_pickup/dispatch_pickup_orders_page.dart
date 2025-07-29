@@ -12,9 +12,10 @@ class DispatchPickupOrdersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  DateTime selectedDate = DateTime.now();
+    DateTime selectedDate = DateTime.now();
 
-    BlocProvider.of<GetallPickupCubit>(context).getAllDispatchPickupOrders(DateFormat('y-MM-dd').format(selectedDate));
+    BlocProvider.of<GetallPickupCubit>(context)
+        .getAllDispatchPickupOrders(DateFormat('y-MM-dd').format(selectedDate));
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,7 +25,9 @@ class DispatchPickupOrdersPage extends StatelessWidget {
             title: 'Selected Pickup Date',
             onChange: (value) {
               selectedDate = value;
-              BlocProvider.of<GetallPickupCubit>(context).getAllDispatchPickupOrders(DateFormat('y-MM-dd').format(selectedDate));
+              BlocProvider.of<GetallPickupCubit>(context)
+                  .getAllDispatchPickupOrders(
+                      DateFormat('y-MM-dd').format(selectedDate));
             },
           ),
         ),

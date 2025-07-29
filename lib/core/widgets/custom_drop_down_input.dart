@@ -8,7 +8,8 @@ class CustomDropDownInput extends StatelessWidget {
     required this.selectedValue,
     required this.items,
     this.onChanged,
-    required this.title, this.width,
+    required this.title,
+    this.width,
   });
 
   final String? selectedValue;
@@ -22,14 +23,14 @@ class CustomDropDownInput extends StatelessWidget {
     double defaultWidth =
         MediaQuery.of(context).size.width * 1 - (kHorizontalPadding * 2);
     return SizedBox(
-      width: width != null? MediaQuery.of(context).size.width * .5:defaultWidth,
+      width:
+          width != null ? MediaQuery.of(context).size.width * .5 : defaultWidth,
       child: DropdownButtonFormField<String>(
         style: const TextStyle(
             fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
         decoration: InputDecoration(
           enabledBorder: inputBorder(),
           focusedBorder: customfocusedBorder(),
-              
           fillColor: const Color(0xffF9F9F9),
           filled: true,
           labelText: title,

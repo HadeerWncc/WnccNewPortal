@@ -9,8 +9,9 @@ import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/
 class GroupedPendingTable extends StatefulWidget {
   final List<PendingOrder> orders;
   final Function(List<String> ordersId) onSelectOrders;
-  
-  const GroupedPendingTable({super.key, required this.orders, required this.onSelectOrders});
+
+  const GroupedPendingTable(
+      {super.key, required this.orders, required this.onSelectOrders});
 
   @override
   State<GroupedPendingTable> createState() => _GroupedPendingTableState();
@@ -23,7 +24,7 @@ class _GroupedPendingTableState extends State<GroupedPendingTable> {
   Widget build(BuildContext context) {
     Map<String, List<PendingOrder>> grouped = {};
     for (var order in widget.orders) {
-      grouped.putIfAbsent(order.payerName??"", () => []).add(order);
+      grouped.putIfAbsent(order.payerName ?? "", () => []).add(order);
     }
 
     return SingleChildScrollView(
@@ -163,7 +164,7 @@ class _GroupedPendingTableState extends State<GroupedPendingTable> {
           ),
           Expanded(
             child: CustomDataCellWidget(
-              title: order.productName??"",
+              title: order.productName ?? "",
               subTitle: "category: ${order.productCategory}",
             ),
           ),
@@ -175,7 +176,8 @@ class _GroupedPendingTableState extends State<GroupedPendingTable> {
           ),
           Expanded(
             child: CustomDataCellWidget(
-              title: DateFormat('MMMM d, y').format(order.registerDate?? DateTime.now()),
+              title: DateFormat('MMMM d, y')
+                  .format(order.registerDate ?? DateTime.now()),
               subTitle: 'time: 12:00 PM',
             ),
           ),

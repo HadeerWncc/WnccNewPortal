@@ -104,7 +104,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
               ),
             ],
           ),
-      
         ],
       ),
     );

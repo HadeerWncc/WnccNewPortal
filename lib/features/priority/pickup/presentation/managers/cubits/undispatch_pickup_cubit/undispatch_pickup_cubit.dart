@@ -15,7 +15,8 @@ class UndispatchPickupCubit extends Cubit<UndispatchPickupState> {
     result.fold(
       (failure) => emit(UndispatchPickupFailure(error: failure.msg)),
       (success) => emit(
-        const UndispatchPickupSuccess(message: 'Pickup orders undispatched successfully'),
+        const UndispatchPickupSuccess(
+            message: 'Pickup orders undispatched successfully'),
       ),
     );
   }

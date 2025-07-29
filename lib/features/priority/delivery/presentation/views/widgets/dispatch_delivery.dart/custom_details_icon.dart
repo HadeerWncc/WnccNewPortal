@@ -7,7 +7,8 @@ class CustomDetailsItem extends StatelessWidget {
     super.key,
     required this.icon,
     required this.title,
-    required this.subTitle, required this.processColor,
+    required this.subTitle,
+    required this.processColor,
   });
   final Icon icon;
   final String title;

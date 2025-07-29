@@ -14,7 +14,7 @@ class PriorityPickupTable extends StatelessWidget {
       child: ListView(children: [
         GroupedPriorityTable(
           orders: orders,
-          onSelectOrders:(ordersId) {
+          onSelectOrders: (ordersId) {
             onSelectOrders(ordersId);
           },
         )

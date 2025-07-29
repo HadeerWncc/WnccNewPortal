@@ -98,5 +98,3 @@ class _PendingPickupSectionState extends State<PendingPickupSection> {
     );
   }
 }
-
-

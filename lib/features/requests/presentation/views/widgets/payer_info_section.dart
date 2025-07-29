@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/features/requests/data/models/request_details_model/request_details_model.dart';
+import 'package:wncc_portal/features/requests/domain/entities/request_details_entity.dart';
 
 class PayerInfoSection extends StatelessWidget {
   const PayerInfoSection({
-    super.key,
+    super.key, required this.requestDetailsEntity,
   });
-
+  final RequestDetailsEntity requestDetailsEntity;
   @override
   Widget build(BuildContext context) {
+   
+  Duration diff = DateTime.now().difference(requestDetailsEntity.createdAt!);
+   int days = diff.inDays;
+  int hours = diff.inHours % 24;
+  int minutes = diff.inMinutes % 60;
+  String createdFrom = "";
+  if(days != 0){
+    createdFrom += ' $days days';
+  }
+  if(hours != 0){
+    createdFrom += ' $hours hours';
+  }
+  if(minutes != 0){
+    createdFrom +=  ' $minutes minutes';
+  }
+  createdFrom += ' ago';
     return Row(
       children: [
         const SizedBox(width: 10),
@@ -17,37 +35,37 @@ class PayerInfoSection extends StatelessWidget {
             color: const Color(0xff1B85FF),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: const Text(
-            'M',
-            style: TextStyle(
+          child:  Text(
+            requestDetailsEntity.payerName!.characters.first,
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
         ),
         const SizedBox(width: 10),
-        const Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
                 Text(
-                  'Mohamed Elkomy',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  requestDetailsEntity.payerName??"",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(width: 2),
-                Icon(
+                const SizedBox(width: 2),
+                const Icon(
                   Symbols.schedule,
                   color: Color.fromARGB(255, 83, 134, 223),
                   size: 16,
                   weight: 900,
                 ),
-                SizedBox(width: 2),
+                const SizedBox(width: 4),
                 Opacity(
                   opacity: .5,
                   child: Text(
-                    '1 minute ago',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    createdFrom,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
@@ -55,8 +73,8 @@ class PayerInfoSection extends StatelessWidget {
             Opacity(
               opacity: .5,
               child: Text(
-                'Mohamed.Elkomy@gmail.com',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                requestDetailsEntity.payerEmail??"",
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
           ],

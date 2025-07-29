@@ -5,7 +5,8 @@ import 'package:wncc_portal/features/priority/pickup/domain/repositories/pickup_
 part 'delete_pickup_priority_state.dart';
 
 class DeletePickupPriorityCubit extends Cubit<DeletePickupPriorityState> {
-  DeletePickupPriorityCubit(this.pickupRepo) : super(DeletePickupPriorityInitial());
+  DeletePickupPriorityCubit(this.pickupRepo)
+      : super(DeletePickupPriorityInitial());
 
   final PickupRepo pickupRepo;
 

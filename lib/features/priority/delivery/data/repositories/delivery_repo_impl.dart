@@ -104,7 +104,8 @@ class DeliveryRepoImpl extends DeliveryRepo {
   @override
   Future<Either<Failure, List<PendingOrder>>> getPendingDeliveryOrders() async {
     try {
-      List<PendingOrder> orders = await deliveryDataSource.getPendingDeliveryOrders();
+      List<PendingOrder> orders =
+          await deliveryDataSource.getPendingDeliveryOrders();
       return Right(orders);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -115,9 +116,11 @@ class DeliveryRepoImpl extends DeliveryRepo {
   }
 
   @override
-  Future<Either<Failure, PendingOrder>> getPendingDeliveryOrdersById(String id) async {
+  Future<Either<Failure, PendingOrder>> getPendingDeliveryOrdersById(
+      String id) async {
     try {
-      PendingOrder order = await deliveryDataSource.getPendingDeliveryOrdersById(id);
+      PendingOrder order =
+          await deliveryDataSource.getPendingDeliveryOrdersById(id);
       return Right(order);
     } on Exception catch (e) {
       if (e is DioException) {

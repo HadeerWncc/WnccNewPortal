@@ -13,8 +13,7 @@ class FollowUpSectionHeader extends StatelessWidget {
       children: [
         Text(
           'follow-ups',
-          style:
-              TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
         ),
         CustomMarkedColorContainer(
           title: 'Inovice',

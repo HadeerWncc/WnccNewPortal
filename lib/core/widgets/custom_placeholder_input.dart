@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/constants/constants.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/utils/methods/validate_password_with_regex.dart';
+
 class CustomPlaceholderInput extends StatelessWidget {
   const CustomPlaceholderInput(
       {super.key,
@@ -13,7 +14,9 @@ class CustomPlaceholderInput extends StatelessWidget {
       this.passwordRgex = false,
       this.enable = true,
       this.onChanged,
-      this.keyboardType, this.linesNum, this.xAxis});
+      this.keyboardType,
+      this.linesNum,
+      this.xAxis});
   final TextEditingController controller;
   final String labelText;
   final double? width;
@@ -35,7 +38,7 @@ class CustomPlaceholderInput extends StatelessWidget {
         SizedBox(
           width: width ?? defaultWidth,
           child: TextFormField(
-             textAlignVertical: TextAlignVertical.top,
+            textAlignVertical: TextAlignVertical.top,
             autofocus: false,
             onChanged: onChanged,
             enabled: enable,
@@ -47,8 +50,8 @@ class CustomPlaceholderInput extends StatelessWidget {
               }
               return null;
             },
-            minLines: linesNum ??1,
-            maxLines: linesNum??1,
+            minLines: linesNum ?? 1,
+            maxLines: linesNum ?? 1,
             keyboardType: keyboardType,
             controller: controller,
             obscureText: secure,
@@ -59,8 +62,8 @@ class CustomPlaceholderInput extends StatelessWidget {
             decoration: InputDecoration(
               focusedBorder: customfocusedBorder(),
               fillColor: const Color(0xffF9F9F9),
-                enabledBorder: inputBorder(),
-                disabledBorder: inputBorder(),
+              enabledBorder: inputBorder(),
+              disabledBorder: inputBorder(),
               filled: true,
               labelText: labelText,
               alignLabelWithHint: true,

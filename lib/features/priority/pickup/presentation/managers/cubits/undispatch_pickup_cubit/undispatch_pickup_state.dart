@@ -8,13 +8,15 @@ sealed class UndispatchPickupState extends Equatable {
 }
 
 final class UndispatchPickupInitial extends UndispatchPickupState {}
+
 final class UndispatchPickupLoading extends UndispatchPickupState {}
+
 final class UndispatchPickupFailure extends UndispatchPickupState {
   final String error;
 
   const UndispatchPickupFailure({required this.error});
-
 }
+
 final class UndispatchPickupSuccess extends UndispatchPickupState {
   final String message;
 

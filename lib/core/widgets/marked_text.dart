@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class MarkedText extends StatelessWidget {
   const MarkedText({
-    super.key, required this.child,
+    super.key,
+    required this.child,
   });
   final String child;
   @override

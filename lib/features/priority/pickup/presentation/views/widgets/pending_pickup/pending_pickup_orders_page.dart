@@ -7,7 +7,7 @@ import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/
 
 class PendingPickupOrdersPage extends StatelessWidget {
   const PendingPickupOrdersPage({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<GetallPickupCubit>(context).getAllPendingPickupOrders();

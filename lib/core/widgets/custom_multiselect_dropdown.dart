@@ -19,7 +19,8 @@ class CustomMultiSelectDropDown extends StatefulWidget {
   final double? width;
 
   @override
-  State<CustomMultiSelectDropDown> createState() => _CustomMultiSelectDropDownState();
+  State<CustomMultiSelectDropDown> createState() =>
+      _CustomMultiSelectDropDownState();
 }
 
 class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {

@@ -92,7 +92,8 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                     title: item.quantity.toString(),
                     subTitle: "Price: ${item.price}")),
                 DataCell(CustomDataCellWidget(
-                    title: DateFormat('MMMM d, y').format(item.priorityDate?? DateTime.now()),
+                    title: DateFormat('MMMM d, y')
+                        .format(item.priorityDate ?? DateTime.now()),
                     subTitle: "Time: 12:00 PM")),
                 DataCell(Center(child: Text(item.truckNo.toString()))),
                 DataCell(
@@ -108,4 +109,3 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
     );
   }
 }
-

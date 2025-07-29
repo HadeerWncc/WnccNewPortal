@@ -11,7 +11,8 @@ class RequestTypeItem extends StatelessWidget {
     super.key,
     required this.typeName,
     required this.state,
-    this.onTap, required this.active,
+    this.onTap,
+    required this.active,
   });
   final String typeName;
   final String state;

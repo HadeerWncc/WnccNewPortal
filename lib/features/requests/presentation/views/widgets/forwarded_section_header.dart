@@ -10,8 +10,7 @@ class ForwardedSectionHeader extends StatelessWidget {
       children: [
         Text(
           'Forwared Users',
-          style:
-              TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
         ),
       ],
     );

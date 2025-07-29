@@ -9,8 +9,6 @@ class ChangePasswordCardBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.all(13),
-      child: ChangePasswordForm()
-    );
+        padding: EdgeInsets.all(13), child: ChangePasswordForm());
   }
 }

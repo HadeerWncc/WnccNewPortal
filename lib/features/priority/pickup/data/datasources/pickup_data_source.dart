@@ -9,8 +9,7 @@ abstract class PickupDataSource {
   Future<List<PriorityPickupOrder>> getPriorityPickupOrders();
   Future<PriorityPickupOrder> getPriorityPickupOrdersById(String id);
   Future<DispatchPickupOrder> getDispatchPickupOrdersById(String id);
-  Future<List<DispatchPickupOrder>> getDispatchPickupOrdersByDate(
-      String date);
+  Future<List<DispatchPickupOrder>> getDispatchPickupOrdersByDate(String date);
   Future<bool> addPickupPriority(List<String> orderIds);
   Future<bool> deletePickupPriority(List<String> orderIds);
   Future<bool> dispatchPickupOrders(List<String> orders);
@@ -72,8 +71,6 @@ class PickupDataSourceImpl extends PickupDataSource {
     return successed;
   }
 
-
-
   @override
   Future<List<DispatchPickupOrder>> getDispatchPickupOrdersByDate(
       String date) async {
@@ -88,8 +85,7 @@ class PickupDataSourceImpl extends PickupDataSource {
   }
 
   @override
-  Future<DispatchPickupOrder> getDispatchPickupOrdersById(
-      String id) async {
+  Future<DispatchPickupOrder> getDispatchPickupOrdersById(String id) async {
     var result = await apiService.get(
       endPoint: 'api/PickupDispatchOrders/GetDispatchOrder?$id',
     );
@@ -153,6 +149,4 @@ class PickupDataSourceImpl extends PickupDataSource {
     bool successed = result["data"] as bool;
     return successed;
   }
-
-  
 }

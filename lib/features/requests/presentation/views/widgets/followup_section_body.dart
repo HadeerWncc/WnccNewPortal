@@ -14,7 +14,10 @@ class FollowUpSectionBody extends StatelessWidget {
       children: [
         Row(
           children: [
-            CustomCircelLetterContainer(letter: 'A',bgColor: Colors.redAccent,),
+            CustomCircelLetterContainer(
+              letter: 'A',
+              bgColor: Colors.redAccent,
+            ),
             SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

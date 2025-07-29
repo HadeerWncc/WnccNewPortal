@@ -50,7 +50,6 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
                 padding: const EdgeInsets.only(left: 10),
                 child: CustomSubmitPendingButtons(
                   selectedOrders: selectedOrders,
-                  
                 ),
               ),
               const SizedBox(height: 30),
@@ -69,7 +68,7 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
                   },
                   pendingOrders: state.pendingOrders,
                 )
-              else if (categoryType == "Bags") 
+              else if (categoryType == "Bags")
                 PendingDeliveryTable(
                   onSelectOrders: (ordersId) {
                     selectedOrders = ordersId;

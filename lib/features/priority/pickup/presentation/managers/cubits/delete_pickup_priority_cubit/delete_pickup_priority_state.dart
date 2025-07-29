@@ -8,13 +8,15 @@ sealed class DeletePickupPriorityState extends Equatable {
 }
 
 final class DeletePickupPriorityInitial extends DeletePickupPriorityState {}
+
 final class DeletePickupPriorityLoading extends DeletePickupPriorityState {}
+
 final class DeletePickupPriorityFailure extends DeletePickupPriorityState {
   final String error;
 
   const DeletePickupPriorityFailure({required this.error});
-
 }
+
 final class DeletePickupPrioritySuccess extends DeletePickupPriorityState {
   final String message;
 

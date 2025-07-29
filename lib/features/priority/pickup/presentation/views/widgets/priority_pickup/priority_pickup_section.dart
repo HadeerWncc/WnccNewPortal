@@ -70,9 +70,7 @@ class _PriorityPickupSectionState extends State<PriorityPickupSection> {
                 PriorityPickupTable(
                   onSelectOrders: (ordersId) {
                     selectedOrders = ordersId;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   },
                   orders: state.priorityPickupOrders,
                 )

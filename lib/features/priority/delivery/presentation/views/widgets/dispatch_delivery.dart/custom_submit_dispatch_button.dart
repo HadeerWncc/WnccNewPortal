@@ -6,7 +6,8 @@ import 'package:wncc_portal/features/priority/delivery/presentation/managers/cub
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/undispatch_delivery_order_cubit/undispatch_delivery_order_cubit.dart';
 
 class CustomSubmitDispatchButton extends StatelessWidget {
-  const CustomSubmitDispatchButton({super.key, required this.selectedOrders, required this.date});
+  const CustomSubmitDispatchButton(
+      {super.key, required this.selectedOrders, required this.date});
   final List<String> selectedOrders;
   final String date;
   @override

@@ -103,5 +103,3 @@ class DetailsBody extends StatelessWidget {
     );
   }
 }
-
-

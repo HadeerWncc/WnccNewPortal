@@ -3,7 +3,8 @@ import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 
 class CustomUserNameWidget extends StatelessWidget {
   const CustomUserNameWidget({
-    super.key, required this.child,
+    super.key,
+    required this.child,
   });
   final String child;
   @override

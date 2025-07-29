@@ -4,7 +4,8 @@ import 'package:wncc_portal/features/user/presentation/views/widgets/profile/pro
 
 class ProfileDetailsInfo extends StatelessWidget {
   const ProfileDetailsInfo({
-    super.key, required this.user,
+    super.key,
+    required this.user,
   });
   final UserModel user;
   @override

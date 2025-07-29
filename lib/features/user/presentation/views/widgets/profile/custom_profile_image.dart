@@ -4,7 +4,8 @@ import 'package:wncc_portal/core/constants/links.dart';
 
 class CustomProfileImage extends StatelessWidget {
   const CustomProfileImage({
-    super.key, this.imageUrl,
+    super.key,
+    this.imageUrl,
   });
   final String? imageUrl;
   @override
@@ -23,7 +24,9 @@ class CustomProfileImage extends StatelessWidget {
         height: MediaQuery.of(context).size.width * .3,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: imageUrl != null? NetworkImage('$baseUrl$imageUrl'):const AssetImage(personalImage),
+            image: imageUrl != null
+                ? NetworkImage('$baseUrl$imageUrl')
+                : const AssetImage(personalImage),
             fit: BoxFit.cover,
           ),
         ),

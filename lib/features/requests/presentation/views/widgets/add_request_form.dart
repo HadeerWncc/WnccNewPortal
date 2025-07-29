@@ -50,18 +50,17 @@ class AddRequestForm extends StatelessWidget {
             selectedValue: 'Email',
             items: ['Email', 'Fax', 'Post', 'Office'],
             title: 'Delivery',
-            onChanged: (value){},
+            onChanged: (value) {},
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
             selectedValue: 'High',
             items: ['High', 'Fax', 'Post', 'Office'],
             title: 'Request Level',
-            onChanged: (value){},
+            onChanged: (value) {},
           ),
           const SizedBox(height: 15),
-    
-           CustomPlaceholderInput(
+          CustomPlaceholderInput(
             controller: TextEditingController(),
             labelText: 'Comment',
             linesNum: 5,

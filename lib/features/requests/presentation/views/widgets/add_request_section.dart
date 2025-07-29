@@ -32,10 +32,10 @@ class AddRequestSection extends StatelessWidget {
             height: MediaQuery.of(context).size.width * .4,
             decoration: const BoxDecoration(
               color: Colors.white,
-              image:  DecorationImage(
-                  image: AssetImage('assets/images/requestImage.jpeg'),
-                  fit: BoxFit.fill,
-                  ),
+              image: DecorationImage(
+                image: AssetImage('assets/images/requestImage.jpeg'),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           const SizedBox(height: 10),

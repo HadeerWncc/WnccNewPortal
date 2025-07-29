@@ -3,7 +3,8 @@ import 'package:wncc_portal/features/requests/presentation/views/widgets/request
 
 class RequestTypeItemList extends StatefulWidget {
   const RequestTypeItemList({
-    super.key, required this.requestTypes,
+    super.key,
+    required this.requestTypes,
   });
   final List<String> requestTypes;
   @override
@@ -11,7 +12,6 @@ class RequestTypeItemList extends StatefulWidget {
 }
 
 class _RequestTypeItemListState extends State<RequestTypeItemList> {
- 
   String selectedType = '';
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,11 @@ class _RequestTypeItemListState extends State<RequestTypeItemList> {
           state: 'Approved',
           onTap: () {
             selectedType = type;
-            setState(() {
-            });
+            setState(() {});
           },
           active: selectedType == type,
         );
       }).toList(),
     );
-    
   }
 }

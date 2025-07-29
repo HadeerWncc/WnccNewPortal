@@ -1,10 +1,9 @@
-
-
 import 'package:flutter/material.dart';
 
 class ProcessStatus extends StatelessWidget {
   const ProcessStatus({
-    super.key, required this.color,
+    super.key,
+    required this.color,
   });
   final Color color;
   @override
@@ -16,7 +15,6 @@ class ProcessStatus extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(10),
       ),
-      
     );
   }
 }

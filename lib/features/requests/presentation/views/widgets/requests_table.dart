@@ -1,17 +1,21 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
+import 'package:wncc_portal/core/utils/methods/request_methods.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
+import 'package:wncc_portal/features/requests/domain/entities/request_entity.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/custom_request_actions.dart';
 
 class RequestsTable extends StatelessWidget {
   const RequestsTable({
     super.key,
+    required this.requests,
   });
-
+  final List<RequestEntity> requests;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -38,74 +42,65 @@ class RequestsTable extends StatelessWidget {
               DataColumn(label: DataColumnText(text: 'Payer')),
               DataColumn(label: DataColumnText(text: 'Level')),
               DataColumn(label: DataColumnText(text: 'Status')),
-              DataColumn(label: DataColumnText(text: 'No')),
               DataColumn(label: DataColumnText(text: 'Created At')),
               DataColumn(label: DataColumnText(text: 'Actions')),
             ],
             rows: List<DataRow>.generate(
-              10,
+              requests.length,
               (index) {
                 final color = index.isOdd
                     ? const Color(0xffF8F8FA)
                     : const Color(0xffFFFFFF);
                 return DataRow(
                   onSelectChanged: (value) {
-                    GoRouter.of(context).push(AppRouter.requestDetailsPage);
+                    GoRouter.of(context).push(AppRouter.requestDetailsPage, extra: requests[index].id);
                   },
                   color: WidgetStateProperty.all(color),
                   cells: [
                     DataCell(
-                      GestureDetector(
-                        onTap: () {
-                          //Go To Details
-                        },
-                        child: const Center(
-                          child: Text(
-                            '12908',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
+                      Center(
+                        child: Text(
+                          requests[index].id.toString(),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ),
-                    const DataCell(
+                    DataCell(
                       CustomDataCellWidget(
-                          title: "Ahmed Ali", subTitle: "1000049"),
+                          title: requests[index].payerName!,
+                          subTitle: requests[index].payerId.toString()),
                     ),
-                    const DataCell(
+                    DataCell(
                       Center(
                         child: CustomMarkedColorContainer(
-                          title: 'Critical',
-                          color: Color.fromARGB(255, 18, 159, 22),
-                          bgColor: Color(0xffD9FDE3),
+                          title: getRequestLevelText(requests[index].level),
+                          color: const Color.fromARGB(255, 18, 159, 22),
+                          bgColor: const Color(0xffD9FDE3),
                         ),
                       ),
                     ),
-                    const DataCell(
+                    DataCell(
                       Center(
                         child: CustomMarkedColorContainer(
-                          title: 'New',
-                          color: Color.fromARGB(255, 0, 139, 253),
-                          bgColor: Color.fromARGB(255, 223, 236, 248),
+                          title: getRequestStatusText(requests[index].status),
+                          color: const Color.fromARGB(255, 0, 139, 253),
+                          bgColor: const Color.fromARGB(255, 223, 236, 248),
                         ),
                       ),
                     ),
-                    const DataCell(
-                      Center(
-                        child: Text(
-                          '145236',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    const DataCell(
+                    DataCell(
                       CustomDataCellWidget(
-                          title: "Apr 20 2025", subTitle: "time: 12:30}"),
+                        title: DateFormat('MMM dd, yyyy')
+                            .format(requests[index].createdAt!),
+                        subTitle: DateFormat('hh:mm')
+                            .format(requests[index].createdAt!),
+                      ),
                     ),
-                    const DataCell(
+                    DataCell(
                       CustomRequestActions(
-                        requestId: '14',
+                        requestId: requests[index].id.toString(),
                       ),
                     ),
                   ],

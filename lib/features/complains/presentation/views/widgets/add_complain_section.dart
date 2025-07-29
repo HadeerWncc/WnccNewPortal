@@ -29,10 +29,10 @@ class AddComplainSection extends StatelessWidget {
             decoration: const BoxDecoration(
               color: Colors.white,
               // borderRadius: BorderRadius.circular(8),
-              image:  DecorationImage(
-                  image: AssetImage('assets/images/requestImage.jpeg'),
-                  fit: BoxFit.fill,
-                  ),
+              image: DecorationImage(
+                image: AssetImage('assets/images/requestImage.jpeg'),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           const SizedBox(height: 10),

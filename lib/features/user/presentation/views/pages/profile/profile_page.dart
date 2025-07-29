@@ -41,15 +41,14 @@ class ProfilePage extends StatelessWidget {
                 cities: state.cities,
               ),
             );
+          } else if (state is UserFailure) {
+            return Center(
+              child: Text(state.error),
+            );
           }
-          else if (state is UserFailure) {
-          return Center(
-            child: Text(state.error),
+          return const LoadingPage(
+            title: 'Profile',
           );
-        }
-        return const LoadingPage(
-          title: 'Profile',
-        );
         },
       ),
     );

@@ -12,7 +12,7 @@ class DispatchDeliveryOrdersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  DateTime selectedDate = DateTime.now();
+    DateTime selectedDate = DateTime.now();
 
     String selectedDateString =
         DateFormat('yyyy-MM-dd').format(selectedDate).toString();

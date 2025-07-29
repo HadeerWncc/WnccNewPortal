@@ -7,7 +7,8 @@ import 'package:wncc_portal/features/user/presentation/manager/cubits/first_logi
 
 class ChangeProfilePasswordBlocConsumer extends StatelessWidget {
   const ChangeProfilePasswordBlocConsumer({
-    super.key, required this.tryChangPassword,
+    super.key,
+    required this.tryChangPassword,
   });
   final void Function(BuildContext) tryChangPassword;
   @override
@@ -27,9 +28,9 @@ class ChangeProfilePasswordBlocConsumer extends StatelessWidget {
       if (state is FirstLoginChangePasswordLoading) {
         return const CustomButtonWithIcon(
           child: 'Loading..',
-          bgColor:  Color.fromARGB(255, 87, 178, 87),
+          bgColor: Color.fromARGB(255, 87, 178, 87),
           textColor: Colors.white,
-          onHoverColor:  Color.fromARGB(255, 2, 172, 2),
+          onHoverColor: Color.fromARGB(255, 2, 172, 2),
           icon: loadingIcon,
           onTap: null,
         );

@@ -14,7 +14,6 @@ class DeliveryPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        
         BlocProvider(create: (context) {
           return getIt<GetDeliveryByIdCubit>();
         }),

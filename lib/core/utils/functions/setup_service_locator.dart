@@ -25,6 +25,11 @@ import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubit
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubits/get_all_pickup_cubit/getall_pickup_cubit.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubits/get_pickup_by_id_cubit/get_pickup_by_id_cubit.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubits/undispatch_pickup_cubit/undispatch_pickup_cubit.dart';
+import 'package:wncc_portal/features/requests/data/datasources/requests_data_source.dart';
+import 'package:wncc_portal/features/requests/data/repositories/requests_repo_impl.dart';
+import 'package:wncc_portal/features/requests/domain/repos/requests_repo.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/requests_cubit/requests_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/data/datasources/sales_quota_remote_datasource.dart';
 import 'package:wncc_portal/features/sales_quota/data/repositories/daily_quota_repo_impl.dart';
 import 'package:wncc_portal/features/sales_quota/domain/repositories/daily_quota_repo.dart';
@@ -89,6 +94,10 @@ void setupLocator() {
   getIt.registerLazySingleton<PickupDataSource>(
       () => PickupDataSourceImpl(apiService: getIt<ApiService>()));
 
+//RequestsDataSource
+  getIt.registerLazySingleton<RequestsDataSource>(
+      () => RequestsDataSourceImpl(apiService: getIt<ApiService>()));
+
   // Repositories
   //BaseRepo
   getIt.registerLazySingleton<BaseRepos>(() => BaseRepos());
@@ -118,6 +127,10 @@ void setupLocator() {
   //PickupRepo
   getIt.registerLazySingleton<PickupRepo>(
       () => PickupRepoImpl(pickupDataSource: getIt<PickupDataSource>()));
+
+  //RequestsRepo
+  getIt.registerLazySingleton<RequestsRepo>(
+      () => RequestsRepoImpl(requestsDataSource: getIt<RequestsDataSource>()));
 
   // Use Cases
   //login Use Case
@@ -248,9 +261,8 @@ void setupLocator() {
   getIt.registerFactory<GetAgentsCubit>(
       () => GetAgentsCubit(getIt<DeliveryRepo>()));
 
-
   //Pickup Cubits
-  
+
   //AddPickupPriorityCubit
   getIt.registerFactory<AddPickupPriorityCubit>(
       () => AddPickupPriorityCubit(getIt<PickupRepo>()));
@@ -274,4 +286,14 @@ void setupLocator() {
   //getByIdCubit
   getIt.registerFactory<GetPickupByIdCubit>(
       () => GetPickupByIdCubit(getIt<PickupRepo>()));
+
+  //RequestsCubit
+
+  //GetAllRequestsCubit
+  getIt.registerFactory<RequestsCubit>(
+      () => RequestsCubit(getIt<RequestsRepo>()));
+
+  //RequestDeatailsCubit
+  getIt.registerFactory<RequestDetailsCubit>(
+      () => RequestDetailsCubit(getIt<RequestsRepo>()));
 }

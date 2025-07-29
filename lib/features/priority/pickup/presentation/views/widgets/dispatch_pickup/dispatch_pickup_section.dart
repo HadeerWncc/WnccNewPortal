@@ -56,7 +56,11 @@ class _DispatchPickupSectionState extends State<DispatchPickupSection> {
                 padding: const EdgeInsets.only(left: 10),
                 child: SubmitDispatchPickupButtons(
                   selectedOrders: selectedOrders,
-                  date: state.dispatchPickupOrders.isNotEmpty? DateFormat('yyyy-MM-dd').format(state.dispatchPickupOrders[0].dispatchDate ?? DateTime.now()): DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                  date: state.dispatchPickupOrders.isNotEmpty
+                      ? DateFormat('yyyy-MM-dd').format(
+                          state.dispatchPickupOrders[0].dispatchDate ??
+                              DateTime.now())
+                      : DateFormat('yyyy-MM-dd').format(DateTime.now()),
                 ),
               ),
               const SizedBox(height: 30),
@@ -71,9 +75,7 @@ class _DispatchPickupSectionState extends State<DispatchPickupSection> {
                 DispatchPickupTable(
                   onSelectOrders: (ordersId) {
                     selectedOrders = ordersId;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   },
                   orders: state.dispatchPickupOrders,
                 )
@@ -81,9 +83,7 @@ class _DispatchPickupSectionState extends State<DispatchPickupSection> {
                 DispatchPickupTable(
                   onSelectOrders: (ordersId) {
                     selectedOrders = ordersId;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   },
                   orders: state.dispatchPickupOrders
                       .where((order) => order.productCategory == "Bags")
@@ -93,9 +93,7 @@ class _DispatchPickupSectionState extends State<DispatchPickupSection> {
                 DispatchPickupTable(
                   onSelectOrders: (ordersId) {
                     selectedOrders = ordersId;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   },
                   orders: state.dispatchPickupOrders
                       .where((order) => order.productCategory == "Bulk")

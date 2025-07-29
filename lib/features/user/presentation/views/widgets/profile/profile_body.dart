@@ -5,7 +5,11 @@ import 'package:wncc_portal/features/user/presentation/views/widgets/profile/pro
 import 'package:wncc_portal/features/user/presentation/views/widgets/profile/profile_user_info_section.dart';
 
 class ProfileBody extends StatelessWidget {
-  const ProfileBody({super.key, required this.user, required this.states, required this.cities});
+  const ProfileBody(
+      {super.key,
+      required this.user,
+      required this.states,
+      required this.cities});
   final UserModel user;
   final List<String> states;
   final List<String> cities;

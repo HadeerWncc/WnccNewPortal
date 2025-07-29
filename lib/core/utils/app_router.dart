@@ -132,7 +132,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: requestDetailsPage,
-        builder: (context, state) => const RequestDetailsPage(),
+        builder: (context, state) => RequestDetailsPage(
+          requestId: state.extra as String,
+        ),
       ),
     ],
   );

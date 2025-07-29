@@ -34,9 +34,8 @@ class ComplainsFilter extends StatelessWidget {
               } else {
                 //Get Data With Status filtration
                 //Most get payer Id
-    
-                ShowSnackbar.showSnackBar(
-                    context, 'Please Enter Payer Code');
+
+                ShowSnackbar.showSnackBar(context, 'Please Enter Payer Code');
               }
             },
           ),

@@ -20,7 +20,8 @@ class CustomSubmitPendingPickupButton extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
               );
-              BlocProvider.of<GetallPickupCubit>(context).getAllPendingPickupOrders();
+              BlocProvider.of<GetallPickupCubit>(context)
+                  .getAllPendingPickupOrders();
             } else if (state is AddPickupPriorityFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.error)),

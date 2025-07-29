@@ -22,7 +22,7 @@ class CustomActionBox extends StatelessWidget {
         children: [
           CustomTextActionBox(
             name: user.fullName!.split(' ')[0],
-            position: user.position!,
+            position: user.position ?? "",
           ),
           const SizedBox(width: 10),
           CustomImageActionBox(

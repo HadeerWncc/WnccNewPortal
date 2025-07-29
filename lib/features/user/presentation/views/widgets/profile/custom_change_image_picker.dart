@@ -48,9 +48,7 @@ class _CustomChangeImagePickerState extends State<CustomChangeImagePicker> {
           ? MemoryImage(imageBytes)
           : const AssetImage('');
     } else {
-      return (fileImage != null)
-          ? FileImage(fileImage)
-          : const AssetImage('');
+      return (fileImage != null) ? FileImage(fileImage) : const AssetImage('');
     }
   }
 
@@ -68,39 +66,41 @@ class _CustomChangeImagePickerState extends State<CustomChangeImagePicker> {
             width: 2,
           ),
           image: DecorationImage(
-              image:
-                  getImageProvider(imageBytes: _imageBytes, fileImage: _image),
-              fit: BoxFit.cover,
-            ),
+            image: getImageProvider(imageBytes: _imageBytes, fileImage: _image),
+            fit: BoxFit.cover,
+          ),
         ),
-        child: getImageProvider(imageBytes: _imageBytes, fileImage: _image) == const AssetImage('')? const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Symbols.add_photo_alternate,
-              color: Colors.blueGrey,
-              weight: 900,
-            ),
-            SizedBox(height: 5),
-            Text(
-              'Drop Personal Image',
-              style: TextStyle(
-                color: Colors.blueGrey,
-                fontSize: 13,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            SizedBox(height: 5),
-            Text(
-              'Maximum size 2px',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 11,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-          ],
-        ):const SizedBox(),
+        child: getImageProvider(imageBytes: _imageBytes, fileImage: _image) ==
+                const AssetImage('')
+            ? const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Symbols.add_photo_alternate,
+                    color: Colors.blueGrey,
+                    weight: 900,
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Drop Personal Image',
+                    style: TextStyle(
+                      color: Colors.blueGrey,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Maximum size 2px',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ],
+              )
+            : const SizedBox(),
       ),
     );
   }

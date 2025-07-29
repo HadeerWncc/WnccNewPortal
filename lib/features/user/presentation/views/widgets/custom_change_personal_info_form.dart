@@ -46,7 +46,7 @@ class _CustomChangePersonalInfoFormState
   Widget build(BuildContext context) {
     fullNameController.text = widget.user.fullName ?? '';
     phoneController.text = widget.user.phoneNumber ?? '';
-    
+
     selectedState = widget.user.state ?? widget.states[0];
     selectedCity = widget.user.city ?? widget.cities[0];
     return Column(
@@ -88,11 +88,11 @@ class _CustomChangePersonalInfoFormState
               );
             }
             return const CustomDropDownInput(
-                selectedValue: '',
-                items: [''],
-                title: 'City',
-                onChanged: null,
-              );
+              selectedValue: '',
+              items: [''],
+              title: 'City',
+              onChanged: null,
+            );
           },
         ),
         const SizedBox(height: 20),
@@ -134,7 +134,6 @@ class _CustomChangePersonalInfoFormState
             image: selectedBase64Image,
             phoneNumber: phoneController.text,
             // phones: phonesController.map((ph) => ph.text).toList(),
-
           ),
         );
   }

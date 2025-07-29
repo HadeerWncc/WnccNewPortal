@@ -14,8 +14,7 @@ class FollowUpSection extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-              color: const Color.fromARGB(255, 180, 179, 179))),
+          border: Border.all(color: const Color.fromARGB(255, 180, 179, 179))),
       child: const Column(
         children: [
           FollowUpSectionHeader(),

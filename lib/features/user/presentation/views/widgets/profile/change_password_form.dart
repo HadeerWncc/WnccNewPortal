@@ -87,9 +87,9 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
             newPassword: newPasswordController.text,
             confirmPassword: confirmPasswordController.text,
           ));
-          setState(() {
-          resetPassword = false;
-          });
+      setState(() {
+        resetPassword = false;
+      });
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});
