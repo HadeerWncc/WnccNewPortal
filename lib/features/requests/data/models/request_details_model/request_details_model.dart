@@ -3,6 +3,7 @@ import 'package:wncc_portal/features/requests/data/mappers/request_delivery_mapp
 import 'package:wncc_portal/features/requests/data/mappers/request_level_mapper.dart';
 import 'package:wncc_portal/features/requests/data/mappers/request_status_mapper.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_details_entity.dart';
+import 'package:wncc_portal/features/requests/domain/entities/request_type_entity.dart';
 
 import 'request_type.dart';
 
@@ -129,6 +130,10 @@ class RequestDetailsModel extends Equatable {
   }
 
   RequestDetailsEntity toEntity() {
+    List<RequestTypeEntity> requestTypesEntity = [];
+    for (var requestType in requestTypes!) {
+      requestTypesEntity.add(requestType.toEntity());
+    }
     return RequestDetailsEntity(
       id: id,
       delivery: mapDeliveryFromInt(delivery!),
@@ -148,7 +153,7 @@ class RequestDetailsModel extends Equatable {
       isDeleted: isDeleted,
       createdAt: createdAt,
       lastUpdatedAt: lastUpdatedAt,
-      requestTypes: requestTypes,
+      requestTypes: requestTypesEntity,
     );
   }
 }

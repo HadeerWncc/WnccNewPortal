@@ -1,4 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/features/requests/data/mappers/request_status_mapper.dart';
+import 'package:wncc_portal/features/requests/domain/entities/log_entity.dart';
+import 'package:wncc_portal/features/requests/domain/entities/request_type_entity.dart';
 
 import 'log.dart';
 
@@ -28,4 +31,17 @@ class RequestType extends Equatable {
 
   @override
   List<Object?> get props => [id, name, status, logs];
+
+  RequestTypeEntity toEntity() {
+    List<LogEntity> logsEntity = [];
+    for (var log in logs!) {
+      logsEntity.add(log.toEntity());
+    }
+    return RequestTypeEntity(
+      id: id ?? "",
+      name: name ?? "",
+      status: mapStatusFromInt(status!),
+      logs: logsEntity,
+    );
+  }
 }

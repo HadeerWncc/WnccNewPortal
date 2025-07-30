@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/features/requests/domain/entities/log_entity.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/followup_section_body.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/followup_section_header.dart';
 
 class FollowUpSection extends StatelessWidget {
   const FollowUpSection({
     super.key,
+    required this.logs,
+    required this.requestName,
   });
-
+  final List<LogEntity> logs;
+  final String requestName;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,11 +19,15 @@ class FollowUpSection extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: const Color.fromARGB(255, 180, 179, 179))),
-      child: const Column(
+      child: Column(
         children: [
-          FollowUpSectionHeader(),
-          SizedBox(height: 15),
-          FollowUpSectionBody()
+          FollowUpSectionHeader(
+            requestName: requestName,
+          ),
+          const SizedBox(height: 15),
+          FollowUpSectionBody(
+            logs: logs,
+          )
         ],
       ),
     );

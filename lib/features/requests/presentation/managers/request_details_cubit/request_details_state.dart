@@ -8,12 +8,15 @@ sealed class RequestDetailsState extends Equatable {
 }
 
 final class RequestDetailsInitial extends RequestDetailsState {}
+
 final class RequestDetailsLoading extends RequestDetailsState {}
+
 final class RequestDetailsFailure extends RequestDetailsState {
   final String error;
 
   const RequestDetailsFailure({required this.error});
 }
+
 final class RequestDetailsSuccess extends RequestDetailsState {
   final RequestDetailsEntity requestDetails;
 

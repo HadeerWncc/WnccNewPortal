@@ -115,8 +115,7 @@ class Request extends Equatable {
     ];
   }
 
-
-  RequestEntity toEntity(){
+  RequestEntity toEntity() {
     return RequestEntity(
       id: id,
       delivery: mapDeliveryFromInt(delivery!),
@@ -136,7 +135,6 @@ class Request extends Equatable {
       isDeleted: isDeleted,
       createdAt: createdAt,
       lastUpdatedAt: lastUpdatedAt,
-      
     );
   }
 }

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-class RequestState extends StatelessWidget {
-  const RequestState({
+class RequestTypeStatusWidget extends StatelessWidget {
+  const RequestTypeStatusWidget({
     super.key,
+    required this.requestTypeStatus,
   });
-
+  final String requestTypeStatus;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,9 +19,9 @@ class RequestState extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 7),
-        const Text(
-          'Pending',
-          style: TextStyle(
+        Text(
+          requestTypeStatus,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),

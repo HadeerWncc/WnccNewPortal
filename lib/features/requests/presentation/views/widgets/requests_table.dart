@@ -1,5 +1,6 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
@@ -8,6 +9,7 @@ import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widg
 import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_entity.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/forwarded_cubit/forwarded_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/custom_request_actions.dart';
 
 class RequestsTable extends StatelessWidget {
@@ -53,7 +55,9 @@ class RequestsTable extends StatelessWidget {
                     : const Color(0xffFFFFFF);
                 return DataRow(
                   onSelectChanged: (value) {
-                    GoRouter.of(context).push(AppRouter.requestDetailsPage, extra: requests[index].id);
+                    BlocProvider.of<ForwardedCubit>(context).getForwardedById(requests[index].id!);
+                    GoRouter.of(context).push(AppRouter.requestDetailsPage,
+                        extra: requests[index].id);
                   },
                   color: WidgetStateProperty.all(color),
                   cells: [

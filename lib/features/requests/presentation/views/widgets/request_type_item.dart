@@ -10,14 +10,13 @@ class RequestTypeItem extends StatelessWidget {
   const RequestTypeItem({
     super.key,
     required this.typeName,
-    required this.state,
+    required this.status,
     this.onTap,
     required this.active,
   });
   final String typeName;
-  final String state;
+  final String status;
   final void Function()? onTap;
-
   final bool active;
 
   @override
@@ -38,7 +37,7 @@ class RequestTypeItem extends StatelessWidget {
                 child: MarkedText(child: typeName),
               ),
               CustomMarkedColorContainer(
-                  title: state,
+                  title: status,
                   color: Colors.green,
                   bgColor: const Color(0xffDDFCEC)),
               const Spacer(),

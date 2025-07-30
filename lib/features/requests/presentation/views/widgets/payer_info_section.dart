@@ -5,27 +5,27 @@ import 'package:wncc_portal/features/requests/domain/entities/request_details_en
 
 class PayerInfoSection extends StatelessWidget {
   const PayerInfoSection({
-    super.key, required this.requestDetailsEntity,
+    super.key,
+    required this.requestDetailsEntity,
   });
   final RequestDetailsEntity requestDetailsEntity;
   @override
   Widget build(BuildContext context) {
-   
-  Duration diff = DateTime.now().difference(requestDetailsEntity.createdAt!);
-   int days = diff.inDays;
-  int hours = diff.inHours % 24;
-  int minutes = diff.inMinutes % 60;
-  String createdFrom = "";
-  if(days != 0){
-    createdFrom += ' $days days';
-  }
-  if(hours != 0){
-    createdFrom += ' $hours hours';
-  }
-  if(minutes != 0){
-    createdFrom +=  ' $minutes minutes';
-  }
-  createdFrom += ' ago';
+    Duration diff = DateTime.now().difference(requestDetailsEntity.createdAt!);
+    int days = diff.inDays;
+    int hours = diff.inHours % 24;
+    int minutes = diff.inMinutes % 60;
+    String createdFrom = "";
+    if (days != 0) {
+      createdFrom += ' $days days';
+    }
+    if (hours != 0) {
+      createdFrom += ' $hours hours';
+    }
+    if (minutes != 0) {
+      createdFrom += ' $minutes minutes';
+    }
+    createdFrom += ' ago';
     return Row(
       children: [
         const SizedBox(width: 10),
@@ -35,7 +35,7 @@ class PayerInfoSection extends StatelessWidget {
             color: const Color(0xff1B85FF),
             borderRadius: BorderRadius.circular(8),
           ),
-          child:  Text(
+          child: Text(
             requestDetailsEntity.payerName!.characters.first,
             style: const TextStyle(
               color: Colors.white,
@@ -50,7 +50,7 @@ class PayerInfoSection extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  requestDetailsEntity.payerName??"",
+                  requestDetailsEntity.payerName ?? "",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(width: 2),
@@ -73,7 +73,7 @@ class PayerInfoSection extends StatelessWidget {
             Opacity(
               opacity: .5,
               child: Text(
-                requestDetailsEntity.payerEmail??"",
+                requestDetailsEntity.payerEmail ?? "",
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             ),

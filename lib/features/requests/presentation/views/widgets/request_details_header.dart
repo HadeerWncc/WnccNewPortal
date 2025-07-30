@@ -5,7 +5,8 @@ import 'package:wncc_portal/features/requests/domain/entities/request_details_en
 
 class RequestDetailsHeader extends StatelessWidget {
   const RequestDetailsHeader({
-    super.key, required this.requestDetailsEntity,
+    super.key,
+    required this.requestDetailsEntity,
   });
   final RequestDetailsEntity requestDetailsEntity;
   @override
@@ -44,7 +45,7 @@ class RequestDetailsHeader extends StatelessWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    requestDetailsEntity.createdBy?? "",
+                    requestDetailsEntity.createdBy ?? "",
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -55,6 +56,4 @@ class RequestDetailsHeader extends StatelessWidget {
       ),
     );
   }
-
-  
 }

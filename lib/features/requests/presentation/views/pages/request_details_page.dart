@@ -39,12 +39,11 @@ class RequestDetailsPage extends StatelessWidget {
               ),
               body: BlocBuilder<RequestDetailsCubit, RequestDetailsState>(
                 builder: (context, state) {
-                  if(state is RequestDetailsSuccess){
-                  return RequestDetailsBody(
-                    requestDetailsEntity: state.requestDetails,
-                  );
-                  }
-                  else if(state is RequestDetailsFailure){
+                  if (state is RequestDetailsSuccess) {
+                    return RequestDetailsBody(
+                      requestDetailsEntity: state.requestDetails,
+                    );
+                  } else if (state is RequestDetailsFailure) {
                     return Text(state.error);
                   }
                   return const CircularProgressIndicator();

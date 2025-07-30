@@ -28,7 +28,8 @@ class RequestDetailsInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             MarkedText(
-              child: 'Request delivery by ${getRequestDeliveryText(requestDetailsEntity.delivery)}',
+              child:
+                  'Request delivery by ${getRequestDeliveryText(requestDetailsEntity.delivery)}',
             ),
             const SizedBox(width: 10),
           ],
@@ -36,6 +37,4 @@ class RequestDetailsInfo extends StatelessWidget {
       ],
     );
   }
-
-  
 }

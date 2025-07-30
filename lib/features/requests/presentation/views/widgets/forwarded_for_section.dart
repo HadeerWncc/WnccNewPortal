@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/features/requests/data/models/forward_user.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/forwarded_section_body.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/forwarded_section_header.dart';
 
 class ForwardedForSection extends StatelessWidget {
-  const ForwardedForSection({super.key});
-
+  const ForwardedForSection({super.key, required this.forwardedUsers});
+  final List<ForwardUser> forwardedUsers;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,11 +14,13 @@ class ForwardedForSection extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: const Color.fromARGB(255, 180, 179, 179))),
-      child: const Column(
+      child: Column(
         children: [
-          ForwardedSectionHeader(),
-          SizedBox(height: 15),
-          ForwardedSectionBody(),
+          const ForwardedSectionHeader(),
+          const SizedBox(height: 15),
+          ForwardedSectionBody(
+            forwardedList: forwardedUsers,
+          ),
         ],
       ),
     );

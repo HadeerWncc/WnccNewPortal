@@ -1,4 +1,4 @@
-import 'package:wncc_portal/features/requests/data/models/request_details_model/request_type.dart';
+import 'package:wncc_portal/features/requests/domain/entities/request_type_entity.dart';
 import 'package:wncc_portal/features/requests/domain/enums/request_delivery_enum.dart';
 import 'package:wncc_portal/features/requests/domain/enums/request_level_enum.dart';
 import 'package:wncc_portal/features/requests/domain/enums/request_status_enum.dart';
@@ -22,7 +22,7 @@ class RequestDetailsEntity {
   final bool? isDeleted;
   final DateTime? createdAt;
   final DateTime? lastUpdatedAt;
-  final List<RequestType>? requestTypes;
+  final List<RequestTypeEntity>? requestTypes;
 
   const RequestDetailsEntity({
     this.id,
@@ -45,6 +45,4 @@ class RequestDetailsEntity {
     this.lastUpdatedAt,
     this.requestTypes,
   });
-
-
 }

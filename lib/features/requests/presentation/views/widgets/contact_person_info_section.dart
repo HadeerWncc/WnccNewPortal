@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/widgets/custom_info_item.dart';
-import 'package:wncc_portal/features/requests/data/models/request_details_model/request_details_model.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_details_entity.dart';
 
 class ContactPersonInfoSection extends StatelessWidget {
   const ContactPersonInfoSection({
-    super.key, required this.requestDetailsEntity,
+    super.key,
+    required this.requestDetailsEntity,
   });
   final RequestDetailsEntity requestDetailsEntity;
   @override
@@ -22,12 +22,12 @@ class ContactPersonInfoSection extends StatelessWidget {
         children: [
           CustomInfoItem(
             icon: Symbols.account_circle,
-            title: requestDetailsEntity.contactPerson??"",
+            title: requestDetailsEntity.contactPerson ?? "",
           ),
           const SizedBox(width: 10),
           CustomInfoItem(
             icon: Symbols.call,
-            title: requestDetailsEntity.contactPhone??"",
+            title: requestDetailsEntity.contactPhone ?? "",
           ),
           const SizedBox(width: 10),
           CustomInfoItem(
