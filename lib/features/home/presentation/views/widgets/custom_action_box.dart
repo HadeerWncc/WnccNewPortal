@@ -25,9 +25,9 @@ class CustomActionBox extends StatelessWidget {
             position: user.position ?? "",
           ),
           const SizedBox(width: 10),
-          CustomImageActionBox(
-            image: "$baseUrl${user.imageUrl}",
-          ),
+          // CustomImageActionBox(
+          //   image: "$baseUrl${user.imageUrl}",
+          // ),
         ],
       ),
     );

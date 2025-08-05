@@ -9,7 +9,6 @@ import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit
 
 class RequestsPage extends StatelessWidget {
   const RequestsPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -34,7 +33,9 @@ class RequestsPage extends StatelessWidget {
                   user: state.user,
                 ),
               ),
-              body: const RequestsPageBody(),
+              body: RequestsPageBody(
+                user: state.user,
+              ),
             );
           } else if (state is UserFailure) {
             return Center(

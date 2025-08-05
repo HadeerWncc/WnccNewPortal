@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
@@ -9,8 +10,10 @@ import 'package:wncc_portal/features/requests/presentation/views/widgets/request
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
 class RequestDetailsPage extends StatelessWidget {
-  const RequestDetailsPage({super.key, required this.requestId});
+  const RequestDetailsPage(
+      {super.key, required this.requestId, required this.user});
   final String requestId;
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<RequestDetailsCubit>(context).getRequestById(requestId);
@@ -41,6 +44,7 @@ class RequestDetailsPage extends StatelessWidget {
                 builder: (context, state) {
                   if (state is RequestDetailsSuccess) {
                     return RequestDetailsBody(
+                      user: user,
                       requestDetailsEntity: state.requestDetails,
                     );
                   } else if (state is RequestDetailsFailure) {

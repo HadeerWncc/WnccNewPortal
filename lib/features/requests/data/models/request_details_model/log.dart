@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
-import 'package:wncc_portal/features/requests/data/mappers/request_status_mapper.dart';
+import 'package:wncc_portal/features/requests/data/models/mappers/request_status_mapper.dart';
 import 'package:wncc_portal/features/requests/domain/entities/log_entity.dart';
 
 class Log extends Equatable {

@@ -3,21 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/request_methods.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_entity.dart';
-import 'package:wncc_portal/features/requests/presentation/managers/forwarded_cubit/forwarded_cubit.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/forwarded_request_cubit/forwarded_request_cubit.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/request_replies_cubit/request_replies_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/custom_request_actions.dart';
 
 class RequestsTable extends StatelessWidget {
   const RequestsTable({
     super.key,
     required this.requests,
+    required this.user,
   });
   final List<RequestEntity> requests;
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -55,9 +59,8 @@ class RequestsTable extends StatelessWidget {
                     : const Color(0xffFFFFFF);
                 return DataRow(
                   onSelectChanged: (value) {
-                    BlocProvider.of<ForwardedCubit>(context).getForwardedById(requests[index].id!);
-                    GoRouter.of(context).push(AppRouter.requestDetailsPage,
-                        extra: requests[index].id);
+                    getBlocProviders(context, index);
+                    goToDetailsPage(context, index);
                   },
                   color: WidgetStateProperty.all(color),
                   cells: [
@@ -115,5 +118,23 @@ class RequestsTable extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void goToDetailsPage(BuildContext context, int index) {
+    GoRouter.of(context).push(
+      AppRouter.requestDetailsPage,
+      extra: {
+        'requestId': requests[index].id,
+        'user': user,
+      },
+    );
+  }
+
+  void getBlocProviders(BuildContext context, int index) {
+     BlocProvider.of<ForwardedRequestCubit>(context)
+        .getForwardedById(requests[index].id!);
+    
+     BlocProvider.of<RequestRepliesCubit>(context)
+        .getRequestReplies(requests[index].id!);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
+import 'package:wncc_portal/core/models/message_dto.dart';
 import 'package:wncc_portal/features/requests/data/datasources/requests_data_source.dart';
 import 'package:wncc_portal/features/requests/data/models/forward_user.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_details_entity.dart';
@@ -46,6 +47,20 @@ class RequestsRepoImpl extends RequestsRepo {
       List<ForwardUser> forwarded =
           await requestsDataSource.getForwardedUsersById(id);
       return Right(forwarded);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<MessageDto>>> getRequestRepliesById(String id) async{
+     try {
+      List<MessageDto> replies =
+          await requestsDataSource.getRequestRepliesById(id);
+      return Right(replies);
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

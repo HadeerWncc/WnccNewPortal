@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/authentication/data/models/validate_code_model.dart';
 import 'package:wncc_portal/features/complains/presentation/views/pages/complain_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
@@ -132,10 +133,14 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: requestDetailsPage,
-        builder: (context, state) => RequestDetailsPage(
-          requestId: state.extra as String,
-        ),
-      ),
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return RequestDetailsPage(
+            requestId: data['requestId'] as String,
+            user: data['user'] as UserModel,
+          );
+        },
+      )
     ],
   );
 }

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:wncc_portal/features/requests/data/mappers/request_delivery_mapper.dart';
-import 'package:wncc_portal/features/requests/data/mappers/request_level_mapper.dart';
-import 'package:wncc_portal/features/requests/data/mappers/request_status_mapper.dart';
+import 'package:wncc_portal/features/requests/data/models/mappers/request_delivery_mapper.dart';
+import 'package:wncc_portal/features/requests/data/models/mappers/request_level_mapper.dart';
+import 'package:wncc_portal/features/requests/data/models/mappers/request_status_mapper.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_details_entity.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_type_entity.dart';
 

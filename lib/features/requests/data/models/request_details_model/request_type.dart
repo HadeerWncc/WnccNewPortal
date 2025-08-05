@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:wncc_portal/features/requests/data/mappers/request_status_mapper.dart';
+import 'package:wncc_portal/features/requests/data/models/mappers/request_status_mapper.dart';
 import 'package:wncc_portal/features/requests/domain/entities/log_entity.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_type_entity.dart';
 

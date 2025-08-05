@@ -1,3 +1,4 @@
+import 'package:wncc_portal/core/models/message_dto.dart';
 import 'package:wncc_portal/core/utils/api_service.dart';
 import 'package:wncc_portal/features/requests/data/models/forward_user.dart';
 import 'package:wncc_portal/features/requests/data/models/request/request.dart';
@@ -9,6 +10,7 @@ abstract class RequestsDataSource {
   Future<List<RequestEntity>> getAllRequests();
   Future<RequestDetailsEntity> getRequestById(String id);
   Future<List<ForwardUser>> getForwardedUsersById(String id);
+  Future<List<MessageDto>> getRequestRepliesById(String id);
 }
 
 class RequestsDataSourceImpl extends RequestsDataSource {
@@ -38,9 +40,9 @@ class RequestsDataSourceImpl extends RequestsDataSource {
     RequestDetailsEntity requestDetailsEntity = requestDetails.toEntity();
     return requestDetailsEntity;
   }
-  
+
   @override
-  Future<List<ForwardUser>> getForwardedUsersById(String id) async{
+  Future<List<ForwardUser>> getForwardedUsersById(String id) async {
     var result = await apiService.get(
       endPoint: 'api/Supports/GetRequestForwardedUsers?id=$id',
     );
@@ -50,5 +52,18 @@ class RequestsDataSourceImpl extends RequestsDataSource {
       forwardedUsers.add(forwardUser);
     }
     return forwardedUsers;
+  }
+  
+  @override
+  Future<List<MessageDto>> getRequestRepliesById(String id) async {
+    var result = await apiService.get(
+      endPoint: 'api/Supports/GetRequestReplies?id=$id',
+    );
+    List<MessageDto> requestReplies = [];
+    for (var reply in result["data"]) {
+      MessageDto forwardUser = MessageDto.fromJsonRequest(reply);
+      requestReplies.add(forwardUser);
+    }
+    return requestReplies;
   }
 }

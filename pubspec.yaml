@@ -29,7 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   bloc: ^9.0.0
-  cached_network_image: ^3.4.1
+  # cached_network_image: ^3.4.1
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   data_table_2: ^2.6.0
@@ -50,6 +50,7 @@ dependencies:
   provider: ^6.1.5
   shared_preferences: ^2.5.2
   shimmer: ^3.0.0
+  signalr_core: ^1.1.1
   syncfusion_flutter_charts: ^29.1.38
 
 dev_dependencies:
