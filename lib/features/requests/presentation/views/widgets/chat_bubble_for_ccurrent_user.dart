@@ -78,7 +78,6 @@ class ChatBubbleForCurrentUser extends StatelessWidget {
                       .format(message.createdAt ?? DateTime.now()),
                   style: const TextStyle(
                     fontSize: 12,
-                    // fontWeight: FontWeight.bold,
                   ),
                 ),
               )

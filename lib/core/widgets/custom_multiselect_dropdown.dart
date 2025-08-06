@@ -25,6 +25,15 @@ class CustomMultiSelectDropDown extends StatefulWidget {
 
 class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
   List<String> selectedItems = [];
+  String multiChoiceTitle = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    multiChoiceTitle = widget.selectedValue??"";
+  }
+
   @override
   Widget build(BuildContext context) {
     double defaultWidth =
@@ -76,6 +85,9 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
             selectedItems.remove(value.toString());
           } else {
             selectedItems.add(value.toString());
+          }
+          for (var item in selectedItems) {
+            multiChoiceTitle += " $item";
           }
           setState(() {});
           widget.onChanged(selectedItems);
