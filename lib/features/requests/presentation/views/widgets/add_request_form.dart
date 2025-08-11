@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/core/utils/methods/request_methods.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/custom_multiselect_dropdown.dart';
 import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
+import 'package:wncc_portal/features/requests/domain/enums/request_delivery_enum.dart';
+import 'package:wncc_portal/features/requests/domain/enums/request_level_enum.dart';
 
 class AddRequestForm extends StatelessWidget {
   const AddRequestForm({
     super.key,
+    required this.onRequestTypesChange, required this.payerId, required this.contactPerson, required this.contactPhone, required this.comment, required this.onRequestDeliveryChange, required this.onRequestLevelChange,
   });
-
+  final Function(List<String>) onRequestTypesChange;
+  final Function(int) onRequestDeliveryChange;
+  final Function(int) onRequestLevelChange;
+  final TextEditingController payerId;
+  final TextEditingController contactPerson;
+  final TextEditingController contactPhone;
+  final TextEditingController comment;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,18 +27,21 @@ class AddRequestForm extends StatelessWidget {
         children: [
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: TextEditingController(),
-            labelText: 'Select Payer',
+            controller: payerId,
+            labelText: 'Payer Id',
+           
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: TextEditingController(),
+            controller: contactPerson,
             labelText: 'Contact Person',
+            
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: TextEditingController(),
+            controller: contactPhone,
             labelText: 'Contact Phone',
+           
           ),
           const SizedBox(height: 15),
           CustomMultiSelectDropDown(
@@ -42,28 +55,39 @@ class AddRequestForm extends StatelessWidget {
             ],
             title: 'Request types',
             onChanged: (value) {
-              print(value);
+             onRequestTypesChange(value);
             },
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: 'Email',
-            items: ['Email', 'Fax', 'Post', 'Office'],
+            selectedValue: getRequestDeliveryListOfString()[0],
+            items: getRequestDeliveryListOfString(),
             title: 'Delivery',
-            onChanged: (value) {},
+            onChanged: (value) {
+              RequestDelivery delivery =
+                  RequestDelivery.values.firstWhere((d) => d.name == value);
+              int requestDelivery = delivery.index;
+              onRequestDeliveryChange(requestDelivery);
+            },
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: 'High',
-            items: ['High', 'Fax', 'Post', 'Office'],
+            selectedValue: getRequestLevelListOfString()[0],
+            items: getRequestLevelListOfString(),
             title: 'Request Level',
-            onChanged: (value) {},
+            onChanged: (value) {
+              RequestLevel level =
+                  RequestLevel.values.firstWhere((d) => d.name == value);
+              int requestLevel = level.index;
+              onRequestLevelChange(requestLevel);
+            },
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: TextEditingController(),
+            controller: comment,
             labelText: 'Comment',
             linesNum: 5,
+           
           ),
         ],
       ),

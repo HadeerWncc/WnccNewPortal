@@ -17,4 +17,16 @@ class RequestDetailsCubit extends Cubit<RequestDetailsState> {
       emit(RequestDetailsSuccess(requestDetails: request));
     });
   }
+
+
+
+  Future openRequest(String id)async {
+    emit(RequestDetailsLoading());
+    var result = await requestsRepo.openRequest(id);
+    result.fold((error) {
+      emit(RequestDetailsFailure(error: error.msg));
+    }, (request) {
+      emit(RequestDetailsSuccess(requestDetails: request));
+    });
+  }
 }

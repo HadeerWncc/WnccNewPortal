@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
+import 'package:wncc_portal/core/constants/icons.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
+import 'package:wncc_portal/features/requests/domain/entities/create_request_entity.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/create_request_cubit/create_request_cubit.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/requests_cubit/requests_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/add_request_form.dart';
 
-class AddRequestPage extends StatelessWidget {
+class AddRequestPage extends StatefulWidget {
   const AddRequestPage({super.key});
 
+  @override
+  State<AddRequestPage> createState() => _AddRequestPageState();
+}
+
+class _AddRequestPageState extends State<AddRequestPage> {
+  TextEditingController payerId = TextEditingController();
+  TextEditingController contactPerson = TextEditingController();
+  TextEditingController contactPhone = TextEditingController();
+  List<String> requestTypes = List.empty();
+  int requestDelivery = 0;
+  int requestLevel = 0;
+  TextEditingController comment = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,7 +58,21 @@ class AddRequestPage extends StatelessWidget {
               ),
             ),
             const Divider(),
-            const AddRequestForm(),
+            AddRequestForm(
+              comment: comment,
+              contactPerson: contactPerson,
+              contactPhone: contactPhone,
+              payerId: payerId,
+              onRequestDeliveryChange: (deliveryValue) {
+                requestDelivery = deliveryValue;
+              },
+              onRequestLevelChange: (levelValue) {
+                requestLevel = levelValue;
+              },
+              onRequestTypesChange: (typesList) {
+                requestTypes = typesList;
+              },
+            ),
             const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -59,12 +91,39 @@ class AddRequestPage extends StatelessWidget {
                 const SizedBox(width: 20),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * .3,
-                  child: const CustomButtonWithIcon(
-                    child: 'Submit',
-                    textColor: Colors.white,
-                    bgColor: kBtnColor,
-                    icon: Symbols.done_all,
-                    onHoverColor: Color.fromARGB(255, 116, 174, 240),
+                  child: BlocConsumer<CreateRequestCubit, CreateRequestState>(
+                    listener: (context, state) {
+                      if (state is CreateRequestSuccess) {
+                        BlocProvider.of<RequestsCubit>(context)
+                            .getAllRequests();
+                        GoRouter.of(context).pop();
+                        ShowSnackbar.showSnackBar(context, state.msg, 'S');
+                      } else if (state is CreateRequestFailure) {
+                        ShowSnackbar.showSnackBar(context, state.error, 'F');
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is CreateRequestLoading) {
+                        return const CustomButtonWithIcon(
+                          child: 'Loading',
+                          textColor: Colors.white,
+                          bgColor: kBtnColor,
+                          icon: loadingIcon,
+                          onHoverColor: Color.fromARGB(255, 116, 174, 240),
+                          onTap: null,
+                        );
+                      }
+                      return CustomButtonWithIcon(
+                        child: 'Submit',
+                        textColor: Colors.white,
+                        bgColor: kBtnColor,
+                        icon: Symbols.done_all,
+                        onHoverColor: const Color.fromARGB(255, 116, 174, 240),
+                        onTap: () {
+                          tryToCreateNewRequest(context);
+                        },
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(width: 20),
@@ -75,5 +134,19 @@ class AddRequestPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void tryToCreateNewRequest(BuildContext context) {
+    CreateRequestEntity createRequestEntity = CreateRequestEntity(
+      id: 'id',
+      description: comment.text,
+      contactPerson: contactPerson.text,
+      contactPhone: contactPhone.text,
+      level: requestLevel,
+      delivery: requestDelivery,
+      requestTypes: requestTypes,
+      payerId: payerId.text,
+    );
+    context.read<CreateRequestCubit>().createNewRequest(createRequestEntity);
   }
 }

@@ -3,6 +3,7 @@ import 'package:wncc_portal/core/utils/api_service.dart';
 import 'package:wncc_portal/features/requests/data/models/forward_user.dart';
 import 'package:wncc_portal/features/requests/data/models/request/request.dart';
 import 'package:wncc_portal/features/requests/data/models/request_details_model/request_details_model.dart';
+import 'package:wncc_portal/features/requests/domain/entities/create_request_entity.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_details_entity.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_entity.dart';
 
@@ -11,6 +12,8 @@ abstract class RequestsDataSource {
   Future<RequestDetailsEntity> getRequestById(String id);
   Future<List<ForwardUser>> getForwardedUsersById(String id);
   Future<List<MessageDto>> getRequestRepliesById(String id);
+  Future<String> createNewRequest(CreateRequestEntity requestEntity);
+  Future<RequestDetailsEntity> openRequest(String id);
 }
 
 class RequestsDataSourceImpl extends RequestsDataSource {
@@ -53,7 +56,7 @@ class RequestsDataSourceImpl extends RequestsDataSource {
     }
     return forwardedUsers;
   }
-  
+
   @override
   Future<List<MessageDto>> getRequestRepliesById(String id) async {
     var result = await apiService.get(
@@ -65,5 +68,35 @@ class RequestsDataSourceImpl extends RequestsDataSource {
       requestReplies.add(forwardUser);
     }
     return requestReplies;
+  }
+
+  @override
+  Future<String> createNewRequest(CreateRequestEntity requestEntity) async {
+    var result = await apiService.post(
+      endPoint: 'api/Supports/CreateRequest',
+      data: {
+        "description": requestEntity.description,
+        "contactPerson": requestEntity.contactPerson,
+        "contactPhone": requestEntity.contactPhone,
+        "level": requestEntity.level,
+        "delivery": requestEntity.delivery,
+        "requestTypes": requestEntity.requestTypes,
+        "payerId": requestEntity.payerId
+      },
+    );
+    String msg = result["message"];
+    return msg;
+  }
+
+  @override
+  Future<RequestDetailsEntity> openRequest(String id) async {
+    var result = await apiService.post(
+      endPoint: 'api/Supports/OpenRequest',
+      data: {"id": id},
+    );
+    RequestDetailsModel requestDetails =
+        RequestDetailsModel.fromJson(result["data"]);
+    RequestDetailsEntity requestDetailsEntity = requestDetails.toEntity();
+    return requestDetailsEntity;
   }
 }

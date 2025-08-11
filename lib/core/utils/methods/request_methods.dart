@@ -1,3 +1,5 @@
+import 'package:wncc_portal/features/requests/data/models/mappers/request_delivery_mapper.dart';
+import 'package:wncc_portal/features/requests/data/models/mappers/request_level_mapper.dart';
 import 'package:wncc_portal/features/requests/domain/enums/request_delivery_enum.dart';
 import 'package:wncc_portal/features/requests/domain/enums/request_level_enum.dart';
 import 'package:wncc_portal/features/requests/domain/enums/request_status_enum.dart';
@@ -17,6 +19,14 @@ String getRequestLevelText(RequestLevel delivery) {
   }
 }
 
+ List<String> getRequestLevelListOfString(){
+    List<String> requestLevels = [];
+    for(var i = 0;i< RequestLevel.values.length;i++){
+      requestLevels.add(RequestLevel.values[i].name);
+    }
+    return requestLevels;
+  }
+
 String getRequestDeliveryText(RequestDelivery delivery) {
   switch (delivery) {
     case RequestDelivery.baniSuiefOffice:
@@ -35,6 +45,14 @@ String getRequestDeliveryText(RequestDelivery delivery) {
       return 'Sales Agent';
   }
 }
+
+ List<String> getRequestDeliveryListOfString(){
+    List<String> deliveryTypes = [];
+    for(var i = 0;i< RequestDelivery.values.length;i++){
+      deliveryTypes.add(RequestDelivery.values[i].name);
+    }
+    return deliveryTypes;
+  }
 
 String getRequestStatusText(RequestStatus status) {
   switch (status) {

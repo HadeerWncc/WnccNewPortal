@@ -12,8 +12,8 @@ class ContactPersonInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: Colors.grey)),

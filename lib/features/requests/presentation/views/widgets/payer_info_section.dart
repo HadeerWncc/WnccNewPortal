@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:wncc_portal/features/requests/data/models/request_details_model/request_details_model.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_details_entity.dart';
 
 class PayerInfoSection extends StatelessWidget {

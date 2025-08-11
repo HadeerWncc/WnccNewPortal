@@ -9,6 +9,7 @@ import 'package:wncc_portal/features/authentication/presentation/manager/forget_
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/create_request_cubit/create_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/forwarded_request_cubit/forwarded_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/request_replies_cubit/request_replies_cubit.dart';
@@ -91,6 +92,9 @@ class WnccPortal extends StatelessWidget {
         }),
         BlocProvider(create: (context) {
           return getIt<RequestRepliesCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<CreateRequestCubit>();
         }),
       ],
       child: MaterialApp.router(

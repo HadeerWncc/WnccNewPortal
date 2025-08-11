@@ -4,6 +4,7 @@ import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/core/models/message_dto.dart';
 import 'package:wncc_portal/features/requests/data/datasources/requests_data_source.dart';
 import 'package:wncc_portal/features/requests/data/models/forward_user.dart';
+import 'package:wncc_portal/features/requests/domain/entities/create_request_entity.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_details_entity.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_entity.dart';
 import 'package:wncc_portal/features/requests/domain/repos/requests_repo.dart';
@@ -56,8 +57,9 @@ class RequestsRepoImpl extends RequestsRepo {
   }
 
   @override
-  Future<Either<Failure, List<MessageDto>>> getRequestRepliesById(String id) async{
-     try {
+  Future<Either<Failure, List<MessageDto>>> getRequestRepliesById(
+      String id) async {
+    try {
       List<MessageDto> replies =
           await requestsDataSource.getRequestRepliesById(id);
       return Right(replies);
@@ -67,5 +69,34 @@ class RequestsRepoImpl extends RequestsRepo {
       }
       return Left(ServerFailure(msg: e.toString()));
     }
+  }
+
+  @override
+  Future<Either<Failure, String>> createNewRequest(
+      CreateRequestEntity requestEntity) async {
+    try {
+      String replies = await requestsDataSource.createNewRequest(requestEntity);
+      return Right(replies);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, RequestDetailsEntity>> openRequest(String id) async {
+     try {
+      RequestDetailsEntity requestDetails =
+          await requestsDataSource.openRequest(id);
+      return Right(requestDetails);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+
   }
 }

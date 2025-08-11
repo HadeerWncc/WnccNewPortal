@@ -28,6 +28,7 @@ import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubit
 import 'package:wncc_portal/features/requests/data/datasources/requests_data_source.dart';
 import 'package:wncc_portal/features/requests/data/repositories/requests_repo_impl.dart';
 import 'package:wncc_portal/features/requests/domain/repos/requests_repo.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/create_request_cubit/create_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/forwarded_request_cubit/forwarded_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/request_replies_cubit/request_replies_cubit.dart';
@@ -306,4 +307,9 @@ void setupLocator() {
   //ForwardedCubit
   getIt.registerFactory<RequestRepliesCubit>(
       () => RequestRepliesCubit(getIt<RequestsRepo>()));
+
+  //CreateNewRequestCubit
+  getIt.registerFactory<CreateRequestCubit>(
+      () => CreateRequestCubit(getIt<RequestsRepo>()));
+
 }
