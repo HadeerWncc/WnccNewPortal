@@ -17,6 +17,13 @@ final class ForwardedRequestFailure extends ForwardedRequestState {
   const ForwardedRequestFailure({required this.error});
 }
 
+final class ForwardedRequestToUserSuccess extends ForwardedRequestState {
+  final List<ForwardUser> forwardedUser;
+
+  const ForwardedRequestToUserSuccess({required this.forwardedUser});
+
+}
+
 final class ForwardedRequestSuccess extends ForwardedRequestState {
   final List<ForwardUser> forwardedUser;
 

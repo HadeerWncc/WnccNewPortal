@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/utils/methods/popup_actionds.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/close_request_cubit/close_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/close_request_content_body.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/forwarded_heading_title.dart';
 
 class CloseRequestActionSection extends StatelessWidget {
   const CloseRequestActionSection({
     super.key,
+    required this.requestId,
   });
-
+  final String requestId;
   @override
   Widget build(BuildContext context) {
+    String finalResult = '';
     return Padding(
       padding: const EdgeInsets.only(right: 10),
       child: Row(
@@ -39,14 +44,21 @@ class CloseRequestActionSection extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
-                    title: const PopUpHeadingTitle(headingText: "Close Request"),
+                    title:
+                        const PopUpHeadingTitle(headingText: "Close Request"),
                     content: CloseRequestContentBody(
-                      onType: (value) {},
+                      onType: (value) {
+                        finalResult = value;
+                      },
                     ),
                     actions: popUpActions(
                       context,
                       submitBtnName: 'Submit',
-                      onSubmit: () {},
+                      onSubmit: () {
+                        BlocProvider.of<CloseRequestCubit>(context)
+                            .closeRequest(requestId, finalResult);
+                        GoRouter.of(context).pop();
+                      },
                     ),
                   );
                 },

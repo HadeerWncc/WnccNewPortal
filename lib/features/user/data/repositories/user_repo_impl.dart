@@ -49,4 +49,18 @@ class UserRepoImpl extends UserRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failure, List<UserModel>>> getAllUsers() async{
+    try {
+      List<UserModel> users = await userRemoteDataSource.getAllUsers();
+      users = users.reversed.toList();
+      return Right(users);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
 }

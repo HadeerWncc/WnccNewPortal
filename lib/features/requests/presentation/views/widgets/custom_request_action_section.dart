@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/core/utils/methods/popup_actionds.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
+import 'package:wncc_portal/features/requests/domain/entities/change_request_log_entity.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/forwarded_request_cubit/forwarded_request_cubit.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/forwarded_content_body.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/forwarded_heading_title.dart';
 
 class CustomRequestActionSection extends StatelessWidget {
-  const CustomRequestActionSection({
-    super.key,
-  });
-
+  const CustomRequestActionSection({super.key, required this.requestId});
+  final String requestId;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +28,7 @@ class CustomRequestActionSection extends StatelessWidget {
             icon: Symbols.forward,
             onHoverColor: const Color.fromARGB(255, 207, 207, 207),
             onTap: () {
-              forwardPopUp(context);
+              forwardPopUp(context, requestId: requestId);
             },
           ),
           const SizedBox(width: 10),
@@ -40,7 +43,19 @@ class CustomRequestActionSection extends StatelessWidget {
                 context,
                 contentText: 'Are you want to reject all?',
                 submitText: 'Yes, Reject it!',
-                onSubmit: () {},
+                onSubmit: () {
+                  BlocProvider.of<RequestDetailsCubit>(context)
+                      .changeLogRequest(
+                    ChangeRequestLogEntity(
+                      requestTypeId: '',
+                      requestId: requestId,
+                      comment: '',
+                      status: 5, //Reject
+                      checkedAll: true, //All
+                    ),
+                  );
+                  GoRouter.of(context).pop();
+                },
               );
             },
           ),
@@ -56,7 +71,19 @@ class CustomRequestActionSection extends StatelessWidget {
                 context,
                 contentText: 'Are you want to approve all?',
                 submitText: 'Yes, Approve it!',
-                onSubmit: () {},
+                onSubmit: () {
+                  BlocProvider.of<RequestDetailsCubit>(context)
+                      .changeLogRequest(
+                    ChangeRequestLogEntity(
+                      requestTypeId: '',
+                      requestId: requestId,
+                      comment: '',
+                      status: 7, //Approve
+                      checkedAll: true, //All
+                    ),
+                  );
+                  GoRouter.of(context).pop();
+                },
               );
             },
           ),
@@ -65,9 +92,10 @@ class CustomRequestActionSection extends StatelessWidget {
     );
   }
 
-  
-
-  Future<dynamic> forwardPopUp(BuildContext context) {
+  Future<dynamic> forwardPopUp(BuildContext context,
+      {required String requestId}) {
+    List<String> usersId = [];
+    TextEditingController forwardResonController = TextEditingController();
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -84,9 +112,20 @@ class CustomRequestActionSection extends StatelessWidget {
             color: Colors.black,
           ),
           title: const PopUpHeadingTitle(headingText: "Forward Request"),
-          content: const ForwardedContentBody(),
+          content: ForwardedContentBody(
+            forwardResonController: forwardResonController,
+            onSelectForwardUsers: (values) {
+              usersId = values;
+            },
+          ),
           actions:
-              popUpActions(context, submitBtnName: 'Forward', onSubmit: () {}),
+              popUpActions(context, submitBtnName: 'Forward', onSubmit: () {
+            BlocProvider.of<ForwardedRequestCubit>(context).forwardUsers(
+              id: requestId,
+              forwardReason: forwardResonController.text,
+              forwardedUsers: usersId,
+            );
+          }),
         );
       },
     );

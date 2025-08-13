@@ -9,8 +9,10 @@ import 'package:wncc_portal/features/authentication/presentation/manager/forget_
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/close_request_cubit/close_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/create_request_cubit/create_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/forwarded_request_cubit/forwarded_request_cubit.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/remove_request_cubit/remove_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/request_replies_cubit/request_replies_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/requests_cubit/requests_cubit.dart';
@@ -18,6 +20,7 @@ import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/sal
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/first_login_change_password_cubit/first_login_change_password_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
+import 'package:wncc_portal/features/user/presentation/manager/cubits/get_all_users_cubit/get_all_users_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_cities_cubit/get_cities_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
@@ -95,6 +98,15 @@ class WnccPortal extends StatelessWidget {
         }),
         BlocProvider(create: (context) {
           return getIt<CreateRequestCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<RemoveRequestCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<GetAllUsersCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<CloseRequestCubit>();
         }),
       ],
       child: MaterialApp.router(

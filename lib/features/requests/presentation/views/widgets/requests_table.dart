@@ -109,6 +109,7 @@ class RequestsTable extends StatelessWidget {
                     DataCell(
                       CustomRequestActions(
                         requestId: requests[index].id.toString(),
+                        payerId: requests[index].payerId.toString(),
                       ),
                     ),
                   ],
@@ -132,7 +133,7 @@ class RequestsTable extends StatelessWidget {
   }
 
   void getBlocProviders(BuildContext context, int index) {
-    BlocProvider.of<RequestDetailsCubit>(context).openRequest(requests[index].id!);
+    // BlocProvider.of<RequestDetailsCubit>(context).openRequest(requests[index].id!);
 
      BlocProvider.of<ForwardedRequestCubit>(context)
         .getForwardedById(requests[index].id!);

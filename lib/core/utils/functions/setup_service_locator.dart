@@ -28,8 +28,10 @@ import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubit
 import 'package:wncc_portal/features/requests/data/datasources/requests_data_source.dart';
 import 'package:wncc_portal/features/requests/data/repositories/requests_repo_impl.dart';
 import 'package:wncc_portal/features/requests/domain/repos/requests_repo.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/close_request_cubit/close_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/create_request_cubit/create_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/forwarded_request_cubit/forwarded_request_cubit.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/remove_request_cubit/remove_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/request_replies_cubit/request_replies_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/requests_cubit/requests_cubit.dart';
@@ -60,6 +62,7 @@ import 'package:wncc_portal/features/user/data/repositories/user_repo_impl.dart'
 import 'package:wncc_portal/features/user/domain/repositories/user_repo.dart';
 import 'package:wncc_portal/features/user/domain/usecases/complete_profile_use_case.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
+import 'package:wncc_portal/features/user/presentation/manager/cubits/get_all_users_cubit/get_all_users_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_cities_cubit/get_cities_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
@@ -216,6 +219,10 @@ void setupLocator() {
         getIt<BaseRepos>(),
       ));
 
+  //GetAllUsersCubit
+  getIt.registerFactory<GetAllUsersCubit>(
+      () => GetAllUsersCubit(getIt<UserRepo>()));
+
   //CompleteProfileCubit
   getIt.registerFactory<CompleteProfileCubit>(
       () => CompleteProfileCubit(getIt<UserUseCases>()));
@@ -312,4 +319,11 @@ void setupLocator() {
   getIt.registerFactory<CreateRequestCubit>(
       () => CreateRequestCubit(getIt<RequestsRepo>()));
 
+  //RemoveRequestCubit
+  getIt.registerFactory<RemoveRequestCubit>(
+      () => RemoveRequestCubit(getIt<RequestsRepo>()));
+
+  //closeRequestCubit
+  getIt.registerFactory<CloseRequestCubit>(
+      () => CloseRequestCubit(getIt<RequestsRepo>()));
 }

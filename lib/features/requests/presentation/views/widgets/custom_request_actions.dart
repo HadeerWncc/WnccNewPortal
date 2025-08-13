@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_priority_action_widget.dart';
+import 'package:wncc_portal/features/requests/presentation/managers/remove_request_cubit/remove_request_cubit.dart';
 
 class CustomRequestActions extends StatelessWidget {
-  const CustomRequestActions({super.key, required this.requestId});
+  const CustomRequestActions({super.key, required this.requestId, required this.payerId});
   final String requestId;
+  final String payerId;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -27,7 +30,13 @@ class CustomRequestActions extends StatelessWidget {
               ],
             ),
             onTap: () {
-              GoRouter.of(context).push(AppRouter.editRequestPage);
+              GoRouter.of(context).push(
+                AppRouter.editRequestPage,
+                extra: {
+                  'payerId': payerId,
+                  'id': requestId,
+                },
+              );
             },
           ),
           PopupMenuItem(
@@ -48,7 +57,10 @@ class CustomRequestActions extends StatelessWidget {
                 context,
                 contentText: 'Are you want to delete this request?',
                 submitText: 'Yes, Delete',
-                onSubmit: () {},
+                onSubmit: () {
+                  BlocProvider.of<RemoveRequestCubit>(context).removeRequest(requestId);
+                  GoRouter.of(context).pop();
+                },
               );
             },
           ),

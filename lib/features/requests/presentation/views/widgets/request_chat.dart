@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:signalr_core/signalr_core.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/models/message_dto.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
@@ -28,7 +27,6 @@ class RequestChat extends StatefulWidget {
 }
 
 class _RequestChatState extends State<RequestChat> {
-  late HubConnection _hubConnection;
 
   late SignalRService _signalRService;
   final TextEditingController _controller = TextEditingController();

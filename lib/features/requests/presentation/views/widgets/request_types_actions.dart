@@ -26,6 +26,7 @@ class _RequestTypesActionsState extends State<RequestTypesActions> {
         Padding(
           padding: const EdgeInsets.all(10),
           child: RequestTypeItemList(
+            requestId: widget.requestDetailsEntity.id!,
             requestTypes: widget.requestDetailsEntity.requestTypes!,
             onSelect: (requestLog, reqName) {
               setState(() {

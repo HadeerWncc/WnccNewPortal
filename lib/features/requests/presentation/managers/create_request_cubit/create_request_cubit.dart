@@ -19,4 +19,15 @@ class CreateRequestCubit extends Cubit<CreateRequestState> {
       emit(CreateRequestSuccess(msg: msg));
     });
   }
+
+
+  Future editRequest(CreateRequestEntity requestEntity) async {
+    emit(CreateRequestLoading());
+    var result = await requestsRepo.editRequest(requestEntity);
+    result.fold((error) {
+      emit(CreateRequestFailure(error: error.msg));
+    }, (msg) {
+      emit(CreateRequestSuccess(msg: msg));
+    });
+  }
 }

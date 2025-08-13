@@ -7,6 +7,7 @@ abstract class UserRemoteDataSource {
   Future<UserModel> completeProfile();
   Future<UserModel> getCurrentUser();
   Future<UserModel> updateProfile(ProfileEntity profileEntity);
+  Future<List<UserModel>> getAllUsers();
 }
 
 class UserRemoteDataSourceImpl extends UserRemoteDataSource {
@@ -51,5 +52,15 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource {
     );
     UserModel userModel = UserModel.fromJson(result['data']);
     return userModel;
+  }
+
+  @override
+  Future<List<UserModel>> getAllUsers() async {
+    var result = await apiService.get(endPoint: 'api/Users/GetAll');
+    List<UserModel> users = [];
+    for (var user in result["data"]) {
+      users.add(UserModel.fromJson(user));
+    }
+    return users;
   }
 }

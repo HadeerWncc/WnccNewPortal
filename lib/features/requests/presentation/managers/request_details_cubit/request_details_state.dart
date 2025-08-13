@@ -17,8 +17,25 @@ final class RequestDetailsFailure extends RequestDetailsState {
   const RequestDetailsFailure({required this.error});
 }
 
+final class RequestChangeLogFailure extends RequestDetailsState {
+  final String error;
+
+  const RequestChangeLogFailure({required this.error});
+}
+
 final class RequestDetailsSuccess extends RequestDetailsState {
   final RequestDetailsEntity requestDetails;
-
-  const RequestDetailsSuccess({required this.requestDetails});
+  const RequestDetailsSuccess({
+    required this.requestDetails,
+  });
 }
+
+final class RequestChangeLogSuccess extends RequestDetailsState {
+  final RequestDetailsEntity requestDetails;
+  final String msg;
+  const RequestChangeLogSuccess({
+    required this.requestDetails,
+    required this.msg,
+  });
+}
+

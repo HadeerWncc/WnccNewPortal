@@ -7,4 +7,5 @@ abstract class UserRepo {
   Future<Either<Failure, UserModel>> completeProfile();
   Future<Either<Failure, UserModel>> getCurrentUer();
   Future<Either<Failure, UserModel>> updateProfile(ProfileEntity profileEntity);
+  Future<Either<Failure, List<UserModel>>> getAllUsers();
 }

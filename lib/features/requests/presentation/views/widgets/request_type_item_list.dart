@@ -8,9 +8,10 @@ class RequestTypeItemList extends StatefulWidget {
   const RequestTypeItemList({
     super.key,
     required this.requestTypes,
-    required this.onSelect,
+    required this.onSelect, required this.requestId,
   });
   final List<RequestTypeEntity> requestTypes;
+  final String requestId;
   final Function(List<LogEntity> requestLog, String requestName) onSelect;
   @override
   State<RequestTypeItemList> createState() => _RequestTypeItemListState();
@@ -29,6 +30,8 @@ class _RequestTypeItemListState extends State<RequestTypeItemList> {
           // widget.onSelect(type.logs!,type.name);
         }
         return RequestTypeItem(
+          requestId: widget.requestId,
+          requestTypeId: type.id,
           typeName: type.name,
           status: getRequestStatusText(type.status),
           onTap: () {

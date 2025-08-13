@@ -129,7 +129,13 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: editRequestPage,
-        builder: (context, state) => const EditRequestPage(),
+        builder: (context, state) {
+           final data = state.extra as Map<String, dynamic>;
+           return EditRequestPage(
+            payerId: data['payerId'] as String,
+            id: data['id'] as String,
+          );
+        }
       ),
       GoRoute(
         path: requestDetailsPage,

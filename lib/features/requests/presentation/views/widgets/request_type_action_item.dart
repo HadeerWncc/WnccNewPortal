@@ -11,7 +11,7 @@ class RequestTypeActionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
+      onPressed: onTap,
       padding: const EdgeInsets.all(0),
       icon: Icon(
         icon,

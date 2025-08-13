@@ -20,5 +20,21 @@ class ForwardedRequestCubit extends Cubit<ForwardedRequestState> {
   }
 
 
-  
+  Future forwardUsers({
+    required String id,
+    required String forwardReason,
+    required List<String> forwardedUsers,
+  }) async {
+    emit(ForwardedRequestLoading());
+    var result = await requestsRepo.forwardToUsers(
+      id: id,
+      forwardReason: forwardReason,
+      forwardedUsers: forwardedUsers,
+    );
+    result.fold((error) {
+      emit(ForwardedRequestFailure(error: error.msg));
+    }, (forwardUsers) {
+      emit(ForwardedRequestToUserSuccess(forwardedUser: forwardUsers));
+    });
+  }
 }
