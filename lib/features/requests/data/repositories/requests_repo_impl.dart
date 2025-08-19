@@ -149,8 +149,9 @@ class RequestsRepoImpl extends RequestsRepo {
   }
 
   @override
-  Future<Either<Failure, RequestDetailsEntity>> changeRequestLog(ChangeRequestLogEntity changeRequestLogEntity) async {
-     try {
+  Future<Either<Failure, RequestDetailsEntity>> changeRequestLog(
+      ChangeRequestLogEntity changeRequestLogEntity) async {
+    try {
       RequestDetailsEntity requestDetails =
           await requestsDataSource.changeRequestLog(changeRequestLogEntity);
       return Right(requestDetails);
@@ -161,12 +162,13 @@ class RequestsRepoImpl extends RequestsRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, RequestDetailsEntity>> closeRequest(String id, String resultComment) async{
+  Future<Either<Failure, RequestDetailsEntity>> closeRequest(
+      String id, String resultComment) async {
     try {
       RequestDetailsEntity requestDetails =
-          await requestsDataSource.closeRequest(id,resultComment);
+          await requestsDataSource.closeRequest(id, resultComment);
       return Right(requestDetails);
     } on Exception catch (e) {
       if (e is DioException) {

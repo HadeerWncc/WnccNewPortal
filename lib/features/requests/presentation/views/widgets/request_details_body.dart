@@ -33,10 +33,9 @@ class RequestDetailsBody extends StatelessWidget {
           const Divider(),
           BlocListener<CloseRequestCubit, CloseRequestState>(
             listener: (context, state) {
-              if(state is CloseRequestSuccess){
+              if (state is CloseRequestSuccess) {
                 ShowSnackbar.showSnackBar(context, state.msg, 'S');
-              }
-              else if(state is CloseRequestFailure){
+              } else if (state is CloseRequestFailure) {
                 ShowSnackbar.showSnackBar(context, state.error, 'F');
               }
             },

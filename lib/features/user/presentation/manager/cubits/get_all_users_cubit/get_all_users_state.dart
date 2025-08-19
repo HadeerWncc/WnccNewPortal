@@ -8,12 +8,15 @@ sealed class GetAllUsersState extends Equatable {
 }
 
 final class GetAllUsersInitial extends GetAllUsersState {}
+
 final class GetAllUsersLoading extends GetAllUsersState {}
+
 final class GetAllUsersFailure extends GetAllUsersState {
   final String error;
 
   const GetAllUsersFailure({required this.error});
 }
+
 final class GetAllUsersSuccess extends GetAllUsersState {
   final List<UserModel> users;
 

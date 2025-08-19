@@ -8,7 +8,8 @@ import 'package:wncc_portal/features/priority/comm/widgets/custom_priority_actio
 import 'package:wncc_portal/features/requests/presentation/managers/remove_request_cubit/remove_request_cubit.dart';
 
 class CustomRequestActions extends StatelessWidget {
-  const CustomRequestActions({super.key, required this.requestId, required this.payerId});
+  const CustomRequestActions(
+      {super.key, required this.requestId, required this.payerId});
   final String requestId;
   final String payerId;
   @override
@@ -58,7 +59,8 @@ class CustomRequestActions extends StatelessWidget {
                 contentText: 'Are you want to delete this request?',
                 submitText: 'Yes, Delete',
                 onSubmit: () {
-                  BlocProvider.of<RemoveRequestCubit>(context).removeRequest(requestId);
+                  BlocProvider.of<RemoveRequestCubit>(context)
+                      .removeRequest(requestId);
                   GoRouter.of(context).pop();
                 },
               );

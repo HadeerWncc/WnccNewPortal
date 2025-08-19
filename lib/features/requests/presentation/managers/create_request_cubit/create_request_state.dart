@@ -8,12 +8,15 @@ sealed class CreateRequestState extends Equatable {
 }
 
 final class CreateRequestInitial extends CreateRequestState {}
+
 final class CreateRequestLoading extends CreateRequestState {}
+
 final class CreateRequestSuccess extends CreateRequestState {
   final String msg;
 
   const CreateRequestSuccess({required this.msg});
 }
+
 final class CreateRequestFailure extends CreateRequestState {
   final String error;
 

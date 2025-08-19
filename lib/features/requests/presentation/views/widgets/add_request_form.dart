@@ -9,7 +9,13 @@ import 'package:wncc_portal/features/requests/domain/enums/request_level_enum.da
 class AddRequestForm extends StatelessWidget {
   const AddRequestForm({
     super.key,
-    required this.onRequestTypesChange, required this.payerId, required this.contactPerson, required this.contactPhone, required this.comment, required this.onRequestDeliveryChange, required this.onRequestLevelChange,
+    required this.onRequestTypesChange,
+    required this.payerId,
+    required this.contactPerson,
+    required this.contactPhone,
+    required this.comment,
+    required this.onRequestDeliveryChange,
+    required this.onRequestLevelChange,
   });
   final Function(List<String>) onRequestTypesChange;
   final Function(int) onRequestDeliveryChange;
@@ -29,19 +35,16 @@ class AddRequestForm extends StatelessWidget {
           CustomPlaceholderInput(
             controller: payerId,
             labelText: 'Payer Id',
-           
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
             controller: contactPerson,
             labelText: 'Contact Person',
-            
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
             controller: contactPhone,
             labelText: 'Contact Phone',
-           
           ),
           const SizedBox(height: 15),
           CustomMultiSelectDropDown(
@@ -55,7 +58,7 @@ class AddRequestForm extends StatelessWidget {
             ],
             title: 'Request types',
             onChanged: (value) {
-             onRequestTypesChange(value);
+              onRequestTypesChange(value);
             },
           ),
           const SizedBox(height: 15),
@@ -76,8 +79,8 @@ class AddRequestForm extends StatelessWidget {
             items: getRequestLevelListOfString(),
             title: 'Request Level',
             onChanged: (value) {
-              RequestLevel level =
-                  RequestLevel.values.firstWhere((d) => d.name == value);
+              SupportLevel level =
+                  SupportLevel.values.firstWhere((d) => d.name == value);
               int requestLevel = level.index;
               onRequestLevelChange(requestLevel);
             },
@@ -87,7 +90,6 @@ class AddRequestForm extends StatelessWidget {
             controller: comment,
             labelText: 'Comment',
             linesNum: 5,
-           
           ),
         ],
       ),

@@ -17,26 +17,24 @@ class DrawerPersonalImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           color: const Color.fromARGB(255, 223, 223, 223)),
       child: Center(
-          // child:  Image.network(image),
-          child: CachedNetworkImage(
-            width: MediaQuery.of(context).size.width * .18,
-            height: MediaQuery.of(context).size.width * .18,
-            imageUrl: image,
-            imageBuilder: (context, imageProvider) => Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                image: DecorationImage(
-                  image: imageProvider,
-                  fit: BoxFit.cover,
-                ),
+        // child:  Image.network(image),
+        child: CachedNetworkImage(
+          width: MediaQuery.of(context).size.width * .18,
+          height: MediaQuery.of(context).size.width * .18,
+          imageUrl: image,
+          imageBuilder: (context, imageProvider) => Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              image: DecorationImage(
+                image: imageProvider,
+                fit: BoxFit.cover,
               ),
             ),
-            placeholder: (context, url) => const CircularProgressIndicator(),
-            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
-
-         
-          ),
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
+      ),
     );
   }
 }

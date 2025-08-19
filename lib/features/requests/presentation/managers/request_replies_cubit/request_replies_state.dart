@@ -8,12 +8,15 @@ sealed class RequestRepliesState extends Equatable {
 }
 
 final class RequestRepliesInitial extends RequestRepliesState {}
+
 final class RequestRepliesLoading extends RequestRepliesState {}
+
 final class RequestRepliesFailure extends RequestRepliesState {
   final String error;
 
   const RequestRepliesFailure({required this.error});
 }
+
 final class RequestRepliesSuccess extends RequestRepliesState {
   final List<MessageDto> requestReplies;
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
+import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/widgets/custom_button.dart';
 
 class AddComplainSection extends StatelessWidget {
@@ -39,7 +41,9 @@ class AddComplainSection extends StatelessWidget {
           CustomButton(
             contant: 'Create new Complain',
             color: kBtnColor,
-            onTap: () {},
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.createComplainPage);
+            },
           ),
         ],
       ),

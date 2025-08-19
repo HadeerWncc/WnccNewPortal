@@ -21,7 +21,6 @@ final class ForwardedRequestToUserSuccess extends ForwardedRequestState {
   final List<ForwardUser> forwardedUser;
 
   const ForwardedRequestToUserSuccess({required this.forwardedUser});
-
 }
 
 final class ForwardedRequestSuccess extends ForwardedRequestState {

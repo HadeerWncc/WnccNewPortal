@@ -4,7 +4,7 @@ import 'package:wncc_portal/features/requests/domain/enums/request_status_enum.d
 class RequestTypeEntity {
   final String id;
   final String name;
-  final RequestStatus status;
+  final SupportStatus status;
   final List<LogEntity>? logs;
 
   RequestTypeEntity(

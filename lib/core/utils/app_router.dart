@@ -1,7 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/authentication/data/models/validate_code_model.dart';
+import 'package:wncc_portal/features/complains/presentation/views/pages/complain_details_page.dart';
 import 'package:wncc_portal/features/complains/presentation/views/pages/complain_page.dart';
+import 'package:wncc_portal/features/complains/presentation/views/widgets/create_complain_page.dart';
+import 'package:wncc_portal/features/complains/presentation/views/widgets/edit_complain_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
@@ -44,6 +47,9 @@ abstract class AppRouter {
   static const addRequestPage = '/addRequestPage';
   static const editRequestPage = '/editRequestPage';
   static const requestDetailsPage = '/requestDetailsPage';
+  static const createComplainPage = '/createComplainPage';
+  static const editComplainPage = '/editComplainPage';
+  static const complainDetailsPage = '/complainDetailsPage';
 
   static final router = GoRouter(
     routes: [
@@ -128,15 +134,14 @@ abstract class AppRouter {
         builder: (context, state) => const AddRequestPage(),
       ),
       GoRoute(
-        path: editRequestPage,
-        builder: (context, state) {
-           final data = state.extra as Map<String, dynamic>;
-           return EditRequestPage(
-            payerId: data['payerId'] as String,
-            id: data['id'] as String,
-          );
-        }
-      ),
+          path: editRequestPage,
+          builder: (context, state) {
+            final data = state.extra as Map<String, dynamic>;
+            return EditRequestPage(
+              payerId: data['payerId'] as String,
+              id: data['id'] as String,
+            );
+          }),
       GoRoute(
         path: requestDetailsPage,
         builder: (context, state) {
@@ -146,7 +151,30 @@ abstract class AppRouter {
             user: data['user'] as UserModel,
           );
         },
-      )
+      ),
+      GoRoute(
+        path: createComplainPage,
+        builder: (context, state) => const CreateComplainPage(),
+      ),
+      GoRoute(
+          path: editComplainPage,
+          builder: (context, state) {
+            final data = state.extra as Map<String, dynamic>;
+            return EditComplainPage(
+              id: data['id'] as String,
+              payerId: data['payerId'] as String,
+            );
+          }),
+      GoRoute(
+        path: complainDetailsPage,
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return ComplainDetailsPage(
+            complainId: data['complainId'] as String,
+            user: data['user'] as UserModel,
+          );
+        },
+      ),
     ],
   );
 }

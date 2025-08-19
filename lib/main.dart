@@ -8,6 +8,11 @@ import 'package:wncc_portal/features/authentication/presentation/manager/auth_cu
 import 'package:wncc_portal/features/authentication/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
+import 'package:wncc_portal/features/complains/domain/entities/create_complain_entity.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/complain_details_cubit/complain_details_cubit.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/delete_complain_cubit/delete_complain_cubit.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/close_request_cubit/close_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/create_request_cubit/create_request_cubit.dart';
@@ -107,6 +112,18 @@ class WnccPortal extends StatelessWidget {
         }),
         BlocProvider(create: (context) {
           return getIt<CloseRequestCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<ComplainsCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<CreateNewComplainCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<DeleteComplainCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<ComplainDetailsCubit>();
         }),
       ],
       child: MaterialApp.router(

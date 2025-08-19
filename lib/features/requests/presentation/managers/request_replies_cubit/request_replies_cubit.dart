@@ -12,9 +12,9 @@ class RequestRepliesCubit extends Cubit<RequestRepliesState> {
   Future<void> getRequestReplies(String id) async {
     emit(RequestRepliesLoading());
     var result = await requestsRepo.getRequestRepliesById(id);
-    result.fold((error){
+    result.fold((error) {
       emit(RequestRepliesFailure(error: error.msg));
-    }, (replies){
+    }, (replies) {
       emit(RequestRepliesSuccess(requestReplies: replies));
     });
   }

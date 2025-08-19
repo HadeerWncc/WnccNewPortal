@@ -38,4 +38,3 @@ final class RequestChangeLogSuccess extends RequestDetailsState {
     required this.msg,
   });
 }
-

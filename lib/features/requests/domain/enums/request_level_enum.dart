@@ -1,1 +1,1 @@
-enum RequestLevel { critical, high, medium, low, optional }
+enum SupportLevel { critical, high, medium, low, optional }

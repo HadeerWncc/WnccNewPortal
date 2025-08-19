@@ -183,7 +183,8 @@ class RequestsDataSourceImpl extends RequestsDataSource {
   }
 
   @override
-  Future<RequestDetailsEntity> closeRequest(String id, String resultComment) async {
+  Future<RequestDetailsEntity> closeRequest(
+      String id, String resultComment) async {
     var result = await apiService.post(
       endPoint: 'api/Supports/CloseRequest',
       data: {

@@ -80,8 +80,8 @@ class EditRequestForm extends StatelessWidget {
             items: getRequestLevelListOfString(),
             title: 'Request Level',
             onChanged: (value) {
-              RequestLevel level =
-                  RequestLevel.values.firstWhere((d) => d.name == value);
+              SupportLevel level =
+                  SupportLevel.values.firstWhere((d) => d.name == value);
               int requestLevel = level.index;
               onRequestLevelChange(requestLevel);
             },

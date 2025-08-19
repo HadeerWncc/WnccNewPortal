@@ -31,7 +31,7 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    multiChoiceTitle = widget.selectedValue??"";
+    multiChoiceTitle = widget.selectedValue ?? "";
   }
 
   @override

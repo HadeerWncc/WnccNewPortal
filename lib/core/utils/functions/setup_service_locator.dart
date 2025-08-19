@@ -6,6 +6,13 @@ import 'package:wncc_portal/features/authentication/data/repos/auth_repo_impl.da
 import 'package:wncc_portal/features/authentication/domain/repos/auth_repo.dart';
 import 'package:wncc_portal/features/authentication/domain/use_cases/check_auth_use_case.dart';
 import 'package:wncc_portal/features/authentication/domain/use_cases/forget_password_use_case.dart';
+import 'package:wncc_portal/features/complains/data/datasources/complains_datasource.dart';
+import 'package:wncc_portal/features/complains/data/repos/complain_repo_impl.dart';
+import 'package:wncc_portal/features/complains/domain/repos/complain_repo.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/complain_details_cubit/complain_details_cubit.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/delete_complain_cubit/delete_complain_cubit.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/data/datasources/delivery_data_source.dart';
 import 'package:wncc_portal/features/priority/delivery/data/repositories/delivery_repo_impl.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/repositories/delivery_repo.dart';
@@ -100,9 +107,13 @@ void setupLocator() {
   getIt.registerLazySingleton<PickupDataSource>(
       () => PickupDataSourceImpl(apiService: getIt<ApiService>()));
 
-//RequestsDataSource
+  //RequestsDataSource
   getIt.registerLazySingleton<RequestsDataSource>(
       () => RequestsDataSourceImpl(apiService: getIt<ApiService>()));
+
+  //ComplainsDataSource
+  getIt.registerLazySingleton<ComplainsDatasource>(
+      () => ComplainsDatasourceImpl(apiService: getIt<ApiService>()));
 
   // Repositories
   //BaseRepo
@@ -137,6 +148,10 @@ void setupLocator() {
   //RequestsRepo
   getIt.registerLazySingleton<RequestsRepo>(
       () => RequestsRepoImpl(requestsDataSource: getIt<RequestsDataSource>()));
+
+  //RequestsRepo
+  getIt.registerLazySingleton<ComplainRepo>(() =>
+      ComplainRepoImpl(complainsDatasource: getIt<ComplainsDatasource>()));
 
   // Use Cases
   //login Use Case
@@ -326,4 +341,22 @@ void setupLocator() {
   //closeRequestCubit
   getIt.registerFactory<CloseRequestCubit>(
       () => CloseRequestCubit(getIt<RequestsRepo>()));
+
+  // Complains
+
+  //GetAllComplainsCubit
+  getIt.registerFactory<ComplainsCubit>(
+      () => ComplainsCubit(getIt<ComplainRepo>()));
+
+  //create new complain Cubit
+  getIt.registerFactory<CreateNewComplainCubit>(
+      () => CreateNewComplainCubit(getIt<ComplainRepo>()));
+
+  //delete complain Cubit
+  getIt.registerFactory<DeleteComplainCubit>(
+      () => DeleteComplainCubit(getIt<ComplainRepo>()));
+
+  //get complain Cubit
+  getIt.registerFactory<ComplainDetailsCubit>(
+      () => ComplainDetailsCubit(getIt<ComplainRepo>()));
 }

@@ -19,7 +19,6 @@ class ForwardedRequestCubit extends Cubit<ForwardedRequestState> {
     });
   }
 
-
   Future forwardUsers({
     required String id,
     required String forwardReason,

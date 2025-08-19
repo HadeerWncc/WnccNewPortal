@@ -3,8 +3,8 @@ import 'package:wncc_portal/features/requests/domain/enums/request_status_enum.d
 class LogEntity {
   final String? id;
   final String createdAt;
-  final RequestStatus changedFrom;
-  final RequestStatus changedTo;
+  final SupportStatus changedFrom;
+  final SupportStatus changedTo;
   final dynamic comment;
   final String? createdBy;
   final dynamic imageUrl;

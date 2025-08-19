@@ -1,13 +1,18 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
+import 'package:wncc_portal/core/utils/app_router.dart';
+import 'package:wncc_portal/features/complains/domain/entities/complain_entity.dart';
+import 'package:wncc_portal/features/complains/presentation/views/widgets/custom_complain_actions.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
-import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/pending_delivey.dart/custom_pending_delivery_actions.dart';
 
 class ComplainTable extends StatelessWidget {
-  const ComplainTable({super.key});
+  const ComplainTable({super.key, required this.complains, required this.user});
 
+  final List<ComplainEntity> complains;
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -30,42 +35,53 @@ class ComplainTable extends StatelessWidget {
               const Color(0xffF9FAFC),
             ),
             columns: const [
+              DataColumn(label: DataColumnText(text: 'Id')),
               DataColumn(label: DataColumnText(text: 'Payer')),
               DataColumn(label: DataColumnText(text: 'Subject')),
-              DataColumn(label: DataColumnText(text: 'Status')),
+              // DataColumn(label: DataColumnText(text: 'Status')),
               DataColumn(label: DataColumnText(text: 'Actions')),
             ],
             rows: List<DataRow>.generate(
-              10,
+              complains.length,
               (index) {
                 final color = index.isOdd
                     ? const Color(0xffF8F8FA)
                     : const Color(0xffFFFFFF);
                 return DataRow(
+                  onSelectChanged: (value) {
+                    // getBlocProviders(context, index);
+                    // goToDetailsPage(context, index);
+                    GoRouter.of(context)
+                        .push(AppRouter.complainDetailsPage, extra: {
+                      "complainId": complains[index].id,
+                      "user": user,
+                    });
+                  },
                   color: WidgetStateProperty.all(color),
-                  cells: const [
-                    DataCell(CustomDataCellWidget(
-                        title: "Ahmed Ali", subTitle: "1000049")),
+                  cells: [
                     DataCell(
                       Center(
                         child: Text(
-                          'إلغاء الأوردرات',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          complains[index].id!,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
+                    DataCell(CustomDataCellWidget(
+                        title: complains[index].payerName!,
+                        subTitle: complains[index].payerId!)),
                     DataCell(
                       Center(
-                        child: CustomMarkedColorContainer(
-                          title: 'Created',
-                          color: Color.fromARGB(255, 0, 139, 253),
-                          bgColor: Color.fromARGB(255, 223, 236, 248),
+                        child: Text(
+                          complains[index].description!,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
                     DataCell(
-                      CustomPendingDeliveryActions(
-                        orderId: '14',
+                      CustomComplainActions(
+                        complainId: complains[index].id!,
+                        payerId: complains[index].payerId!,
                       ),
                     ),
                   ],

@@ -3,7 +3,8 @@ import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
 
 class CloseRequestContentBody extends StatelessWidget {
   const CloseRequestContentBody({
-    super.key, required this.onType,
+    super.key,
+    required this.onType,
   });
   final Function(String) onType;
   @override
@@ -15,7 +16,6 @@ class CloseRequestContentBody extends StatelessWidget {
         children: [
           const Text("You cannot modify the request after it has been closed!"),
           const SizedBox(height: 20),
-          
           const SizedBox(height: 15),
           CustomPlaceholderInput(
             linesNum: 4,

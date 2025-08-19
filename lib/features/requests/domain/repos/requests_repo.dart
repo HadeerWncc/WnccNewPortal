@@ -17,10 +17,14 @@ abstract class RequestsRepo {
     required List<String> forwardedUsers,
   });
   Future<Either<Failure, List<MessageDto>>> getRequestRepliesById(String id);
-  Future<Either<Failure, String>> createNewRequest(CreateRequestEntity requestEntity);
-  Future<Either<Failure, String>> editRequest(CreateRequestEntity requestEntity);
+  Future<Either<Failure, String>> createNewRequest(
+      CreateRequestEntity requestEntity);
+  Future<Either<Failure, String>> editRequest(
+      CreateRequestEntity requestEntity);
   Future<Either<Failure, String>> removeRequest(String id);
   Future<Either<Failure, RequestDetailsEntity>> openRequest(String id);
-  Future<Either<Failure, RequestDetailsEntity>> closeRequest(String id, String resultComment);
-  Future<Either<Failure, RequestDetailsEntity>> changeRequestLog(ChangeRequestLogEntity changeRequestLogEntity);
+  Future<Either<Failure, RequestDetailsEntity>> closeRequest(
+      String id, String resultComment);
+  Future<Either<Failure, RequestDetailsEntity>> changeRequestLog(
+      ChangeRequestLogEntity changeRequestLogEntity);
 }

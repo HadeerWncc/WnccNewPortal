@@ -135,10 +135,10 @@ class RequestsTable extends StatelessWidget {
   void getBlocProviders(BuildContext context, int index) {
     // BlocProvider.of<RequestDetailsCubit>(context).openRequest(requests[index].id!);
 
-     BlocProvider.of<ForwardedRequestCubit>(context)
+    BlocProvider.of<ForwardedRequestCubit>(context)
         .getForwardedById(requests[index].id!);
-    
-     BlocProvider.of<RequestRepliesCubit>(context)
+
+    BlocProvider.of<RequestRepliesCubit>(context)
         .getRequestReplies(requests[index].id!);
   }
 }

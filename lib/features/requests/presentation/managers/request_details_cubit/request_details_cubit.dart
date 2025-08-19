@@ -39,8 +39,6 @@ class RequestDetailsCubit extends Cubit<RequestDetailsState> {
     });
   }
 
-  
-
   void msgPendingOnStatus(int status, RequestDetailsEntity request) {
     switch (status) {
       case 2:

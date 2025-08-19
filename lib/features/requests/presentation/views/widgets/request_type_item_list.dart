@@ -8,7 +8,8 @@ class RequestTypeItemList extends StatefulWidget {
   const RequestTypeItemList({
     super.key,
     required this.requestTypes,
-    required this.onSelect, required this.requestId,
+    required this.onSelect,
+    required this.requestId,
   });
   final List<RequestTypeEntity> requestTypes;
   final String requestId;

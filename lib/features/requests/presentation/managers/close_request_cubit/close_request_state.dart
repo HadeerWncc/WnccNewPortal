@@ -8,12 +8,15 @@ sealed class CloseRequestState extends Equatable {
 }
 
 final class CloseRequestInitial extends CloseRequestState {}
+
 final class CloseRequestLoading extends CloseRequestState {}
+
 final class CloseRequestFailure extends CloseRequestState {
   final String error;
 
   const CloseRequestFailure({required this.error});
 }
+
 final class CloseRequestSuccess extends CloseRequestState {
   final String msg;
 

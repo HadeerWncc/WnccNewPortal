@@ -34,8 +34,7 @@ class MessageDto {
     );
   }
 
-
-   factory MessageDto.fromJsonRequest(Map<String, dynamic> json) {
+  factory MessageDto.fromJsonRequest(Map<String, dynamic> json) {
     return MessageDto(
       id: json['id'] as String?,
       createdById: json['createdById'] as String?,

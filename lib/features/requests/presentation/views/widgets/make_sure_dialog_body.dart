@@ -5,7 +5,10 @@ import 'package:wncc_portal/core/widgets/custom_button.dart';
 
 class MakeSureDialogBody extends StatelessWidget {
   const MakeSureDialogBody({
-    super.key, required this.contentText, required this.submitText, required this.onSubmit,
+    super.key,
+    required this.contentText,
+    required this.submitText,
+    required this.onSubmit,
   });
   final String contentText;
   final String submitText;

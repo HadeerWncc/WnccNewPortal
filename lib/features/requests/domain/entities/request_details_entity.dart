@@ -11,8 +11,8 @@ class RequestDetailsEntity {
   final String? payerId;
   final String? payerName;
   final String? payerEmail;
-  final RequestLevel level;
-  final RequestStatus status;
+  final SupportLevel level;
+  final SupportStatus status;
   final RequestDelivery delivery;
   final DateTime? closedAt;
   final String? createdBy;

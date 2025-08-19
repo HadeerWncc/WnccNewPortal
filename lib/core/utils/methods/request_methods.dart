@@ -2,28 +2,28 @@ import 'package:wncc_portal/features/requests/domain/enums/request_delivery_enum
 import 'package:wncc_portal/features/requests/domain/enums/request_level_enum.dart';
 import 'package:wncc_portal/features/requests/domain/enums/request_status_enum.dart';
 
-String getRequestLevelText(RequestLevel delivery) {
+String getRequestLevelText(SupportLevel delivery) {
   switch (delivery) {
-    case RequestLevel.critical:
+    case SupportLevel.critical:
       return 'Critical';
-    case RequestLevel.high:
+    case SupportLevel.high:
       return 'High';
-    case RequestLevel.low:
+    case SupportLevel.low:
       return 'Low';
-    case RequestLevel.medium:
+    case SupportLevel.medium:
       return 'Medium';
-    case RequestLevel.optional:
+    case SupportLevel.optional:
       return 'Optional';
   }
 }
 
- List<String> getRequestLevelListOfString(){
-    List<String> requestLevels = [];
-    for(var i = 0;i< RequestLevel.values.length;i++){
-      requestLevels.add(RequestLevel.values[i].name);
-    }
-    return requestLevels;
+List<String> getRequestLevelListOfString() {
+  List<String> requestLevels = [];
+  for (var i = 0; i < SupportLevel.values.length; i++) {
+    requestLevels.add(SupportLevel.values[i].name);
   }
+  return requestLevels;
+}
 
 String getRequestDeliveryText(RequestDelivery delivery) {
   switch (delivery) {
@@ -44,35 +44,35 @@ String getRequestDeliveryText(RequestDelivery delivery) {
   }
 }
 
- List<String> getRequestDeliveryListOfString(){
-    List<String> deliveryTypes = [];
-    for(var i = 0;i< RequestDelivery.values.length;i++){
-      deliveryTypes.add(RequestDelivery.values[i].name);
-    }
-    return deliveryTypes;
+List<String> getRequestDeliveryListOfString() {
+  List<String> deliveryTypes = [];
+  for (var i = 0; i < RequestDelivery.values.length; i++) {
+    deliveryTypes.add(RequestDelivery.values[i].name);
   }
+  return deliveryTypes;
+}
 
-String getRequestStatusText(RequestStatus status) {
+String getRequestStatusText(SupportStatus status) {
   switch (status) {
-    case RequestStatus.newCreate:
+    case SupportStatus.newCreate:
       return 'New';
-    case RequestStatus.pending:
+    case SupportStatus.pending:
       return 'Pending';
-    case RequestStatus.approved:
+    case SupportStatus.approved:
       return 'Approved';
-    case RequestStatus.cancelled:
+    case SupportStatus.cancelled:
       return 'Cancelled';
-    case RequestStatus.completed:
+    case SupportStatus.completed:
       return 'Completed';
-    case RequestStatus.followUp:
+    case SupportStatus.followUp:
       return 'FollowUp';
-    case RequestStatus.forwarded:
+    case SupportStatus.forwarded:
       return 'Forwarded';
-    case RequestStatus.overdue:
+    case SupportStatus.overdue:
       return 'Overdue';
-    case RequestStatus.rejected:
+    case SupportStatus.rejected:
       return 'Rejected';
-    case RequestStatus.resolved:
+    case SupportStatus.resolved:
       return 'Resolved';
   }
 }

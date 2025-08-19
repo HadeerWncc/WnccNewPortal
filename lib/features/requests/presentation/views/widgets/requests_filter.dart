@@ -35,7 +35,8 @@ class RequestsFilter extends StatelessWidget {
                 //Get Data With Status filtration
                 //Most get payer Id
 
-                ShowSnackbar.showSnackBar(context, 'Please Enter Payer Code','W');
+                ShowSnackbar.showSnackBar(
+                    context, 'Please Enter Payer Code', 'W');
               }
             },
           ),

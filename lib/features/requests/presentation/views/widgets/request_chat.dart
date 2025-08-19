@@ -27,7 +27,6 @@ class RequestChat extends StatefulWidget {
 }
 
 class _RequestChatState extends State<RequestChat> {
-
   late SignalRService _signalRService;
   final TextEditingController _controller = TextEditingController();
   final TextEditingController chatController = TextEditingController();

@@ -1,0 +1,16 @@
+import 'package:dartz/dartz.dart';
+import 'package:wncc_portal/core/errors/failure.dart';
+import 'package:wncc_portal/features/complains/domain/entities/complain_details_entity.dart';
+import 'package:wncc_portal/features/complains/domain/entities/complain_entity.dart';
+import 'package:wncc_portal/features/complains/domain/entities/create_complain_entity.dart';
+
+abstract class ComplainRepo {
+  Future<Either<Failure, List<ComplainEntity>>> getAllComplains();
+  Future<Either<Failure, String>> createNewComplain(
+      CreateComplainEntity createComplainEntity);
+  Future<Either<Failure, String>> editComplain(
+      CreateComplainEntity createComplainEntity);
+  Future<Either<Failure, String>> deleteComplain(String complainId);
+  Future<Either<Failure, ComplainDetailsEntity>> getComplainById(String complainId);
+  Future<Either<Failure, ComplainDetailsEntity>> openComplain(String complainId); //pending
+}

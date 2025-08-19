@@ -49,9 +49,9 @@ class UserRepoImpl extends UserRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, List<UserModel>>> getAllUsers() async{
+  Future<Either<Failure, List<UserModel>>> getAllUsers() async {
     try {
       List<UserModel> users = await userRemoteDataSource.getAllUsers();
       users = users.reversed.toList();

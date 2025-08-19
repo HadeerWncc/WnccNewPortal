@@ -1,4 +1,4 @@
-enum RequestStatus {
+enum SupportStatus {
   newCreate,
   pending,
   forwarded,
