@@ -24,10 +24,10 @@ class ComplainTable extends StatelessWidget {
               ? 800
               : MediaQuery.of(context).size.width,
           child: DataTable2(
+            showCheckboxColumn: false,
             columnSpacing: 0,
             horizontalMargin: 0,
             minWidth: 800,
-            showCheckboxColumn: true,
             dataRowHeight: 60,
             border: const TableBorder.symmetric(
                 outside: BorderSide(color: Color.fromARGB(255, 195, 193, 193))),

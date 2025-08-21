@@ -13,6 +13,7 @@ import 'package:wncc_portal/features/complains/presentation/managers/cubits/comp
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/delete_complain_cubit/delete_complain_cubit.dart';
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/forwarded_complain_cubit/forwarded_complain_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/data/datasources/delivery_data_source.dart';
 import 'package:wncc_portal/features/priority/delivery/data/repositories/delivery_repo_impl.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/repositories/delivery_repo.dart';
@@ -359,4 +360,8 @@ void setupLocator() {
   //get complain Cubit
   getIt.registerFactory<ComplainDetailsCubit>(
       () => ComplainDetailsCubit(getIt<ComplainRepo>()));
+
+  //get forwarded complain Cubit
+  getIt.registerFactory<ForwardedComplainCubit>(
+      () => ForwardedComplainCubit(getIt<ComplainRepo>()));
 }

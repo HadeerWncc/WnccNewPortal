@@ -56,7 +56,7 @@ class ComplainDetailsPage extends StatelessWidget {
                   if (state is ComplainDetailsSuccess) {
                     return ComplainDetailsBody(
                       user: user,
-                      complains: state.complain,
+                      complain: state.complain,
                     );
                   } 
                   // else if (state is RequestChangeLogSuccess) {

@@ -13,6 +13,7 @@ import 'package:wncc_portal/features/complains/presentation/managers/cubits/comp
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/delete_complain_cubit/delete_complain_cubit.dart';
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/forwarded_complain_cubit/forwarded_complain_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/close_request_cubit/close_request_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/create_request_cubit/create_request_cubit.dart';
@@ -124,6 +125,9 @@ class WnccPortal extends StatelessWidget {
         }),
         BlocProvider(create: (context) {
           return getIt<ComplainDetailsCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<ForwardedComplainCubit>();
         }),
       ],
       child: MaterialApp.router(

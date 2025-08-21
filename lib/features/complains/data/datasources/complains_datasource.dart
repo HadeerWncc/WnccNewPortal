@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:wncc_portal/core/models/message_dto.dart';
 import 'package:wncc_portal/core/utils/api_service.dart';
 import 'package:wncc_portal/features/complains/data/models/complain_details_model/complain_details_model.dart';
 import 'package:wncc_portal/features/complains/data/models/complain_model.dart';
 import 'package:wncc_portal/features/complains/domain/entities/complain_details_entity.dart';
 import 'package:wncc_portal/features/complains/domain/entities/complain_entity.dart';
 import 'package:wncc_portal/features/complains/domain/entities/create_complain_entity.dart';
+import 'package:wncc_portal/features/requests/data/models/forward_user.dart';
 
 abstract class ComplainsDatasource {
   Future<List<ComplainEntity>> getAllComplain();
@@ -13,6 +15,8 @@ abstract class ComplainsDatasource {
   Future<String> deleteComplain(String id);
   Future<ComplainDetailsEntity> getComplainById(String id);
   Future<ComplainDetailsEntity> openComplain(String id); //Pending
+  Future<List<ForwardUser>> getComplaintForwardedUsers(String id);
+  Future<List<MessageDto>> getComplaintReplys(String id);
 }
 
 class ComplainsDatasourceImpl extends ComplainsDatasource {
@@ -106,5 +110,31 @@ class ComplainsDatasourceImpl extends ComplainsDatasource {
     ComplainDetailsEntity complainDetailsEntity =
         complainDetailsModel.toEntity();
     return complainDetailsEntity;
+  }
+
+  @override
+  Future<List<ForwardUser>> getComplaintForwardedUsers(String id) async {
+    var result = await apiService.get(
+      endPoint: 'api/Supports/GetComplaintForwardedUsers?id=$id',
+    );
+    List<ForwardUser> forwardedUsers = [];
+    for (var forward in result["data"]) {
+      ForwardUser forwardUser = ForwardUser.fromJson(forward);
+      forwardedUsers.add(forwardUser);
+    }
+    return forwardedUsers;
+  }
+  
+  @override
+  Future<List<MessageDto>> getComplaintReplys(String id) async {
+    var result = await apiService.get(
+      endPoint: 'api/Supports/GetComplaintReplies?id=$id',
+    );
+    List<MessageDto> messages = [];
+    for (var msg in result["data"]) {
+      MessageDto message = MessageDto.fromJsonCmplain(msg);
+      messages.add(message);
+    }
+    return messages;
   }
 }

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class MessageDto extends Equatable {
+class RequestReply extends Equatable {
   final String? id;
   final String? createdById;
   final String? createdBy;
@@ -11,7 +11,7 @@ class MessageDto extends Equatable {
   final bool? isViewd;
   final bool? isBelong;
 
-  const MessageDto({
+  const RequestReply({
     this.id,
     this.createdById,
     this.createdBy,
@@ -23,7 +23,7 @@ class MessageDto extends Equatable {
     this.isBelong,
   });
 
-  factory MessageDto.fromJson(Map<String, dynamic> json) => MessageDto(
+  factory RequestReply.fromJson(Map<String, dynamic> json) => RequestReply(
         id: json['id'] as String?,
         createdById: json['createdById'] as String?,
         createdBy: json['createdBy'] as String?,
