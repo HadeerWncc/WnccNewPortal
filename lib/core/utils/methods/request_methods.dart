@@ -1,6 +1,6 @@
-import 'package:wncc_portal/features/requests/domain/enums/request_delivery_enum.dart';
-import 'package:wncc_portal/features/requests/domain/enums/request_level_enum.dart';
-import 'package:wncc_portal/features/requests/domain/enums/request_status_enum.dart';
+import 'package:wncc_portal/features/customerService/requests/domain/enums/request_delivery_enum.dart';
+import 'package:wncc_portal/features/customerService/requests/domain/enums/request_level_enum.dart';
+import 'package:wncc_portal/features/customerService/requests/domain/enums/request_status_enum.dart';
 
 String getRequestLevelText(SupportLevel delivery) {
   switch (delivery) {

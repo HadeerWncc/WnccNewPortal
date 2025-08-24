@@ -1,0 +1,46 @@
+import 'package:wncc_portal/features/customerService/requests/domain/enums/request_level_enum.dart';
+import 'package:wncc_portal/features/customerService/requests/domain/enums/request_status_enum.dart';
+
+class ComplainEntity {
+  final String? id;
+  final String? subject;
+  final String? type;
+  final String? description;
+  final String? contactPerson;
+  final String? contactPhone;
+  final String? payerId;
+  final String? payerName;
+  final String? payerEmail;
+  final SupportLevel? level;
+  final SupportStatus? status;
+  final dynamic closedAt;
+  final dynamic closedBy;
+  final dynamic result;
+  final bool? isClosed;
+  final bool? isDeleted;
+  final DateTime? createdAt;
+  final DateTime? lastUpdatedAt;
+  final String? createdBy;
+
+  ComplainEntity({
+    required this.id,
+    required this.subject,
+    required this.type,
+    required this.description,
+    required this.contactPerson,
+    required this.contactPhone,
+    required this.payerId,
+    required this.payerName,
+    required this.payerEmail,
+    required this.level,
+    required this.status,
+    required this.closedAt,
+    required this.closedBy,
+    required this.result,
+    required this.isClosed,
+    required this.isDeleted,
+    required this.createdAt,
+    required this.lastUpdatedAt,
+    required this.createdBy,
+  });
+}

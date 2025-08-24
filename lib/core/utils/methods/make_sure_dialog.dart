@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/requests/presentation/views/widgets/make_sure_dialog_body.dart';
+import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/make_sure_dialog_body.dart';
 
 Future<dynamic> makeSureDialog(
   BuildContext context, {
