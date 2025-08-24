@@ -5,6 +5,7 @@ import 'package:wncc_portal/core/utils/methods/request_methods.dart';
 import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/core/widgets/divider_line.dart';
 import 'package:wncc_portal/features/complains/domain/entities/complain_details_entity.dart';
+import 'package:wncc_portal/features/complains/presentation/managers/cubits/complain_replies_cubit/complain_replies_cubit.dart';
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/forwarded_complain_cubit/forwarded_complain_cubit.dart';
 import 'package:wncc_portal/features/complains/presentation/views/widgets/complain_chat.dart';
 import 'package:wncc_portal/features/complains/presentation/views/widgets/complain_contact_person_info_section.dart';
@@ -23,6 +24,8 @@ class ComplainDetailsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<ForwardedComplainCubit>(context)
         .getForwardedUsers(complain.id!);
+    BlocProvider.of<ComplainRepliesCubit>(context)
+        .getComplainReplies(complain.id!);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -68,7 +71,20 @@ class ComplainDetailsBody extends StatelessWidget {
               return const SingleChildScrollView();
             },
           ),
-          ComplainChat(),
+          BlocBuilder<ComplainRepliesCubit, ComplainRepliesState>(
+            builder: (context, state) {
+              if (state is ComplainRepliesSuccess) {
+                return ComplainChat(
+                  messages: state.messages,
+                  user: user,
+                  complainId: complain.id!,
+                );
+              } else if (state is ComplainRepliesFailure) {
+                return Text(state.error);
+              }
+              return const SingleChildScrollView();
+            },
+          ),
         ],
       ),
     );

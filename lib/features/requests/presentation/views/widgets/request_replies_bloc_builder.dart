@@ -22,7 +22,7 @@ class RequestRepliesBlocBuilder extends StatelessWidget {
         if (state is RequestRepliesSuccess) {
           return RequestChat(
             user: user,
-            complaintId: requestDetailsEntity.id!,
+            requestId: requestDetailsEntity.id!,
             replies: state.requestReplies,
           );
         } else if (state is RequestRepliesFailure) {

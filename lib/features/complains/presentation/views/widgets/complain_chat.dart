@@ -1,12 +1,62 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
+import 'package:wncc_portal/core/models/message_dto.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
+import 'package:wncc_portal/core/utils/signalr_service.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
+import 'package:wncc_portal/features/requests/presentation/views/widgets/chat_bubble_for_another_user.dart';
+import 'package:wncc_portal/features/requests/presentation/views/widgets/chat_bubble_for_ccurrent_user.dart';
 
-class ComplainChat extends StatelessWidget {
-  const ComplainChat({super.key});
+class ComplainChat extends StatefulWidget {
+  const ComplainChat(
+      {super.key,
+      required this.messages,
+      required this.user,
+      required this.complainId});
+  final List<MessageDto> messages;
+  final UserModel user;
+  final String complainId;
 
+  @override
+  State<ComplainChat> createState() => _ComplainChatState();
+}
+
+class _ComplainChatState extends State<ComplainChat> {
+  late SignalRService _signalRService;
+  final TextEditingController _controller = TextEditingController();
+  // final TextEditingController chatController = TextEditingController();
+
+  List<MessageDto> _messages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _messages.addAll(widget.messages);
+    _signalRService = SignalRService();
+    _startSignalR();
+  }
+
+  void _startSignalR() async {
+    await _signalRService.startConnection();
+    await _signalRService.joinComplainGroup(widget.complainId);
+
+    _signalRService.registerReceiveComplainMessageHandler((data) {
+      final reply = MessageDto.fromJsonCmplain(data);
+      setState(() {
+        _messages.add(reply);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _signalRService.connection.stop();
+    super.dispose();
+  }
+
+  String chatReplay = "";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,21 +93,20 @@ class ComplainChat extends StatelessWidget {
             height: 150,
             child: ListView.builder(
                 reverse: true,
-                // itemCount: _messages.length,
+                itemCount: _messages.length,
                 itemBuilder: (context, index) {
-                  // return const Text('data');
-                  //  (_messages[_messages.length - (index + 1)].createdBy ==
-                  //         widget.user.fullName)
-                  // ? ChatBubbleForCurrentUser(
-                  //         message: _messages[_messages.length - (index + 1)])
-                  //     : ChatBubbleForAnotherUser(
-                  //         message: _messages[_messages.length - (index + 1)]);
+                  return (_messages[_messages.length - (index + 1)].createdBy ==
+                          widget.user.fullName)
+                      ? ChatBubbleForCurrentUser(
+                          message: _messages[_messages.length - (index + 1)])
+                      : ChatBubbleForAnotherUser(
+                          message: _messages[_messages.length - (index + 1)]);
                 }),
           ),
           const Divider(),
           CustomPlaceholderInput(
             xAxis: MainAxisAlignment.center,
-            controller: TextEditingController(),
+            controller: _controller,
             labelText: "Type your reply...",
             width: MediaQuery.of(context).size.width * .87,
           ),
@@ -73,7 +122,7 @@ class ComplainChat extends StatelessWidget {
                   bgColor: kBtnColor,
                   icon: Symbols.send,
                   onHoverColor: const Color.fromARGB(255, 88, 164, 250),
-                  onTap: () {},
+                  onTap: _handleSend,
                 ),
               ],
             ),
@@ -82,5 +131,13 @@ class ComplainChat extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _handleSend() async {
+    if (_controller.text.trim().isEmpty) return;
+    await _signalRService.sendComplainMessage(
+        widget.complainId, _controller.text.trim());
+
+    _controller.clear();
   }
 }

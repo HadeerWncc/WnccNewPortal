@@ -37,11 +37,32 @@ class SignalRService {
     }
   }
 
-  Future<void> sendRequestMessage(String complaintId, String reply) async {
+  Future<void> joinComplainGroup(String complainId) async {
+    try {
+      await _hubConnection.invoke('JoinComplainGroup', args: [complainId]);
+    } catch (e) {
+      print("❌ Failed to join group: $e");
+    }
+  }
+
+  Future<void> sendRequestMessage(String requestId, String reply) async {
     if (_hubConnection.state == HubConnectionState.connected) {
       try {
         await _hubConnection
-            .invoke('SendRequestMessage', args: [complaintId, reply]);
+            .invoke('SendRequestMessage', args: [requestId, reply]);
+      } catch (e) {
+        print('❌ Error sending message: $e');
+      }
+    } else {
+      print('❌ Hub connection is not active');
+    }
+  }
+
+  Future<void> sendComplainMessage(String complaintId, String reply) async {
+    if (_hubConnection.state == HubConnectionState.connected) {
+      try {
+        await _hubConnection
+            .invoke('SendComplainMessage', args: [complaintId, reply]);
       } catch (e) {
         print('❌ Error sending message: $e');
       }
@@ -53,6 +74,16 @@ class SignalRService {
   void registerReceiveRequestMessageHandler(
       Function(Map<String, dynamic>) onMessageReceived) {
     _hubConnection.on('ReceiveRequestMessage', (arguments) {
+      if (arguments != null && arguments.isNotEmpty) {
+        final data = Map<String, dynamic>.from(arguments[0] as Map);
+        onMessageReceived(data);
+      }
+    });
+  }
+
+   void registerReceiveComplainMessageHandler(
+      Function(Map<String, dynamic>) onMessageReceived) {
+    _hubConnection.on('ReceiveComplainMessage', (arguments) {
       if (arguments != null && arguments.isNotEmpty) {
         final data = Map<String, dynamic>.from(arguments[0] as Map);
         onMessageReceived(data);

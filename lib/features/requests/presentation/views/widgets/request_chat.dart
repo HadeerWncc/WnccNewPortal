@@ -12,13 +12,13 @@ import 'package:wncc_portal/features/requests/presentation/views/widgets/chat_bu
 class RequestChat extends StatefulWidget {
   const RequestChat({
     super.key,
-    required this.complaintId,
+    required this.requestId,
     // required this.onMessageSent,
     required this.user,
     required this.replies,
   });
 
-  final String complaintId;
+  final String requestId;
   // final Function(Map<String, dynamic>) onMessageSent;
   final UserModel user;
   final List<MessageDto> replies;
@@ -43,7 +43,7 @@ class _RequestChatState extends State<RequestChat> {
 
   void _startSignalR() async {
     await _signalRService.startConnection();
-    await _signalRService.joinRequestGroup(widget.complaintId);
+    await _signalRService.joinRequestGroup(widget.requestId);
 
     _signalRService.registerReceiveRequestMessageHandler((data) {
       final reply = MessageDto.fromJsonRequest(data);
@@ -139,7 +139,7 @@ class _RequestChatState extends State<RequestChat> {
   void _handleSend() async {
     if (_controller.text.trim().isEmpty) return;
     await _signalRService.sendRequestMessage(
-        widget.complaintId, _controller.text.trim());
+        widget.requestId, _controller.text.trim());
 
     _controller.clear();
   }
