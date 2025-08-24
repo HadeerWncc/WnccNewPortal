@@ -8,9 +8,10 @@ class ForwardedContentBody extends StatelessWidget {
   const ForwardedContentBody(
       {super.key,
       required this.forwardResonController,
-      required this.onSelectForwardUsers});
+      required this.onSelectForwardUsers, required this.forwardTextContent});
   final TextEditingController forwardResonController;
   final Function(List<String>) onSelectForwardUsers;
+  final String forwardTextContent;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,7 +19,7 @@ class ForwardedContentBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("Forward the request to concerned users"),
+          Text(forwardTextContent),
           const SizedBox(height: 20),
           BlocBuilder<GetAllUsersCubit, GetAllUsersState>(
             builder: (context, state) {

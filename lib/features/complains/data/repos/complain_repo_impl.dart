@@ -128,4 +128,26 @@ class ComplainRepoImpl extends ComplainRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<ForwardUser>>> forwardUsers({
+    required String id,
+    required String forwardReason,
+    required List<String> forwardedUsers,
+  }) async {
+    try {
+      List<ForwardUser> forwardUsers =
+          await complainsDatasource.complainForwardUsers(
+        id: id,
+        forwardReason: forwardReason,
+        forwardedUsers: forwardedUsers,
+      );
+      return Right(forwardUsers);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
 }

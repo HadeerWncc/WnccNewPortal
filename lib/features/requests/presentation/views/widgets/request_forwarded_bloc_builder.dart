@@ -27,8 +27,6 @@ class RequestForwardedblocBuilder extends StatelessWidget {
           return ForwardedForSection(forwardedUsers: state.forwardedUser);
         } else if (state is ForwardedRequestToUserSuccess) {
           return ForwardedForSection(forwardedUsers: state.forwardedUser);
-        } else if (state is ForwardedRequestFailure) {
-          return Text(state.error);
         }
         return const CircularProgressIndicator();
       },

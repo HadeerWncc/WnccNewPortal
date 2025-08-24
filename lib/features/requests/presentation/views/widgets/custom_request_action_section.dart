@@ -113,6 +113,7 @@ class CustomRequestActionSection extends StatelessWidget {
           ),
           title: const PopUpHeadingTitle(headingText: "Forward Request"),
           content: ForwardedContentBody(
+            forwardTextContent: 'Forward the request to concerned users',
             forwardResonController: forwardResonController,
             onSelectForwardUsers: (values) {
               usersId = values;

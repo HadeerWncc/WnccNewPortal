@@ -19,4 +19,22 @@ class ForwardedComplainCubit extends Cubit<ForwardedComplainState> {
       emit(ForwardedComplainSuccess(forwardUsers: forwardedUsers));
     });
   }
+
+  Future forwardUsers({
+    required String id,
+    required String forwardReason,
+    required List<String> forwardedUsers,
+  }) async {
+    emit(ForwardedComplainLoading());
+    var result = await compRepo.forwardUsers(
+      id: id,
+      forwardReason: forwardReason,
+      forwardedUsers: forwardedUsers,
+    );
+    result.fold((error) {
+      emit(ForwardedComplainFailure(error: error.msg));
+    }, (forwardedUsers) {
+      emit(ForwardedComplainToUserSuccess(forwardedUser: forwardedUsers));
+    });
+  }
 }

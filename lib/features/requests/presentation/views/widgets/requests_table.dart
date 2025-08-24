@@ -11,7 +11,6 @@ import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
 import 'package:wncc_portal/features/requests/domain/entities/request_entity.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/forwarded_request_cubit/forwarded_request_cubit.dart';
-import 'package:wncc_portal/features/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/managers/request_replies_cubit/request_replies_cubit.dart';
 import 'package:wncc_portal/features/requests/presentation/views/widgets/custom_request_actions.dart';
 

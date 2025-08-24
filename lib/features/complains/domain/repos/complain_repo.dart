@@ -21,4 +21,9 @@ abstract class ComplainRepo {
       String complainId);
   Future<Either<Failure, List<MessageDto>>> getComplaintReplies(
       String complainId);
+  Future<Either<Failure, List<ForwardUser>>> forwardUsers({
+    required String id,
+    required String forwardReason,
+    required List<String> forwardedUsers,
+  });
 }

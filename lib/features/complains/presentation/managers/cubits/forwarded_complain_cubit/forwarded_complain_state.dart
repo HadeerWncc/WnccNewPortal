@@ -19,3 +19,10 @@ final class ForwardedComplainSuccess extends ForwardedComplainState {
 
   const ForwardedComplainSuccess({required this.forwardUsers});
 }
+
+final class ForwardedComplainToUserSuccess extends ForwardedComplainState {
+  final List<ForwardUser> forwardedUser;
+
+  const ForwardedComplainToUserSuccess({required this.forwardedUser});
+}
+

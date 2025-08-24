@@ -8,7 +8,6 @@ import 'package:wncc_portal/features/authentication/presentation/manager/auth_cu
 import 'package:wncc_portal/features/authentication/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
-import 'package:wncc_portal/features/complains/domain/entities/create_complain_entity.dart';
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/complain_details_cubit/complain_details_cubit.dart';
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/complain_replies_cubit/complain_replies_cubit.dart';
 import 'package:wncc_portal/features/complains/presentation/managers/cubits/delete_complain_cubit/delete_complain_cubit.dart';
