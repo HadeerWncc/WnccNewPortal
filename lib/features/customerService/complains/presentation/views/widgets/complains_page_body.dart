@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/add_complain_section.dart';
+import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/complain_loading_body.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/complain_table.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/complains_filter.dart';
 
@@ -20,11 +21,14 @@ class ComplainsPageBody extends StatelessWidget {
           BlocBuilder<ComplainsCubit, ComplainsState>(
             builder: (context, state) {
               if (state is ComplainsSuccess) {
-                return ComplainTable(complains: state.complains,user: user,);
+                return ComplainTable(
+                  complains: state.complains,
+                  user: user,
+                );
               } else if (state is ComplainsFailure) {
                 return Text(state.error);
               }
-              return const SingleChildScrollView();
+              return const ComplainLoadingBody();
             },
           ),
         ],

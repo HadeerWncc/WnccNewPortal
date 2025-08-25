@@ -15,7 +15,7 @@ class ComplainDetailsHeader extends StatelessWidget {
           Row(
             children: [
               Text(
-                'Payer Complain-(${complain.id})',
+                'Complain-(${complain.id})',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

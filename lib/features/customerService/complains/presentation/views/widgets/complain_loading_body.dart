@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:wncc_portal/features/customerService/core/widgets/complain_loading_cell.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
 
-class RequestLoadingTable extends StatelessWidget {
-  const RequestLoadingTable({
-    super.key,
-  });
+class ComplainLoadingBody extends StatelessWidget {
+  const ComplainLoadingBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +31,7 @@ class RequestLoadingTable extends StatelessWidget {
             columns: const [
               DataColumn(label: DataColumnText(text: 'ID')),
               DataColumn(label: DataColumnText(text: 'Payer')),
-              DataColumn(label: DataColumnText(text: 'Level')),
-              DataColumn(label: DataColumnText(text: 'Status')),
-              DataColumn(label: DataColumnText(text: 'Created At')),
+              DataColumn(label: DataColumnText(text: 'Subject')),
               DataColumn(label: DataColumnText(text: 'Actions')),
             ],
             rows: List<DataRow>.generate(
@@ -54,13 +50,7 @@ class RequestLoadingTable extends StatelessWidget {
                       LoadingTableCell(width: 70),
                     ),
                     DataCell(
-                      LoadingTableCell(width: 40),
-                    ),
-                    DataCell(
-                      LoadingTableCell(width: 40),
-                    ),
-                    DataCell(
-                      LoadingTableCell(width: 70),
+                      LoadingTableCell(width: 110),
                     ),
                     DataCell(
                       LoadingTableCell(width: 20),

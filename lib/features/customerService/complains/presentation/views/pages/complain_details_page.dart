@@ -5,6 +5,7 @@ import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/complain_details_cubit/complain_details_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/complain_details_body.dart';
+import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/loading_complain_details.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_menus_list.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
@@ -58,17 +59,17 @@ class ComplainDetailsPage extends StatelessWidget {
                       user: user,
                       complain: state.complain,
                     );
-                  } 
+                  }
                   // else if (state is RequestChangeLogSuccess) {
                   //   return RequestDetailsBody(
                   //     user: user,
                   //     requestDetailsEntity: state.requestDetails,
                   //   );
                   // }
-                   else if (state is ComplainDetailsFailure) {
+                  else if (state is ComplainDetailsFailure) {
                     return Text(state.error);
                   }
-                  return const CircularProgressIndicator();
+                  return const LoadingComplainDetails();
                 },
               ),
             );
