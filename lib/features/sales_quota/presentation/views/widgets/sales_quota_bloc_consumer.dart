@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wncc_portal/core/utils/methods/parse_to_int.dart';
 import 'package:wncc_portal/features/sales_quota/domain/entities/chart_data_entity.dart';
 import 'package:wncc_portal/features/sales_quota/domain/entities/daily_quota_entity.dart';
 import 'package:wncc_portal/features/sales_quota/domain/entities/sales_quota_entity.dart';
@@ -58,7 +59,12 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
       },
       builder: (context, state) {
         if (state is SalesQuotaFailure) {
-          return Center(child: Text(state.error));
+          return Center(
+            child: Text(
+              state.error,
+              style: const TextStyle(color: Colors.red),
+            ),
+          );
         } else if (state is SalesQuotaSuccess) {
           return SelesQuotaSuccess(
             dailyQuotaModel: state.dailyQuotaModel,
@@ -161,9 +167,9 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
       id: dailyQuotaId,
       date: widget.currentDate,
       salesQuotas: salesQuotas,
-      totalQuota: int.parse(totalQuotaController.text),
-      totalBulkQuota: int.parse(totalBulkController.text),
-      totalBagsQuota: int.parse(totalBagsController.text),
+      totalQuota: parseToInt(totalQuotaController.text),
+      totalBulkQuota: parseToInt(totalBulkController.text),
+      totalBagsQuota: parseToInt(totalBagsController.text),
     );
     context
         .read<SetQuotaCubit>()
@@ -174,19 +180,17 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
     for (var i = 0; i < controllers.length; i++) {
       SalesQuotaEntity salesQuotaEntity = SalesQuotaEntity(
         salesId: controllers[i]["salesId"]!.text,
-        deliveryBagsQuota: int.parse(controllers[i]["deliveryBagsQuota"]!.text),
-        deliveryBulkQuota: int.parse(controllers[i]["deliveryBulkQuota"]!.text),
-        extraBagsQuota: int.parse(controllers[i]["extraBagsQuota"]!.text),
-        extraBulkQuota: int.parse(controllers[i]["extraBulkQuota"]!.text),
-        pickupBagsQuota: int.parse(controllers[i]["pickupBagsQuota"]!.text),
-        pickupBulkQuota: int.parse(controllers[i]["pickupBulkQuota"]!.text),
-        settelementBagsQuota:
-            int.parse(controllers[i]["settelementBagsQuota"]!.text),
-        settelementBulkQuota:
-            int.parse(controllers[i]["settelementBulkQuota"]!.text),
-        totalBagsQuota: int.parse(controllers[i]["totalBagsQuota"]!.text),
-        totalBulkQuota: int.parse(controllers[i]["totalBulkQuota"]!.text),
-        totalQuota: int.parse(controllers[i]["totalQuota"]!.text),
+        deliveryBagsQuota: parseToInt(controllers[i]["deliveryBagsQuota"]!.text),
+        deliveryBulkQuota: parseToInt(controllers[i]["deliveryBulkQuota"]!.text),
+        extraBagsQuota: parseToInt(controllers[i]["extraBagsQuota"]!.text),
+        extraBulkQuota: parseToInt(controllers[i]["extraBulkQuota"]!.text),
+        pickupBagsQuota: parseToInt(controllers[i]["pickupBagsQuota"]!.text),
+        pickupBulkQuota:parseToInt(controllers[i]["pickupBulkQuota"]!.text),
+        settelementBagsQuota: parseToInt(controllers[i]["settelementBagsQuota"]!.text),
+        settelementBulkQuota: parseToInt(controllers[i]["settelementBulkQuota"]!.text),
+        totalBagsQuota: parseToInt(controllers[i]["totalBagsQuota"]!.text),
+        totalBulkQuota: parseToInt(controllers[i]["totalBulkQuota"]!.text),
+        totalQuota: parseToInt(controllers[i]["totalQuota"]!.text),
       );
       salesQuotas.add(salesQuotaEntity);
     }

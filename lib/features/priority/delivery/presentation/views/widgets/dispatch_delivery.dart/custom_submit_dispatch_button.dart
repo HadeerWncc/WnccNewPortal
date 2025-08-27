@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/undispatch_delivery_order_cubit/undispatch_delivery_order_cubit.dart';
@@ -18,19 +19,11 @@ class CustomSubmitDispatchButton extends StatelessWidget {
             UndispatchDeliveryOrderState>(
           listener: (context, state) {
             if (state is UndispatchDeliveryOrderSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.msg),
-                ),
-              );
+              ShowSnackbar.showSnackBar(context, state.msg, 'S');
               BlocProvider.of<GetAllDeliveryCubit>(context)
                   .getDeliveryDispatchByDate(date);
             } else if (state is UndispatchDeliveryOrderFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.error),
-                ),
-              );
+              ShowSnackbar.showSnackBar(context, state.error, 'F');
             }
           },
           builder: (context, state) {

@@ -130,7 +130,7 @@ class CustomBagsTable extends StatelessWidget {
   }
 
   void calTotalBags(int rowIndex, String value) {
-    double pickupBags = double.tryParse(controllers
+    int pickupBags = int.tryParse(controllers
             .where((controller) {
               return controller['salesId']!.text ==
                   salesQuotaList[rowIndex].salesId;
@@ -138,7 +138,7 @@ class CustomBagsTable extends StatelessWidget {
             .first['pickupBagsQuota']!
             .text) ??
         0;
-    double deliveryBags = double.tryParse(controllers
+    int deliveryBags = int.tryParse(controllers
             .where((controller) {
               return controller['salesId']!.text ==
                   salesQuotaList[rowIndex].salesId;
@@ -159,12 +159,12 @@ class CustomBagsTable extends StatelessWidget {
     num total = 0;
     if (type == 'pickup') {
       total = controllers.fold(0.0, (sum, item) {
-        final value = double.tryParse(item['pickupBagsQuota']!.text) ?? 0.0;
+        final value = int.tryParse(item['pickupBagsQuota']!.text) ?? 0.0;
         return sum + value;
       });
     } else if (type == 'delivery') {
       total = controllers.fold(0.0, (sum, item) {
-        final value = double.tryParse(item['deliveryBagsQuota']!.text) ?? 0.0;
+        final value = int.tryParse(item['deliveryBagsQuota']!.text) ?? 0.0;
         return sum + value;
       });
     }

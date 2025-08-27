@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 
@@ -15,17 +16,9 @@ class DistributeBlocConsumer extends StatelessWidget {
     return BlocConsumer<SetQuotaCubit, SetQuotaState>(
       listener: (context, state) {
         if (state is SetQuotaSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message),
-            ),
-          );
+          ShowSnackbar.showSnackBar(context, state.message, 'S');
         } else if (state is SetQuotaFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.error),
-            ),
-          );
+          ShowSnackbar.showSnackBar(context, state.error, 'F');
         }
       },
       builder: (context, state) {

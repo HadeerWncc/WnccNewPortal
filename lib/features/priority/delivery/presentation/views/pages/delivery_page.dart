@@ -37,7 +37,7 @@ class DeliveryPage extends StatelessWidget {
           );
         } else if (state is UserFailure) {
           return Center(
-            child: Text(state.error),
+            child: Text(state.error,style: const TextStyle(color: Colors.red),),
           );
         }
         return const LoadingPage(

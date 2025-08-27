@@ -92,7 +92,7 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
           );
         } else if (state is GetAllDeliveryFailure) {
           return Center(
-            child: Text(state.error),
+            child: Text(state.error,style: const TextStyle(color: Colors.red),),
           );
         }
         return const PriorityLoading();

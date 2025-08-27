@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/add_delivery_priority_cubit/add_delivery_priority_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
@@ -27,11 +28,8 @@ class _CustomSubmitPendingButtonsState
               BlocListener<AddDeliveryPriorityCubit, AddDeliveryPriorityState>(
                 listener: (context, state) {
                   if (state is AddDeliveryPrioritySuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.msg),
-                      ),
-                    );
+                    ShowSnackbar.showSnackBar(context, state.msg, 'S');
+
                     BlocProvider.of<GetAllDeliveryCubit>(context)
                         .getAllDeliveryPending();
                   }
@@ -81,12 +79,10 @@ class _CustomSubmitPendingButtonsState
                     onHoverColor: const Color.fromARGB(255, 182, 208, 236),
                     onTap: () {
                       if (widget.selectedOrders.length < 2) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                                'You Can not add one truck on less than 2 Orders'),
-                          ),
-                        );
+                        ShowSnackbar.showSnackBar(
+                            context,
+                            'You Can not add one truck on less than 2 Orders',
+                            'W');
                       } else {
                         BlocProvider.of<AddDeliveryPriorityCubit>(context)
                             .addDeliveryPriority(widget.selectedOrders, true);
@@ -101,17 +97,9 @@ class _CustomSubmitPendingButtonsState
                   if (state is AddDeliveryPrioritySuccess) {
                     BlocProvider.of<GetAllDeliveryCubit>(context)
                         .getAllDeliveryPending();
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.msg),
-                      ),
-                    );
+                    ShowSnackbar.showSnackBar(context, state.msg, 'S');
                   } else if (state is AddDeliveryPriorityFailure) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.error),
-                      ),
-                    );
+                    ShowSnackbar.showSnackBar(context, state.error, 'F');
                   }
                 },
                 builder: (context, state) {

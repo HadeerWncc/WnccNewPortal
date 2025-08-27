@@ -70,7 +70,7 @@ class PendingOrder extends Equatable {
         productId: json['productId'] as String?,
         salesName: json['salesName'] as String?,
         productName: json['productName'] as String?,
-        productCategory: json['productCategory'] as String?,
+        productCategory: json['productCategoryName'] as String?,
         payerName: json['payerName'] as String?,
         payerRegionName: json['payerRegionName'] as String?,
         registerDate: DateTime.parse(json['registerDate']) as DateTime?,

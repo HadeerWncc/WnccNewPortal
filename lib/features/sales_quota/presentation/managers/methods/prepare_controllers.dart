@@ -28,7 +28,6 @@ List<Map<String, TextEditingController>> prepareControllers(
           TextEditingController(text: quota.settelementBagsQuota.toString()),
       'settelementBulkQuota':
           TextEditingController(text: quota.settelementBulkQuota.toString()),
-      // ضيفي باقي القيم حسب الجدول اللي بتعرضيه
     };
   }).toList();
   return controllers;

@@ -24,7 +24,10 @@ class ComplainPage extends StatelessWidget {
             child: Scaffold(
               appBar: AppBar(
                 actionsPadding: const EdgeInsets.all(5),
-                title: const Text('Complains'),
+                title: const Text(
+                  'Complains',
+                  style: TextStyle(fontSize: 19),
+                ),
                 actions: [
                   CustomAppbarActions(
                     user: state.user,

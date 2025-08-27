@@ -119,7 +119,7 @@ class CustomBulkTable extends StatelessWidget {
   }
 
   void calBulkTotal(int rowIndex, String value) {
-    double pickupBulk = double.tryParse(controllers
+    int pickupBulk = int.tryParse(controllers
             .where((controller) {
               return controller['salesId']!.text ==
                   salesQuotaList[rowIndex].salesId;
@@ -127,7 +127,7 @@ class CustomBulkTable extends StatelessWidget {
             .first['pickupBulkQuota']!
             .text) ??
         0;
-    double deliveryBulk = double.tryParse(controllers
+    int deliveryBulk = int.tryParse(controllers
             .where((controller) {
               return controller['salesId']!.text ==
                   salesQuotaList[rowIndex].salesId;
