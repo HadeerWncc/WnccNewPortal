@@ -21,7 +21,7 @@ class UserInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             UserInfoItem(
-              title: user.position!,
+              title: user.position??"",
               icon: Symbols.work_history,
             ),
             const SizedBox(height: 10),
@@ -35,21 +35,21 @@ class UserInfo extends StatelessWidget {
               icon: Symbols.alternate_email,
             ),
             const SizedBox(height: 10),
-            SizedBox(
-              height: 32,
-              width: MediaQuery.of(context).size.width * .6,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: user.roles?.length,
-                itemBuilder: (context, index) {
-                  return CustomMarkedColorContainer(
-                    title: user.roles![index],
-                    color: const Color.fromARGB(255, 32, 128, 207),
-                    bgColor: const Color.fromARGB(255, 225, 242, 255),
-                  );
-                },
-              ),
-            )
+            // SizedBox(
+            //   height: 32,
+            //   width: MediaQuery.of(context).size.width * .6,
+            //   child: ListView.builder(
+            //     scrollDirection: Axis.horizontal,
+            //     itemCount: user.roles?.length,
+            //     itemBuilder: (context, index) {
+            //       return CustomMarkedColorContainer(
+            //         title: user.roles?[index] ??"",
+            //         color: const Color.fromARGB(255, 32, 128, 207),
+            //         bgColor: const Color.fromARGB(255, 225, 242, 255),
+            //       );
+            //     },
+            //   ),
+            // )
           ],
         ),
       ],

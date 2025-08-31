@@ -4,18 +4,16 @@ import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/functions/setup_service_locator.dart';
-import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
-import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/get_agent_bloc_builder.dart';
 
 Future<dynamic> selectAgent(
     BuildContext context, List<DispatchDeliveryEntity> selectedOrders) {
-  // String agent = "";
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -57,9 +55,9 @@ Future<dynamic> selectAgent(
             child: Text('Please Select Dispatch Agent'),
           ),
           actions: [
-            GetAgentBlocBuilder(onChange: (agent) {
-              
-            },),
+            GetAgentBlocBuilder(
+              onChange: (agent) {},
+            ),
             const SizedBox(height: 20),
             BlocConsumer<DispatchDeliveryOrderCubit,
                 DispatchDeliveryOrderState>(
@@ -105,55 +103,4 @@ Future<dynamic> selectAgent(
       );
     },
   );
-}
-
-class GetAgentBlocBuilder extends StatelessWidget {
-  const GetAgentBlocBuilder({
-    super.key,
-    required this.onChange,
-  });
-  final Function(String agent) onChange;
-  @override
-  Widget build(BuildContext context) {
-    String selectedValue = "";
-    return BlocBuilder<GetAgentsCubit, GetAgentsState>(
-      builder: (context, state) {
-        if (state is GetAgentsSuccess) {
-          selectedValue = state.agents[0];
-          onChange(state.agents[0]);
-          return DropdownButtonFormField<String>(
-        style: const TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
-        decoration: InputDecoration(
-          enabledBorder: inputBorder(),
-          focusedBorder: customfocusedBorder(),
-          fillColor: const Color(0xffF9F9F9),
-          filled: true,
-        ),
-        value: selectedValue,
-        items: state.agents
-            .map((item) => DropdownMenuItem(
-                  value: item,
-                  child: SizedBox(
-                      child: Text(
-                    item,
-                    style: const TextStyle(
-                        overflow: TextOverflow.ellipsis, fontSize: 12),
-                  )),
-                ))
-            .toList(),
-        onChanged: (agent){
-
-        },
-      );
-        }
-        return const CustomDropDownInput(
-          selectedValue: "",
-          items: [],
-          title: "Select Agent",
-          onChanged: null,
-        );
-      },
-    );
-  }
 }

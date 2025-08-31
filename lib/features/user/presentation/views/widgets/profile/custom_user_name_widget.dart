@@ -25,12 +25,12 @@ class CustomUserNameWidget extends StatelessWidget {
           color: Colors.blue,
           size: 18,
         ),
-        const SizedBox(width: 7),
-        const CustomMarkedColorContainer(
-          title: "Available",
-          color: Colors.green,
-          bgColor: Color(0xffD9FDE3),
-        ),
+        // const SizedBox(width: 7),
+        // const CustomMarkedColorContainer(
+        //   title: "Available",
+        //   color: Colors.green,
+        //   bgColor: Color(0xffD9FDE3),
+        // ),
       ],
     );
   }

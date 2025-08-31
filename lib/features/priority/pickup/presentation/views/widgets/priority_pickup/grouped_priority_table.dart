@@ -156,8 +156,8 @@ class _GroupedPriorityTableState extends State<GroupedPriorityTable> {
               orderId: order.id!,
               onChanged: (value) {
                 //save orderId
-                if (value != null) {
-                  orders.add(value);
+                if (value == true) {
+                  orders.add(order.id!);
                 } else {
                   orders.removeWhere((element) => element == order.id!);
                 }

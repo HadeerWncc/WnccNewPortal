@@ -1,18 +1,21 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_order.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/custom_priority_delivery_action.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/select_agent_popup.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/get_agent_bloc_builder.dart';
 
 class PriorityDeliveryTable extends StatefulWidget {
   const PriorityDeliveryTable(
       {super.key, required this.onSelectOrders, required this.priorityOrders});
-  final Function(List<String> ordersId) onSelectOrders;
+  final Function(List<DispatchDeliveryEntity> selectedOrders) onSelectOrders;
   final List<PriorityDeliveryOrder> priorityOrders;
 
   @override
@@ -20,7 +23,7 @@ class PriorityDeliveryTable extends StatefulWidget {
 }
 
 class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
-  List<String> orders = [];
+  List<DispatchDeliveryEntity> orders = [];
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +35,7 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
         child: DataTable2(
           columnSpacing: 0,
           horizontalMargin: 0,
-          minWidth: 2600,
-          
+          minWidth: 1800,
           showCheckboxColumn: true,
           dataRowHeight: 60,
           border: const TableBorder.symmetric(
@@ -43,6 +45,7 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
           ),
           columns: const [
             DataColumn(label: DataColumnText(text: 'Select')),
+            DataColumn(label: DataColumnText(text: 'OrderNo')),
             DataColumn(label: DataColumnText(text: 'Agent')),
             DataColumn(label: DataColumnText(text: 'Product')),
             DataColumn(label: DataColumnText(text: 'Payer')),
@@ -62,16 +65,20 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                   : const Color(0xffFFFFFF);
               final item = widget.priorityOrders[index];
               String agentName = "";
+
               return DataRow(color: WidgetStateProperty.all(color), cells: [
                 DataCell(
                   CustomDataCellCheckbox(
                     orderId: item.id!,
                     onChanged: (value) {
-                      if (value != null) {
-                        orders.add(value);
+                      if (value == true) {
+                        orders.add(DispatchDeliveryEntity(
+                          id: item.id!,
+                          agentName: agentName,
+                        ));
                         setState(() {});
                       } else {
-                        orders.removeWhere((element) => element == item.id);
+                        orders.removeWhere((element) => element.id == item.id);
                         setState(() {});
                       }
                       widget.onSelectOrders(orders);
@@ -81,10 +88,22 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                 DataCell(
                   GetAgentBlocBuilder(
                     onChange: (agent) {
-                      agentName = agent;
+                      agentName = agent ?? "";
+                      if (orders.where((o) => o.id == item.id).isNotEmpty) {
+                        //To modify agent name
+                        orders.removeWhere((element) => element.id == item.id);
+                        orders.add(
+                          DispatchDeliveryEntity(
+                            id: item.id!,
+                            agentName: agentName,
+                          ),
+                        );
+                        widget.onSelectOrders(orders);
+                      }
                     },
                   ),
                 ),
+                DataCell(Center(child: Text(item.id.toString(),style: const TextStyle(fontWeight: FontWeight.bold),),),),
                 DataCell(CustomDataCellWidget(
                     title: item.productName ?? "",
                     subTitle: "category: ${item.productCategory}")),
@@ -111,7 +130,28 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                 DataCell(
                   CustomPriorityDeliveryAction(
                     orderId: item.id!,
-                    dispatchDeliveryEntity: DispatchDeliveryEntity(id: item.id!, agentName: agentName),
+                    dispatchDeliveryEntity: DispatchDeliveryEntity(
+                        id: item.id!, agentName: agentName),
+                    onTap: () async {
+                      //Add order to priority
+                      // selectAgent(
+                      //   context,
+                      //   [dispatchDeliveryEntity],
+                      // );
+                      if (agentName == "") {
+                        ShowSnackbar.showSnackBar(
+                            context, "Please Select Agent!", 'W');
+                      } else {
+                        await BlocProvider.of<DispatchDeliveryOrderCubit>(
+                                context)
+                            .dispatchDeliveryOrders([
+                          DispatchDeliveryEntity(
+                            id: item.id!,
+                            agentName: agentName,
+                          ),
+                        ]);
+                      }
+                    },
                   ),
                 ),
               ]);

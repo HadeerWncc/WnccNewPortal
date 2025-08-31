@@ -5,10 +5,13 @@ class CustomDataCellCheckbox extends StatefulWidget {
     super.key,
     required this.orderId,
     required this.onChanged,
+    // this.agent,
   });
 
   final String orderId;
-  final Function(String?) onChanged;
+  // final String? agent;
+  final Function(bool isChecked) onChanged;
+
   @override
   State<CustomDataCellCheckbox> createState() => _CustomDataCellCheckboxState();
 }
@@ -28,7 +31,15 @@ class _CustomDataCellCheckboxState extends State<CustomDataCellCheckbox> {
         value: isChecked,
         onChanged: (value) {
           isChecked = value!;
-          widget.onChanged(value ? widget.orderId : null);
+          widget.onChanged(value);
+          // widget.onChanged(
+          //   value == false
+          //       ? null
+          //       : DispatchDeliveryEntity(
+          //           id: widget.orderId,
+          //           agentName:  "",
+          //         ),
+          // );
           // Save orderId if checked
           setState(() {});
         },

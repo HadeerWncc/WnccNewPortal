@@ -19,13 +19,11 @@ class PriorityLoading extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               LoadingPlaceHolderInput(),
-              SizedBox(width: 3),
               LoadingPlaceHolderInput(),
-              SizedBox(width: 3),
               LoadingPlaceHolderInput(),
-              SizedBox(width: 3),
               LoadingPlaceHolderInput(),
             ],
           ),

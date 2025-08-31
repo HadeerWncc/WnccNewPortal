@@ -42,14 +42,14 @@ class ProfileUserInfoSection extends StatelessWidget {
             children: [
               ProfileContainerItem(
                 title: (user.createdAt != '1/1/0001 12:00:00 AM')
-                    ? inputFormat.parse(user.createdAt!).toString()
+                    ? inputFormat.format(DateTime.parse(user.createdAt!))
                     : "",
                 subTitle: 'Created At',
               ),
               const SizedBox(width: 10),
               ProfileContainerItem(
                 title: (user.createdAt != '1/1/0001 12:00:00 AM')
-                    ? inputFormat.parse(user.createdAt!).toString()
+                    ? inputFormat.format(DateTime.parse(user.createdAt!))
                     : "",
                 subTitle: 'Updated At',
               ),

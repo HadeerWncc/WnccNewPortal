@@ -87,7 +87,7 @@ class DispatchedDeliveryOrder extends Equatable {
       shipmentId: json['shipmentId'] as dynamic,
       salesName: json['salesName'] as dynamic,
       productName: json['productName'] as String?,
-      productCategory: json['productCategory'] as String?,
+      productCategory: json['productCategoryName'] as String?,
       payerName: json['payerName'] as String?,
       payerRegionName: json['payerRegionName'] as String?,
       status: json['status'] as int?,

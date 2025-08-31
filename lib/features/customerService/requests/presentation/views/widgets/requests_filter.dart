@@ -26,10 +26,10 @@ class RequestsFilter extends StatelessWidget {
           CustomDropDownInput(
             width: MediaQuery.of(context).size.width * .3,
             selectedValue: 'AppPending',
-            items: const ['AppPending', 'Pending', 'Delivered', 'Finished'],
+            items: const ['AllsPending', 'Pending', 'Delivered', 'Finished'],
             title: 'Status',
             onChanged: (value) {
-              if (value == 'AppPending') {
+              if (value == 'AllPending') {
                 //GetAllData
               } else {
                 //Get Data With Status filtration

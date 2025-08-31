@@ -43,6 +43,7 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
           ),
           columns: const [
             DataColumn(label: DataColumnText(text: 'Select')),
+            DataColumn(label: DataColumnText(text: 'OrderNo')),
             DataColumn(label: DataColumnText(text: 'Product')),
             DataColumn(label: DataColumnText(text: 'Payer')),
             DataColumn(label: DataColumnText(text: 'Pod')),
@@ -67,8 +68,8 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                     orderId: item.id!,
                     onChanged: (value) {
                       //save orderId
-                      if (value != null) {
-                        orders.add(value);
+                      if (value == true) {
+                        orders.add(item.id!);
                         setState(() {});
                       } else {
                         orders.removeWhere((element) => element == item.id!);
@@ -76,6 +77,14 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                       }
                       widget.onSelectOrders(orders);
                     },
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.id.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
                 DataCell(CustomDataCellWidget(

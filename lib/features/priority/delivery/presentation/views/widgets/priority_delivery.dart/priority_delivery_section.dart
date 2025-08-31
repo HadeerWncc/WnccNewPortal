@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/loading/priority_loading.dart';
+import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/custom_submit_priority_buttons.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/filter_data_input.dart';
@@ -21,7 +22,7 @@ class _PriorityDeliverySectionState extends State<PriorityDeliverySection> {
   String product = "All";
   String region = "All";
   String categoryType = "All";
-  List<String> selectedOrders = [];
+  List<DispatchDeliveryEntity> selectedOrders = [];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllDeliveryCubit, GetAllDeliveryState>(

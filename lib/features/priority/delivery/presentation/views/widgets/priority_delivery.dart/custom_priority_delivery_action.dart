@@ -7,10 +7,15 @@ import 'package:wncc_portal/features/priority/delivery/presentation/managers/cub
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 
 class CustomPriorityDeliveryAction extends StatelessWidget {
-  const CustomPriorityDeliveryAction({super.key, required this.orderId, required this.dispatchDeliveryEntity});
+  const CustomPriorityDeliveryAction({
+    super.key,
+    required this.orderId,
+    required this.dispatchDeliveryEntity,
+    this.onTap,
+  });
   final String orderId;
   final DispatchDeliveryEntity dispatchDeliveryEntity;
-
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -36,6 +41,7 @@ class CustomPriorityDeliveryAction extends StatelessWidget {
           ),
           PopupMenuItem(
             value: "dispatch",
+            onTap: onTap,
             child: const Row(
               children: [
                 Icon(
@@ -47,16 +53,6 @@ class CustomPriorityDeliveryAction extends StatelessWidget {
                 Text("Dispatch order"),
               ],
             ),
-            onTap: () async {
-              //Add order to priority
-              // selectAgent(
-              //   context,
-              //   [dispatchDeliveryEntity],
-              // );
-              await BlocProvider.of<DispatchDeliveryOrderCubit>(context)
-                        .dispatchDeliveryOrders([dispatchDeliveryEntity]);
-                        
-            },
           ),
           PopupMenuItem(
             value: "Details",

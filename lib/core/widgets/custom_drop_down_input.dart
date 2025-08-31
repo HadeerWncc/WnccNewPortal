@@ -43,7 +43,6 @@ class CustomDropDownInput extends StatelessWidget {
             .map((item) => DropdownMenuItem(
                   value: item,
                   child: SizedBox(
-                      // width: 55,
                       child: Text(
                     item,
                     style: const TextStyle(
