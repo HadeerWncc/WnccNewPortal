@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/repositories/delivery_repo.dart';
 
 part 'dispatch_delivery_order_state.dart';
@@ -10,9 +11,9 @@ class DispatchDeliveryOrderCubit extends Cubit<DispatchDeliveryOrderState> {
 
   final DeliveryRepo deliveryRepo;
 
-  Future<void> dispatchDeliveryOrders(List<String> orders, String agent) async {
+  Future<void> dispatchDeliveryOrders(List<DispatchDeliveryEntity> orders) async {
     emit(DispatchDeliveryOrderLoading());
-    var result = await deliveryRepo.dispatchDeliveryOrders(orders, agent);
+    var result = await deliveryRepo.dispatchDeliveryOrders(orders);
     result.fold((error) {
       emit(DispatchDeliveryOrderFailure(error: error.msg));
     }, (success) {

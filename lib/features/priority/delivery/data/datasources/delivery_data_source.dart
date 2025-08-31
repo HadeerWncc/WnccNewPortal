@@ -2,6 +2,7 @@ import 'package:wncc_portal/core/utils/api_service.dart';
 import 'package:wncc_portal/features/priority/comm/models/pending_order.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/dispatched_delivery_order.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_order.dart';
+import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 
 abstract class DeliveryDataSource {
   Future<List<PendingOrder>> getPendingDeliveryOrders();
@@ -14,7 +15,7 @@ abstract class DeliveryDataSource {
       String date);
   Future<bool> addDeliveryPriority(List<String> orderIds, bool asTruck);
   Future<bool> deleteDeliveryPriority(List<String> orderIds);
-  Future<bool> dispatchDeliveryOrders(List<String> orders, String agent);
+  Future<bool> dispatchDeliveryOrders(List<DispatchDeliveryEntity> orders);
   Future<bool> undispatchDeliveryOrders(List<String> orders);
   Future<List<String>> getDispatchAgents();
 }
@@ -64,12 +65,18 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
   // }
 
   @override
-  Future<bool> dispatchDeliveryOrders(List<String> orders, String agent) async {
+  Future<bool> dispatchDeliveryOrders(
+    List<DispatchDeliveryEntity> orders,
+  ) async {
     var result = await apiService.put(
       endPoint: 'api/DeliveryPriorityOrders/MakeOrderDispatchFromPriority',
       data: {
-        "orders": orders,
-        "dispatchAgent": agent,
+        "orders": orders
+            .map((o) => {
+                  "id": o.id,
+                  "dispatcher": o.agentName,
+                })
+            .toList(),
       },
     );
     bool successed = result["data"] as bool;

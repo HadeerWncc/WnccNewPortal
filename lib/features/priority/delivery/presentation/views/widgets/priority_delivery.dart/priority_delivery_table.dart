@@ -4,8 +4,10 @@ import 'package:intl/intl.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_order.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
+import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/custom_priority_delivery_action.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/select_agent_popup.dart';
 
 class PriorityDeliveryTable extends StatefulWidget {
   const PriorityDeliveryTable(
@@ -30,7 +32,8 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
         child: DataTable2(
           columnSpacing: 0,
           horizontalMargin: 0,
-          minWidth: 1400,
+          minWidth: 2600,
+          
           showCheckboxColumn: true,
           dataRowHeight: 60,
           border: const TableBorder.symmetric(
@@ -40,6 +43,7 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
           ),
           columns: const [
             DataColumn(label: DataColumnText(text: 'Select')),
+            DataColumn(label: DataColumnText(text: 'Agent')),
             DataColumn(label: DataColumnText(text: 'Product')),
             DataColumn(label: DataColumnText(text: 'Payer')),
             DataColumn(label: DataColumnText(text: 'Pod')),
@@ -57,6 +61,7 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                   ? const Color(0xffF8F8FA)
                   : const Color(0xffFFFFFF);
               final item = widget.priorityOrders[index];
+              String agentName = "";
               return DataRow(color: WidgetStateProperty.all(color), cells: [
                 DataCell(
                   CustomDataCellCheckbox(
@@ -70,6 +75,13 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                         setState(() {});
                       }
                       widget.onSelectOrders(orders);
+                    },
+                  ),
+                ),
+                DataCell(
+                  GetAgentBlocBuilder(
+                    onChange: (agent) {
+                      agentName = agent;
                     },
                   ),
                 ),
@@ -99,6 +111,7 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                 DataCell(
                   CustomPriorityDeliveryAction(
                     orderId: item.id!,
+                    dispatchDeliveryEntity: DispatchDeliveryEntity(id: item.id!, agentName: agentName),
                   ),
                 ),
               ]);

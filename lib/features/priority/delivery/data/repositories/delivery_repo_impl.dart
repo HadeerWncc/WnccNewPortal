@@ -5,6 +5,7 @@ import 'package:wncc_portal/features/priority/comm/models/pending_order.dart';
 import 'package:wncc_portal/features/priority/delivery/data/datasources/delivery_data_source.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/dispatched_delivery_order.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_order.dart';
+import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/repositories/delivery_repo.dart';
 
 class DeliveryRepoImpl extends DeliveryRepo {
@@ -43,10 +44,10 @@ class DeliveryRepoImpl extends DeliveryRepo {
 
   @override
   Future<Either<Failure, bool>> dispatchDeliveryOrders(
-      List<String> orders, String agent) async {
+      List<DispatchDeliveryEntity> orders) async {
     try {
       bool successed =
-          await deliveryDataSource.dispatchDeliveryOrders(orders, agent);
+          await deliveryDataSource.dispatchDeliveryOrders(orders);
       return Right(successed);
     } on Exception catch (e) {
       if (e is DioException) {

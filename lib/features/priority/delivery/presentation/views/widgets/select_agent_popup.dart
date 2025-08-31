@@ -4,14 +4,18 @@ import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/functions/setup_service_locator.dart';
+import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
+import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 
-Future<dynamic> selectAgent(BuildContext context, List<String> selectedOrders) {
-  String agent = "";
+Future<dynamic> selectAgent(
+    BuildContext context, List<DispatchDeliveryEntity> selectedOrders) {
+  // String agent = "";
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -53,27 +57,9 @@ Future<dynamic> selectAgent(BuildContext context, List<String> selectedOrders) {
             child: Text('Please Select Dispatch Agent'),
           ),
           actions: [
-            BlocBuilder<GetAgentsCubit, GetAgentsState>(
-              builder: (context, state) {
-                if (state is GetAgentsSuccess) {
-                  agent = state.agents[0];
-                  return CustomDropDownInput(
-                    selectedValue: state.agents[0],
-                    items: state.agents,
-                    title: "Select Agent",
-                    onChanged: (value) {
-                      agent = value ?? agent;
-                    },
-                  );
-                }
-                return const CustomDropDownInput(
-                  selectedValue: "",
-                  items: [],
-                  title: "Select Agent",
-                  onChanged: null,
-                );
-              },
-            ),
+            GetAgentBlocBuilder(onChange: (agent) {
+              
+            },),
             const SizedBox(height: 20),
             BlocConsumer<DispatchDeliveryOrderCubit,
                 DispatchDeliveryOrderState>(
@@ -87,11 +73,7 @@ Future<dynamic> selectAgent(BuildContext context, List<String> selectedOrders) {
                   context.read<GetAllDeliveryCubit>().getAllDeliveryPriorty();
                   GoRouter.of(context).pop();
                 } else if (state is DispatchDeliveryOrderFailure) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(state.error),
-                    ),
-                  );
+                  ShowSnackbar.showSnackBar(context, state.error, 'F');
                 }
               },
               builder: (context, state) {
@@ -113,7 +95,7 @@ Future<dynamic> selectAgent(BuildContext context, List<String> selectedOrders) {
                   onHoverColor: const Color.fromARGB(255, 3, 72, 151),
                   onTap: () async {
                     await BlocProvider.of<DispatchDeliveryOrderCubit>(context)
-                        .dispatchDeliveryOrders(selectedOrders, agent);
+                        .dispatchDeliveryOrders(selectedOrders);
                   },
                 );
               },
@@ -123,4 +105,55 @@ Future<dynamic> selectAgent(BuildContext context, List<String> selectedOrders) {
       );
     },
   );
+}
+
+class GetAgentBlocBuilder extends StatelessWidget {
+  const GetAgentBlocBuilder({
+    super.key,
+    required this.onChange,
+  });
+  final Function(String agent) onChange;
+  @override
+  Widget build(BuildContext context) {
+    String selectedValue = "";
+    return BlocBuilder<GetAgentsCubit, GetAgentsState>(
+      builder: (context, state) {
+        if (state is GetAgentsSuccess) {
+          selectedValue = state.agents[0];
+          onChange(state.agents[0]);
+          return DropdownButtonFormField<String>(
+        style: const TextStyle(
+            fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
+        decoration: InputDecoration(
+          enabledBorder: inputBorder(),
+          focusedBorder: customfocusedBorder(),
+          fillColor: const Color(0xffF9F9F9),
+          filled: true,
+        ),
+        value: selectedValue,
+        items: state.agents
+            .map((item) => DropdownMenuItem(
+                  value: item,
+                  child: SizedBox(
+                      child: Text(
+                    item,
+                    style: const TextStyle(
+                        overflow: TextOverflow.ellipsis, fontSize: 12),
+                  )),
+                ))
+            .toList(),
+        onChanged: (agent){
+
+        },
+      );
+        }
+        return const CustomDropDownInput(
+          selectedValue: "",
+          items: [],
+          title: "Select Agent",
+          onChanged: null,
+        );
+      },
+    );
+  }
 }

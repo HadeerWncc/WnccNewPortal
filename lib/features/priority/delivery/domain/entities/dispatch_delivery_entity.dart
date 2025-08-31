@@ -7,7 +7,7 @@ class DispatchDeliveryEntity {
   Map<String, dynamic> toJson() {
     return {
       "id": id,
-      "dispatchAgent": agentName,
+      "dispatcher": agentName,
     };
   }
 }

@@ -14,6 +14,8 @@ import 'package:wncc_portal/features/customerService/complains/presentation/mana
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/forwarded_complain_cubit/forwarded_complain_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/close_request_cubit/close_request_cubit.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/create_request_cubit/create_request_cubit.dart';
@@ -132,6 +134,14 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(create: (context) {
           return getIt<ComplainRepliesCubit>();
         }),
+        BlocProvider(create: (context) {
+          return getIt<GetAgentsCubit>()..getAgents();
+        }),
+        BlocProvider(
+          create: (context) {
+            return getIt<DispatchDeliveryOrderCubit>();
+          },
+        ),
       ],
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
