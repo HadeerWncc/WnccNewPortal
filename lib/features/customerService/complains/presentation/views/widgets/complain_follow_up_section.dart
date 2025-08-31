@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/comp_followup_header.dart';
 import 'package:wncc_portal/features/customerService/requests/domain/entities/log_entity.dart';
-import 'package:wncc_portal/features/customerService/requests/domain/enums/request_status_enum.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/followup_section_body.dart';
 
 class ComplainFollowUpSection extends StatelessWidget {

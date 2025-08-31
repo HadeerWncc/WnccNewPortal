@@ -29,7 +29,7 @@ class _CardBodyState extends State<CardBody> {
   @override
   Widget build(BuildContext context) {
     DateTime currentDate = widget.currentDate;
-    DateTime copedDate = widget.copedDate;
+    // DateTime copedDate = widget.copedDate;
     return Padding(
       padding: const EdgeInsets.all(5),
       child: Wrap(
@@ -49,7 +49,7 @@ class _CardBodyState extends State<CardBody> {
               ? DatePicker(
                   title: 'Copy Quota Date',
                   onChange: (value) {
-                    copedDate = value;
+                    // copedDate = value;
                     widget.onChangeCopedDate(value);
                   },
                 )

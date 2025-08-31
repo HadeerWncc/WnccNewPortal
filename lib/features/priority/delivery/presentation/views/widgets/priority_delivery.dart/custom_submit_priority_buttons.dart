@@ -5,7 +5,6 @@ import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/delete_delivery_priority_order_cubit/delete_delivery_priority_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/select_agent_popup.dart';
 
 class CustomSubmitPriorityButtons extends StatelessWidget {
   const CustomSubmitPriorityButtons({super.key, required this.selectedOrders});
