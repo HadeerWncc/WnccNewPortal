@@ -19,7 +19,6 @@ class GetAgentBlocBuilder extends StatelessWidget {
           state.agents.removeWhere((a) => a == "");
           state.agents.insert(0, "");
           selectedValue = state.agents[0];
-          // onChange(state.agents[0]);
           return DropdownButtonFormField<String>(
             isExpanded: true,
             style: const TextStyle(

@@ -31,8 +31,7 @@ class ChatBubbleForAnotherUser extends StatelessWidget {
               ),
               const SizedBox(width: 5),
               Text(
-                message.createdBy!,
-                // style: const TextStyle(fontSize: 13),
+                message.createdBy ?? "",
               )
             ],
           ),
@@ -76,7 +75,6 @@ class ChatBubbleForAnotherUser extends StatelessWidget {
                       .format(message.createdAt ?? DateTime.now()),
                   style: const TextStyle(
                     fontSize: 12,
-                    // fontWeight: FontWeight.bold,
                   ),
                 ),
               )

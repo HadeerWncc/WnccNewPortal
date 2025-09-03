@@ -6,8 +6,8 @@ import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/signalr_service.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
-import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/chat_bubble_for_another_user.dart';
-import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/chat_bubble_for_ccurrent_user.dart';
+import 'package:wncc_portal/features/customerService/core/widgets/chat_bubble_for_another_user.dart';
+import 'package:wncc_portal/features/customerService/core/widgets/chat_bubble_for_ccurrent_user.dart';
 
 class ComplainChat extends StatefulWidget {
   const ComplainChat(
