@@ -35,6 +35,7 @@ class MakeSureDialogBody extends StatelessWidget {
         Text(contentText),
         const SizedBox(height: 25),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomButton(
               contant: submitText,

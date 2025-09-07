@@ -135,6 +135,7 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
 
     num totalDeliveryBags = state.dailyQuotaModel.salesQuotas!
         .fold(0, (sum, item) => sum + item.deliveryBagsQuota!);
+        
     num totalPickupBulk = state.dailyQuotaModel.salesQuotas!
         .fold(0, (sum, item) => sum + item.pickupBulkQuota!);
 

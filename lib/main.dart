@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/app_setup.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/functions/setup_service_locator.dart';
+import 'package:wncc_portal/core/utils/functions/update_http_client_certificate.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
@@ -33,14 +34,6 @@ import 'package:wncc_portal/features/user/presentation/manager/cubits/get_cities
 import 'package:wncc_portal/features/user/presentation/manager/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    return super.createHttpClient(context)
-      ..badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-  }
-}
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

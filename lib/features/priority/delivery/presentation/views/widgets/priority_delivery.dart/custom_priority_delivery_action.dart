@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_priority_action_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/delete_delivery_priority_order_cubit/delete_delivery_priority_order_cubit.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 
 class CustomPriorityDeliveryAction extends StatelessWidget {
   const CustomPriorityDeliveryAction({
@@ -35,8 +36,16 @@ class CustomPriorityDeliveryAction extends StatelessWidget {
               ],
             ),
             onTap: () {
-              BlocProvider.of<DeleteDeliveryPriorityOrderCubit>(context)
+              makeSureDialog(
+                context,
+                contentText: 'Are you want to delete this Order?',
+                submitText: 'Yes, delete',
+                onSubmit: () {
+                  BlocProvider.of<DeleteDeliveryPriorityOrderCubit>(context)
                   .deleteDeliveryPriorityOrder([orderId]);
+                  GoRouter.of(context).pop();
+                },
+              );
             },
           ),
           PopupMenuItem(

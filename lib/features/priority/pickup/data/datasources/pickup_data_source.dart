@@ -46,19 +46,6 @@ class PickupDataSourceImpl extends PickupDataSource {
     return successed;
   }
 
-  // @override
-  // Future<bool> dispatchDeliveryOrders(
-  //     List<DispatchDeliveryEntity> orders) async {
-  //   var result = await apiService.put(
-  //     endPoint: 'api/DeliveryPriorityOrders/MakeOrderDispatchFromPriority',
-  //     data: {
-  //       "orders": orders.map((e) => e.toJson()).toList(),
-  //     },
-  //   );
-  //   bool successed = result["data"] as bool;
-  //   return successed;
-  // }
-
   @override
   Future<bool> dispatchPickupOrders(List<String> orders) async {
     var result = await apiService.put(

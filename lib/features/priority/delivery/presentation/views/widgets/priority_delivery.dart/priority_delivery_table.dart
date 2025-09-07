@@ -2,6 +2,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_order.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
@@ -103,7 +104,14 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                     },
                   ),
                 ),
-                DataCell(Center(child: Text(item.id.toString(),style: const TextStyle(fontWeight: FontWeight.bold),),),),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.id.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
                 DataCell(CustomDataCellWidget(
                     title: item.productName ?? "",
                     subTitle: "category: ${item.productCategory}")),
@@ -133,24 +141,27 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                     dispatchDeliveryEntity: DispatchDeliveryEntity(
                         id: item.id!, agentName: agentName),
                     onTap: () async {
-                      //Add order to priority
-                      // selectAgent(
-                      //   context,
-                      //   [dispatchDeliveryEntity],
-                      // );
-                      if (agentName == "") {
-                        ShowSnackbar.showSnackBar(
-                            context, "Please Select Agent!", 'W');
-                      } else {
-                        await BlocProvider.of<DispatchDeliveryOrderCubit>(
-                                context)
-                            .dispatchDeliveryOrders([
-                          DispatchDeliveryEntity(
-                            id: item.id!,
-                            agentName: agentName,
-                          ),
-                        ]);
-                      }
+                      makeSureDialog(
+                        context,
+                        contentText: 'Are you want to dispatch this Order?',
+                        submitText: 'Yes, dispatch',
+                        onSubmit: () {
+                          if (agentName == "") {
+                            ShowSnackbar.showSnackBar(
+                                context, "Please Select Agent!", 'W');
+                          } else {
+                            BlocProvider.of<DispatchDeliveryOrderCubit>(context)
+                                .dispatchDeliveryOrders(
+                              [
+                                DispatchDeliveryEntity(
+                                  id: item.id!,
+                                  agentName: agentName,
+                                ),
+                              ],
+                            );
+                          }
+                        },
+                      );
                     },
                   ),
                 ),

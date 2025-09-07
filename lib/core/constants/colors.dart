@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-const kBtnColor = Color(0xff1b84ff);
+const kBtnColor = Color(0xff28a745);
 const kHintColor = Color.fromARGB(255, 160, 160, 160);
 const kloadingColor = Color.fromARGB(255, 173, 203, 238);
 const kmutedColors = Color(0xff78829d);

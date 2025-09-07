@@ -27,12 +27,13 @@ class _CustomSubmitPendingButtonsState
           ? [
               BlocListener<AddDeliveryPriorityCubit, AddDeliveryPriorityState>(
                 listener: (context, state) {
+                  BlocProvider.of<GetAllDeliveryCubit>(context)
+                      .getAllDeliveryPending();
                   if (state is AddDeliveryPrioritySuccess) {
                     ShowSnackbar.showSnackBar(context, state.msg, 'S');
-
-                    BlocProvider.of<GetAllDeliveryCubit>(context)
-                        .getAllDeliveryPending();
-                  }
+                  } else if (state is AddDeliveryPriorityFailure) {
+                    ShowSnackbar.showSnackBar(context, state.error, 'F');
+                  } 
                 },
                 child: CustomButtonWithIcon(
                   textColor: const Color.fromARGB(255, 108, 165, 230),

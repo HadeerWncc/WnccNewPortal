@@ -28,10 +28,6 @@ class _SalesQuotaMainDataState extends State<SalesQuotaMainData> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // const PageHeader(
-        //   title: 'Sales Quota',
-        //   icon: Symbols.weight,
-        // ),
         const SizedBox(height: 10),
         CardBody(
           currentDate: currentDate,
