@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 
 class CustomUserNameWidget extends StatelessWidget {
   const CustomUserNameWidget({

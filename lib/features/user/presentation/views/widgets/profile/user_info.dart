@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
-import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/profile/custom_user_name_widget.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/profile/user_info_item.dart';
 
