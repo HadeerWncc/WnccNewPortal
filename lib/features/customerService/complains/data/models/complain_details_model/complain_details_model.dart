@@ -5,7 +5,6 @@ import 'package:wncc_portal/features/customerService/requests/data/models/mapper
 import 'package:wncc_portal/features/customerService/requests/data/models/request_details_model/log.dart';
 import 'package:wncc_portal/features/customerService/requests/domain/entities/log_entity.dart';
 
-
 class ComplainDetailsModel extends Equatable {
   final String? id;
   final String? subject;
@@ -136,8 +135,8 @@ class ComplainDetailsModel extends Equatable {
     ];
   }
 
-    ComplainDetailsEntity toEntity() {
-      List<LogEntity> logsEntity = [];
+  ComplainDetailsEntity toEntity() {
+    List<LogEntity> logsEntity = [];
     for (var log in logs!) {
       logsEntity.add(log.toEntity());
     }
@@ -163,7 +162,6 @@ class ComplainDetailsModel extends Equatable {
       isDeleted: isDeleted,
       createdAt: createdAt,
       lastUpdatedAt: lastUpdatedAt,
-      
     );
   }
 }

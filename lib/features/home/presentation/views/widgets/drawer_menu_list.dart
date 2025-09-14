@@ -72,11 +72,13 @@ class DrawerMenuList extends StatelessWidget {
         ),
         CustomDrawerMenu(
           icon: Icons.account_balance,
-          title: 'HR',
+          title: 'Sales',
           children: [
             CustomMenuItem(
-              title: 'number 1',
-              onTap: () {},
+              title: "Booking Price",
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.bookingPrice);
+              },
             ),
             CustomMenuItem(
               title: 'number 2',

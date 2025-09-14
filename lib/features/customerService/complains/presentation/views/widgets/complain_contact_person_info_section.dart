@@ -30,7 +30,7 @@ class ComplainContactPersonInfoSection extends StatelessWidget {
           const SizedBox(width: 10),
           CustomInfoItem(
             icon: Symbols.schedule,
-            title:  complain.createdAt.toString().split(' ')[0],
+            title: complain.createdAt.toString().split(' ')[0],
           ),
         ],
       ),

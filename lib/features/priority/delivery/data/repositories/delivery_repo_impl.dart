@@ -46,8 +46,7 @@ class DeliveryRepoImpl extends DeliveryRepo {
   Future<Either<Failure, bool>> dispatchDeliveryOrders(
       List<DispatchDeliveryEntity> orders) async {
     try {
-      bool successed =
-          await deliveryDataSource.dispatchDeliveryOrders(orders);
+      bool successed = await deliveryDataSource.dispatchDeliveryOrders(orders);
       return Right(successed);
     } on Exception catch (e) {
       if (e is DioException) {

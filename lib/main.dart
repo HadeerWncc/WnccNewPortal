@@ -34,7 +34,6 @@ import 'package:wncc_portal/features/user/presentation/manager/cubits/get_cities
 import 'package:wncc_portal/features/user/presentation/manager/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setupApp();

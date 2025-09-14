@@ -8,12 +8,15 @@ sealed class ComplainDetailsState extends Equatable {
 }
 
 final class ComplainDetailsInitial extends ComplainDetailsState {}
+
 final class ComplainDetailsLoading extends ComplainDetailsState {}
+
 final class ComplainDetailsFailure extends ComplainDetailsState {
   final String error;
 
   const ComplainDetailsFailure({required this.error});
 }
+
 final class ComplainDetailsSuccess extends ComplainDetailsState {
   final ComplainDetailsEntity complain;
 

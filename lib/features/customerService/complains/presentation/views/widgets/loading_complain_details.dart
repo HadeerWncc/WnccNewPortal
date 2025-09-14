@@ -34,5 +34,3 @@ class LoadingComplainDetails extends StatelessWidget {
     );
   }
 }
-
-

@@ -20,7 +20,7 @@ class UserInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             UserInfoItem(
-              title: user.position??"",
+              title: user.position ?? "",
               icon: Symbols.work_history,
             ),
             const SizedBox(height: 10),

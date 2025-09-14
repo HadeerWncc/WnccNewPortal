@@ -19,8 +19,8 @@ class LoadingChat extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-                color: const Color.fromARGB(255, 180, 179, 179))),
+            border:
+                Border.all(color: const Color.fromARGB(255, 180, 179, 179))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -31,8 +31,7 @@ class LoadingChat extends StatelessWidget {
                 children: [
                   const Text(
                     'Request Replies',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   Container(
                     padding: const EdgeInsets.all(7),

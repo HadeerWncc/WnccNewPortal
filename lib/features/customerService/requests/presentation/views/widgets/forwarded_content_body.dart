@@ -8,7 +8,8 @@ class ForwardedContentBody extends StatelessWidget {
   const ForwardedContentBody(
       {super.key,
       required this.forwardResonController,
-      required this.onSelectForwardUsers, required this.forwardTextContent});
+      required this.onSelectForwardUsers,
+      required this.forwardTextContent});
   final TextEditingController forwardResonController;
   final Function(List<String>) onSelectForwardUsers;
   final String forwardTextContent;

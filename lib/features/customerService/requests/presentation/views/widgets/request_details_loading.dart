@@ -34,6 +34,3 @@ class RequestDetailsLoadingPage extends StatelessWidget {
     );
   }
 }
-
-
-

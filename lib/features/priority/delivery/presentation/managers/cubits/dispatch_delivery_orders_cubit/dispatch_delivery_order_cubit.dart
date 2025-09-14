@@ -11,7 +11,8 @@ class DispatchDeliveryOrderCubit extends Cubit<DispatchDeliveryOrderState> {
 
   final DeliveryRepo deliveryRepo;
 
-  Future<void> dispatchDeliveryOrders(List<DispatchDeliveryEntity> orders) async {
+  Future<void> dispatchDeliveryOrders(
+      List<DispatchDeliveryEntity> orders) async {
     emit(DispatchDeliveryOrderLoading());
     var result = await deliveryRepo.dispatchDeliveryOrders(orders);
     result.fold((error) {

@@ -42,7 +42,7 @@ class CustomPriorityDeliveryAction extends StatelessWidget {
                 submitText: 'Yes, delete',
                 onSubmit: () {
                   BlocProvider.of<DeleteDeliveryPriorityOrderCubit>(context)
-                  .deleteDeliveryPriorityOrder([orderId]);
+                      .deleteDeliveryPriorityOrder([orderId]);
                   GoRouter.of(context).pop();
                 },
               );

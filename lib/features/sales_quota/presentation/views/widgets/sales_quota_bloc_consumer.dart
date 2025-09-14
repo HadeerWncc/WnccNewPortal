@@ -135,7 +135,7 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
 
     num totalDeliveryBags = state.dailyQuotaModel.salesQuotas!
         .fold(0, (sum, item) => sum + item.deliveryBagsQuota!);
-        
+
     num totalPickupBulk = state.dailyQuotaModel.salesQuotas!
         .fold(0, (sum, item) => sum + item.pickupBulkQuota!);
 
@@ -181,14 +181,18 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
     for (var i = 0; i < controllers.length; i++) {
       SalesQuotaEntity salesQuotaEntity = SalesQuotaEntity(
         salesId: controllers[i]["salesId"]!.text,
-        deliveryBagsQuota: parseToInt(controllers[i]["deliveryBagsQuota"]!.text),
-        deliveryBulkQuota: parseToInt(controllers[i]["deliveryBulkQuota"]!.text),
+        deliveryBagsQuota:
+            parseToInt(controllers[i]["deliveryBagsQuota"]!.text),
+        deliveryBulkQuota:
+            parseToInt(controllers[i]["deliveryBulkQuota"]!.text),
         extraBagsQuota: parseToInt(controllers[i]["extraBagsQuota"]!.text),
         extraBulkQuota: parseToInt(controllers[i]["extraBulkQuota"]!.text),
         pickupBagsQuota: parseToInt(controllers[i]["pickupBagsQuota"]!.text),
-        pickupBulkQuota:parseToInt(controllers[i]["pickupBulkQuota"]!.text),
-        settelementBagsQuota: parseToInt(controllers[i]["settelementBagsQuota"]!.text),
-        settelementBulkQuota: parseToInt(controllers[i]["settelementBulkQuota"]!.text),
+        pickupBulkQuota: parseToInt(controllers[i]["pickupBulkQuota"]!.text),
+        settelementBagsQuota:
+            parseToInt(controllers[i]["settelementBagsQuota"]!.text),
+        settelementBulkQuota:
+            parseToInt(controllers[i]["settelementBulkQuota"]!.text),
         totalBagsQuota: parseToInt(controllers[i]["totalBagsQuota"]!.text),
         totalBulkQuota: parseToInt(controllers[i]["totalBulkQuota"]!.text),
         totalQuota: parseToInt(controllers[i]["totalQuota"]!.text),

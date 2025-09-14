@@ -81,7 +81,7 @@ class SignalRService {
     });
   }
 
-   void registerReceiveComplainMessageHandler(
+  void registerReceiveComplainMessageHandler(
       Function(Map<String, dynamic>) onMessageReceived) {
     _hubConnection.on('ReceiveComplainMessage', (arguments) {
       if (arguments != null && arguments.isNotEmpty) {

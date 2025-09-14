@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CompSectionHeader extends StatelessWidget {
-  const CompSectionHeader({super.key, required this.title, this.onPressed, required this.icon});
+  const CompSectionHeader(
+      {super.key, required this.title, this.onPressed, required this.icon});
   final String title;
   final Function()? onPressed;
   final IconData icon;

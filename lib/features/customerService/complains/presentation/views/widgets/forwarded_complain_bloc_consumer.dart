@@ -27,8 +27,7 @@ class ForwardedComplainBlocConsumer extends StatelessWidget {
           return ComplainForwardSection(
             forwardUsers: state.forwardUsers,
           );
-        }
-        else if(state is ForwardedComplainToUserSuccess){
+        } else if (state is ForwardedComplainToUserSuccess) {
           return ComplainForwardSection(
             forwardUsers: state.forwardedUser,
           );

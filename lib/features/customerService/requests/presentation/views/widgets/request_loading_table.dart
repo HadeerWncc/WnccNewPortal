@@ -25,8 +25,7 @@ class RequestLoadingTable extends StatelessWidget {
             minWidth: 800,
             dataRowHeight: 60,
             border: const TableBorder.symmetric(
-                outside:
-                    BorderSide(color: Color.fromARGB(255, 195, 193, 193))),
+                outside: BorderSide(color: Color.fromARGB(255, 195, 193, 193))),
             headingRowColor: WidgetStateProperty.all(
               const Color(0xffF9FAFC),
             ),

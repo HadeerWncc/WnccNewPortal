@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/widgets/custom_circel_letter_container.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/followup_section_header.dart';
@@ -11,13 +10,11 @@ class LoadingFollowUpsection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-              color: const Color.fromARGB(255, 180, 179, 179))),
+          border: Border.all(color: const Color.fromARGB(255, 180, 179, 179))),
       child: Column(
         children: [
           const FollowUpSectionHeader(
@@ -37,8 +34,7 @@ class LoadingFollowUpsection extends StatelessWidget {
                     const SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
                           width: 100,

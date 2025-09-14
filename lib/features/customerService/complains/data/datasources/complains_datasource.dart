@@ -149,14 +149,12 @@ class ComplainsDatasourceImpl extends ComplainsDatasource {
     required String forwardReason,
     required List<String> forwardedUsers,
   }) async {
-    var result = await apiService.post(
-      endPoint: 'api/Supports/ForwardComplaint',
-      data: {
-        "id": id,
-        "forwardReason":forwardReason,
-        "forwardUsers":forwardedUsers,
-      }
-    );
+    var result =
+        await apiService.post(endPoint: 'api/Supports/ForwardComplaint', data: {
+      "id": id,
+      "forwardReason": forwardReason,
+      "forwardUsers": forwardedUsers,
+    });
     List<ForwardUser> forwardedUsersList = [];
     for (var user in result["data"]) {
       ForwardUser fordUser = ForwardUser.fromJson(user);

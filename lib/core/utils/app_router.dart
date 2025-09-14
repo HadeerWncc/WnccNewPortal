@@ -1,6 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/authentication/data/models/validate_code_model.dart';
+import 'package:wncc_portal/features/booking_price/data/models/booking_price/booking_price.dart';
+import 'package:wncc_portal/features/booking_price/presentation/views/pages/booking_price_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/pages/complain_details_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/pages/complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/create_complain_page.dart';
@@ -50,6 +52,7 @@ abstract class AppRouter {
   static const createComplainPage = '/createComplainPage';
   static const editComplainPage = '/editComplainPage';
   static const complainDetailsPage = '/complainDetailsPage';
+  static const bookingPrice = '/bookingPrice';
 
   static final router = GoRouter(
     routes: [
@@ -132,6 +135,10 @@ abstract class AppRouter {
       GoRoute(
         path: addRequestPage,
         builder: (context, state) => const AddRequestPage(),
+      ),
+       GoRoute(
+        path: bookingPrice,
+        builder: (context, state) => const BookingPricePage(),
       ),
       GoRoute(
           path: editRequestPage,

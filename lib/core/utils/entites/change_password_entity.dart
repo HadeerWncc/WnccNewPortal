@@ -3,8 +3,9 @@ class ChangePasswordEntity {
   final String newPassword;
   final String confirmPassword;
 
-  ChangePasswordEntity(
-      {required this.currentPassword,
-      required this.newPassword,
-      required this.confirmPassword});
+  ChangePasswordEntity({
+    required this.currentPassword,
+    required this.newPassword,
+    required this.confirmPassword,
+  });
 }

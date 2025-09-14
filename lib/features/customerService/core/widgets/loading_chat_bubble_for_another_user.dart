@@ -63,7 +63,11 @@ class LoadingChatBubbleForAnotherUser extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 12),
-                child: Container(width: 100,height: 15,color: Colors.amber,),
+                child: Container(
+                  width: 100,
+                  height: 15,
+                  color: Colors.amber,
+                ),
               )
             ],
           ),

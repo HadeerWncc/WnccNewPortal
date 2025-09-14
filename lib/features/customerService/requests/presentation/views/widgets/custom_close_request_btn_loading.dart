@@ -13,7 +13,9 @@ class CustomCloseRequestBtnLoading extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          LoadingBtn(title: 'Close',)
+          LoadingBtn(
+            title: 'Close',
+          )
         ],
       ),
     );

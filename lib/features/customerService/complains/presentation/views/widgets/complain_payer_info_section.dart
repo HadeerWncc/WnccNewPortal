@@ -20,8 +20,7 @@ class ComplainPayerInfoSection extends StatelessWidget {
     }
     if (minutes >= 1) {
       createdFrom += ' $minutes minutes';
-    }
-    else{
+    } else {
       createdFrom = 'less than minute';
     }
     createdFrom += ' ago';

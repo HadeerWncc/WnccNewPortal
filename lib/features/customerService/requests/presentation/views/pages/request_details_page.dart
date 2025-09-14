@@ -40,7 +40,8 @@ class RequestDetailsPage extends StatelessWidget {
                   user: state.user,
                 ),
               ),
-              body: RequestDetailsBlocConsumer(requestId: requestId, user: user),
+              body:
+                  RequestDetailsBlocConsumer(requestId: requestId, user: user),
             );
           } else if (state is UserFailure) {
             return Center(
@@ -55,5 +56,3 @@ class RequestDetailsPage extends StatelessWidget {
     );
   }
 }
-
-

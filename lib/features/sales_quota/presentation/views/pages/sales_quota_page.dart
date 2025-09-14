@@ -19,7 +19,10 @@ class SalesQuotaPage extends StatelessWidget {
               backgroundColor: const Color(0xffF0F4F7),
               appBar: AppBar(
                 actionsPadding: const EdgeInsets.all(5),
-                title: const Text('SalesQuota',style: TextStyle(fontSize: 18),),
+                title: const Text(
+                  'SalesQuota',
+                ),
+                titleSpacing: 0.0,
                 actions: [
                   CustomAppbarActions(
                     user: state.user,

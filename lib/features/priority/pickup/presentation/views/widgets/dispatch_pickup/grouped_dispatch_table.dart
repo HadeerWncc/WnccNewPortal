@@ -153,7 +153,7 @@ class _GroupedDispatchTableState extends State<GroupedDispatchTable> {
               orderId: order.id!,
               onChanged: (value) {
                 //save orderId
-                if (value ==true) {
+                if (value == true) {
                   orders.add(order.id!);
                 } else {
                   orders.removeWhere((element) => element == order.id!);

@@ -20,7 +20,7 @@ class ComplainFollowUpSection extends StatelessWidget {
           CompSectionHeader(
             title: 'Follow_up',
             icon: Symbols.add_circle,
-            onPressed: (){},
+            onPressed: () {},
           ),
           const SizedBox(height: 15),
           FollowUpSectionBody(

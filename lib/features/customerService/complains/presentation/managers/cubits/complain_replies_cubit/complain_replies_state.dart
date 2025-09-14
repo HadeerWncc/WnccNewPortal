@@ -8,12 +8,15 @@ sealed class ComplainRepliesState extends Equatable {
 }
 
 final class ComplainRepliesInitial extends ComplainRepliesState {}
+
 final class ComplainRepliesLoading extends ComplainRepliesState {}
+
 final class ComplainRepliesFailure extends ComplainRepliesState {
   final String error;
 
   const ComplainRepliesFailure({required this.error});
 }
+
 final class ComplainRepliesSuccess extends ComplainRepliesState {
   final List<MessageDto> messages;
   const ComplainRepliesSuccess({required this.messages});

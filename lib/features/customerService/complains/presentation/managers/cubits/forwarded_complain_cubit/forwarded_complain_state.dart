@@ -8,12 +8,15 @@ sealed class ForwardedComplainState extends Equatable {
 }
 
 final class ForwardedComplainInitial extends ForwardedComplainState {}
+
 final class ForwardedComplainLoading extends ForwardedComplainState {}
+
 final class ForwardedComplainFailure extends ForwardedComplainState {
   final String error;
 
   const ForwardedComplainFailure({required this.error});
 }
+
 final class ForwardedComplainSuccess extends ForwardedComplainState {
   final List<ForwardUser> forwardUsers;
 
@@ -25,4 +28,3 @@ final class ForwardedComplainToUserSuccess extends ForwardedComplainState {
 
   const ForwardedComplainToUserSuccess({required this.forwardedUser});
 }
-

@@ -24,8 +24,7 @@ class ComplainDetailsInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             MarkedText(
-              child:
-                  '1 images uploaded',
+              child: '1 images uploaded',
             ),
             const SizedBox(width: 10),
           ],

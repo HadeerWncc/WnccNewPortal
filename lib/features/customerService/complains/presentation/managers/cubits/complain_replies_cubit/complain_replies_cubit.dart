@@ -13,9 +13,9 @@ class ComplainRepliesCubit extends Cubit<ComplainRepliesState> {
   Future getComplainReplies(String complainId) async {
     emit(ComplainRepliesLoading());
     var result = await complainRepo.getComplaintReplies(complainId);
-    result.fold((error){
+    result.fold((error) {
       emit(ComplainRepliesFailure(error: error.msg));
-    }, (messages){
+    }, (messages) {
       emit(ComplainRepliesSuccess(messages: messages));
     });
   }
