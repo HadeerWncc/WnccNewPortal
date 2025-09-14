@@ -34,3 +34,6 @@ OutlineInputBorder changePassowrdInputBorder() {
     borderRadius: BorderRadius.circular(8),
   );
 }
+
+
+BorderSide tableBorderSide() => const BorderSide(color: Color.fromARGB(255, 215, 215, 215));

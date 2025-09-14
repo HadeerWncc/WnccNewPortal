@@ -16,7 +16,8 @@ class CustomDailyQuotaItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
-      dashPattern: const [1, 1],
+      strokeWidth: 2,
+      dashPattern: const [2, 1],
       color: const Color.fromARGB(255, 192, 192, 192),
       radius: const Radius.circular(5),
       borderType: BorderType.RRect,

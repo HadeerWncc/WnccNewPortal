@@ -32,7 +32,7 @@ class DailyQuotaItemList extends StatelessWidget {
           landingtitle: 'Total',
           icon: Symbols.weight,
           child: CustomQuantityComparing(
-            quantity: '0',
+            mainTitle: '0',
           ),
         ),
         const CustomDailyQuotaItem(
@@ -40,7 +40,7 @@ class DailyQuotaItemList extends StatelessWidget {
           landingtitle: 'Bulk',
           icon: Symbols.local_shipping,
           child: CustomQuantityComparing(
-            quantity: '0',
+            mainTitle: '0',
           ),
         ),
         const CustomDailyQuotaItem(
@@ -48,7 +48,7 @@ class DailyQuotaItemList extends StatelessWidget {
           landingtitle: 'Bags',
           icon: Symbols.box,
           child: CustomQuantityComparing(
-            quantity: '0',
+            mainTitle: '0',
           ),
         ),
       ],

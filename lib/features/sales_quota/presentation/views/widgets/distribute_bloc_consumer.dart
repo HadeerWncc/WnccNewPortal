@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
@@ -35,9 +36,9 @@ class DistributeBlocConsumer extends StatelessWidget {
         return CustomButtonWithIcon(
           child: 'Distribute',
           textColor: Colors.white,
-          bgColor: const Color(0xffF6BF03),
+          bgColor: kBtnColor,
           icon: Symbols.app_registration,
-          onHoverColor: const Color.fromARGB(255, 177, 136, 2),
+          onHoverColor: const Color.fromARGB(255, 20, 96, 37),
           onTap: () {
             tryToDistribute(context);
           },

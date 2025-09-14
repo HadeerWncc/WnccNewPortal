@@ -18,7 +18,7 @@ class PrioritySummary extends StatelessWidget {
             widthRatio: 0.25,
             icon: Symbols.weight,
             child: CustomQuantityComparing(
-              quantity: '2780',
+              mainTitle: '2780',
             ),
           ),
           CustomDailyQuotaItem(
@@ -26,7 +26,7 @@ class PrioritySummary extends StatelessWidget {
             widthRatio: 0.25,
             icon: Symbols.more_up,
             child: CustomQuantityComparing(
-              quantity: '0',
+              mainTitle: '0',
             ),
           ),
           CustomDailyQuotaItem(
@@ -34,7 +34,7 @@ class PrioritySummary extends StatelessWidget {
             widthRatio: 0.25,
             icon: Symbols.priority,
             child: CustomQuantityComparing(
-              quantity: '0',
+              mainTitle: '0',
             ),
           ),
           CustomDailyQuotaItem(
@@ -42,7 +42,7 @@ class PrioritySummary extends StatelessWidget {
             widthRatio: 0.25,
             icon: Symbols.hourglass_empty,
             child: CustomQuantityComparing(
-              quantity: '0',
+              mainTitle: '0',
             ),
           ),
           CustomDailyQuotaItem(
@@ -50,7 +50,7 @@ class PrioritySummary extends StatelessWidget {
             widthRatio: 0.25,
             icon: Symbols.local_shipping,
             child: CustomQuantityComparing(
-              quantity: '0',
+              mainTitle: '0',
             ),
           ),
         ],

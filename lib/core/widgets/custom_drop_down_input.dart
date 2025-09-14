@@ -24,7 +24,7 @@ class CustomDropDownInput extends StatelessWidget {
         MediaQuery.of(context).size.width * 1 - (kHorizontalPadding * 2);
     return SizedBox(
       width:
-          width != null ? MediaQuery.of(context).size.width * .5 : defaultWidth,
+          width ?? defaultWidth,
       child: DropdownButtonFormField<String>(
         style: const TextStyle(
             fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
