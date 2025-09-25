@@ -1,7 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/authentication/data/models/validate_code_model.dart';
-import 'package:wncc_portal/features/booking_price/data/models/booking_price/booking_price.dart';
 import 'package:wncc_portal/features/booking_price/presentation/views/pages/booking_price_page.dart';
 import 'package:wncc_portal/features/booking_price/presentation/views/pages/pricing_report_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/pages/complain_details_page.dart';

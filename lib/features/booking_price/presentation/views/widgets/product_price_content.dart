@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/widgets/custom_multiselect_dropdown.dart';
-import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
 import 'package:wncc_portal/features/booking_price/presentation/views/widgets/rows_price.dart';
 
 class ProductPriceContent extends StatelessWidget {
@@ -23,14 +22,14 @@ class ProductPriceContent extends StatelessWidget {
               const SizedBox(width: 10),
               CustomMultiSelectDropDown(
                 selectedValue: "Alex",
-                items: ["Alex", "Cairo", "Fayoum", "Giza"],
+                items: const ["Alex", "Cairo", "Fayoum", "Giza"],
                 onChanged: (values) {},
                 title: "Specify Regions",
               ),
               const SizedBox(width: 7),
               CustomMultiSelectDropDown(
                 selectedValue: "Mohammed",
-                items: ["Mohammed", "Ahmed", "Ali", "Mahmoud"],
+                items: const ["Mohammed", "Ahmed", "Ali", "Mahmoud"],
                 onChanged: (values) {},
                 title: "Specify Payers",
               ),
