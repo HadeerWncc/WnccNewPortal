@@ -23,14 +23,14 @@ class PayerPricesTable extends StatelessWidget {
     ];
 
     return SizedBox(
-      height: 130,
+      height: 150,
       child: SfDataGrid(
         frozenColumnsCount: 1,
         source: FirstTableDataSource(periods: periods),
         gridLinesVisibility: GridLinesVisibility.both,
         headerGridLinesVisibility: GridLinesVisibility.both,
         headerRowHeight: 35,
-        rowHeight: 35,
+        rowHeight: 40,
         columnWidthMode: ColumnWidthMode.auto,
         columns: [
           GridColumn(
@@ -76,8 +76,22 @@ class FirstTableDataSource extends DataGridSource {
       DataGridRow(
         cells: [
           const DataGridCell<String>(
-            columnName: 'row_title',
-            value: 'payerValue',
+            columnName: 'Payer',
+            value: '289',
+          ),
+          ...periods.map(
+            (p) => DataGridCell<int>(
+              columnName: p.name,
+              value: p.value,
+            ),
+          ),
+        ],
+      ),
+      DataGridRow(
+        cells: [
+          const DataGridCell<String>(
+            columnName: 'Payer',
+            value: '1503',
           ),
           ...periods.map(
             (p) => DataGridCell<int>(
@@ -99,13 +113,17 @@ class FirstTableDataSource extends DataGridSource {
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
       cells: row.getCells().map<Widget>((cell) {
+        final isRegionColumn = cell.columnName == 'Payer';
+
         return Container(
           alignment: Alignment.center,
           color: const Color(0xffDFFFEA),
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
           child: Text(
             cell.value.toString(),
-            style: const TextStyle(fontSize: 13),
+            style: TextStyle(
+              fontWeight: isRegionColumn ? FontWeight.bold : FontWeight.normal,
+            ),
           ),
         );
       }).toList(),

@@ -11,9 +11,9 @@ class PricingReportTables extends StatelessWidget {
     return Column(
       children: [
         RowsPricesTable(),
-        const SizedBox(height: 20),
+        const SizedBox(height: 40),
         MultiPeriodTable(),
-        const SizedBox(height: 20),
+        const SizedBox(height: 40),
         PayerPricesTable(),
       ],
     );

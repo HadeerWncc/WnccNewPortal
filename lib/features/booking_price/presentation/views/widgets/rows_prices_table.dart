@@ -25,14 +25,15 @@ class RowsPricesTable extends StatelessWidget {
     ];
 
     return SizedBox(
-      height: 130,
+      height: 120,
       child: SfDataGrid(
         frozenColumnsCount: 1,
         source: FirstTableDataSource(periods: periods),
+        
         gridLinesVisibility: GridLinesVisibility.both,
         headerGridLinesVisibility: GridLinesVisibility.both,
         headerRowHeight: 35,
-        rowHeight: 35,
+        rowHeight: 40,
         columnWidthMode: ColumnWidthMode.auto,
         columns: [
           GridColumn(
@@ -78,7 +79,7 @@ class FirstTableDataSource extends DataGridSource {
       DataGridRow(
         cells: [
           const DataGridCell<String>(
-            columnName: 'row_title',
+            columnName: 'Prices',
             value: 'Pickup Free',
           ),
           ...periods.map(
@@ -92,7 +93,7 @@ class FirstTableDataSource extends DataGridSource {
       DataGridRow(
         cells: [
           const DataGridCell<String>(
-            columnName: 'row_title',
+            columnName: 'Prices',
             value: 'Pickup Target',
           ),
           ...periods.map(
@@ -115,13 +116,16 @@ class FirstTableDataSource extends DataGridSource {
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
       cells: row.getCells().map<Widget>((cell) {
+        final isRegionColumn = cell.columnName == 'Prices';
         return Container(
           alignment: Alignment.center,
           color: const Color(0xffDFFFEA),
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
           child: Text(
             cell.value.toString(),
-            style: const TextStyle(fontSize: 13),
+            style: TextStyle(
+              fontWeight: isRegionColumn ? FontWeight.bold : FontWeight.normal,
+            ),
           ),
         );
       }).toList(),

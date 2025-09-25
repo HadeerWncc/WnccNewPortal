@@ -112,7 +112,9 @@ class _MultiPeriodTableState extends State<MultiPeriodTable> {
                 child: Container(
                   decoration: BoxDecoration(
                     color: const Color(0xffF0F7FD),
-                    border: Border.all(color: const Color.fromARGB(255, 234, 235, 234), width: 1),
+                    border: Border.all(
+                        color: const Color.fromARGB(255, 234, 235, 234),
+                        width: 1),
                   ),
                   alignment: Alignment.center,
                   child: Text(
@@ -132,7 +134,8 @@ class _MultiPeriodTableState extends State<MultiPeriodTable> {
     return Container(
       decoration: BoxDecoration(
         color: const Color(0xffF0F7FD),
-        border: Border.all(color: const Color.fromARGB(255, 234, 235, 234), width: 1),
+        border: Border.all(
+            color: const Color.fromARGB(255, 234, 235, 234), width: 1),
       ),
       alignment: Alignment.center,
       child: Text(
@@ -169,14 +172,23 @@ class MultiPeriodDataSource extends DataGridSource {
   DataGridRowAdapter buildRow(DataGridRow row) {
     return DataGridRowAdapter(
       cells: row.getCells().map<Widget>((cell) {
+        final isRegionColumn = cell.columnName == 'region';
         return Container(
           decoration: BoxDecoration(
             color: const Color(0xffDFFFEA),
-            border: Border.all(color: const Color.fromARGB(255, 234, 235, 234), width: 1),
+            border: Border.all(
+              color: const Color.fromARGB(255, 234, 235, 234),
+              width: 1,
+            ),
           ),
           alignment: Alignment.center,
           padding: const EdgeInsets.all(8),
-          child: Text(cell.value.toString()),
+          child: Text(
+            cell.value.toString(),
+            style: TextStyle(
+              fontWeight: isRegionColumn ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
         );
       }).toList(),
     );

@@ -20,17 +20,7 @@ class PricingReportMainData extends StatelessWidget {
         const SizedBox(height: 10),
         const Divider(),
         const SizedBox(height: 10),
-        // ProductPriceContent(),
-        // const SizedBox(height: 10),
         PricingReportTables(),
-        // const SizedBox(height: 30),
-        // PayerDistributionTable(),
-        // BookingPriceActionButtons(),
-        // const SizedBox(height: 20),
-        // const Divider(),
-        // const SizedBox(height: 20),
-        // BookingPriceCharts(),
-        // const SizedBox(height: 20),
       ],
     );
   }
