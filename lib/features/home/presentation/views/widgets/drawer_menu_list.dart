@@ -81,8 +81,10 @@ class DrawerMenuList extends StatelessWidget {
               },
             ),
             CustomMenuItem(
-              title: 'number 2',
-              onTap: () {},
+              title: "Pricing Report",
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.pricingReport);
+              },
             ),
             CustomMenuItem(
               title: 'number 3',

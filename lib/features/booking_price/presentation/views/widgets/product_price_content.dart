@@ -13,28 +13,28 @@ class ProductPriceContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          RowsPrice(),
-          SizedBox(height: 20),
+          const RowsPrice(),
+          const SizedBox(height: 20),
           Row(
             children: [
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               CustomMultiSelectDropDown(
                 selectedValue: "Alex",
                 items: ["Alex", "Cairo", "Fayoum", "Giza"],
                 onChanged: (values) {},
                 title: "Specify Regions",
               ),
-              SizedBox(width: 7),
+              const SizedBox(width: 7),
               CustomMultiSelectDropDown(
                 selectedValue: "Mohammed",
                 items: ["Mohammed", "Ahmed", "Ali", "Mahmoud"],
                 onChanged: (values) {},
                 title: "Specify Payers",
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
 
             ],
           ),

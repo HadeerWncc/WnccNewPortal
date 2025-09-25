@@ -3,22 +3,18 @@ import 'package:flutter/material.dart';
 class CustomVerticalDivider extends StatelessWidget {
   const CustomVerticalDivider({
     super.key,
+    this.height,
+    this.margin,
   });
-
+  final double? height;
+  final double? margin;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 5,
-      height: 25,
-      margin: const EdgeInsets.only(left: 20),
-      decoration: const BoxDecoration(
-        border: Border(
-          left: BorderSide(
-            color: Color.fromARGB(255, 207, 207, 207),
-            width: 1.5,
-          ),
-        ),
-      ),
+      width: 1.5,
+      height: height ?? 25,
+      margin: EdgeInsets.only(left: margin ?? 20),
+      color: const Color.fromARGB(255, 207, 207, 207),
     );
   }
 }
