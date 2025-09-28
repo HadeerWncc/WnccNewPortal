@@ -180,7 +180,7 @@ class _GroupedPriorityTableState extends State<GroupedPriorityTable> {
           ),
           Expanded(
             child: CustomDataCellWidget(
-              title: DateFormat('MMMM d, y')
+              title: DateFormat('MMM d, y')
                   .format(order.priorityDate ?? DateTime.now()),
               subTitle: 'time: 12:00 PM',
             ),

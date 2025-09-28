@@ -177,7 +177,7 @@ class _GroupedDispatchTableState extends State<GroupedDispatchTable> {
           ),
           Expanded(
             child: CustomDataCellWidget(
-              title: DateFormat('MMMM d, y')
+              title: DateFormat('MMM d, y')
                   .format(order.dispatchDate ?? DateTime.now()),
               subTitle: 'time: 12:00 PM',
             ),

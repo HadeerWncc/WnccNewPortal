@@ -106,7 +106,7 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                     title: item.quantity.toString(),
                     subTitle: "Price: ${item.price}")),
                 DataCell(CustomDataCellWidget(
-                    title: DateFormat('MMMM d, y')
+                    title: DateFormat('MMM d, y')
                         .format(item.dispatchDate ?? DateTime.now()),
                     subTitle: "Time: 12:00 PM")),
                 DataCell(Center(child: Text(item.truckNo.toString()))),

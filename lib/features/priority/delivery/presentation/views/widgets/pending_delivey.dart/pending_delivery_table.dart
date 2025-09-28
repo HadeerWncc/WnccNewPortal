@@ -100,7 +100,7 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
                     title: item.quantity.toString(),
                     subTitle: "Price: ${item.price}")),
                 DataCell(CustomDataCellWidget(
-                    title: DateFormat('MMMM d, y')
+                    title: DateFormat('MMM d, y')
                         .format(item.registerDate ?? DateTime.now()),
                     subTitle: "Time: 12:00 PM")),
                 DataCell(

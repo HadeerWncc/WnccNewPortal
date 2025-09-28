@@ -176,7 +176,7 @@ class _GroupedPendingTableState extends State<GroupedPendingTable> {
           ),
           Expanded(
             child: CustomDataCellWidget(
-              title: DateFormat('MMMM d, y')
+              title: DateFormat('MMM d, y')
                   .format(order.registerDate ?? DateTime.now()),
               subTitle: 'time: 12:00 PM',
             ),
