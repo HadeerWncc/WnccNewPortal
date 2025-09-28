@@ -42,56 +42,120 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
       width: widget.width != null
           ? MediaQuery.of(context).size.width * .5
           : defaultWidth,
-      child: DropdownButtonFormField<String>(
-        style: const TextStyle(
-            fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
-        decoration: InputDecoration(
-          enabledBorder: inputBorder(),
-          focusedBorder: customfocusedBorder(),
-          fillColor: const Color(0xffF9F9F9),
-          filled: true,
-          labelText: widget.title,
-          labelStyle: const TextStyle(
-            color: Color.fromARGB(255, 83, 83, 83),
+      child: Column(
+        children: [
+          DropdownButtonFormField<String>(
+            style: const TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
+            decoration: InputDecoration(
+              enabledBorder: inputBorder(),
+              focusedBorder: customfocusedBorder(),
+              fillColor: const Color(0xffF9F9F9),
+              filled: true,
+              labelText: widget.title,
+              labelStyle: const TextStyle(
+                color: Color.fromARGB(255, 83, 83, 83),
+              ),
+            ),
+            value: widget.selectedValue,
+            items: widget.items
+                .map((item) => DropdownMenuItem(
+                      value: item,
+                      child: selectedItems.contains(item)
+                          ? Container(
+                              color: const Color.fromARGB(255, 204, 215, 235),
+                              // width: 55,
+                              padding: const EdgeInsets.all(5),
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 12),
+                              ),
+                            )
+                          : SizedBox(
+                              // width: 55,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 12),
+                              ),
+                            ),
+                    ))
+                .toList(),
+            onChanged: (value) {
+              if (selectedItems.contains(value)) {
+                selectedItems.remove(value.toString());
+              } else {
+                selectedItems.add(value.toString());
+              }
+              for (var item in selectedItems) {
+                multiChoiceTitle += " $item";
+              }
+              setState(() {});
+              widget.onChanged(selectedItems);
+            },
           ),
-        ),
-        value: widget.selectedValue,
-        items: widget.items
-            .map((item) => DropdownMenuItem(
-                  value: item,
-                  child: selectedItems.contains(item)
-                      ? Container(
+          Container(
+            height: 37,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color.fromARGB(255, 230, 229, 229),
+              ),
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(8),
+                bottomRight: Radius.circular(8),
+              ),
+            ),
+            child: Row(
+              children: [
+                
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: selectedItems.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.all(3),
+                        padding: const EdgeInsets.all(3),
+                        decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 204, 215, 235),
-                          // width: 55,
-                          padding: const EdgeInsets.all(5),
-                          child: Text(
-                            item,
-                            style: const TextStyle(
-                                overflow: TextOverflow.ellipsis, fontSize: 12),
-                          ),
-                        )
-                      : SizedBox(
-                          // width: 55,
-                          child: Text(
-                            item,
-                            style: const TextStyle(
-                                overflow: TextOverflow.ellipsis, fontSize: 12),
-                          ),
+                          borderRadius: BorderRadius.circular(5),
                         ),
-                ))
-            .toList(),
-        onChanged: (value) {
-          if (selectedItems.contains(value)) {
-            selectedItems.remove(value.toString());
-          } else {
-            selectedItems.add(value.toString());
-          }
-          for (var item in selectedItems) {
-            multiChoiceTitle += " $item";
-          }
-          setState(() {});
-          widget.onChanged(selectedItems);
-        },
+                        child: Row(
+                          children: [
+                            Text(
+                              selectedItems[index],
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                selectedItems.removeAt(index);
+                                setState(() {});
+                                widget.onChanged(selectedItems);
+                              },
+                              child: const Icon(
+                                Icons.close,
+                                size: 12,
+                              ),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

@@ -64,7 +64,8 @@ class GetAgentBlocBuilder extends StatelessWidget {
           );
         }
         return CustomDropDownInput(
-          selectedValue: "",
+          selectedValue: null,
+          hintText: 'Select Agent',
           items: const [],
           title: "Select Agent",
           onChanged: (agent) {

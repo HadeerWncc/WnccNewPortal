@@ -10,6 +10,7 @@ class CustomDropDownInput extends StatelessWidget {
     this.onChanged,
     required this.title,
     this.width,
+    this.hintText,
   });
 
   final String? selectedValue;
@@ -17,14 +18,14 @@ class CustomDropDownInput extends StatelessWidget {
   final ValueChanged<String?>? onChanged;
   final String title;
   final double? width;
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
     double defaultWidth =
         MediaQuery.of(context).size.width * 1 - (kHorizontalPadding * 2);
     return SizedBox(
-      width:
-          width ?? defaultWidth,
+      width: width ?? defaultWidth,
       child: DropdownButtonFormField<String>(
         style: const TextStyle(
             fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
@@ -39,15 +40,24 @@ class CustomDropDownInput extends StatelessWidget {
           ),
         ),
         value: selectedValue,
+        hint: Text(
+          hintText ?? 'Choose one option', 
+          style: const TextStyle(
+            fontSize: 12,
+            color: Colors.grey,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
         items: items
             .map((item) => DropdownMenuItem(
                   value: item,
                   child: SizedBox(
-                      child: Text(
-                    item,
-                    style: const TextStyle(
-                        overflow: TextOverflow.ellipsis, fontSize: 12),
-                  )),
+                    child: Text(
+                      item,
+                      style: const TextStyle(
+                          overflow: TextOverflow.ellipsis, fontSize: 12),
+                    ),
+                  ),
                 ))
             .toList(),
         onChanged: onChanged,

@@ -53,7 +53,8 @@ class EditComplainForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: 'Accounting/Fax',
+            selectedValue: null,
+            hintText: 'Select Type',
             items: const [
               'Accounting/Fax',
               'Call Center',
@@ -71,7 +72,8 @@ class EditComplainForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: 'Call Center',
+            selectedValue: null,
+            hintText: 'Select C_Source',
             items: const ['Call Center', 'Mobile App'],
             title: 'C_Source',
             onChanged: (value) {
@@ -83,7 +85,8 @@ class EditComplainForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: getRequestLevelListOfString()[0],
+            selectedValue:null,
+            hintText: 'Select Level',
             items: getRequestLevelListOfString(),
             title: 'Complain Priority',
             onChanged: (value) {

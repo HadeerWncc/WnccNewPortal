@@ -63,8 +63,9 @@ class _CustomChangePersonalInfoFormState
         ),
         const SizedBox(height: 20),
         CustomDropDownInput(
-          selectedValue: selectedState,
+          selectedValue: null,
           items: widget.states,
+          hintText: 'Select State',
           title: 'State',
           onChanged: (value) async {
             selectedState = value!;
@@ -79,7 +80,8 @@ class _CustomChangePersonalInfoFormState
               return CustomDropDownInput(
                 selectedValue: state.cities.contains(selectedCity)
                     ? selectedCity
-                    : state.cities[0],
+                    : null,
+                    hintText: 'Select City',
                 items: state.cities,
                 title: 'City',
                 onChanged: (value) {

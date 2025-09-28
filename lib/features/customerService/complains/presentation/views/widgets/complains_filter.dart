@@ -23,7 +23,8 @@ class ComplainsFilter extends StatelessWidget {
           ),
           CustomDropDownInput(
             width: MediaQuery.of(context).size.width * .3,
-            selectedValue: 'Created',
+            selectedValue: null,
+            hintText: 'Select Status',
             items: const ['Created', 'Pending', 'Closed'],
             title: 'Status',
             onChanged: (value) {

@@ -22,7 +22,7 @@ class FilterPartBody extends StatelessWidget {
             onChange: (value) {},
           ),
           CustomDropDownInput(
-            width: MediaQuery.of(context).size.width * .35,
+            width: MediaQuery.of(context).size.width * .4,
             selectedValue: "Bags",
             items: const ["Bags", "Bulk", "Clincker"],
             title: "Select Product Type",

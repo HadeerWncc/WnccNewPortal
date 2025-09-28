@@ -51,7 +51,8 @@ class CreateComplainForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: 'Accounting/Fax',
+            selectedValue: null,
+            
             items: const [
               'Accounting/Fax',
               'Call Center',
@@ -62,6 +63,7 @@ class CreateComplainForm extends StatelessWidget {
               'Sales Rep',
               'Other',
             ],
+            hintText: 'Select Type',
             title: 'Complain type',
             onChanged: (value) {
               onRequestTypeChange(value ?? "");
@@ -69,7 +71,8 @@ class CreateComplainForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: 'Call Center',
+            selectedValue: null,
+            hintText: 'Select C_Source',
             items: const ['Call Center', 'Mobile App'],
             title: 'C_Source',
             onChanged: (value) {
@@ -81,7 +84,8 @@ class CreateComplainForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: getRequestLevelListOfString()[0],
+            selectedValue: null,
+            hintText: 'Select Level',
             items: getRequestLevelListOfString(),
             title: 'Complain Priority',
             onChanged: (value) {

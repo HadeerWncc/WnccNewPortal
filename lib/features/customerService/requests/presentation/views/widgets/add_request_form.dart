@@ -63,8 +63,9 @@ class AddRequestForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: getRequestDeliveryListOfString()[0],
+            selectedValue: null,
             items: getRequestDeliveryListOfString(),
+            hintText: 'Select Type',
             title: 'Delivery',
             onChanged: (value) {
               RequestDelivery delivery =
@@ -75,7 +76,8 @@ class AddRequestForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: getRequestLevelListOfString()[0],
+            selectedValue: null,
+            hintText: 'Select Level',
             items: getRequestLevelListOfString(),
             title: 'Request Level',
             onChanged: (value) {
