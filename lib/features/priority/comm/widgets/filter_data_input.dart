@@ -60,7 +60,7 @@ class FilterDataInputs extends StatelessWidget {
         SizedBox(
           width: MediaQuery.of(context).size.width * .24,
           child: CustomDropDownInput(
-            selectedValue: selectedSales,
+            selectedValue: selectedRegion,
             items: const [
               "All",
               "Region 1",
@@ -81,7 +81,7 @@ class FilterDataInputs extends StatelessWidget {
         SizedBox(
           width: MediaQuery.of(context).size.width * .24,
           child: CustomDropDownInput(
-            selectedValue: selectedSales,
+            selectedValue: selectedProduct,
             items: const [
               "All",
               "مصرى",

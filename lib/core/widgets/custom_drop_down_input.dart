@@ -39,15 +39,20 @@ class CustomDropDownInput extends StatelessWidget {
             color: Color.fromARGB(255, 83, 83, 83),
           ),
         ),
-        value: selectedValue,
-        hint: Text(
-          hintText ?? 'Choose one option', 
-          style: const TextStyle(
-            fontSize: 12,
-            color: Colors.grey,
-            fontStyle: FontStyle.italic,
-          ),
-        ),
+        // ✅ هنا التغيير
+        value: items.contains(selectedValue) ? selectedValue : null,
+
+        hint: hintText != null
+            ? Text(
+                hintText!,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                  fontStyle: FontStyle.italic,
+                ),
+              )
+            : null,
+
         items: items
             .map((item) => DropdownMenuItem(
                   value: item,
