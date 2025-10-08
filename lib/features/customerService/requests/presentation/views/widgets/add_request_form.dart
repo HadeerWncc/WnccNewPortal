@@ -48,7 +48,8 @@ class AddRequestForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomMultiSelectDropDown(
-            selectedValue: 'Invoice',
+            selectedValue: null,
+            hintText: 'Select types',
             items: const [
               'Invoice',
               'Account_Statement',

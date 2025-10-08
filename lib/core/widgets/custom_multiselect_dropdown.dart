@@ -9,13 +9,14 @@ class CustomMultiSelectDropDown extends StatefulWidget {
     required this.items,
     required this.onChanged,
     required this.title,
-    this.width,
+    this.width, this.hintText,
   });
 
   final String? selectedValue;
   final List<String> items;
   final Function(List<String>) onChanged;
   final String title;
+  final String? hintText;
   final double? width;
 
   @override
@@ -29,7 +30,6 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     multiChoiceTitle = widget.selectedValue ?? "";
   }
@@ -45,6 +45,16 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
       child: Column(
         children: [
           DropdownButtonFormField<String>(
+            hint: widget.hintText != null
+            ? Text(
+                widget.hintText!,
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.grey,
+                  fontStyle: FontStyle.italic,
+                ),
+              )
+            : null,
             style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
             decoration: InputDecoration(

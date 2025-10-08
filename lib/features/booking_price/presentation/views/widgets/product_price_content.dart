@@ -21,20 +21,21 @@ class ProductPriceContent extends StatelessWidget {
             children: [
               const SizedBox(width: 10),
               CustomMultiSelectDropDown(
-                selectedValue: "Alex",
+                selectedValue: null,
+                hintText: 'Select Regions',
                 items: const ["Alex", "Cairo", "Fayoum", "Giza"],
                 onChanged: (values) {},
                 title: "Specify Regions",
               ),
               const SizedBox(width: 7),
               CustomMultiSelectDropDown(
-                selectedValue: "Mohammed",
+                selectedValue: null,
+                hintText: 'Select Payers',
                 items: const ["Mohammed", "Ahmed", "Ali", "Mahmoud"],
                 onChanged: (values) {},
                 title: "Specify Payers",
               ),
               const SizedBox(width: 10),
-
             ],
           ),
         ],

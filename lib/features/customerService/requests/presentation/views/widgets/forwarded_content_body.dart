@@ -26,7 +26,8 @@ class ForwardedContentBody extends StatelessWidget {
             builder: (context, state) {
               if (state is GetAllUsersSuccess) {
                 return CustomMultiSelectDropDown(
-                  selectedValue: state.users[0].fullName,
+                  selectedValue: null,
+                  hintText: 'Select Forward to',
                   items: state.users.map((user) => user.fullName!).toList(),
                   onChanged: (value) {
                     List<String> usersId = [];
