@@ -20,12 +20,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onTap,
       style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(color),
-          // minimumSize: WidgetStatePropertyAll(
-          //   Size(
-          //     MediaQuery.of(context).size.width * 1,
-          //     50,
-          //   ),
-          // ),
+          minimumSize: const WidgetStatePropertyAll(Size.fromHeight(50)),
           shape: WidgetStatePropertyAll(ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(14)))),
       child: Text(
