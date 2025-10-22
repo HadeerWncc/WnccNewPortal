@@ -19,10 +19,14 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onTap,
       style: ButtonStyle(
-          backgroundColor: WidgetStatePropertyAll(color),
-          minimumSize: const WidgetStatePropertyAll(Size.fromHeight(50)),
-          shape: WidgetStatePropertyAll(ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(14)))),
+        backgroundColor: WidgetStatePropertyAll(color),
+        minimumSize: const WidgetStatePropertyAll(Size.fromHeight(50)),
+        shape: WidgetStatePropertyAll(
+          ContinuousRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+        ),
+      ),
       child: Text(
         contant,
         style: TextStyle(
