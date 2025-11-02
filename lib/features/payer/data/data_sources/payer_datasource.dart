@@ -18,9 +18,12 @@ abstract class PayerDatasource {
   Future<DateDetailsModel> getDateDetails(String id, String date, int mode);
   Future<DailyDetailsModel> getDailyDetails(String id, String date);
   Future<List<ComplainModel>> getPayerComplains(
-      String id, String date, int mode);
+    String id,
+    String date,
+    int mode,
+  );
   Future<PayerTarget> getPayerTarget(String id, String date);
-  Future<List<Request>> getPayerRequest(String id, String date, int mode);
+  Future<List<Request>> getPayerRequests(String id, String date, int mode);
   Future<List<PendingOrder>> getPayerPendingOrders(String id);
   //Post
   Future<bool> addPayer(AddPayerEntity addPayerEntity);
@@ -31,7 +34,6 @@ abstract class PayerDatasource {
   Future<bool> updateTarget(UpdateTargetEntity updateTargetEntity);
   Future<bool> togglePayerActivation(String id, String activation);
   Future<bool> togglePricing(String id);
-
 }
 
 class PayerDatasourceImpl extends PayerDatasource {
@@ -113,7 +115,7 @@ class PayerDatasourceImpl extends PayerDatasource {
   }
 
   @override
-  Future<List<Request>> getPayerRequest(
+  Future<List<Request>> getPayerRequests(
       String id, String date, int mode) async {
     var result = await apiService.get(
       endPoint: 'api/Payers/GetPayerRequests?id=$id&mode=$mode&date=$date',
@@ -152,28 +154,29 @@ class PayerDatasourceImpl extends PayerDatasource {
     bool success = result["successed"] as bool;
     return success;
   }
-  
+
   @override
-  Future<bool> togglePayerActivation(String id, String activation) async{
+  Future<bool> togglePayerActivation(String id, String activation) async {
     var result = await apiService.put(
-      endPoint: 'api/Payers/TogglePayerActivation?id=$id&activation=$activation',
+      endPoint:
+          'api/Payers/TogglePayerActivation?id=$id&activation=$activation',
     );
     bool success = result["successed"] as bool;
     return success;
   }
-  
+
   @override
-  Future<bool> togglePricing(String id) async{
-     var result = await apiService.put(
+  Future<bool> togglePricing(String id) async {
+    var result = await apiService.put(
       endPoint: 'api/Payers/TogglePricing?id=$id',
     );
     bool success = result["successed"] as bool;
     return success;
   }
-  
+
   @override
-  Future<bool> addPayer(AddPayerEntity addPayerEntity) async{
-     var result = await apiService.post(
+  Future<bool> addPayer(AddPayerEntity addPayerEntity) async {
+    var result = await apiService.post(
       endPoint: 'api/Payers/Create',
       data: addPayerEntity.toJson(),
     );
