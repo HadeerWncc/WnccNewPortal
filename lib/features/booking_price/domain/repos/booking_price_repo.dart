@@ -5,7 +5,6 @@ import 'package:wncc_portal/features/booking_price/data/models/price_display/pri
 import 'package:wncc_portal/features/booking_price/data/models/price_line_chart/price_line_chart.dart';
 
 abstract class BookingPriceRepo {
-
   Future<Either<Failure, BookingPrice>> getAllMonthlyPrice(
     int productType,
     String date,

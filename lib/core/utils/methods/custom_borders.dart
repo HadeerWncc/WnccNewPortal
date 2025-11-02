@@ -35,5 +35,5 @@ OutlineInputBorder changePassowrdInputBorder() {
   );
 }
 
-
-BorderSide tableBorderSide() => const BorderSide(color: Color.fromARGB(255, 215, 215, 215));
+BorderSide tableBorderSide() =>
+    const BorderSide(color: Color.fromARGB(255, 215, 215, 215));

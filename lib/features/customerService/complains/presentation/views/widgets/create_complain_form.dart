@@ -52,7 +52,6 @@ class CreateComplainForm extends StatelessWidget {
           const SizedBox(height: 15),
           CustomDropDownInput(
             selectedValue: null,
-            
             items: const [
               'Accounting/Fax',
               'Call Center',

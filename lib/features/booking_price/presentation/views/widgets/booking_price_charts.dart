@@ -12,9 +12,9 @@ class BookingPriceCharts extends StatelessWidget {
       children: [
         ItemChart(),
         SizedBox(height: 10),
-         ItemChart(),
+        ItemChart(),
         SizedBox(height: 10),
-         ItemChart(),
+        ItemChart(),
       ],
     );
   }

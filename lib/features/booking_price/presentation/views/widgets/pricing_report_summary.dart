@@ -8,7 +8,7 @@ class PricingReportSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double widthRatio = .5; 
+    double widthRatio = .5;
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

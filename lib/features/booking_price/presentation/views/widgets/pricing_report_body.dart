@@ -7,9 +7,7 @@ class PricingReportBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const [
-         PricingReportMainData()
-      ],
+      children: const [PricingReportMainData()],
     );
   }
 }

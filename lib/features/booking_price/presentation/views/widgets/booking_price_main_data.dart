@@ -13,7 +13,6 @@ class BookingPriceMainData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,10 +39,6 @@ class BookingPriceMainData extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 // class PriceData {
 //   PriceData(this.date, this.pickup, this.delivery);

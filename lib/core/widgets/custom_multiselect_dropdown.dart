@@ -9,7 +9,8 @@ class CustomMultiSelectDropDown extends StatefulWidget {
     required this.items,
     required this.onChanged,
     required this.title,
-    this.width, this.hintText,
+    this.width,
+    this.hintText,
   });
 
   final String? selectedValue;
@@ -46,15 +47,15 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
         children: [
           DropdownButtonFormField<String>(
             hint: widget.hintText != null
-            ? Text(
-                widget.hintText!,
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey,
-                  fontStyle: FontStyle.italic,
-                ),
-              )
-            : null,
+                ? Text(
+                    widget.hintText!,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  )
+                : null,
             style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
             decoration: InputDecoration(
@@ -120,7 +121,6 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
             ),
             child: Row(
               children: [
-                
                 Expanded(
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,

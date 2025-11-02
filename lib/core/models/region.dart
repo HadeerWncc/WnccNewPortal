@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-
 class Region extends Equatable {
   final String? area;
   final List<Region>? regions;

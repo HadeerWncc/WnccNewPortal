@@ -29,7 +29,6 @@ class RowsPricesTable extends StatelessWidget {
       child: SfDataGrid(
         frozenColumnsCount: 1,
         source: FirstTableDataSource(periods: periods),
-        
         gridLinesVisibility: GridLinesVisibility.both,
         headerGridLinesVisibility: GridLinesVisibility.both,
         headerRowHeight: 35,

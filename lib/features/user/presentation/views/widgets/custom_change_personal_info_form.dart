@@ -78,10 +78,9 @@ class _CustomChangePersonalInfoFormState
           builder: (context, state) {
             if (state is GetCitiesSuccess) {
               return CustomDropDownInput(
-                selectedValue: state.cities.contains(selectedCity)
-                    ? selectedCity
-                    : null,
-                    hintText: 'Select City',
+                selectedValue:
+                    state.cities.contains(selectedCity) ? selectedCity : null,
+                hintText: 'Select City',
                 items: state.cities,
                 title: 'City',
                 onChanged: (value) {

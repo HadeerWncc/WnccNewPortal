@@ -26,7 +26,7 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-   bool _obscureText = false;
+  bool _obscureText = false;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -41,27 +41,27 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       keyboardType: widget.keyboardType,
       controller: widget.textController,
       onChanged: widget.onCanged,
-      obscureText: widget.secure==false ? widget.secure : !_obscureText,
-      
+      obscureText: widget.secure == false ? widget.secure : !_obscureText,
       cursorColor: const Color(0xff979797),
       decoration: InputDecoration(
-        suffixIcon: widget.secure == true ?IconButton(
-          icon: Icon(
-            _obscureText ? Icons.visibility : Icons.visibility_off,
-          ),
-          onPressed: () {
-            setState(() {
-              _obscureText = !_obscureText; // Toggle visibility
-            });
-          },
-        ): null,
+        suffixIcon: widget.secure == true
+            ? IconButton(
+                icon: Icon(
+                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText; // Toggle visibility
+                  });
+                },
+              )
+            : null,
         hintText: widget.hintText,
         hintStyle: const TextStyle(
             color: kHintColor, fontSize: 14, fontWeight: FontWeight.bold),
         border: inputBorder(),
         enabledBorder: inputBorder(),
         focusedBorder: inputBorder(),
-        
       ),
     );
   }

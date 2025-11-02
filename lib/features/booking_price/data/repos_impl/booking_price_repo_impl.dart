@@ -7,11 +7,11 @@ import 'package:wncc_portal/features/booking_price/data/models/price_display/pri
 import 'package:wncc_portal/features/booking_price/data/models/price_line_chart/price_line_chart.dart';
 import 'package:wncc_portal/features/booking_price/domain/repos/booking_price_repo.dart';
 
-class BookingPriceRepoImpl extends BookingPriceRepo{
+class BookingPriceRepoImpl extends BookingPriceRepo {
   final BookingPriceDatasourse bookingPriceDatasourse;
 
   BookingPriceRepoImpl({required this.bookingPriceDatasourse});
-  
+
   @override
   Future<Either<Failure, String>> distributePrices(PriceDisplay price) async {
     try {
@@ -26,9 +26,11 @@ class BookingPriceRepoImpl extends BookingPriceRepo{
   }
 
   @override
-  Future<Either<Failure, BookingPrice>> getAllMonthlyPrice(int productType, String date) async {
+  Future<Either<Failure, BookingPrice>> getAllMonthlyPrice(
+      int productType, String date) async {
     try {
-      BookingPrice bookingPrice = await bookingPriceDatasourse.getAllMonthlyPrice(productType, date);
+      BookingPrice bookingPrice =
+          await bookingPriceDatasourse.getAllMonthlyPrice(productType, date);
       return Right(bookingPrice);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -41,7 +43,8 @@ class BookingPriceRepoImpl extends BookingPriceRepo{
   @override
   Future<Either<Failure, PriceLineChart>> getLineChart(int productType) async {
     try {
-      PriceLineChart bookingPriceChart = await bookingPriceDatasourse.getLineChart(productType);
+      PriceLineChart bookingPriceChart =
+          await bookingPriceDatasourse.getLineChart(productType);
       return Right(bookingPriceChart);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -52,9 +55,11 @@ class BookingPriceRepoImpl extends BookingPriceRepo{
   }
 
   @override
-  Future<Either<Failure, PriceDisplay>> getPriceing(int productType, String date) async {
-      try {
-      PriceDisplay pricing = await bookingPriceDatasourse.getPricing(productType, date);
+  Future<Either<Failure, PriceDisplay>> getPriceing(
+      int productType, String date) async {
+    try {
+      PriceDisplay pricing =
+          await bookingPriceDatasourse.getPricing(productType, date);
       return Right(pricing);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -63,5 +68,4 @@ class BookingPriceRepoImpl extends BookingPriceRepo{
       return Left(ServerFailure(msg: e.toString()));
     }
   }
-
 }
