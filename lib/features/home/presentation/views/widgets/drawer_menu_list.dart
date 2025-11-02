@@ -65,8 +65,11 @@ class DrawerMenuList extends StatelessWidget {
               },
             ),
             CustomMenuItem(
-              title: 'number 3',
-              onTap: () {},
+              title: 'Payer',
+              active: activeTab == 'Payer',
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.complains);
+              },
             ),
           ],
         ),

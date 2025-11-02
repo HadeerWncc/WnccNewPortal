@@ -7,6 +7,7 @@ import 'package:wncc_portal/features/customerService/complains/presentation/view
 import 'package:wncc_portal/features/customerService/complains/presentation/views/pages/complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/create_complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_page.dart';
+import 'package:wncc_portal/features/payer/presentation/views/pages/payer_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
@@ -54,6 +55,7 @@ abstract class AppRouter {
   static const complainDetailsPage = '/complainDetailsPage';
   static const bookingPrice = '/bookingPrice';
   static const pricingReport = '/pricingReport';
+  static const payer = '/payer';
 
   static final router = GoRouter(
     routes: [
@@ -186,6 +188,10 @@ abstract class AppRouter {
             user: data['user'] as UserModel,
           );
         },
+      ),
+       GoRoute(
+        path: payer,
+        builder: (context, state) => const PayerPage(),
       ),
     ],
   );
