@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/constants/icons.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
@@ -67,20 +68,20 @@ class CustomSubmitPriorityButtons extends StatelessWidget {
           builder: (context, state) {
             if (state is DispatchDeliveryOrderLoading) {
               return const CustomButtonWithIcon(
-                textColor: Color.fromARGB(255, 108, 165, 230),
-                bgColor: Color(0xffEFF6FE),
+                textColor: kMainColor,
+                bgColor: Color.fromARGB(255, 239, 254, 245),
                 child: "Loading...",
                 icon: loadingIcon,
-                onHoverColor: Color.fromARGB(255, 182, 208, 236),
+                onHoverColor: Color.fromARGB(255, 182, 236, 212),
                 onTap: null,
               );
             }
             return CustomButtonWithIcon(
-              textColor: const Color.fromARGB(255, 108, 165, 230),
-              bgColor: const Color(0xffEFF6FE),
+              textColor: kMainColor,
+              bgColor: const Color.fromARGB(255, 239, 254, 245),
               child: "Dispatch Selected",
               icon: Symbols.done_all,
-              onHoverColor: const Color.fromARGB(255, 182, 208, 236),
+              onHoverColor: const Color.fromARGB(255, 182, 236, 212),
               onTap: () async {
                 if (selectedOrders.where((i) => i.agentName == "").isNotEmpty) {
                   DispatchDeliveryEntity orderWithoutAgent =

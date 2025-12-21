@@ -3,5 +3,6 @@ class UpdateTargetEntity {
   final int bags;
   final int bulk;
 
-  UpdateTargetEntity({required this.payerId, required this.bags, required this.bulk});
+  UpdateTargetEntity(
+      {required this.payerId, required this.bags, required this.bulk});
 }

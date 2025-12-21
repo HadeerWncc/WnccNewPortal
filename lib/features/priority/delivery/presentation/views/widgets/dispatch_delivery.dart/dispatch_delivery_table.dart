@@ -2,7 +2,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
-import 'package:wncc_portal/features/priority/delivery/data/models/dispatched_delivery_order.dart';
+import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/custom_dispatch_delivery_actions.dart';
@@ -14,7 +14,7 @@ class DispatchDeliveryTable extends StatefulWidget {
       required this.onSelectOrders,
       required this.dispatchedOrders});
   final Function(List<String> ordersId) onSelectOrders;
-  final List<DispatchedDeliveryOrder> dispatchedOrders;
+  final List<OrderResponse> dispatchedOrders;
 
   @override
   State<DispatchDeliveryTable> createState() => _DispatchDeliveryTableState();
@@ -88,12 +88,12 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                   ),
                 ),
                 DataCell(CustomDataCellWidget(
-                  title: item.productName ?? "",
-                  subTitle: "category: ${item.productCategory}",
+                  title: item.product?.name ?? "",
+                  subTitle: "category: ${item.product?.category}",
                 )),
                 DataCell(CustomDataCellWidget(
-                    title: item.payerName ?? "",
-                    subTitle: "Code: ${item.payerId}")),
+                    title: item.payer?.fullName ?? "",
+                    subTitle: "Code: ${item.payer?.id}")),
                 DataCell(CustomDataCellWidget(
                     title: item.podName ?? "",
                     subTitle: "Phone: ${item.podPhone}")),
@@ -101,7 +101,7 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                     title: item.podCity ?? "",
                     subTitle: "address: ${item.podAddress}")),
                 DataCell(CustomDataCellWidget(
-                    title: item.salesName, subTitle: "Code: ${item.salesId}")),
+                    title: item.sales?.fullName??"", subTitle: "Code: ${item.sales?.id}")),
                 DataCell(CustomDataCellWidget(
                     title: item.quantity.toString(),
                     subTitle: "Price: ${item.price}")),

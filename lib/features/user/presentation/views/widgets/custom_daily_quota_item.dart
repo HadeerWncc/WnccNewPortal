@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
 
 class CustomDailyQuotaItem extends StatelessWidget {
   const CustomDailyQuotaItem({
@@ -31,7 +32,7 @@ class CustomDailyQuotaItem extends StatelessWidget {
               children: [
                 Icon(
                   icon,
-                  color: const Color(0xff1C84FD),
+                  color: kMainColor,
                   weight: 900,
                 ),
                 const SizedBox(width: 5),

@@ -86,7 +86,7 @@ class _DispatchPickupSectionState extends State<DispatchPickupSection> {
                     setState(() {});
                   },
                   orders: state.dispatchPickupOrders
-                      .where((order) => order.productCategory == "Bags")
+                      .where((order) => order.product?.category == "Bags")
                       .toList(),
                 )
               else // Show bulk orders
@@ -96,7 +96,7 @@ class _DispatchPickupSectionState extends State<DispatchPickupSection> {
                     setState(() {});
                   },
                   orders: state.dispatchPickupOrders
-                      .where((order) => order.productCategory == "Bulk")
+                      .where((order) => order.product?.category == "Bulk")
                       .toList(),
                 ),
             ],

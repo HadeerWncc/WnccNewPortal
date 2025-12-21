@@ -1,7 +1,7 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:wncc_portal/features/priority/comm/models/pending_order.dart';
+import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/pending_delivey.dart/custom_pending_delivery_actions.dart';
@@ -11,7 +11,7 @@ class PendingDeliveryTable extends StatefulWidget {
   const PendingDeliveryTable(
       {super.key, required this.onSelectOrders, required this.pendingOrders});
   final Function(List<String> ordersId) onSelectOrders;
-  final List<PendingOrder> pendingOrders;
+  final List<OrderResponse> pendingOrders;
 
   @override
   State<PendingDeliveryTable> createState() => _PendingDeliveryTableState();
@@ -36,8 +36,12 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
           border: const TableBorder.symmetric(
               outside: BorderSide(color: Color.fromARGB(255, 195, 193, 193))),
           headingRowColor: WidgetStateProperty.all(
-            const Color(0xffF9FAFC),
+            const Color.fromARGB(255, 235, 234, 234),
           ),
+          // headingTextStyle: const TextStyle(
+          //   color: Colors.white,
+          //   fontWeight: FontWeight.bold,
+          // ),
           columns: const [
             DataColumn(label: DataColumnText(text: 'Select')),
             DataColumn(label: DataColumnText(text: 'OrderNo')),
@@ -83,10 +87,10 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
                   ),
                 ),
                 DataCell(CustomDataCellWidget(
-                    title: item.productName ?? "", subTitle: "category: Bags")),
+                    title: item.product?.name ?? "", subTitle: "category: ${item.product?.category}")),
                 DataCell(CustomDataCellWidget(
-                    title: item.payerName ?? "",
-                    subTitle: "Code: ${item.payerId}")),
+                    title: item.payer?.fullName ?? "",
+                    subTitle: "Code: ${item.payer?.id}")),
                 DataCell(CustomDataCellWidget(
                     title: item.podName ?? "",
                     subTitle: "Phone: ${item.podPhone}")),
@@ -94,8 +98,8 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
                     title: item.podCity ?? "",
                     subTitle: "address: ${item.podAddress}")),
                 DataCell(CustomDataCellWidget(
-                    title: item.salesName ?? "",
-                    subTitle: "Code: ${item.salesId}")),
+                    title: item.sales?.fullName ?? "",
+                    subTitle: "Code: ${item.sales?.id}")),
                 DataCell(CustomDataCellWidget(
                     title: item.quantity.toString(),
                     subTitle: "Price: ${item.price}")),

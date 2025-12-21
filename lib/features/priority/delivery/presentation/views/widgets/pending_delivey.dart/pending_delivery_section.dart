@@ -75,7 +75,7 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
                     setState(() {});
                   },
                   pendingOrders: state.pendingOrders
-                      .where((p) => p.productCategory == 'Bags')
+                      .where((p) => p.product?.category == 'Bags')
                       .toList(),
                 )
               else // Show bulk orders
@@ -85,7 +85,7 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
                     setState(() {});
                   },
                   pendingOrders: state.pendingOrders
-                      .where((p) => p.productCategory == 'Bulk')
+                      .where((p) => p.product?.category == 'Bulk')
                       .toList(),
                 )
             ],

@@ -11,7 +11,7 @@ class AddPickupPriorityCubit extends Cubit<AddPickupPriorityState> {
 
   Future<void> addPickupPriority(List<String> orderIds) async {
     emit(AddPickupPriorityLoading());
-    final result = await pickupRepo.addPickupPriority(orderIds);
+    final result = await pickupRepo.priorityPickupOrder(orderIds);
     result.fold(
       (failure) => emit(AddPickupPriorityFailure(error: failure.msg)),
       (success) => emit(

@@ -46,8 +46,9 @@ abstract class PayerRepo {
 
   //Put
   //Update Payer  ???
-  Future<Either<Failure, bool>> updateTarget(UpdateTargetEntity updateTargetEntity);
-  Future<Either<Failure, bool>> togglePayerActivation(String id, String activation);
+  Future<Either<Failure, bool>> updateTarget(
+      UpdateTargetEntity updateTargetEntity);
+  Future<Either<Failure, bool>> togglePayerActivation(
+      String id, String activation);
   Future<Either<Failure, bool>> togglePricing(String id);
-
 }

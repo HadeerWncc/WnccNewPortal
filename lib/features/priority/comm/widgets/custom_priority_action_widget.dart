@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
 
 class CustomPriorityActionsWidget extends StatelessWidget {
   const CustomPriorityActionsWidget({super.key, required this.itemBuilder});
@@ -9,7 +10,7 @@ class CustomPriorityActionsWidget extends StatelessWidget {
     return PopupMenuButton<String>(
       icon: const Icon(
         Symbols.window,
-        color: Colors.blue,
+        color: kMainColor,
         weight: 900,
       ),
       position: PopupMenuPosition.under,

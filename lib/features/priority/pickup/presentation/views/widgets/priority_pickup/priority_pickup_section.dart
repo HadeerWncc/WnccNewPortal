@@ -81,7 +81,7 @@ class _PriorityPickupSectionState extends State<PriorityPickupSection> {
                     setState(() {});
                   },
                   orders: state.priorityPickupOrders
-                      .where((order) => order.productCategory == "Bags")
+                      .where((order) => order.product?.category == "Bags")
                       .toList(),
                 )
               else // Show bulk orders
@@ -91,7 +91,7 @@ class _PriorityPickupSectionState extends State<PriorityPickupSection> {
                     setState(() {});
                   },
                   orders: state.priorityPickupOrders
-                      .where((order) => order.productCategory == "Bulk")
+                      .where((order) => order.product?.category == "Bulk")
                       .toList(),
                 )
             ],

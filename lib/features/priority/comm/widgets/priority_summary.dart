@@ -38,7 +38,7 @@ class PrioritySummary extends StatelessWidget {
             ),
           ),
           CustomDailyQuotaItem(
-            landingtitle: 'Waiting',
+            landingtitle: 'Undispatched',
             widthRatio: 0.25,
             icon: Symbols.hourglass_empty,
             child: CustomQuantityComparing(

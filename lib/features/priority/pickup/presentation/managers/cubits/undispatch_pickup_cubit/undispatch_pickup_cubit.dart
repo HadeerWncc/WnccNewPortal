@@ -9,15 +9,15 @@ class UndispatchPickupCubit extends Cubit<UndispatchPickupState> {
 
   final PickupRepo pickupRepo;
 
-  Future<void> undispatchPickupOrders(List<String> orderIds) async {
-    emit(UndispatchPickupLoading());
-    final result = await pickupRepo.undispatchPickupOrders(orderIds);
-    result.fold(
-      (failure) => emit(UndispatchPickupFailure(error: failure.msg)),
-      (success) => emit(
-        const UndispatchPickupSuccess(
-            message: 'Pickup orders undispatched successfully'),
-      ),
-    );
-  }
+  // Future<void> undispatchPickupOrders(List<String> orderIds) async {
+  //   emit(UndispatchPickupLoading());
+  //   final result = await pickupRepo.undispatchPickupOrders(orderIds);
+  //   result.fold(
+  //     (failure) => emit(UndispatchPickupFailure(error: failure.msg)),
+  //     (success) => emit(
+  //       const UndispatchPickupSuccess(
+  //           message: 'Pickup orders undispatched successfully'),
+  //     ),
+  //   );
+  // }
 }

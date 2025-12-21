@@ -68,7 +68,7 @@ class DrawerMenuList extends StatelessWidget {
               title: 'Payer',
               active: activeTab == 'Payer',
               onTap: () {
-                GoRouter.of(context).push(AppRouter.complains);
+                GoRouter.of(context).push(AppRouter.payer);
               },
             ),
           ],

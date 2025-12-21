@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_priority_action_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/add_delivery_priority_cubit/add_delivery_priority_cubit.dart';
@@ -23,7 +24,7 @@ class CustomPendingDeliveryActions extends StatelessWidget {
               children: [
                 Icon(
                   Symbols.task_alt,
-                  color: Colors.black,
+                  color: kMainColor,
                   size: 20,
                 ),
                 SizedBox(width: 5),
@@ -49,7 +50,7 @@ class CustomPendingDeliveryActions extends StatelessWidget {
               children: [
                 Icon(
                   Symbols.task_alt,
-                  color: Colors.black,
+                  color: kMainColor,
                   size: 20,
                 ),
                 SizedBox(width: 5),

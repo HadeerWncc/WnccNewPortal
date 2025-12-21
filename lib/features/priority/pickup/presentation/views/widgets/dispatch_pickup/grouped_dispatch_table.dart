@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
-import 'package:wncc_portal/features/priority/pickup/data/models/dispatch_pickup_order.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/dispatch_pickup/custom_dispatch_pickup_actions.dart';
 
 class GroupedDispatchTable extends StatefulWidget {
-  final List<DispatchPickupOrder> orders;
+  final List<OrderResponse> orders;
   final Function(List<String> ordersId) onSelectOrders;
 
   const GroupedDispatchTable(
@@ -22,9 +22,9 @@ class _GroupedDispatchTableState extends State<GroupedDispatchTable> {
   List<String> orders = [];
   @override
   Widget build(BuildContext context) {
-    Map<String, List<DispatchPickupOrder>> grouped = {};
+    Map<String, List<OrderResponse>> grouped = {};
     for (var order in widget.orders) {
-      grouped.putIfAbsent(order.payerName ?? "", () => []).add(order);
+      grouped.putIfAbsent(order.payer?.fullName ?? "", () => []).add(order);
     }
 
     return SingleChildScrollView(
@@ -138,7 +138,7 @@ class _GroupedDispatchTableState extends State<GroupedDispatchTable> {
     );
   }
 
-  Widget _buildDataRow(DispatchPickupOrder order, Color color) {
+  Widget _buildDataRow(OrderResponse order, Color color) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
       decoration: BoxDecoration(
@@ -165,8 +165,8 @@ class _GroupedDispatchTableState extends State<GroupedDispatchTable> {
           ),
           Expanded(
             child: CustomDataCellWidget(
-              title: order.productName ?? "",
-              subTitle: "product: ${order.productName}",
+              title: order.product?.name ?? "",
+              subTitle: "product: ${order.product?.category ?? ""}",
             ),
           ),
           Expanded(

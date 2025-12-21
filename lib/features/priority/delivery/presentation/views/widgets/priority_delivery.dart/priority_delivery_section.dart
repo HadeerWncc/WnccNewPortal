@@ -76,7 +76,7 @@ class _PriorityDeliverySectionState extends State<PriorityDeliverySection> {
                     setState(() {});
                   },
                   priorityOrders: state.priorityOrders
-                      .where((p) => p.productCategory == 'Bags')
+                      .where((p) => p.product?.category == 'Bags')
                       .toList(),
                 )
               else // Show bulk orders
@@ -86,7 +86,7 @@ class _PriorityDeliverySectionState extends State<PriorityDeliverySection> {
                     setState(() {});
                   },
                   priorityOrders: state.priorityOrders
-                      .where((p) => p.productCategory == 'Bulk')
+                      .where((p) => p.product?.category == 'Bulk')
                       .toList(),
                 )
             ],

@@ -12,7 +12,7 @@ class DeletePickupPriorityCubit extends Cubit<DeletePickupPriorityState> {
 
   Future<void> deletePickupPriority(List<String> orderIds) async {
     emit(DeletePickupPriorityLoading());
-    final result = await pickupRepo.deletepickupPriority(orderIds);
+    final result = await pickupRepo.pindingPickupOrder(orderIds);
     result.fold(
       (failure) => emit(DeletePickupPriorityFailure(error: failure.msg)),
       (success) => emit(

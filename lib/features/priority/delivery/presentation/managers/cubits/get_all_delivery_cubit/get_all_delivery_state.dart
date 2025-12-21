@@ -18,19 +18,19 @@ final class GetAllDeliveryFailure extends GetAllDeliveryState {
 }
 
 final class GetAllPendingDeliverySuccess extends GetAllDeliveryState {
-  final List<PendingOrder> pendingOrders;
+  final List<OrderResponse> pendingOrders;
 
   const GetAllPendingDeliverySuccess({required this.pendingOrders});
 }
 
 final class GetAllPriorityDeliverySuccess extends GetAllDeliveryState {
-  final List<PriorityDeliveryOrder> priorityOrders;
+  final List<OrderResponse> priorityOrders;
 
   const GetAllPriorityDeliverySuccess({required this.priorityOrders});
 }
 
 final class GetAllDispatchDeliverySuccess extends GetAllDeliveryState {
-  final List<DispatchedDeliveryOrder> dispatchedOrders;
+  final List<OrderResponse> dispatchedOrders;
 
   const GetAllDispatchDeliverySuccess({required this.dispatchedOrders});
 }

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
-import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_order.dart';
+import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
@@ -17,7 +17,7 @@ class PriorityDeliveryTable extends StatefulWidget {
   const PriorityDeliveryTable(
       {super.key, required this.onSelectOrders, required this.priorityOrders});
   final Function(List<DispatchDeliveryEntity> selectedOrders) onSelectOrders;
-  final List<PriorityDeliveryOrder> priorityOrders;
+  final List<OrderResponse> priorityOrders;
 
   @override
   State<PriorityDeliveryTable> createState() => _PriorityDeliveryTableState();
@@ -113,11 +113,11 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                   ),
                 ),
                 DataCell(CustomDataCellWidget(
-                    title: item.productName ?? "",
-                    subTitle: "category: ${item.productCategory}")),
+                    title: item.product?.name ?? "",
+                    subTitle: "category: ${item.product?.category}")),
                 DataCell(CustomDataCellWidget(
-                    title: item.payerName ?? "",
-                    subTitle: "Code: ${item.payerId}")),
+                    title: item.payer?.fullName ?? "",
+                    subTitle: "Code: ${item.payer?.id}")),
                 DataCell(CustomDataCellWidget(
                     title: item.podName ?? "",
                     subTitle: "Phone: ${item.podPhone}")),
@@ -125,13 +125,14 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                     title: item.podCity ?? "",
                     subTitle: "address: ${item.podAddress}")),
                 DataCell(CustomDataCellWidget(
-                    title: item.salesName ?? "",
-                    subTitle: "Code: ${item.salesId}")),
+                    title: item.sales?.fullName ?? "",
+                    subTitle: "Code: ${item.sales?.id}")),
                 DataCell(CustomDataCellWidget(
                     title: item.quantity.toString(),
                     subTitle: "Price: ${item.price}")),
                 DataCell(CustomDataCellWidget(
-                    title: DateFormat('MMM d, y')
+                    title:
+                     DateFormat('MMM d, y')
                         .format(item.priorityDate ?? DateTime.now()),
                     subTitle: "Time: 12:00 PM")),
                 DataCell(Center(child: Text(item.truckNo.toString()))),

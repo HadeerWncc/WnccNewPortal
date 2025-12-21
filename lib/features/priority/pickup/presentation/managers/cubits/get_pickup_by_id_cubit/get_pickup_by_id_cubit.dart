@@ -12,33 +12,33 @@ class GetPickupByIdCubit extends Cubit<GetPickupByIdState> {
 
   final PickupRepo pickupRepo;
 
-  Future<void> getPendingPickupById(String orderId) async {
-    emit(GetPickupByIdLoading());
-    final result = await pickupRepo.getPendingPickupOrdersById(orderId);
-    result.fold(
-      (failure) => emit(GetPickupByIdFailure(error: failure.msg)),
-      (pendingOrder) =>
-          emit(GetPendingPickupByIdSuccess(pendingOrder: pendingOrder)),
-    );
-  }
+  // Future<void> getPendingPickupById(String orderId) async {
+  //   emit(GetPickupByIdLoading());
+  //   final result = await pickupRepo.getPendingPickupOrdersById(orderId);
+  //   result.fold(
+  //     (failure) => emit(GetPickupByIdFailure(error: failure.msg)),
+  //     (pendingOrder) =>
+  //         emit(GetPendingPickupByIdSuccess(pendingOrder: pendingOrder)),
+  //   );
+  // }
 
-  Future<void> getPriorityPickupById(String orderId) async {
-    emit(GetPickupByIdLoading());
-    final result = await pickupRepo.getPriorityPickupById(orderId);
-    result.fold(
-      (failure) => emit(GetPickupByIdFailure(error: failure.msg)),
-      (priorityPickupOrder) => emit(GetPriorityPickupByIdSuccess(
-          priorityPickupOrder: priorityPickupOrder)),
-    );
-  }
+  // Future<void> getPriorityPickupById(String orderId) async {
+  //   emit(GetPickupByIdLoading());
+  //   final result = await pickupRepo.getPriorityPickupById(orderId);
+  //   result.fold(
+  //     (failure) => emit(GetPickupByIdFailure(error: failure.msg)),
+  //     (priorityPickupOrder) => emit(GetPriorityPickupByIdSuccess(
+  //         priorityPickupOrder: priorityPickupOrder)),
+  //   );
+  // }
 
-  Future<void> getDispatchPickupById(String orderId) async {
-    emit(GetPickupByIdLoading());
-    final result = await pickupRepo.getDispatchPickupById(orderId);
-    result.fold(
-      (failure) => emit(GetPickupByIdFailure(error: failure.msg)),
-      (dispatchPickupOrder) => emit(GetDispatchPickupByIdSuccess(
-          dispatchPickupOrder: dispatchPickupOrder)),
-    );
-  }
+  // Future<void> getDispatchPickupById(String orderId) async {
+  //   emit(GetPickupByIdLoading());
+  //   final result = await pickupRepo.getDispatchPickupById(orderId);
+  //   result.fold(
+  //     (failure) => emit(GetPickupByIdFailure(error: failure.msg)),
+  //     (dispatchPickupOrder) => emit(GetDispatchPickupByIdSuccess(
+  //         dispatchPickupOrder: dispatchPickupOrder)),
+  //   );
+  // }
 }

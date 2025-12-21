@@ -189,7 +189,7 @@ abstract class AppRouter {
           );
         },
       ),
-       GoRoute(
+      GoRoute(
         path: payer,
         builder: (context, state) => const PayerPage(),
       ),

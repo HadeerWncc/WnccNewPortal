@@ -77,7 +77,7 @@ class _PendingPickupSectionState extends State<PendingPickupSection> {
                     setState(() {});
                   },
                   orders: state.pendingPickupOrders
-                      .where((order) => order.productCategory == "Bags")
+                      .where((order) => order.product?.category == "Bags")
                       .toList(),
                 )
               else //show bulk orders
@@ -87,7 +87,7 @@ class _PendingPickupSectionState extends State<PendingPickupSection> {
                     setState(() {});
                   },
                   orders: state.pendingPickupOrders
-                      .where((order) => order.productCategory == "Bulk")
+                      .where((order) => order.product?.category == "Bulk")
                       .toList(),
                 )
             ],

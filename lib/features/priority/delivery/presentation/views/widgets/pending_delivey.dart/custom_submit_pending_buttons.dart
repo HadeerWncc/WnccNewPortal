@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/add_delivery_priority_cubit/add_delivery_priority_cubit.dart';
@@ -36,11 +37,11 @@ class _CustomSubmitPendingButtonsState
                   }
                 },
                 child: CustomButtonWithIcon(
-                  textColor: const Color.fromARGB(255, 108, 165, 230),
-                  bgColor: const Color(0xffEFF6FE),
+                  textColor: kMainColor,
+                  bgColor: const Color.fromARGB(255, 239, 254, 246),
                   child: "Priority Selected",
                   icon: Symbols.done_all,
-                  onHoverColor: const Color.fromARGB(255, 182, 208, 236),
+                  onHoverColor: const Color.fromARGB(255, 182, 236, 207),
                   onTap: () {
                     actionType = "Priority Selected";
                     setState(() {});

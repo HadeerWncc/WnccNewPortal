@@ -1,22 +1,20 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
-import 'package:wncc_portal/features/priority/comm/models/pending_order.dart';
-import 'package:wncc_portal/features/priority/delivery/data/models/dispatched_delivery_order.dart';
-import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_order.dart';
+import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 
 abstract class DeliveryDataSource {
-  Future<List<PendingOrder>> getPendingDeliveryOrders();
-  Future<PendingOrder> getPendingDeliveryOrdersById(String id);
-  Future<List<PriorityDeliveryOrder>> getPriorityDeliveryOrders();
-  Future<PriorityDeliveryOrder> getPriorityDeliveryOrdersById(String id);
-  Future<List<DispatchedDeliveryOrder>> getDispatchDeliveryOrders();
-  Future<DispatchedDeliveryOrder> getDispatchDeliveryOrdersById(String id);
-  Future<List<DispatchedDeliveryOrder>> getDispatchDeliveryOrdersByDate(
+  Future<List<OrderResponse>> getPendingDeliveryOrders();
+  // Future<PendingOrder> getPendingDeliveryOrdersById(String id);
+  Future<List<OrderResponse>> getPriorityDeliveryOrders();
+  // Future<PriorityDeliveryOrder> getPriorityDeliveryOrdersById(String id);
+  // Future<List<DispatchedDeliveryOrder>> getDispatchDeliveryOrders(Order order);
+  // Future<DispatchedDeliveryOrder> getDispatchDeliveryOrdersById(String id);
+  Future<List<OrderResponse>> getDispatchDeliveryOrdersByDate(
       String date);
-  Future<bool> addDeliveryPriority(List<String> orderIds, bool asTruck);
-  Future<bool> deleteDeliveryPriority(List<String> orderIds);
+  Future<bool> makeDeliveryPriority(List<String> orderIds, bool asTruck);
+  Future<bool> makeDeliveryPending(List<String> orderIds);
   Future<bool> dispatchDeliveryOrders(List<DispatchDeliveryEntity> orders);
-  Future<bool> undispatchDeliveryOrders(List<String> orders);
+  // Future<bool> undispatchDeliveryOrders(List<String> orders);
   Future<List<String>> getDispatchAgents();
 }
 
@@ -26,50 +24,37 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
   DeliveryDataSourceImpl({required this.apiService});
 
   @override
-  Future<bool> addDeliveryPriority(List<String> orderIds, bool asTruck) async {
+  Future<bool> makeDeliveryPriority(List<String> orderIds, bool asTruck) async {
     var data = {
       "orders": orderIds,
       "asTruck": asTruck,
     };
     var result = await apiService.put(
-      endPoint: 'api/DeliveryPriorityOrders/MakeOrderPriorityFromPending',
+      endPoint: 'api/Orders/MakePriority',
       data: data,
     );
-    bool successed = result["data"] as bool;
+    bool successed = result["data"]["data"] as bool;
     return successed;
   }
 
   @override
-  Future<bool> deleteDeliveryPriority(List<String> orderIds) async {
+  Future<bool> makeDeliveryPending(List<String> orderIds) async {
     var result = await apiService.put(
-      endPoint: 'api/DeliveryPriorityOrders/MakeOrderPendingFromPriority',
+      endPoint: 'api/Orders/MakePending',
       data: {
         "orders": orderIds,
       },
     );
-    bool successed = result["data"] as bool;
+    bool successed = result["data"]["data"] as bool;
     return successed;
   }
-
-  // @override
-  // Future<bool> dispatchDeliveryOrders(
-  //     List<DispatchDeliveryEntity> orders) async {
-  //   var result = await apiService.put(
-  //     endPoint: 'api/DeliveryPriorityOrders/MakeOrderDispatchFromPriority',
-  //     data: {
-  //       "orders": orders.map((e) => e.toJson()).toList(),
-  //     },
-  //   );
-  //   bool successed = result["data"] as bool;
-  //   return successed;
-  // }
 
   @override
   Future<bool> dispatchDeliveryOrders(
     List<DispatchDeliveryEntity> orders,
   ) async {
     var result = await apiService.put(
-      endPoint: 'api/DeliveryPriorityOrders/MakeOrderDispatchFromPriority',
+      endPoint: 'api/Orders/MakeDispatch',
       data: {
         "orders": orders
             .map((o) => {
@@ -79,101 +64,82 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
             .toList(),
       },
     );
-    bool successed = result["data"] as bool;
+    bool successed = result["data"]["data"] as bool;
     return successed;
   }
 
-  @override
-  Future<List<DispatchedDeliveryOrder>> getDispatchDeliveryOrders() async {
-    var result =
-        await apiService.get(endPoint: 'api/DeliveryDispatchOrders/GetAll');
-    List<DispatchedDeliveryOrder> dispatchDeliveryOrders = [];
-    for (var order in result["data"]) {
-      dispatchDeliveryOrders.add(DispatchedDeliveryOrder.fromJson(order));
-    }
-    return dispatchDeliveryOrders;
-  }
+
 
   @override
-  Future<List<DispatchedDeliveryOrder>> getDispatchDeliveryOrdersByDate(
+  Future<List<OrderResponse>> getDispatchDeliveryOrdersByDate(
       String date) async {
     var result = await apiService.get(
-      endPoint: 'api/DeliveryDispatchOrders/GetAllByDate?date=$date',
-    );
-    List<DispatchedDeliveryOrder> dispatchDeliveryOrders = [];
-    for (var order in result["data"]) {
-      dispatchDeliveryOrders.add(DispatchedDeliveryOrder.fromJson(order));
+        endPoint:
+            'api/Orders/Search?FromDate=$date&ToDate=$date&Status=2&DispatchChannel=Delivery');
+    List<OrderResponse> dispatchDeliveryOrders = [];
+    for (var order in result["data"]["data"]) {
+      dispatchDeliveryOrders.add(OrderResponse.fromJson(order));
     }
     return dispatchDeliveryOrders;
   }
 
-  @override
-  Future<DispatchedDeliveryOrder> getDispatchDeliveryOrdersById(
-      String id) async {
-    var result = await apiService.get(
-      endPoint: 'api/DeliveryDispatchOrders/GetDispatchOrder?$id',
-    );
-    DispatchedDeliveryOrder dispatchDeliveryOrder =
-        DispatchedDeliveryOrder.fromJson(result["data"]);
-    return dispatchDeliveryOrder;
-  }
 
   @override
-  Future<List<PendingOrder>> getPendingDeliveryOrders() async {
+  Future<List<OrderResponse>> getPendingDeliveryOrders() async {
     var result = await apiService.get(
-      endPoint: 'api/DeliveryPendingOrders/GetAll',
-    );
-    List<PendingOrder> pendingOrders = [];
-    for (var order in result["data"]) {
-      pendingOrders.add(PendingOrder.fromJson(order));
+        endPoint:
+            'api/Orders/Search?Status=0&DispatchChannel=Delivery');
+    List<OrderResponse> pendingDeliveryOrders = [];
+    for (var order in result["data"]["data"]) {
+      pendingDeliveryOrders.add(OrderResponse.fromJson(order));
     }
-    return pendingOrders;
+    return pendingDeliveryOrders;
   }
 
-  @override
-  Future<PendingOrder> getPendingDeliveryOrdersById(String id) async {
-    var result = await apiService.get(
-      endPoint: 'api/DeliveryPendingOrders/GetPendingOrder?$id',
-    );
-    PendingOrder pendingOrder = PendingOrder.fromJson(result["data"]);
-    return pendingOrder;
-  }
+  // @override
+  // Future<PendingOrder> getPendingDeliveryOrdersById(String id) async {
+  //   var result = await apiService.get(
+  //     endPoint: 'api/DeliveryPendingOrders/GetPendingOrder?$id',
+  //   );
+  //   PendingOrder pendingOrder = PendingOrder.fromJson(result["data"]);
+  //   return pendingOrder;
+  // }
 
   @override
-  Future<List<PriorityDeliveryOrder>> getPriorityDeliveryOrders() async {
+  Future<List<OrderResponse>> getPriorityDeliveryOrders() async {
     var result = await apiService.get(
-      endPoint: 'api/DeliveryPriorityOrders/GetAll',
+      endPoint: 'api/Orders/Search?Status=1&DispatchChannel=Delivery',
     );
-    List<PriorityDeliveryOrder> priorityDeliveryOrders = [];
-    for (var order in result["data"]) {
-      priorityDeliveryOrders.add(PriorityDeliveryOrder.fromJson(order));
+    List<OrderResponse> priorityDeliveryOrders = [];
+    for (var order in result["data"]["data"]) {
+      priorityDeliveryOrders.add(OrderResponse.fromJson(order));
     }
     return priorityDeliveryOrders;
   }
 
-  @override
-  Future<PriorityDeliveryOrder> getPriorityDeliveryOrdersById(String id) async {
-    var result = await apiService.get(
-      endPoint: 'api/DeliveryPriorityOrders/GetPriorityOrder?$id',
-    );
-    PriorityDeliveryOrder priorityDeliveryOrder =
-        PriorityDeliveryOrder.fromJson(result["data"]);
-    return priorityDeliveryOrder;
-  }
+  // @override
+  // Future<PriorityDeliveryOrder> getPriorityDeliveryOrdersById(String id) async {
+  //   var result = await apiService.get(
+  //     endPoint: 'api/DeliveryPriorityOrders/GetPriorityOrder?$id',
+  //   );
+  //   PriorityDeliveryOrder priorityDeliveryOrder =
+  //       PriorityDeliveryOrder.fromJson(result["data"]);
+  //   return priorityDeliveryOrder;
+  // }
 
-  @override
-  Future<bool> undispatchDeliveryOrders(List<String> orders) async {
-    var data = {
-      "orders": orders,
-      "asTruck": false,
-    };
-    var result = await apiService.put(
-      endPoint: 'api/DeliveryPriorityOrders/MakeOrderPriorityFromDispatch',
-      data: data,
-    );
-    bool successed = result["data"] as bool;
-    return successed;
-  }
+  // @override
+  // Future<bool> undispatchDeliveryOrders(List<String> orders) async {
+  //   var data = {
+  //     "orders": orders,
+  //     "asTruck": false,
+  //   };
+  //   var result = await apiService.put(
+  //     endPoint: 'api/DeliveryPriorityOrders/MakeOrderPriorityFromDispatch',
+  //     data: data,
+  //   );
+  //   bool successed = result["data"] as bool;
+  //   return successed;
+  // }
 
   @override
   Future<List<String>> getDispatchAgents() async {

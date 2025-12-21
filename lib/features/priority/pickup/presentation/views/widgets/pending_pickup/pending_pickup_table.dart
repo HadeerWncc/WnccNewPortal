@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/priority/comm/models/pending_order.dart';
+import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/pending_pickup/grouped_pending_table.dart';
 
 class PendingPickupTable extends StatelessWidget {
   const PendingPickupTable(
       {super.key, required this.onSelectOrders, required this.orders});
   final Function(List<String> ordersId) onSelectOrders;
-  final List<PendingOrder> orders;
+  final List<OrderResponse> orders;
   @override
   Widget build(BuildContext context) {
     // List<String> orders = [];

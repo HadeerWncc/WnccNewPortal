@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_priority_action_widget.dart';
+import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubits/add_pickup_priority_cubit/add_pickup_priority_cubit.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubits/undispatch_pickup_cubit/undispatch_pickup_cubit.dart';
 
 class CustomDispatchPickupActions extends StatelessWidget {
@@ -27,8 +28,8 @@ class CustomDispatchPickupActions extends StatelessWidget {
               ],
             ),
             onTap: () {
-              BlocProvider.of<UndispatchPickupCubit>(context, listen: false)
-                  .undispatchPickupOrders([orderId]);
+              BlocProvider.of<AddPickupPriorityCubit>(context, listen: false)
+                  .addPickupPriority([orderId]);
             },
           ),
           PopupMenuItem(

@@ -8,3 +8,4 @@ const pickupColor = Color(0xff546FC6);
 const deliveryColor = Color(0xff91CB74);
 const remainingColor = Color(0xffEE6668);
 const kLoadingColor = Color(0xffFEFBEA);
+const kMainColor = Color(0xff008855);

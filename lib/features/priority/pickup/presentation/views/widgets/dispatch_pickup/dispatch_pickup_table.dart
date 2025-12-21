@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/pickup/data/models/dispatch_pickup_order.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/dispatch_pickup/grouped_dispatch_table.dart';
 
@@ -6,7 +7,7 @@ class DispatchPickupTable extends StatelessWidget {
   const DispatchPickupTable(
       {super.key, required this.onSelectOrders, required this.orders});
   final Function(List<String> ordersId) onSelectOrders;
-  final List<DispatchPickupOrder> orders;
+  final List<OrderResponse> orders;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

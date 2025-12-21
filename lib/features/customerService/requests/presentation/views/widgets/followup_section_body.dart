@@ -21,7 +21,9 @@ class FollowUpSectionBody extends StatelessWidget {
                     Row(
                       children: [
                         CustomCircelLetterContainer(
-                          letter: log.createdBy!.toUpperCase().characters.first,
+                          letter: log.createdBy != null
+                              ? log.createdBy!.toUpperCase().characters.first
+                              : "N",
                           bgColor: Colors.redAccent,
                         ),
                         const SizedBox(width: 10),

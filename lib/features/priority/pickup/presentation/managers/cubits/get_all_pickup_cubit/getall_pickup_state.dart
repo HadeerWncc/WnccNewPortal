@@ -17,16 +17,16 @@ final class GetallPickupFailure extends GetallPickupState {
 final class GetallPickupLoading extends GetallPickupState {}
 
 final class GetallPendingPickupSuccess extends GetallPickupState {
-  final List<PendingOrder> pendingPickupOrders;
+  final List<OrderResponse> pendingPickupOrders;
   const GetallPendingPickupSuccess({required this.pendingPickupOrders});
 }
 
 final class GetallPriorityPickupSuccess extends GetallPickupState {
-  final List<PriorityPickupOrder> priorityPickupOrders;
+  final List<OrderResponse> priorityPickupOrders;
   const GetallPriorityPickupSuccess({required this.priorityPickupOrders});
 }
 
 final class GetallDispatchPickupSuccess extends GetallPickupState {
-  final List<DispatchPickupOrder> dispatchPickupOrders;
+  final List<OrderResponse> dispatchPickupOrders;
   const GetallDispatchPickupSuccess({required this.dispatchPickupOrders});
 }

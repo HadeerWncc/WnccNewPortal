@@ -1,10 +1,18 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class PayerPageBody extends StatelessWidget {
   const PayerPageBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Text("payer");
+    return ListView(
+      children: [
+        Card(
+          child: Column(
+            children: [],
+          ),
+        )
+      ],
+    );
   }
 }

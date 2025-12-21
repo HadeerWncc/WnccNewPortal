@@ -18,7 +18,7 @@ class SelectedTabItem extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.3,
         height: 40,
         decoration: BoxDecoration(
-          color: active ? const Color(0xffF1F1F3) : const Color(0xffF9F9F9),
+          color: active ? const Color(0xff008855) : const Color(0xffF9F9F9),
           borderRadius: BorderRadius.circular(5),
         ),
         child: Center(
@@ -28,7 +28,7 @@ class SelectedTabItem extends StatelessWidget {
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color:
-                  active ? Colors.black : const Color.fromARGB(255, 90, 90, 91),
+                  active ? const Color.fromARGB(255, 255, 255, 255) : const Color.fromARGB(255, 90, 90, 91),
             ),
           ),
         ),

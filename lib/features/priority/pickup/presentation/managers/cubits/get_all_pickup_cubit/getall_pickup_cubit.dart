@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:wncc_portal/features/priority/comm/models/pending_order.dart';
-import 'package:wncc_portal/features/priority/pickup/data/models/dispatch_pickup_order.dart';
-import 'package:wncc_portal/features/priority/pickup/data/models/priority_pickup_order.dart';
+import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/pickup/domain/repositories/pickup_repo.dart';
 
 part 'getall_pickup_state.dart';

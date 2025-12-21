@@ -13,7 +13,7 @@ class DeleteDeliveryPriorityOrderCubit
 
   Future<void> deleteDeliveryPriorityOrder(List<String> orders) async {
     emit(DeleteDeliveryPriorityOrderLoading());
-    var result = await deliveryRepo.deleteDeliveryPriority(orders);
+    var result = await deliveryRepo.makeDeliveryPending(orders);
     result.fold((error) {
       emit(DeleteDeliveryPriorityOrderFailure(error: error.msg));
     }, (success) {
