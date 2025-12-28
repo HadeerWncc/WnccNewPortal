@@ -55,13 +55,13 @@ class _SalesQuotaSectionState extends State<SalesQuotaSection> {
                     getTotalBagsPickuAndDelivery:
                         widget.getTotalBagsPickuAndDelivery,
                     salesQuotaList: widget.salesQuotaList
-                        .where((sQ) => sQ.salesType != 2)
+                        .where((sQ) => sQ.salesType != 1)
                         .toList(),
                     controllers: widget.controllers,
                   )
                 : CustomBulkTable(
                     salesQuotaList: widget.salesQuotaList
-                        .where((sQ) => sQ.salesType != 1)
+                        .where((sQ) => sQ.salesType != 0)
                         .toList(),
                     controllers: widget.controllers,
                   ),

@@ -15,8 +15,8 @@ class SalesQuotaRemoteDatasourceImpl extends SalesQuotaRemoteDatasource {
   SalesQuotaRemoteDatasourceImpl({required this.apiService});
   @override
   Future<DailyQuotaModel> getDailyQuota({String? date}) async {
-    var result = await apiService.get(
-        endPoint: 'api/DailyQuotas/GetDailyQuotaByDate?date=$date');
+    var result =
+        await apiService.get(endPoint: 'api/Quotas/GetQuotaAtDate?date=$date');
     DailyQuotaModel dailyQuotaModel = DailyQuotaModel.fromJson(result["data"]);
     return dailyQuotaModel;
   }
@@ -24,7 +24,7 @@ class SalesQuotaRemoteDatasourceImpl extends SalesQuotaRemoteDatasource {
   @override
   Future<String> setDailyQuota(DailyQuotaEntity dailyQuotaEntity) async {
     var result = await apiService.post(
-      endPoint: 'api/DailyQuotas/DistributeDailyQuota',
+      endPoint: 'api/Quotas/DistributeQuota',
       data: dailyQuotaEntity.toJson(),
     );
     String message = result["message"] as String;
@@ -34,7 +34,7 @@ class SalesQuotaRemoteDatasourceImpl extends SalesQuotaRemoteDatasource {
   @override
   Future<String> copyDailyQuota(CopyQuotaDateEntity copyQuotaEntity) async {
     var result = await apiService.post(
-      endPoint: 'api/DailyQuotas/DistributeDailyQuotaFromCopy',
+      endPoint: 'api/Quotas/DistributeQuota',
       data: copyQuotaEntity.toJson(),
     );
     String message = result["message"] as String;

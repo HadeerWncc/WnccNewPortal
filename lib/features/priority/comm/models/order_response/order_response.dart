@@ -95,7 +95,7 @@ class OrderResponse extends Equatable {
         dispatchDate: json['dispatchDate'] == null
             ? null
             : DateTime.parse(json['dispatchDate'] as String),
-        leavingDate: json['leavingDate']  == null
+        leavingDate: json['leavingDate'] == null
             ? null
             : DateTime.parse(json['leavingDate'] as String),
         updatedAt: json['updatedAt'] == null

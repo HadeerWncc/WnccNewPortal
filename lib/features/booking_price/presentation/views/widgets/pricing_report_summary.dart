@@ -19,7 +19,7 @@ class PricingReportSummary extends StatelessWidget {
             landingtitle: 'Highest and Lowest Pickup',
             widthRatio: widthRatio,
             icon: Symbols.attach_money,
-            child: CustomQuantityComparing(
+            child: const CustomQuantityComparing(
               mainTitle: '2780 le',
               subTitle: '2680 le',
             ),
@@ -28,7 +28,7 @@ class PricingReportSummary extends StatelessWidget {
             landingtitle: 'Highest and Lowest Delivery',
             widthRatio: widthRatio,
             icon: Symbols.attach_money,
-            child: CustomQuantityComparing(
+            child: const CustomQuantityComparing(
               mainTitle: '2780 le',
               subTitle: '2680 le',
             ),
@@ -37,7 +37,7 @@ class PricingReportSummary extends StatelessWidget {
             landingtitle: 'Most Expensive Region',
             widthRatio: widthRatio,
             icon: Symbols.location_on,
-            child: CustomQuantityComparing(
+            child: const CustomQuantityComparing(
               mainTitle: 'Elfayoum',
             ),
           ),
@@ -45,7 +45,7 @@ class PricingReportSummary extends StatelessWidget {
             landingtitle: 'Most Cheaper Region',
             widthRatio: widthRatio,
             icon: Symbols.location_on,
-            child: CustomQuantityComparing(
+            child: const CustomQuantityComparing(
               mainTitle: 'Elminya',
             ),
           ),
@@ -53,7 +53,7 @@ class PricingReportSummary extends StatelessWidget {
             landingtitle: 'Last Updated At',
             widthRatio: widthRatio,
             icon: Symbols.calendar_today,
-            child: CustomQuantityComparing(
+            child: const CustomQuantityComparing(
               mainTitle: 'July 13, 2025',
             ),
           ),

@@ -24,7 +24,7 @@ class ItemChart extends StatelessWidget {
                   height: 40,
                   child: SfSparkLineChart(
                     color: Colors.blue,
-                    data: [0, 100, 100],
+                    data: const [0, 100, 100],
                     axisLineWidth: 0,
                     marker: null,
                   ),
@@ -34,7 +34,7 @@ class ItemChart extends StatelessWidget {
                   height: 40,
                   child: SfSparkLineChart(
                     color: Colors.red,
-                    data: [0, 140, 140],
+                    data: const [0, 140, 140],
                     axisLineWidth: 0,
                     marker: null,
                   ),

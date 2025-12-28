@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:wncc_portal/features/customerService/requests/data/models/mappers/request_delivery_mapper.dart';
 import 'package:wncc_portal/features/customerService/requests/data/models/mappers/request_level_mapper.dart';
-import 'package:wncc_portal/features/customerService/requests/data/models/mappers/request_status_mapper.dart';
 import 'package:wncc_portal/features/customerService/requests/domain/entities/request_entity.dart';
 
 class Request extends Equatable {
@@ -13,7 +12,7 @@ class Request extends Equatable {
   final String? payerName;
   final String? payerEmail;
   final int? level;
-  final int? status;
+  // final int? status;
   final int? delivery;
   final dynamic closedAt;
   final String? createdBy;
@@ -33,7 +32,7 @@ class Request extends Equatable {
     this.payerName,
     this.payerEmail,
     this.level,
-    this.status,
+    // this.status,
     this.delivery,
     this.closedAt,
     this.createdBy,
@@ -54,7 +53,7 @@ class Request extends Equatable {
         payerName: json['payerName'] as String?,
         payerEmail: json['payerEmail'] as String?,
         level: json['level'] as int?,
-        status: json['status'] as int?,
+        // status: json['status'] as int?,
         delivery: json['delivery'] as int?,
         closedAt: json['closedAt'] as dynamic,
         createdBy: json['createdBy'] as String?,
@@ -79,7 +78,7 @@ class Request extends Equatable {
         'payerName': payerName,
         'payerEmail': payerEmail,
         'level': level,
-        'status': status,
+        // 'status': status,
         'delivery': delivery,
         'closedAt': closedAt,
         'createdBy': createdBy,
@@ -102,7 +101,7 @@ class Request extends Equatable {
       payerName,
       payerEmail,
       level,
-      status,
+      // status,
       delivery,
       closedAt,
       createdBy,
@@ -126,7 +125,7 @@ class Request extends Equatable {
       payerName: payerName,
       payerEmail: payerEmail,
       level: mapLevelFromInt(level!),
-      status: mapStatusFromInt(status!),
+      // status: mapStatusFromInt(status!),
       closedAt: closedAt,
       createdBy: createdBy,
       closedBy: closedBy,

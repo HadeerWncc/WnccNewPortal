@@ -20,7 +20,7 @@ class LoadingRequestDetailsHeader extends StatelessWidget {
               children: [
                 Text(
                   'Payer Request-(            )',
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
@@ -37,7 +37,7 @@ class LoadingRequestDetailsHeader extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const Opacity(
+                    Opacity(
                       opacity: .5,
                       child: Text(
                         'Created by:',

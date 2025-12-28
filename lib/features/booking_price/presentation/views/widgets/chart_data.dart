@@ -10,9 +10,9 @@ class BookingPriceChartData extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
+        const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
               'Menia',
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -25,7 +25,7 @@ class BookingPriceChartData extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   '3400 EGP',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
@@ -36,19 +36,19 @@ class BookingPriceChartData extends StatelessWidget {
                       width: 5,
                       height: 5,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Opacity(opacity: .5, child: Text('Delivery')),
+                    const Opacity(opacity: .5, child: Text('Delivery')),
                   ],
                 ),
               ],
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   '3400 EGP',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
@@ -59,10 +59,10 @@ class BookingPriceChartData extends StatelessWidget {
                       width: 5,
                       height: 5,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
-                    Opacity(opacity: .5, child: Text('Pickup')),
+                    const Opacity(opacity: .5, child: Text('Pickup')),
                   ],
                 ),
               ],

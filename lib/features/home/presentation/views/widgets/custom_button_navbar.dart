@@ -1,5 +1,7 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wncc_portal/core/utils/app_router.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   const CustomBottomNavBar({super.key, required this.pageIndex});
@@ -40,12 +42,12 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       ],
       initialActiveIndex: widget.pageIndex,
       onTap: (index) {
-        // if (index == 0) {
-        //   Navigator.pushReplacementNamed(context, '/home');
-        // }
-        // else if(index == 1){
-        //   Navigator.pushReplacementNamed(context, '/to_do');
-        // }
+        if (index == 0) {
+          GoRouter.of(context).push(AppRouter.toDoList);
+        }
+        else if(index == 1){
+          GoRouter.of(context).push(AppRouter.homePath);
+        }
         // else if (index == 2) {
         //   Navigator.pushReplacementNamed(context, '/addTask');
         // }

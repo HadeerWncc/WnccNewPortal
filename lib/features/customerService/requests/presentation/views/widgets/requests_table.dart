@@ -47,7 +47,7 @@ class RequestsTable extends StatelessWidget {
               DataColumn(label: DataColumnText(text: 'ID')),
               DataColumn(label: DataColumnText(text: 'Payer')),
               DataColumn(label: DataColumnText(text: 'Level')),
-              DataColumn(label: DataColumnText(text: 'Status')),
+              // DataColumn(label: DataColumnText(text: 'Status')),
               DataColumn(label: DataColumnText(text: 'Created At')),
               DataColumn(label: DataColumnText(text: 'Actions')),
             ],
@@ -88,15 +88,15 @@ class RequestsTable extends StatelessWidget {
                         ),
                       ),
                     ),
-                    DataCell(
-                      Center(
-                        child: CustomMarkedColorContainer(
-                          title: getRequestStatusText(requests[index].status),
-                          color: const Color.fromARGB(255, 0, 139, 253),
-                          bgColor: const Color.fromARGB(255, 223, 236, 248),
-                        ),
-                      ),
-                    ),
+                    // DataCell(
+                    //   Center(
+                    //     child: CustomMarkedColorContainer(
+                    //       title: getRequestStatusText(requests[index].status),
+                    //       color: const Color.fromARGB(255, 0, 139, 253),
+                    //       bgColor: const Color.fromARGB(255, 223, 236, 248),
+                    //     ),
+                    //   ),
+                    // ),
                     DataCell(
                       CustomDataCellWidget(
                         title: DateFormat('MMM dd, yyyy')

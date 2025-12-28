@@ -8,12 +8,12 @@ class PricingReportTables extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         RowsPricesTable(),
-        const SizedBox(height: 40),
+        SizedBox(height: 40),
         MultiPeriodTable(),
-        const SizedBox(height: 40),
+        SizedBox(height: 40),
         PayerPricesTable(),
       ],
     );

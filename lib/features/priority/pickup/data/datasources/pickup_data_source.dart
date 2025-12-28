@@ -1,8 +1,5 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
 import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
-import 'package:wncc_portal/features/priority/comm/models/pending_order.dart';
-import 'package:wncc_portal/features/priority/pickup/data/models/dispatch_pickup_order.dart';
-import 'package:wncc_portal/features/priority/pickup/data/models/priority_pickup_order.dart';
 
 abstract class PickupDataSource {
   Future<List<OrderResponse>> getPendingPickupOrders();
@@ -58,7 +55,6 @@ class PickupDataSourceImpl extends PickupDataSource {
                   "dispatcher": "",
                 })
             .toList(),
-        
       },
     );
     bool successed = result["data"] as bool;
@@ -66,10 +62,10 @@ class PickupDataSourceImpl extends PickupDataSource {
   }
 
   @override
-  Future<List<OrderResponse>> getDispatchPickupOrdersByDate(
-      String date) async {
+  Future<List<OrderResponse>> getDispatchPickupOrdersByDate(String date) async {
     var result = await apiService.get(
-      endPoint: 'api/Orders/Search?FromDate=$date&ToDate=$date&Status=2&DispatchChannel=Pickup',
+      endPoint:
+          'api/Orders/Search?FromDate=$date&ToDate=$date&Status=2&DispatchChannel=Pickup',
     );
     List<OrderResponse> dispatchPickupOrders = [];
     for (var order in result["data"]["data"]) {

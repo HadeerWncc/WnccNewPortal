@@ -87,7 +87,8 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
                   ),
                 ),
                 DataCell(CustomDataCellWidget(
-                    title: item.product?.name ?? "", subTitle: "category: ${item.product?.category}")),
+                    title: item.product?.name ?? "",
+                    subTitle: "category: ${item.product?.category}")),
                 DataCell(CustomDataCellWidget(
                     title: item.payer?.fullName ?? "",
                     subTitle: "Code: ${item.payer?.id}")),

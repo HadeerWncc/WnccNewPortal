@@ -16,9 +16,9 @@ class SubmitDispatchPickupButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        BlocConsumer<UndispatchPickupCubit, UndispatchPickupState>(
+        BlocConsumer<AddPickupPriorityCubit, AddPickupPriorityState>(
           listener: (context, state) {
-            if (state is UndispatchPickupSuccess) {
+            if (state is AddPickupPrioritySuccess) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.message),
@@ -26,7 +26,7 @@ class SubmitDispatchPickupButtons extends StatelessWidget {
               );
               BlocProvider.of<GetallPickupCubit>(context)
                   .getAllDispatchPickupOrders(date);
-            } else if (state is UndispatchPickupFailure) {
+            } else if (state is AddPickupPriorityFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text("Error: ${state.error}"),

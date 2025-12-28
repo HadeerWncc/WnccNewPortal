@@ -1,42 +1,53 @@
 import 'package:equatable/equatable.dart';
+
 import 'sales_quota.dart';
 
 class DailyQuotaModel extends Equatable {
-  final dynamic id;
-  final dynamic totalQuota;
-  final dynamic totalBagsQuota;
-  final dynamic totalBulkQuota;
+  final String? id;
+  final num totalQuota;
+  final num totalBagsQuota;
+  final num totalBulkQuota;
   final String? date;
-  final dynamic createdAt;
-  final dynamic lastUpdatedAt;
-  final bool? isDeleted;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
   final dynamic createdBy;
+  final dynamic updatedBy;
+  final bool? isDistributed;
+  final bool? isDeleted;
   final List<SalesQuota>? salesQuotas;
 
   const DailyQuotaModel({
     this.id,
-    this.totalQuota,
-    this.totalBagsQuota,
-    this.totalBulkQuota,
+    required this.totalQuota,
+    required this.totalBagsQuota,
+    required this.totalBulkQuota,
     this.date,
     this.createdAt,
-    this.lastUpdatedAt,
-    this.isDeleted,
+    this.updatedAt,
     this.createdBy,
+    this.updatedBy,
+    this.isDistributed,
+    this.isDeleted,
     this.salesQuotas,
   });
 
   factory DailyQuotaModel.fromJson(Map<String, dynamic> json) {
     return DailyQuotaModel(
-      id: json['id'] as dynamic,
-      totalQuota: json['totalQuota'] as dynamic,
-      totalBagsQuota: json['totalBagsQuota'] as dynamic,
-      totalBulkQuota: json['totalBulkQuota'] as dynamic,
+      id: json['id'] as String?,
+      totalQuota: json['totalQuota'] as num,
+      totalBagsQuota: json['totalBagsQuota'] as num,
+      totalBulkQuota: json['totalBulkQuota'] as num,
       date: json['date'] as String?,
-      createdAt: json['createdAt'] as dynamic,
-      lastUpdatedAt: json['lastUpdatedAt'] as dynamic,
-      isDeleted: json['isDeleted'] as bool?,
+      createdAt: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
       createdBy: json['createdBy'] as dynamic,
+      updatedBy: json['updatedBy'] as dynamic,
+      isDistributed: json['isDistributed'] as bool?,
+      isDeleted: json['isDeleted'] as bool?,
       salesQuotas: (json['salesQuotas'] as List<dynamic>?)
           ?.map((e) => SalesQuota.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -49,10 +60,12 @@ class DailyQuotaModel extends Equatable {
         'totalBagsQuota': totalBagsQuota,
         'totalBulkQuota': totalBulkQuota,
         'date': date,
-        'createdAt': createdAt,
-        'lastUpdatedAt': lastUpdatedAt,
-        'isDeleted': isDeleted,
+        'createdAt': createdAt?.toIso8601String(),
+        'updatedAt': updatedAt?.toIso8601String(),
         'createdBy': createdBy,
+        'updatedBy': updatedBy,
+        'isDistributed': isDistributed,
+        'isDeleted': isDeleted,
         'salesQuotas': salesQuotas?.map((e) => e.toJson()).toList(),
       };
 
@@ -65,9 +78,11 @@ class DailyQuotaModel extends Equatable {
       totalBulkQuota,
       date,
       createdAt,
-      lastUpdatedAt,
-      isDeleted,
+      updatedAt,
       createdBy,
+      updatedBy,
+      isDistributed,
+      isDeleted,
       salesQuotas,
     ];
   }

@@ -9,8 +9,7 @@ abstract class DeliveryDataSource {
   // Future<PriorityDeliveryOrder> getPriorityDeliveryOrdersById(String id);
   // Future<List<DispatchedDeliveryOrder>> getDispatchDeliveryOrders(Order order);
   // Future<DispatchedDeliveryOrder> getDispatchDeliveryOrdersById(String id);
-  Future<List<OrderResponse>> getDispatchDeliveryOrdersByDate(
-      String date);
+  Future<List<OrderResponse>> getDispatchDeliveryOrdersByDate(String date);
   Future<bool> makeDeliveryPriority(List<String> orderIds, bool asTruck);
   Future<bool> makeDeliveryPending(List<String> orderIds);
   Future<bool> dispatchDeliveryOrders(List<DispatchDeliveryEntity> orders);
@@ -33,7 +32,7 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
       endPoint: 'api/Orders/MakePriority',
       data: data,
     );
-    bool successed = result["data"]["data"] as bool;
+    bool successed = result["data"] as bool;
     return successed;
   }
 
@@ -45,7 +44,7 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
         "orders": orderIds,
       },
     );
-    bool successed = result["data"]["data"] as bool;
+    bool successed = result["data"] as bool;
     return successed;
   }
 
@@ -64,11 +63,9 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
             .toList(),
       },
     );
-    bool successed = result["data"]["data"] as bool;
+    bool successed = result["data"] as bool;
     return successed;
   }
-
-
 
   @override
   Future<List<OrderResponse>> getDispatchDeliveryOrdersByDate(
@@ -83,12 +80,10 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
     return dispatchDeliveryOrders;
   }
 
-
   @override
   Future<List<OrderResponse>> getPendingDeliveryOrders() async {
     var result = await apiService.get(
-        endPoint:
-            'api/Orders/Search?Status=0&DispatchChannel=Delivery');
+        endPoint: 'api/Orders/Search?Status=0&DispatchChannel=Delivery');
     List<OrderResponse> pendingDeliveryOrders = [];
     for (var order in result["data"]["data"]) {
       pendingDeliveryOrders.add(OrderResponse.fromJson(order));

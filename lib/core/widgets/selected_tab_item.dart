@@ -27,8 +27,9 @@ class SelectedTabItem extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color:
-                  active ? const Color.fromARGB(255, 255, 255, 255) : const Color.fromARGB(255, 90, 90, 91),
+              color: active
+                  ? const Color.fromARGB(255, 255, 255, 255)
+                  : const Color.fromARGB(255, 90, 90, 91),
             ),
           ),
         ),

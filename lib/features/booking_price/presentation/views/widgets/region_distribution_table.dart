@@ -45,34 +45,34 @@ class RegionDistributionTable extends StatelessWidget {
           (index) {
             // final item = widget.pendingOrders[index];
             return DataRow(cells: [
-              DataCell(
+              const DataCell(
                 Center(
                   child: Text(
                     "Alexendaria",
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-              DataCell(
+              const DataCell(
                 Center(
                   child: Text(
                     'Delta Egypt',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
-              DataCell(
+              const DataCell(
                 Center(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(8.0),
                     child: CustomInput(),
                   ),
                 ),
               ),
-              DataCell(
+              const DataCell(
                 Center(
                     child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8.0),
                   child: CustomInput(),
                 )),
               ),

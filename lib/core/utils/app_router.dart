@@ -16,6 +16,7 @@ import 'package:wncc_portal/features/customerService/requests/presentation/views
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/add_request_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
+import 'package:wncc_portal/features/to_do_list/presentation/views/pages/to_do_screen.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/change_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/forget_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/login_page.dart';
@@ -56,6 +57,7 @@ abstract class AppRouter {
   static const bookingPrice = '/bookingPrice';
   static const pricingReport = '/pricingReport';
   static const payer = '/payer';
+  static const toDoList = '/toDoList';
 
   static final router = GoRouter(
     routes: [
@@ -192,6 +194,10 @@ abstract class AppRouter {
       GoRoute(
         path: payer,
         builder: (context, state) => const PayerPage(),
+      ),
+      GoRoute(
+        path: toDoList,
+        builder: (context, state) => const ToDoScreen(),
       ),
     ],
   );

@@ -55,7 +55,7 @@ class LoadingChatBubbleForCurrentUser extends StatelessWidget {
                     maxLines: 30,
                     overflow: TextOverflow.visible,
                     "                  ",
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Color.fromARGB(255, 40, 40, 40),
                         fontWeight: FontWeight.bold),
                   ),

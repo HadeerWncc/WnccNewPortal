@@ -11,7 +11,7 @@ class RequestEntity {
   final String? payerName;
   final String? payerEmail;
   final SupportLevel level;
-  final SupportStatus status;
+  // final SupportStatus status;
   final RequestDelivery delivery;
   final dynamic closedAt;
   final String? createdBy;
@@ -31,7 +31,7 @@ class RequestEntity {
     this.payerName,
     this.payerEmail,
     required this.level,
-    required this.status,
+    // required this.status,
     required this.delivery,
     this.closedAt,
     this.createdBy,

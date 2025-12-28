@@ -113,6 +113,7 @@ class _GroupedPriorityTableState extends State<GroupedPriorityTable> {
             ),
           ),
           Expanded(
+            flex: 2,
               child: Center(
                   child: Text(
             'Product',
@@ -167,6 +168,7 @@ class _GroupedPriorityTableState extends State<GroupedPriorityTable> {
             // Checkbox(value: false, onChanged: (_) {})
           ),
           Expanded(
+            flex: 2,
             child: CustomDataCellWidget(
               title: order.product?.name ?? "",
               subTitle: "category: ${order.product?.category ?? ""}",

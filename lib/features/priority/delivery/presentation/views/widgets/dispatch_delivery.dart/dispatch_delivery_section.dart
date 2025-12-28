@@ -92,7 +92,7 @@ class _DispatchDeliverySectionState extends State<DispatchDeliverySection> {
                     setState(() {});
                   },
                   dispatchedOrders: state.dispatchedOrders
-                      .where((d) => d.product?.category  == 'Bulk')
+                      .where((d) => d.product?.category == 'Bulk')
                       .toList(),
                 ),
             ],

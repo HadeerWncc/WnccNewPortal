@@ -110,6 +110,7 @@ class _GroupedDispatchTableState extends State<GroupedDispatchTable> {
             ),
           ),
           Expanded(
+            flex: 2,
               child: Center(
                   child: Text(
             'Product',
@@ -164,6 +165,7 @@ class _GroupedDispatchTableState extends State<GroupedDispatchTable> {
             // Checkbox(value: false, onChanged: (_) {})
           ),
           Expanded(
+            flex: 2,
             child: CustomDataCellWidget(
               title: order.product?.name ?? "",
               subTitle: "product: ${order.product?.category ?? ""}",

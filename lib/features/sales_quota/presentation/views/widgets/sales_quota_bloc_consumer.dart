@@ -96,20 +96,20 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
 
   void priorityChart(SalesQuotaSuccess state) {
     num totalPickupPriorityBags = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.pickupBagsPriority!);
+        .fold(0, (sum, item) => sum + item.pickupBagsPriority);
 
     num totalDeliveryPriorityBags = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.deliveryBagsPriority!);
+        .fold(0, (sum, item) => sum + item.deliveryBagsPriority);
     num totalPickupPriorityBulk = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.pickupBulkPriority!);
+        .fold(0, (sum, item) => sum + item.pickupBulkPriority);
 
     num totalDeliveryPriorityBulk = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.deliveryBulkPriority!);
+        .fold(0, (sum, item) => sum + item.deliveryBulkPriority);
     num totalBagsPriority = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.totalBagsPriority!);
+        .fold(0, (sum, item) => sum + item.totalBagsPriority);
 
     num totalBulkPriority = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.totalBulkPriority!);
+        .fold(0, (sum, item) => sum + item.totalBulkPriority);
     if (totalBagsPriority > 0) {
       chartBagsDataPriority.pickup =
           (totalPickupPriorityBags / totalBagsPriority) * 100;
@@ -131,16 +131,16 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
 
   void quotaChart(SalesQuotaSuccess state) {
     num totalPickupBags = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.pickupBagsQuota!);
+        .fold(0, (sum, item) => sum + item.pickupBagsQuota);
 
     num totalDeliveryBags = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.deliveryBagsQuota!);
+        .fold(0, (sum, item) => sum + item.deliveryBagsQuota);
 
     num totalPickupBulk = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.pickupBulkQuota!);
+        .fold(0, (sum, item) => sum + item.pickupBulkQuota);
 
     num totalDeliveryBulk = state.dailyQuotaModel.salesQuotas!
-        .fold(0, (sum, item) => sum + item.deliveryBulkQuota!);
+        .fold(0, (sum, item) => sum + item.deliveryBulkQuota);
 
     if (state.dailyQuotaModel.totalBagsQuota > 0) {
       chartBagsData.pickup =

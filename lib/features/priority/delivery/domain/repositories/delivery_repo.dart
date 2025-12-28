@@ -6,14 +6,13 @@ import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_
 abstract class DeliveryRepo {
   Future<Either<Failure, List<OrderResponse>>> getPendingDeliveryOrders();
   // Future<Either<Failure, PendingOrder>> getPendingDeliveryOrdersById(String id);
-  Future<Either<Failure, List<OrderResponse>>>
-      getPriorityDeliveryOrders();
+  Future<Either<Failure, List<OrderResponse>>> getPriorityDeliveryOrders();
   // Future<Either<Failure, PriorityDeliveryOrder>> getPriorityDeliveryOrdersById(
   //     String id);
   // Future<Either<Failure, OrderResponse>>
   //     getDispatchDeliveryOrdersById(String id);
-  Future<Either<Failure, List<OrderResponse>>>
-      getDispatchDeliveryOrdersByDate(String date);
+  Future<Either<Failure, List<OrderResponse>>> getDispatchDeliveryOrdersByDate(
+      String date);
   Future<Either<Failure, bool>> makeDeliveryPriority(
       List<String> orderIds, bool asTruck);
   Future<Either<Failure, bool>> makeDeliveryPending(List<String> orderIds);

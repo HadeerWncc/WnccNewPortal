@@ -101,7 +101,8 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                     title: item.podCity ?? "",
                     subTitle: "address: ${item.podAddress}")),
                 DataCell(CustomDataCellWidget(
-                    title: item.sales?.fullName??"", subTitle: "Code: ${item.sales?.id}")),
+                    title: item.sales?.fullName ?? "",
+                    subTitle: "Code: ${item.sales?.id}")),
                 DataCell(CustomDataCellWidget(
                     title: item.quantity.toString(),
                     subTitle: "Price: ${item.price}")),

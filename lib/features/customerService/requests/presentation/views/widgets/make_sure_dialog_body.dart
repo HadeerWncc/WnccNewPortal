@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/constants/icons.dart';
 import 'package:wncc_portal/core/widgets/custom_button.dart';
 
@@ -39,13 +40,15 @@ class MakeSureDialogBody extends StatelessWidget {
           children: [
             CustomButton(
               contant: submitText,
-              color: const Color(0xff2C87DA),
+              color: kMainColor,
+              width: MediaQuery.of(context).size.width * 0.3,
               onTap: onSubmit,
             ),
             const SizedBox(width: 10),
             CustomButton(
               contant: 'Cancel',
               color: const Color(0xffC42E2F),
+              width: MediaQuery.of(context).size.width * 0.3,
               onTap: () {
                 GoRouter.of(context).pop();
               },

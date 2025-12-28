@@ -29,8 +29,7 @@ class DeliveryRepoImpl extends DeliveryRepo {
   Future<Either<Failure, bool>> makeDeliveryPending(
       List<String> orderIds) async {
     try {
-      bool successed =
-          await deliveryDataSource.makeDeliveryPending(orderIds);
+      bool successed = await deliveryDataSource.makeDeliveryPending(orderIds);
       return Right(successed);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -55,8 +54,8 @@ class DeliveryRepoImpl extends DeliveryRepo {
   }
 
   @override
-  Future<Either<Failure, List<OrderResponse>>>
-      getDispatchDeliveryOrdersByDate(String date) async {
+  Future<Either<Failure, List<OrderResponse>>> getDispatchDeliveryOrdersByDate(
+      String date) async {
     try {
       List<OrderResponse> orders =
           await deliveryDataSource.getDispatchDeliveryOrdersByDate(date);
@@ -69,9 +68,9 @@ class DeliveryRepoImpl extends DeliveryRepo {
     }
   }
 
-
   @override
-  Future<Either<Failure, List<OrderResponse>>> getPendingDeliveryOrders() async {
+  Future<Either<Failure, List<OrderResponse>>>
+      getPendingDeliveryOrders() async {
     try {
       List<OrderResponse> orders =
           await deliveryDataSource.getPendingDeliveryOrders();
@@ -83,7 +82,6 @@ class DeliveryRepoImpl extends DeliveryRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
-
 
   @override
   Future<Either<Failure, List<OrderResponse>>>

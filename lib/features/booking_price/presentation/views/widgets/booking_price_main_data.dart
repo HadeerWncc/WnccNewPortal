@@ -13,28 +13,28 @@ class BookingPriceMainData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
         FilterPartBody(),
-        const SizedBox(height: 20),
-        const DividerLine(),
+        SizedBox(height: 20),
+        DividerLine(),
         BookingPriceSummary(),
-        const SizedBox(height: 10),
-        const Divider(),
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
+        Divider(),
+        SizedBox(height: 10),
         ProductPriceContent(),
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
         RegionDistributionTable(),
-        const SizedBox(height: 30),
+        SizedBox(height: 30),
         PayerDistributionTable(),
         BookingPriceActionButtons(),
-        const SizedBox(height: 20),
-        const Divider(),
-        const SizedBox(height: 20),
+        SizedBox(height: 20),
+        Divider(),
+        SizedBox(height: 20),
         BookingPriceCharts(),
-        const SizedBox(height: 20),
+        SizedBox(height: 20),
       ],
     );
   }

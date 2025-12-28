@@ -40,34 +40,34 @@ class PayerDistributionTable extends StatelessWidget {
             2,
             (index) {
               return DataRow(cells: [
-                DataCell(
+                const DataCell(
                   Center(
                     child: Text(
                       "Mohammed Kmal",
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                DataCell(
+                const DataCell(
                   Center(
                     child: Text(
                       '1000049',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                DataCell(
+                const DataCell(
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: CustomInput(),
                     ),
                   ),
                 ),
-                DataCell(
+                const DataCell(
                   Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.all(8.0),
                       child: CustomInput(),
                     ),
                   ),

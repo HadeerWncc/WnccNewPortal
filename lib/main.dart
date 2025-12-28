@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
 import 'package:wncc_portal/app_setup.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/functions/setup_service_locator.dart';
@@ -27,6 +29,11 @@ import 'package:wncc_portal/features/customerService/requests/presentation/manag
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/requests_cubit/requests_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/sales_quota_cubit/sales_quota_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
+import 'package:wncc_portal/features/to_do_list/data/datasources/to_do_local_data_source.dart';
+import 'package:wncc_portal/features/to_do_list/data/models/to_do_list_progress.dart';
+import 'package:wncc_portal/features/to_do_list/data/models/to_do_model.dart';
+import 'package:wncc_portal/features/to_do_list/domain/repositories/to_do_list_repository.dart';
+import 'package:wncc_portal/features/to_do_list/presentation/manager/providers/providers/to_do_list_provider.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/first_login_change_password_cubit/first_login_change_password_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_all_users_cubit/get_all_users_cubit.dart';
@@ -34,11 +41,22 @@ import 'package:wncc_portal/features/user/presentation/manager/cubits/get_cities
 import 'package:wncc_portal/features/user/presentation/manager/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(ToDoListProgressAdapter());
+  Hive.registerAdapter(ToDoModelAdapter());
+  await Hive.openBox<ToDoModel>('toDoDailyList');
   setupApp();
   HttpOverrides.global = MyHttpOverrides();
-  runApp(const WnccPortal());
+  final toDoLocalDataSource = ToDoLocalDataSource();
+  final toDoRepository = ToDoRepository(localDataSource: toDoLocalDataSource);
+
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (_) => ToDoListProvider(repository: toDoRepository),
+    ),
+  ], child: const WnccPortal()));
 }
 
 class WnccPortal extends StatelessWidget {

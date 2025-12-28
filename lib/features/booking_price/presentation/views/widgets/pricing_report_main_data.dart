@@ -9,17 +9,17 @@ class PricingReportMainData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
         FilterPartBody(),
-        const SizedBox(height: 20),
-        const DividerLine(),
+        SizedBox(height: 20),
+        DividerLine(),
         PricingReportSummary(),
-        const SizedBox(height: 10),
-        const Divider(),
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
+        Divider(),
+        SizedBox(height: 10),
         PricingReportTables(),
       ],
     );

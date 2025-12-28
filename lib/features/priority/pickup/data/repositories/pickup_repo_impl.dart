@@ -3,8 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/pickup/data/datasources/pickup_data_source.dart';
-import 'package:wncc_portal/features/priority/pickup/data/models/dispatch_pickup_order.dart';
-import 'package:wncc_portal/features/priority/pickup/data/models/priority_pickup_order.dart';
 import 'package:wncc_portal/features/priority/pickup/domain/repositories/pickup_repo.dart';
 
 class PickupRepoImpl extends PickupRepo {
@@ -12,7 +10,8 @@ class PickupRepoImpl extends PickupRepo {
 
   PickupRepoImpl({required this.pickupDataSource});
   @override
-  Future<Either<Failure, bool>> priorityPickupOrder(List<String> orderIds) async {
+  Future<Either<Failure, bool>> priorityPickupOrder(
+      List<String> orderIds) async {
     try {
       bool success = await pickupDataSource.priorityPickupOrder(orderIds);
       return Right(success);
@@ -127,8 +126,7 @@ class PickupRepoImpl extends PickupRepo {
   // }
 
   @override
-  Future<Either<Failure, List<OrderResponse>>>
-      getPriorityPickupOrders() async {
+  Future<Either<Failure, List<OrderResponse>>> getPriorityPickupOrders() async {
     try {
       List<OrderResponse> orders =
           await pickupDataSource.getPriorityPickupOrders();

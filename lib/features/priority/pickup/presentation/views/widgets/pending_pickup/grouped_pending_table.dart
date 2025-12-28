@@ -110,6 +110,7 @@ class _GroupedPendingTableState extends State<GroupedPendingTable> {
             ),
           ),
           Expanded(
+            flex: 2,
               child: Center(
                   child: Text(
             'Product',
@@ -163,6 +164,7 @@ class _GroupedPendingTableState extends State<GroupedPendingTable> {
             ),
           ),
           Expanded(
+            flex: 2,
             child: CustomDataCellWidget(
               title: order.product?.name ?? "",
               subTitle: "category: ${order.product?.category ?? ""}",
