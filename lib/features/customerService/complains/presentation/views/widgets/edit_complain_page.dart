@@ -7,15 +7,22 @@ import 'package:wncc_portal/core/constants/icons.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
+import 'package:wncc_portal/features/customerService/complains/domain/entities/complain_entity.dart';
 import 'package:wncc_portal/features/customerService/complains/domain/entities/create_complain_entity.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_form.dart';
 
 class EditComplainPage extends StatefulWidget {
-  const EditComplainPage({super.key, required this.payerId, required this.id});
+  const EditComplainPage({
+    super.key,
+    required this.payerId,
+    required this.id,
+    required this.complainEntity,
+  }); 
   final String payerId;
   final String id;
+  final ComplainEntity complainEntity;
   @override
   State<EditComplainPage> createState() => _EditComplainPageState();
 }
@@ -27,8 +34,39 @@ class _EditComplainPageState extends State<EditComplainPage> {
   String complainType = "";
   int complainLevel = 0;
   TextEditingController comment = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    contactPerson =
+        TextEditingController(text: widget.complainEntity.contactPerson ?? '');
+    contactPhone =
+        TextEditingController(text: widget.complainEntity.contactPhone ?? '');
+    complainSubject =
+        TextEditingController(text: widget.complainEntity.subject ?? '');
+    comment =
+        TextEditingController(text: widget.complainEntity.description ?? '');
+
+    complainType = widget.complainEntity.type ?? '';
+    complainLevel = widget.complainEntity.level?.index ?? 0;
+  }
+
+  @override
+  void dispose() {
+    contactPerson.dispose();
+    contactPhone.dispose();
+    complainSubject.dispose();
+    comment.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    // contactPerson.text = widget.complainEntity.contactPerson!;
+    // contactPhone.text = widget.complainEntity.contactPhone!;
+    // complainSubject.text = widget.complainEntity.subject!;
+    // comment.text = widget.complainEntity.description!;
     return SafeArea(
       child: Scaffold(
         body: ListView(
@@ -59,6 +97,7 @@ class _EditComplainPageState extends State<EditComplainPage> {
             ),
             const Divider(),
             EditComplainForm(
+              complainEntity: widget.complainEntity,
               payerId: TextEditingController(text: widget.payerId),
               comment: comment,
               contactPerson: contactPerson,

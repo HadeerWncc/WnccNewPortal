@@ -159,6 +159,7 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                                 ),
                               ],
                             );
+                            Navigator.of(context).pop();
                           }
                         },
                       );

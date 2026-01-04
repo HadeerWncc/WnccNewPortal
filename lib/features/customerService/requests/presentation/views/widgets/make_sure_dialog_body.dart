@@ -41,14 +41,14 @@ class MakeSureDialogBody extends StatelessWidget {
             CustomButton(
               contant: submitText,
               color: kMainColor,
-              width: MediaQuery.of(context).size.width * 0.3,
+              width: MediaQuery.of(context).size.width * 0.33,
               onTap: onSubmit,
             ),
             const SizedBox(width: 10),
             CustomButton(
               contant: 'Cancel',
               color: const Color(0xffC42E2F),
-              width: MediaQuery.of(context).size.width * 0.3,
+              width: MediaQuery.of(context).size.width * 0.25,
               onTap: () {
                 GoRouter.of(context).pop();
               },

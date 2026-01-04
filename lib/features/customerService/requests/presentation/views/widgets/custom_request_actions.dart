@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
+import 'package:wncc_portal/features/customerService/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_priority_action_widget.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/remove_request_cubit/remove_request_cubit.dart';
 
@@ -31,6 +32,8 @@ class CustomRequestActions extends StatelessWidget {
               ],
             ),
             onTap: () {
+              BlocProvider.of<RequestDetailsCubit>(context).openRequest(requestId);
+
               GoRouter.of(context).push(
                 AppRouter.editRequestPage,
                 extra: {

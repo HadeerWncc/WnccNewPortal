@@ -82,6 +82,7 @@ class ComplainTable extends StatelessWidget {
                       CustomComplainActions(
                         complainId: complains[index].id!,
                         payerId: complains[index].payerId!,
+                        complainEntity: complains[index],
                       ),
                     ),
                   ],

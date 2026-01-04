@@ -3,10 +3,12 @@ import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/authentication/data/models/validate_code_model.dart';
 import 'package:wncc_portal/features/booking_price/presentation/views/pages/booking_price_page.dart';
 import 'package:wncc_portal/features/booking_price/presentation/views/pages/pricing_report_page.dart';
+import 'package:wncc_portal/features/customerService/complains/domain/entities/complain_entity.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/pages/complain_details_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/pages/complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/create_complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_page.dart';
+import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_view.dart';
 import 'package:wncc_portal/features/payer/presentation/views/pages/payer_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
@@ -29,6 +31,8 @@ import 'package:wncc_portal/features/user/presentation/views/pages/profile/profi
 import 'package:wncc_portal/features/user/presentation/views/pages/select_startup_routing_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/thanks_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/welcome_page.dart';
+
+import '../../features/customerService/requests/domain/entities/request_details_entity.dart' show RequestDetailsEntity;
 
 abstract class AppRouter {
   static const loginPath = '/Login';
@@ -152,11 +156,8 @@ abstract class AppRouter {
       GoRoute(
           path: editRequestPage,
           builder: (context, state) {
-            final data = state.extra as Map<String, dynamic>;
-            return EditRequestPage(
-              payerId: data['payerId'] as String,
-              id: data['id'] as String,
-            );
+            // final data = state.extra as Map<String, dynamic>;
+            return const EditRequestView();
           }),
       GoRoute(
         path: requestDetailsPage,
@@ -179,6 +180,7 @@ abstract class AppRouter {
             return EditComplainPage(
               id: data['id'] as String,
               payerId: data['payerId'] as String,
+              complainEntity: data['complainEntity'] as ComplainEntity,
             );
           }),
       GoRoute(

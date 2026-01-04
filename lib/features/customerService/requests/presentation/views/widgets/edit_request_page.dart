@@ -8,14 +8,17 @@ import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/features/customerService/requests/domain/entities/create_request_entity.dart';
+import 'package:wncc_portal/features/customerService/requests/domain/entities/request_details_entity.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/create_request_cubit/create_request_cubit.dart';
+import 'package:wncc_portal/features/customerService/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/requests_cubit/requests_cubit.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_form.dart';
 
 class EditRequestPage extends StatefulWidget {
-  const EditRequestPage({super.key, required this.payerId, required this.id});
+  const EditRequestPage({super.key, required this.payerId, required this.id, required this.requestDetailsEntity});
   final String payerId;
   final String id;
+  final RequestDetailsEntity requestDetailsEntity;
   @override
   State<EditRequestPage> createState() => _EditRequestPageState();
 }
@@ -23,114 +26,152 @@ class EditRequestPage extends StatefulWidget {
 class _EditRequestPageState extends State<EditRequestPage> {
   TextEditingController contactPerson = TextEditingController();
   TextEditingController contactPhone = TextEditingController();
-  List<String> requestTypes = List.empty();
+  List<String> requestTypes = [];
   int requestDelivery = 0;
   int requestLevel = 0;
   TextEditingController comment = TextEditingController();
+
+
+
+ @override
+  void initState() {
+    super.initState();
+    
+    contactPerson =
+        TextEditingController(text: widget.requestDetailsEntity.contactPerson ?? '');
+    contactPhone =
+        TextEditingController(text: widget.requestDetailsEntity.contactPhone ?? '');
+    comment =
+        TextEditingController(text: widget.requestDetailsEntity.description ?? '');
+    for(int i = 0; i < (widget.requestDetailsEntity.requestTypes?.length ?? 0); i++) {
+      requestTypes.add(widget.requestDetailsEntity.requestTypes![i].name);
+    }
+    requestDelivery = widget.requestDetailsEntity.delivery.index;
+    requestLevel = widget.requestDetailsEntity.level.index;
+    // requestTypes = widget.requestDetailsEntity.requestTypes. ?? '';
+    // requestLevel = widget.complainEntity.level?.index ?? 0;
+  }
+
+  @override
+  void dispose() {
+    contactPerson.dispose();
+    contactPhone.dispose();
+    comment.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: ListView(
-          children: [
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Edit Request',
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      GoRouter.of(context).pop();
-                    },
-                    icon: const Icon(
-                      Symbols.close,
-                      size: 24,
-                      weight: 900,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(),
-            EditRequestForm(
-              payerId: widget.payerId,
-              comment: comment,
-              contactPerson: contactPerson,
-              contactPhone: contactPhone,
-              onRequestDeliveryChange: (deliveryValue) {
-                requestDelivery = deliveryValue;
-              },
-              onRequestLevelChange: (levelValue) {
-                requestLevel = levelValue;
-              },
-              onRequestTypesChange: (typesList) {
-                requestTypes = typesList;
-              },
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+        body: BlocBuilder<RequestDetailsCubit, RequestDetailsState>(
+          builder: (context, state) {
+            return ListView(
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .3,
-                  child: CustomButton(
-                    contant: 'Discard',
-                    color: const Color(0xffF9F9F9),
-                    textColor: const Color.fromARGB(255, 57, 57, 57),
-                    onTap: () {
-                      GoRouter.of(context).pop();
-                    },
-                  ),
-                ),
-                const SizedBox(width: 20),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * .3,
-                  child: BlocConsumer<CreateRequestCubit, CreateRequestState>(
-                    listener: (context, state) {
-                      if (state is CreateRequestSuccess) {
-                        BlocProvider.of<RequestsCubit>(context)
-                            .getAllRequests();
-                        GoRouter.of(context).pop();
-                        ShowSnackbar.showSnackBar(context, state.msg, 'S');
-                      } else if (state is CreateRequestFailure) {
-                        ShowSnackbar.showSnackBar(context, state.error, 'F');
-                      }
-                    },
-                    builder: (context, state) {
-                      if (state is CreateRequestLoading) {
-                        return const CustomButtonWithIcon(
-                          child: 'Loading',
-                          textColor: Colors.white,
-                          bgColor: kBtnColor,
-                          icon: loadingIcon,
-                          onHoverColor: Color.fromARGB(255, 116, 174, 240),
-                          onTap: null,
-                        );
-                      }
-                      return CustomButtonWithIcon(
-                        child: 'Submit',
-                        textColor: Colors.white,
-                        bgColor: kBtnColor,
-                        icon: Symbols.done_all,
-                        onHoverColor: const Color.fromARGB(255, 116, 174, 240),
-                        onTap: () {
-                          tryToEditRequest(context);
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Edit Request',
+                        style: TextStyle(
+                            fontSize: 19, fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          GoRouter.of(context).pop();
                         },
-                      );
-                    },
+                        icon: const Icon(
+                          Symbols.close,
+                          size: 24,
+                          weight: 900,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 20),
+                const Divider(),
+                EditRequestForm(
+                  requestDetailsEntity: widget.requestDetailsEntity,
+                  payerId: widget.payerId,
+                  comment: comment,
+                  contactPerson: contactPerson,
+                  contactPhone: contactPhone,
+                  onRequestDeliveryChange: (deliveryValue) {
+                    requestDelivery = deliveryValue;
+                  },
+                  onRequestLevelChange: (levelValue) { 
+                    requestLevel = levelValue;
+                  },
+                  onRequestTypesChange: (typesList) {
+                    requestTypes = typesList;
+                  },
+                ),
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .3,
+                      child: CustomButton(
+                        contant: 'Discard',
+                        color: const Color(0xffF9F9F9),
+                        textColor: const Color.fromARGB(255, 57, 57, 57),
+                        onTap: () {
+                          GoRouter.of(context).pop();
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .3,
+                      child:
+                          BlocConsumer<CreateRequestCubit, CreateRequestState>(
+                        listener: (context, state) {
+                          if (state is CreateRequestSuccess) {
+                            BlocProvider.of<RequestsCubit>(context)
+                                .getAllRequests();
+                            GoRouter.of(context).pop();
+                            ShowSnackbar.showSnackBar(context, state.msg, 'S');
+                          } else if (state is CreateRequestFailure) {
+                            ShowSnackbar.showSnackBar(
+                                context, state.error, 'F');
+                          }
+                        },
+                        builder: (context, state) {
+                          if (state is CreateRequestLoading) {
+                            return const CustomButtonWithIcon(
+                              child: 'Loading',
+                              textColor: Colors.white,
+                              bgColor: kBtnColor,
+                              icon: loadingIcon,
+                              onHoverColor: Color.fromARGB(255, 116, 174, 240),
+                              onTap: null,
+                            );
+                          }
+                          return CustomButtonWithIcon(
+                            child: 'Submit',
+                            textColor: Colors.white,
+                            bgColor: kBtnColor,
+                            icon: Symbols.done_all,
+                            onHoverColor:
+                                const Color.fromARGB(255, 116, 174, 240),
+                            onTap: () {
+                              tryToEditRequest(context);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                  ],
+                ),
+                const SizedBox(height: 30),
               ],
-            ),
-            const SizedBox(height: 30),
-          ],
+            );
+          },
         ),
       ),
     );

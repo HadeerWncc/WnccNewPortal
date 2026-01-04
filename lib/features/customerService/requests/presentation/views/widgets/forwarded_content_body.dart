@@ -41,7 +41,7 @@ class ForwardedContentBody extends StatelessWidget {
                 );
               }
               return CustomMultiSelectDropDown(
-                selectedValue: '',
+                selectedValue: const [''],
                 items: const [],
                 onChanged: (value) {},
                 title: 'Forward to',

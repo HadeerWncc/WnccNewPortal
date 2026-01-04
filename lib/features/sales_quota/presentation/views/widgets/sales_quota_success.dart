@@ -16,7 +16,7 @@ class SelesQuotaSuccess extends StatefulWidget {
       required this.chartBagsData,
       required this.chartBagsDataPriority,
       required this.chartBulkData,
-      required this.chartBulkDataPriority});
+      required this.chartBulkDataPriority, required this.chartDispatchBags, required this.chartDispatchBulk});
   final DailyQuotaModel dailyQuotaModel;
   final List<Map<String, TextEditingController>> controllers;
   final TextEditingController totalQuotaController;
@@ -27,6 +27,8 @@ class SelesQuotaSuccess extends StatefulWidget {
   final ChartDataEntity chartBagsDataPriority;
   final ChartDataEntity chartBulkData;
   final ChartDataEntity chartBulkDataPriority;
+  final ChartDataEntity chartDispatchBags;
+  final ChartDataEntity chartDispatchBulk;
   @override
   State<SelesQuotaSuccess> createState() => _SelesQuotaSuccessState();
 }
@@ -66,8 +68,11 @@ class _SelesQuotaSuccessState extends State<SelesQuotaSuccess> {
                   delivery: widget.chartBagsDataPriority.delivery,
                   remaining: widget.chartBagsDataPriority.remaining,
                 ),
-                dispatch:
-                    ChartDataEntity(pickup: 20, delivery: 40, remaining: 40),
+                dispatch: ChartDataEntity(
+                  pickup: widget.chartDispatchBags.pickup,
+                  delivery: widget.chartDispatchBags.delivery,
+                  remaining: widget.chartDispatchBags.remaining,
+                ),
               )
             : CardCharts(
                 quota: ChartDataEntity(
@@ -80,8 +85,11 @@ class _SelesQuotaSuccessState extends State<SelesQuotaSuccess> {
                   delivery: widget.chartBulkDataPriority.delivery,
                   remaining: widget.chartBulkDataPriority.remaining,
                 ),
-                dispatch:
-                    ChartDataEntity(pickup: 20, delivery: 40, remaining: 40),
+                dispatch: ChartDataEntity(
+                  pickup: widget.chartDispatchBulk.pickup,
+                  delivery: widget.chartDispatchBulk.delivery,
+                  remaining: widget.chartDispatchBulk.remaining,
+                ),
               ),
       ],
     );

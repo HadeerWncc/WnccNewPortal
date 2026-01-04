@@ -33,7 +33,7 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
         child: DataTable2(
           columnSpacing: 0,
           horizontalMargin: 0,
-          minWidth: 1400,
+          minWidth: 1800,
           showCheckboxColumn: true,
           dataRowHeight: 60,
           border: const TableBorder.symmetric(
@@ -44,7 +44,10 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
           columns: const [
             DataColumn(label: DataColumnText(text: 'Select')),
             DataColumn(label: DataColumnText(text: 'OrderNo')),
-            DataColumn(label: DataColumnText(text: 'Product')),
+            DataColumn(
+                label: DataColumnText(
+              text: 'Product',
+            )),
             DataColumn(label: DataColumnText(text: 'Payer')),
             DataColumn(label: DataColumnText(text: 'Pod')),
             DataColumn(label: DataColumnText(text: 'PodAddress')),

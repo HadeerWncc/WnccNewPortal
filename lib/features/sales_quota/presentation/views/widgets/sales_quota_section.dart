@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/core/utils/methods/parse_to_int.dart';
 import 'package:wncc_portal/features/sales_quota/data/models/daily_quota_model/sales_quota.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/custom_bags_table.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/custom_bulk_table.dart';
@@ -25,6 +26,13 @@ class _SalesQuotaSectionState extends State<SalesQuotaSection> {
   String selectedQuota = 'Bags';
   @override
   Widget build(BuildContext context) {
+    int totalBags = widget.salesQuotaList
+        .where((sQ) => sQ.salesType != 1)
+        .fold(0, (sum, item) => sum + (parseToInt(item.totalBagsQuota.toString())));
+    int totalBulk = widget.salesQuotaList
+        .where((sQ) => sQ.salesType != 0)
+        .fold(0, (sum, item) => sum + (parseToInt(item.totalBulkQuota.toString())));
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -37,9 +45,12 @@ class _SalesQuotaSectionState extends State<SalesQuotaSection> {
         ),
         const SizedBox(height: 10),
         CustomSelectedList(
+          totalBags: totalBags,
+          totalBulk: totalBulk,
           selectedItem: (value) {
             selectedQuota = value;
             widget.onSelectedItem(value);
+            
             setState(() {});
           },
         ),

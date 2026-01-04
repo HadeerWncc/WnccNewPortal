@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/utils/methods/request_methods.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
+import 'package:wncc_portal/features/customerService/complains/domain/entities/complain_entity.dart';
 import 'package:wncc_portal/features/customerService/requests/domain/enums/request_level_enum.dart';
 
-class EditComplainForm extends StatelessWidget {
+class EditComplainForm extends StatefulWidget {
   const EditComplainForm({
     super.key,
     required this.payerId,
@@ -13,9 +14,9 @@ class EditComplainForm extends StatelessWidget {
     required this.complainSubject,
     required this.contactPerson,
     required this.contactPhone,
-    required this.comment,
+    required this.comment, required this.complainEntity,
   });
-
+ 
   final Function(String) onRequestTypeChange;
   final Function(int) onRequestLevelChange;
   final TextEditingController payerId;
@@ -23,8 +24,21 @@ class EditComplainForm extends StatelessWidget {
   final TextEditingController contactPerson;
   final TextEditingController contactPhone;
   final TextEditingController comment;
+  final ComplainEntity complainEntity;  
+
+  @override
+  State<EditComplainForm> createState() => _EditComplainFormState();
+}
+
+class _EditComplainFormState extends State<EditComplainForm> {
   @override
   Widget build(BuildContext context) {
+    // widget.payerId.text = widget.complainEntity.payerId!;
+    // widget.contactPerson.text = widget.complainEntity.contactPerson!;
+    // widget.contactPhone.text = widget.complainEntity.contactPhone!;
+    // widget.complainSubject.text = widget.complainEntity.subject!;
+    // widget.comment.text = widget.complainEntity.description!;
+    
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
@@ -32,28 +46,29 @@ class EditComplainForm extends StatelessWidget {
         children: [
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: payerId,
+            controller: widget.payerId,
             labelText: 'Payer',
             enable: false,
+            
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: contactPerson,
+            controller: widget.contactPerson,
             labelText: 'Contact Person',
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: contactPhone,
+            controller: widget.contactPhone,
             labelText: 'Contact Phone',
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: complainSubject,
+            controller: widget.complainSubject,
             labelText: 'Complain Subject',
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: null,
+            selectedValue: widget.complainEntity.type,
             hintText: 'Select Type',
             items: const [
               'Accounting/Fax',
@@ -67,7 +82,7 @@ class EditComplainForm extends StatelessWidget {
             ],
             title: 'Complain type',
             onChanged: (value) {
-              onRequestTypeChange(value ?? "");
+              widget.onRequestTypeChange(value ?? "");
             },
           ),
           const SizedBox(height: 15),
@@ -85,7 +100,7 @@ class EditComplainForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: null,
+            selectedValue: SupportLevel.values[widget.complainEntity.level!.index].name,
             hintText: 'Select Level',
             items: getRequestLevelListOfString(),
             title: 'Complain Priority',
@@ -93,12 +108,12 @@ class EditComplainForm extends StatelessWidget {
               SupportLevel level =
                   SupportLevel.values.firstWhere((d) => d.name == value);
               int requestLevel = level.index;
-              onRequestLevelChange(requestLevel);
+              widget.onRequestLevelChange(requestLevel);
             },
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
-            controller: comment,
+            controller: widget.comment,
             labelText: 'Complain',
             linesNum: 5,
           ),

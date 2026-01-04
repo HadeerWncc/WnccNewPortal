@@ -16,7 +16,7 @@ class CustomPlaceholderInput extends StatelessWidget {
       this.onChanged,
       this.keyboardType,
       this.linesNum,
-      this.xAxis});
+      this.xAxis,});
   final TextEditingController controller;
   final String labelText;
   final double? width;

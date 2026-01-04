@@ -34,7 +34,7 @@ class SalesQuotaRemoteDatasourceImpl extends SalesQuotaRemoteDatasource {
   @override
   Future<String> copyDailyQuota(CopyQuotaDateEntity copyQuotaEntity) async {
     var result = await apiService.post(
-      endPoint: 'api/Quotas/DistributeQuota',
+      endPoint: 'api/Quotas/CopyQuota',
       data: copyQuotaEntity.toJson(),
     );
     String message = result["message"] as String;

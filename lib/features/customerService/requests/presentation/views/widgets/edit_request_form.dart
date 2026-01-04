@@ -3,6 +3,7 @@ import 'package:wncc_portal/core/utils/methods/request_methods.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/custom_multiselect_dropdown.dart';
 import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
+import 'package:wncc_portal/features/customerService/requests/domain/entities/request_details_entity.dart';
 import 'package:wncc_portal/features/customerService/requests/domain/enums/request_delivery_enum.dart';
 import 'package:wncc_portal/features/customerService/requests/domain/enums/request_level_enum.dart';
 
@@ -15,7 +16,7 @@ class EditRequestForm extends StatelessWidget {
     required this.payerId,
     required this.contactPerson,
     required this.contactPhone,
-    required this.comment,
+    required this.comment, required this.requestDetailsEntity,
   });
   final Function(List<String>) onRequestTypesChange;
   final Function(int) onRequestDeliveryChange;
@@ -24,6 +25,7 @@ class EditRequestForm extends StatelessWidget {
   final TextEditingController contactPerson;
   final TextEditingController contactPhone;
   final TextEditingController comment;
+  final RequestDetailsEntity requestDetailsEntity;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,7 +38,7 @@ class EditRequestForm extends StatelessWidget {
             controller: TextEditingController(text: payerId),
             labelText: 'Select Payer',
             enable: false,
-          ),
+          ), 
           const SizedBox(height: 15),
           CustomPlaceholderInput(
             controller: contactPerson,
@@ -49,7 +51,9 @@ class EditRequestForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomMultiSelectDropDown(
-            selectedValue: null,
+            selectedValue: requestDetailsEntity.requestTypes
+                ?.map((e) => e.name)
+                .toList(),
             hintText: 'Select types',
             items: const [
               'Invoice',
@@ -65,7 +69,7 @@ class EditRequestForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: null,
+            selectedValue: requestDetailsEntity.delivery.name,
             hintText: 'Select Type',
             items: getRequestDeliveryListOfString(),
             title: 'Delivery',
@@ -78,7 +82,7 @@ class EditRequestForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: null,
+            selectedValue: requestDetailsEntity.level.name,
             hintText: 'Select Level',
             items: getRequestLevelListOfString(),
             title: 'Request Level',

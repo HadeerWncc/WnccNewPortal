@@ -49,6 +49,16 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
     delivery: 0,
     remaining: 100,
   );
+  ChartDataEntity chartBagsDataDispatch = ChartDataEntity(
+    pickup: 0,
+    delivery: 0,
+    remaining: 100,
+  );
+  ChartDataEntity chartBulkDataDispatch = ChartDataEntity(
+    pickup: 0,
+    delivery: 0,
+    remaining: 100,
+  );
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SalesQuotaCubit, SalesQuotaState>(
@@ -77,6 +87,8 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
             chartBagsDataPriority: chartBagsDataPriority,
             chartBulkData: chartBulkData,
             chartBulkDataPriority: chartBulkDataPriority,
+            chartDispatchBags: chartBagsDataDispatch,
+            chartDispatchBulk: chartBulkDataDispatch,
           );
         }
         return const LoadingSalesQuota();
@@ -92,6 +104,7 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
     controllers = prepareControllers(state.dailyQuotaModel.salesQuotas!);
     quotaChart(state);
     priorityChart(state);
+    dispatchChart(state);
   }
 
   void priorityChart(SalesQuotaSuccess state) {
@@ -158,6 +171,42 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
           (totalDeliveryBulk / state.dailyQuotaModel.totalBulkQuota) * 100;
       chartBulkData.remaining =
           100 - (chartBulkData.pickup + chartBulkData.delivery);
+    }
+  }
+
+
+void dispatchChart(SalesQuotaSuccess state) {
+    num totalPickupDispatchBags = state.dailyQuotaModel.salesQuotas!
+        .fold(0, (sum, item) => sum + item.pickupBagsDispatch);
+
+    num totalDeliveryDispatchBags = state.dailyQuotaModel.salesQuotas!
+        .fold(0, (sum, item) => sum + item.deliveryBagsDispatch);
+    num totalPickupDispatchBulk = state.dailyQuotaModel.salesQuotas!
+        .fold(0, (sum, item) => sum + item.pickupBulkDispatch);
+
+    num totalDeliveryDispatchBulk = state.dailyQuotaModel.salesQuotas!
+        .fold(0, (sum, item) => sum + item.deliveryBulkDispatch);
+    num totalBagsDispatch = state.dailyQuotaModel.salesQuotas!
+        .fold(0, (sum, item) => sum + item.totalBagsDispatch);
+
+    num totalBulkDispatch = state.dailyQuotaModel.salesQuotas!
+        .fold(0, (sum, item) => sum + item.totalBulkDispatch);
+    if (totalBagsDispatch > 0) {
+      chartBagsDataDispatch.pickup =
+          (totalPickupDispatchBags / totalBagsDispatch) * 100;
+      chartBagsDataDispatch.delivery =
+          (totalDeliveryDispatchBags / totalBagsDispatch) * 100;
+      chartBagsDataDispatch.remaining =
+          100 - (chartBagsDataDispatch.pickup + chartBagsDataDispatch.delivery);
+    }
+
+    if (totalBulkDispatch > 0) {
+      chartBulkDataDispatch.pickup =
+          (totalPickupDispatchBulk / totalBulkDispatch) * 100;
+      chartBulkDataDispatch.delivery =
+          (totalDeliveryDispatchBulk / totalBulkDispatch) * 100;
+      chartBulkDataDispatch.remaining =
+          100 - (chartBulkDataDispatch.pickup + chartBulkDataDispatch.delivery);
     }
   }
 

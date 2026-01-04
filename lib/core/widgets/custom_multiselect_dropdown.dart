@@ -13,7 +13,7 @@ class CustomMultiSelectDropDown extends StatefulWidget {
     this.hintText,
   });
 
-  final String? selectedValue;
+  final List<String>? selectedValue;
   final List<String> items;
   final Function(List<String>) onChanged;
   final String title;
@@ -32,7 +32,8 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
   @override
   void initState() {
     super.initState();
-    multiChoiceTitle = widget.selectedValue ?? "";
+    // multiChoiceTitle = widget.selectedValue ?? "";
+    selectedItems = widget.selectedValue ?? [];
   }
 
   @override
@@ -68,7 +69,7 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
                 color: Color.fromARGB(255, 83, 83, 83),
               ),
             ),
-            value: widget.selectedValue,
+            value: widget.selectedValue?[0],
             items: widget.items
                 .map((item) => DropdownMenuItem(
                       value: item,

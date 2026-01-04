@@ -4,11 +4,12 @@ import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/cust
 class CustomSelectedList extends StatefulWidget {
   const CustomSelectedList({
     super.key,
-    required this.selectedItem,
+    required this.selectedItem, required this.totalBags, required this.totalBulk,
   });
 
   final void Function(String value) selectedItem;
-
+  final int totalBags;
+  final int totalBulk;
   @override
   State<CustomSelectedList> createState() => _CustomSelectedListState();
 }
@@ -29,7 +30,7 @@ class _CustomSelectedListState extends State<CustomSelectedList> {
               widget.selectedItem('Bags');
             });
           },
-          title: 'Bags Quota (0)',
+          title: 'Bags Quota (${widget.totalBags})',
         ),
         const SizedBox(width: 10),
         CustomSelectBoxItem(
@@ -41,7 +42,7 @@ class _CustomSelectedListState extends State<CustomSelectedList> {
             });
           },
           selected: selectedBulk,
-          title: 'Bulk Quota (0)',
+          title: 'Bulk Quota (${widget.totalBulk})',
         ),
       ],
     );
