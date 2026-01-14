@@ -9,6 +9,9 @@ import 'package:wncc_portal/features/customerService/complains/presentation/view
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/create_complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_view.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_monthly_page.dart';
 import 'package:wncc_portal/features/payer/presentation/views/pages/payer_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
@@ -16,7 +19,6 @@ import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pi
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/request_details_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/requests_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/add_request_page.dart';
-import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
 import 'package:wncc_portal/features/to_do_list/presentation/views/pages/to_do_screen.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/change_password_page.dart';
@@ -31,8 +33,6 @@ import 'package:wncc_portal/features/user/presentation/views/pages/profile/profi
 import 'package:wncc_portal/features/user/presentation/views/pages/select_startup_routing_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/thanks_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/welcome_page.dart';
-
-import '../../features/customerService/requests/domain/entities/request_details_entity.dart' show RequestDetailsEntity;
 
 abstract class AppRouter {
   static const loginPath = '/Login';
@@ -62,6 +62,9 @@ abstract class AppRouter {
   static const pricingReport = '/pricingReport';
   static const payer = '/payer';
   static const toDoList = '/toDoList';
+  static const factVsCustDispatchHourly = '/factvscustDailyHourlypage';
+  static const factVsCustDispatchDaily = '/factvscustDailyDailypage';
+  static const factVsCustDispatchMonthly = '/factvscustDailyMonthlypage';
 
   static final router = GoRouter(
     routes: [
@@ -91,7 +94,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: homePath,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) => const SalesQuotaPage(),
       ),
       GoRoute(
         path: changePasswordPath,
@@ -200,6 +203,18 @@ abstract class AppRouter {
       GoRoute(
         path: toDoList,
         builder: (context, state) => const ToDoScreen(),
+      ),
+      GoRoute(
+        path: factVsCustDispatchHourly,
+        builder: (context, state) => const FactvscustHourlypage(),
+      ),
+      GoRoute(
+        path: factVsCustDispatchDaily,
+        builder: (context, state) => const FactvscustDailypage(),
+      ),
+      GoRoute(
+        path: factVsCustDispatchMonthly,
+        builder: (context, state) => const FactvscustMonthlypage(),
       ),
     ],
   );

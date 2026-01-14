@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/features/sales_quota/domain/entities/copy_quota_dates_entity.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
-import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/date_picker.dart';
+import 'package:wncc_portal/core/widgets/date_picker.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/switch_button.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/copy_data_blocprovider.dart';
 

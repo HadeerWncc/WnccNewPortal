@@ -10,7 +10,10 @@ import 'package:wncc_portal/features/priority/comm/widgets/custom_priority_actio
 
 class CustomComplainActions extends StatelessWidget {
   const CustomComplainActions(
-      {super.key, required this.complainId, required this.payerId, required this.complainEntity});
+      {super.key,
+      required this.complainId,
+      required this.payerId,
+      required this.complainEntity});
   final String complainId;
   final String payerId;
   final ComplainEntity complainEntity;

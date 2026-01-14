@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/booking_price/presentation/views/widgets/booking_price_body.dart';
@@ -42,9 +44,7 @@ class BookingPricePage extends StatelessWidget {
             ),
           );
         } else if (state is UserFailure) {
-          return Center(
-            child: Text(state.error),
-          );
+          GoRouter.of(context).go(AppRouter.loginPath);
         }
         return const LoadingPage(
           title: "Booking Price",

@@ -15,6 +15,10 @@ import 'package:wncc_portal/features/customerService/complains/presentation/mana
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/forwarded_complain_cubit/forwarded_complain_cubit.dart';
+import 'package:wncc_portal/features/factVsCustDisp/data/data_sources/fact_vs_cust_data_source.dart';
+import 'package:wncc_portal/features/factVsCustDisp/data/repos/fact_vs_cust_repo_imp.dart';
+import 'package:wncc_portal/features/factVsCustDisp/domain/repos/fact_vs_cust_repo.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/data/datasources/delivery_data_source.dart';
 import 'package:wncc_portal/features/priority/delivery/data/repositories/delivery_repo_impl.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/repositories/delivery_repo.dart';
@@ -117,6 +121,10 @@ void setupLocator() {
   getIt.registerLazySingleton<ComplainsDatasource>(
       () => ComplainsDatasourceImpl(apiService: getIt<ApiService>()));
 
+  //FactVsCustDataSource
+  getIt.registerLazySingleton<FactVsCustDatasourse>(
+      () => FactVsCustDatasourseImpl(apiService: getIt<ApiService>()));
+
   // Repositories
   //BaseRepo
   getIt.registerLazySingleton<BaseRepos>(() => BaseRepos());
@@ -154,6 +162,10 @@ void setupLocator() {
   //RequestsRepo
   getIt.registerLazySingleton<ComplainRepo>(() =>
       ComplainRepoImpl(complainsDatasource: getIt<ComplainsDatasource>()));
+
+  //FactVsCustRepo
+  getIt.registerLazySingleton<FactVsCustRepo>(() =>
+      Factvscustrepoimp(factVsCustDatasourse: getIt<FactVsCustDatasourse>()));
 
   // Use Cases
   //login Use Case
@@ -369,4 +381,10 @@ void setupLocator() {
   //get Replies complain Cubit
   getIt.registerFactory<ComplainRepliesCubit>(
       () => ComplainRepliesCubit(getIt<ComplainRepo>()));
+
+
+  //FactVsCustCubit
+  getIt.registerFactory<FactVsCustCubit>(
+      () => FactVsCustCubit(getIt<FactVsCustRepo>()));
+
 }

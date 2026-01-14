@@ -7,7 +7,8 @@ class CustomButton extends StatelessWidget {
     required this.contant,
     required this.color,
     this.textColor = Colors.white,
-    this.fontSize = 16, this.width,
+    this.fontSize = 16,
+    this.width,
   });
   final void Function()? onTap;
   final String contant;

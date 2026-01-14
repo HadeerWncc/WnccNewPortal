@@ -5,7 +5,7 @@ import 'package:wncc_portal/core/widgets/divider_line.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/priority_summary.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/dispatch_delivery_section.dart';
-import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/date_picker.dart';
+import 'package:wncc_portal/core/widgets/date_picker.dart';
 
 class DispatchDeliveryOrdersPage extends StatelessWidget {
   const DispatchDeliveryOrdersPage({super.key});

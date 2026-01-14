@@ -174,8 +174,7 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
     }
   }
 
-
-void dispatchChart(SalesQuotaSuccess state) {
+  void dispatchChart(SalesQuotaSuccess state) {
     num totalPickupDispatchBags = state.dailyQuotaModel.salesQuotas!
         .fold(0, (sum, item) => sum + item.pickupBagsDispatch);
 

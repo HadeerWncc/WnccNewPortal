@@ -12,3 +12,4 @@ const kMainColor = Color(0xff008855);
 const Color toDoListHeaderColor = Color.fromARGB(255, 123, 123, 123);
 const Color customGrayColor = Color.fromARGB(255, 114, 114, 114);
 const Color toDoListColor = Color.fromARGB(255, 104, 109, 106);
+const Color tableHeaderColor = Color.fromARGB(255, 239, 238, 238);

@@ -32,7 +32,7 @@ class CustomDropDownInput extends StatelessWidget {
         decoration: InputDecoration(
           enabledBorder: inputBorder(),
           focusedBorder: customfocusedBorder(),
-          fillColor: const Color(0xffF9F9F9),
+          fillColor: const Color.fromARGB(255, 255, 255, 255),
           filled: true,
           labelText: title,
           labelStyle: const TextStyle(

@@ -5,7 +5,7 @@ import 'package:wncc_portal/core/widgets/divider_line.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/priority_summary.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubits/get_all_pickup_cubit/getall_pickup_cubit.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/dispatch_pickup/dispatch_pickup_section.dart';
-import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/date_picker.dart';
+import 'package:wncc_portal/core/widgets/date_picker.dart';
 
 class DispatchPickupOrdersPage extends StatelessWidget {
   const DispatchPickupOrdersPage({super.key});

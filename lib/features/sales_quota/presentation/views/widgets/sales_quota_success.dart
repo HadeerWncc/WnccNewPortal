@@ -16,7 +16,9 @@ class SelesQuotaSuccess extends StatefulWidget {
       required this.chartBagsData,
       required this.chartBagsDataPriority,
       required this.chartBulkData,
-      required this.chartBulkDataPriority, required this.chartDispatchBags, required this.chartDispatchBulk});
+      required this.chartBulkDataPriority,
+      required this.chartDispatchBags,
+      required this.chartDispatchBulk});
   final DailyQuotaModel dailyQuotaModel;
   final List<Map<String, TextEditingController>> controllers;
   final TextEditingController totalQuotaController;

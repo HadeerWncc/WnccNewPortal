@@ -14,9 +14,10 @@ class EditComplainForm extends StatefulWidget {
     required this.complainSubject,
     required this.contactPerson,
     required this.contactPhone,
-    required this.comment, required this.complainEntity,
+    required this.comment,
+    required this.complainEntity,
   });
- 
+
   final Function(String) onRequestTypeChange;
   final Function(int) onRequestLevelChange;
   final TextEditingController payerId;
@@ -24,7 +25,7 @@ class EditComplainForm extends StatefulWidget {
   final TextEditingController contactPerson;
   final TextEditingController contactPhone;
   final TextEditingController comment;
-  final ComplainEntity complainEntity;  
+  final ComplainEntity complainEntity;
 
   @override
   State<EditComplainForm> createState() => _EditComplainFormState();
@@ -38,7 +39,7 @@ class _EditComplainFormState extends State<EditComplainForm> {
     // widget.contactPhone.text = widget.complainEntity.contactPhone!;
     // widget.complainSubject.text = widget.complainEntity.subject!;
     // widget.comment.text = widget.complainEntity.description!;
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
@@ -49,7 +50,6 @@ class _EditComplainFormState extends State<EditComplainForm> {
             controller: widget.payerId,
             labelText: 'Payer',
             enable: false,
-            
           ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
@@ -100,7 +100,8 @@ class _EditComplainFormState extends State<EditComplainForm> {
           ),
           const SizedBox(height: 15),
           CustomDropDownInput(
-            selectedValue: SupportLevel.values[widget.complainEntity.level!.index].name,
+            selectedValue:
+                SupportLevel.values[widget.complainEntity.level!.index].name,
             hintText: 'Select Level',
             items: getRequestLevelListOfString(),
             title: 'Complain Priority',

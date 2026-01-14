@@ -32,7 +32,8 @@ class CustomRequestActions extends StatelessWidget {
               ],
             ),
             onTap: () {
-              BlocProvider.of<RequestDetailsCubit>(context).openRequest(requestId);
+              BlocProvider.of<RequestDetailsCubit>(context)
+                  .openRequest(requestId);
 
               GoRouter.of(context).push(
                 AppRouter.editRequestPage,

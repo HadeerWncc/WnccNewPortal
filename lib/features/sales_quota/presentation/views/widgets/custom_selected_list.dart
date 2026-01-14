@@ -4,7 +4,9 @@ import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/cust
 class CustomSelectedList extends StatefulWidget {
   const CustomSelectedList({
     super.key,
-    required this.selectedItem, required this.totalBags, required this.totalBulk,
+    required this.selectedItem,
+    required this.totalBags,
+    required this.totalBulk,
   });
 
   final void Function(String value) selectedItem;

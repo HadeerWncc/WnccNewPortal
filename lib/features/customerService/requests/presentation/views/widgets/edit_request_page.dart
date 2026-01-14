@@ -15,7 +15,11 @@ import 'package:wncc_portal/features/customerService/requests/presentation/manag
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_form.dart';
 
 class EditRequestPage extends StatefulWidget {
-  const EditRequestPage({super.key, required this.payerId, required this.id, required this.requestDetailsEntity});
+  const EditRequestPage(
+      {super.key,
+      required this.payerId,
+      required this.id,
+      required this.requestDetailsEntity});
   final String payerId;
   final String id;
   final RequestDetailsEntity requestDetailsEntity;
@@ -31,19 +35,19 @@ class _EditRequestPageState extends State<EditRequestPage> {
   int requestLevel = 0;
   TextEditingController comment = TextEditingController();
 
-
-
- @override
+  @override
   void initState() {
     super.initState();
-    
-    contactPerson =
-        TextEditingController(text: widget.requestDetailsEntity.contactPerson ?? '');
-    contactPhone =
-        TextEditingController(text: widget.requestDetailsEntity.contactPhone ?? '');
-    comment =
-        TextEditingController(text: widget.requestDetailsEntity.description ?? '');
-    for(int i = 0; i < (widget.requestDetailsEntity.requestTypes?.length ?? 0); i++) {
+
+    contactPerson = TextEditingController(
+        text: widget.requestDetailsEntity.contactPerson ?? '');
+    contactPhone = TextEditingController(
+        text: widget.requestDetailsEntity.contactPhone ?? '');
+    comment = TextEditingController(
+        text: widget.requestDetailsEntity.description ?? '');
+    for (int i = 0;
+        i < (widget.requestDetailsEntity.requestTypes?.length ?? 0);
+        i++) {
       requestTypes.add(widget.requestDetailsEntity.requestTypes![i].name);
     }
     requestDelivery = widget.requestDetailsEntity.delivery.index;
@@ -59,6 +63,7 @@ class _EditRequestPageState extends State<EditRequestPage> {
     comment.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -102,7 +107,7 @@ class _EditRequestPageState extends State<EditRequestPage> {
                   onRequestDeliveryChange: (deliveryValue) {
                     requestDelivery = deliveryValue;
                   },
-                  onRequestLevelChange: (levelValue) { 
+                  onRequestLevelChange: (levelValue) {
                     requestLevel = levelValue;
                   },
                   onRequestTypesChange: (typesList) {

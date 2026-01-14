@@ -110,12 +110,12 @@ class _GroupedPendingTableState extends State<GroupedPendingTable> {
             ),
           ),
           Expanded(
-            flex: 2,
+              flex: 2,
               child: Center(
                   child: Text(
-            'Product',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ))),
+                'Product',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ))),
           Expanded(
               child: Center(
                   child: Text(

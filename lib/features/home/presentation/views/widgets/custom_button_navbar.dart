@@ -44,8 +44,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       onTap: (index) {
         if (index == 0) {
           GoRouter.of(context).push(AppRouter.toDoList);
-        }
-        else if(index == 1){
+        } else if (index == 1) {
           GoRouter.of(context).push(AppRouter.homePath);
         }
         // else if (index == 2) {

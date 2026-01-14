@@ -16,7 +16,8 @@ class EditRequestForm extends StatelessWidget {
     required this.payerId,
     required this.contactPerson,
     required this.contactPhone,
-    required this.comment, required this.requestDetailsEntity,
+    required this.comment,
+    required this.requestDetailsEntity,
   });
   final Function(List<String>) onRequestTypesChange;
   final Function(int) onRequestDeliveryChange;
@@ -38,7 +39,7 @@ class EditRequestForm extends StatelessWidget {
             controller: TextEditingController(text: payerId),
             labelText: 'Select Payer',
             enable: false,
-          ), 
+          ),
           const SizedBox(height: 15),
           CustomPlaceholderInput(
             controller: contactPerson,
@@ -51,9 +52,8 @@ class EditRequestForm extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           CustomMultiSelectDropDown(
-            selectedValue: requestDetailsEntity.requestTypes
-                ?.map((e) => e.name)
-                .toList(),
+            selectedValue:
+                requestDetailsEntity.requestTypes?.map((e) => e.name).toList(),
             hintText: 'Select types',
             items: const [
               'Invoice',

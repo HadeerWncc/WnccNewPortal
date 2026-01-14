@@ -144,7 +144,7 @@ class RequestDetailsModel extends Equatable {
       payerName: payerName,
       payerEmail: payerEmail,
       level: mapLevelFromInt(level!),
-      status: mapStatusFromInt(status??0),
+      status: mapStatusFromInt(status ?? 0),
       closedAt: closedAt,
       createdBy: createdBy,
       closedBy: closedBy,

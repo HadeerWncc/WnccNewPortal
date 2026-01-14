@@ -16,11 +16,39 @@ class DrawerMenuList extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       children: [
+        // CustomDrawerMenu(
+        //   expanded: true,
+        //   icon: Icons.star,
+        //   iconColor: Colors.amber,
+        //   title: 'Favourite List',
+        //   children: [
+        //     CustomMenuItem(
+        //       title: 'Sales Quota',
+        //       active: activeTab == 'Sales Quota',
+        //       onTap: () {
+        //         GoRouter.of(context).push(AppRouter.salesQuotaPath);
+        //       },
+        //     ),
+        //     CustomMenuItem(
+        //       title: 'Delivery',
+        //       active: activeTab == 'Delivery',
+        //       onTap: () {
+        //         GoRouter.of(context).push(AppRouter.deliveryPath);
+        //       },
+        //     ),
+        //     CustomMenuItem(
+        //       title: 'PickUp',
+        //       active: activeTab == 'PickUp',
+        //       onTap: () {
+        //         GoRouter.of(context).push(AppRouter.pickupPath);
+        //       },
+        //     ),
+        //   ],
+        // ),
+        // const Divider(),
         CustomDrawerMenu(
-          expanded: true,
-          icon: Icons.star,
-          iconColor: Colors.amber,
-          title: 'Favourite List',
+          icon: Icons.keyboard_double_arrow_up,
+          title: 'Priority',
           children: [
             CustomMenuItem(
               title: 'Sales Quota',
@@ -45,70 +73,21 @@ class DrawerMenuList extends StatelessWidget {
             ),
           ],
         ),
-        const Divider(),
+
         CustomDrawerMenu(
-          icon: Icons.home,
-          title: 'Customer Service',
-          children: [
-            CustomMenuItem(
-              title: 'Requests',
-              active: activeTab == 'Requests',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.requests);
-              },
-            ),
-            CustomMenuItem(
-              title: 'Complains',
-              active: activeTab == 'Complains',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.complains);
-              },
-            ),
-            CustomMenuItem(
-              title: 'Payer',
-              active: activeTab == 'Payer',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.payer);
-              },
-            ),
-          ],
-        ),
-        CustomDrawerMenu(
-          icon: Icons.account_balance,
-          title: 'Sales',
-          children: [
-            CustomMenuItem(
-              title: "Booking Price",
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.bookingPrice);
-              },
-            ),
-            CustomMenuItem(
-              title: "Pricing Report",
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.pricingReport);
-              },
-            ),
-            CustomMenuItem(
-              title: 'number 3',
-              onTap: () {},
-            ),
-          ],
-        ),
-        CustomDrawerMenu(
-          icon: Icons.work,
+          icon: Icons.analytics,
           title: 'Reports',
           children: [
             CustomMenuItem(
-              title: 'number 1',
-              onTap: () {},
+              title: 'FactoryVsCustDispatch',
+              active: activeTab == 'FactoryVsCustDispatch',
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.factVsCustDispatchHourly);
+              },
             ),
             CustomMenuItem(
-              title: 'number 2',
-              onTap: () {},
-            ),
-            CustomMenuItem(
-              title: 'number 3',
+              title: 'Loading Details',
+              active: activeTab == 'Loading Details',
               onTap: () {},
             ),
           ],

@@ -19,7 +19,7 @@ class EditComplainPage extends StatefulWidget {
     required this.payerId,
     required this.id,
     required this.complainEntity,
-  }); 
+  });
   final String payerId;
   final String id;
   final ComplainEntity complainEntity;

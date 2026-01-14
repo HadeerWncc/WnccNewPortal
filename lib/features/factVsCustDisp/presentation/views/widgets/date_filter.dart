@@ -1,44 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class DatePicker extends StatefulWidget {
-  const DatePicker({
-    super.key,
-    required this.title,
-    this.onChange,
-  });
-  final String title;
-  final void Function(DateTime currentDate)? onChange;
-  // final DateTime date;
+class DateFilter extends StatefulWidget {
+  const DateFilter({super.key});
+
   @override
-  State<DatePicker> createState() => _DatePickerState();
+  State<DateFilter> createState() => _DateFilterState();
 }
 
-class _DatePickerState extends State<DatePicker> {
+class _DateFilterState extends State<DateFilter> {
   String formattedDate = DateFormat('MMMM d, y').format(DateTime.now());
-  DateTime currentDate = DateTime.now();
-  Future<void> _pickDate() async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: currentDate,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
-    );
-    if (picked != null && picked != DateTime.now()) {
-      setState(() {
-        formattedDate = DateFormat('MMMM d, y').format(picked);
-        currentDate = picked;
-        if (widget.onChange != null) {
-          widget.onChange!(picked);
-        }
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _pickDate,
+      // onTap: _pickDate,
       child: Container(
         padding: const EdgeInsets.all(8),
         width: MediaQuery.of(context).size.width * .43,
@@ -52,7 +27,7 @@ class _DatePickerState extends State<DatePicker> {
             Opacity(
               opacity: .7,
               child: Text(
-                widget.title,
+                'Date',
                 style: const TextStyle(fontSize: 14),
               ),
             ),
