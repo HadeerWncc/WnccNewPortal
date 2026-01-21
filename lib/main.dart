@@ -139,7 +139,6 @@ class WnccPortal extends StatelessWidget {
       child: MaterialApp.router(
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
-        // 🔴 مهم جداً
         localizationsDelegates: const [
           MonthYearPickerLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -149,11 +148,11 @@ class WnccPortal extends StatelessWidget {
 
         supportedLocales: const [
           Locale('en'),
-          Locale('ar'), // لو عايزة عربي
+          Locale('ar'), 
         ],
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,
-          fontFamily: 'WinkySans',
+          fontFamily: 'NotoSerif',
           drawerTheme: const DrawerThemeData(
             backgroundColor: Colors.black,
           ),

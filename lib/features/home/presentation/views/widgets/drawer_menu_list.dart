@@ -46,33 +46,33 @@ class DrawerMenuList extends StatelessWidget {
         //   ],
         // ),
         // const Divider(),
-        CustomDrawerMenu(
-          icon: Icons.keyboard_double_arrow_up,
-          title: 'Priority',
-          children: [
-            CustomMenuItem(
-              title: 'Sales Quota',
-              active: activeTab == 'Sales Quota',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.salesQuotaPath);
-              },
-            ),
-            CustomMenuItem(
-              title: 'Delivery',
-              active: activeTab == 'Delivery',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.deliveryPath);
-              },
-            ),
-            CustomMenuItem(
-              title: 'PickUp',
-              active: activeTab == 'PickUp',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.pickupPath);
-              },
-            ),
-          ],
-        ),
+        // CustomDrawerMenu(
+        //   icon: Icons.keyboard_double_arrow_up,
+        //   title: 'Priority',
+        //   children: [
+        //     CustomMenuItem(
+        //       title: 'Sales Quota',
+        //       active: activeTab == 'Sales Quota',
+        //       onTap: () {
+        //         GoRouter.of(context).push(AppRouter.salesQuotaPath);
+        //       },
+        //     ),
+        //     CustomMenuItem(
+        //       title: 'Delivery',
+        //       active: activeTab == 'Delivery',
+        //       onTap: () {
+        //         GoRouter.of(context).push(AppRouter.deliveryPath);
+        //       },
+        //     ),
+        //     CustomMenuItem(
+        //       title: 'PickUp',
+        //       active: activeTab == 'PickUp',
+        //       onTap: () {
+        //         GoRouter.of(context).push(AppRouter.pickupPath);
+        //       },
+        //     ),
+        //   ],
+        // ),
 
         CustomDrawerMenu(
           icon: Icons.analytics,

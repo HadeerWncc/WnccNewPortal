@@ -1,4 +1,4 @@
-const String baseUrl = 'https://10.0.2.2:7051/';
+const String baseUrl = 'http://192.168.0.240:550/';
 
 //  'https://localhost:7051/';  for web
 //  'https://10.0.2.2:7051/';   for mobile  https

@@ -30,7 +30,7 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
         child: DataTable2(
           columnSpacing: 0,
           horizontalMargin: 0,
-          minWidth: 1400,
+          minWidth: 1800,
           showCheckboxColumn: true,
           dataRowHeight: 60,
           border: const TableBorder.symmetric(

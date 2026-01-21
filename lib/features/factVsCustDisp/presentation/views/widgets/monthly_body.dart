@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/build_customer_table.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/build_factory_table.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/loading/factory_loading.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/section_title.dart';
 
 class MonthlyBody extends StatelessWidget {
@@ -26,20 +27,20 @@ class MonthlyBody extends StatelessWidget {
                 const SizedBox(height: 8),
                 buildFactoryTable(
                   factoryDispatchResponse: state.factVsCustList,
-                  lableName: 'Time',
+                  lableName: 'Month',
                 ),
                 const SizedBox(height: 30),
                 sectionTitle('Customer (P&L)'),
                 const SizedBox(height: 8),
                 buildCustomerTable(
                   customerDispatchResponse: state.factVsCustList,
-                  lableName: 'Time',
+                  lableName: 'Month',
                 ),
               ],
             ),
           );
         }
-        return const Center(child: CircularProgressIndicator());
+        return const FactoryLoading(lableName: 'Month');
       },
     );
   }

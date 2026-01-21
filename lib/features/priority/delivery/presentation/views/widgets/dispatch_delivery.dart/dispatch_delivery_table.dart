@@ -44,10 +44,7 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
           columns: const [
             DataColumn(label: DataColumnText(text: 'Select')),
             DataColumn(label: DataColumnText(text: 'OrderNo')),
-            DataColumn(
-                label: DataColumnText(
-              text: 'Product',
-            )),
+            DataColumn(label: DataColumnText(text: 'Product')),
             DataColumn(label: DataColumnText(text: 'Payer')),
             DataColumn(label: DataColumnText(text: 'Pod')),
             DataColumn(label: DataColumnText(text: 'PodAddress')),

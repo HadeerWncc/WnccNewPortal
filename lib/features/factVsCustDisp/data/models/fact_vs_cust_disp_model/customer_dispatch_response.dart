@@ -3,70 +3,70 @@ import 'package:equatable/equatable.dart';
 class CustomerDispatchResponse extends Equatable {
   final num? masry;
   final num? wadie;
-  final num? totalBags;
+  final num? bags;
   final num? bulk;
   final num? total;
-  final num? exportBags;
-  final num? exportBulk;
-  final num? exportTrading;
-  final num? loadExport;
-  final num? totalExport;
+  final num? expBags;
+  final num? expBulk;
   final num? jumbo;
+  final num? expTrading;
+  final num? loadExport;
+  final num? tExport;
   final num? extra;
   final num? clinker;
-  final num? extraClinker;
+  final num? exClinker;
 
   const CustomerDispatchResponse({
     this.masry,
     this.wadie,
-    this.totalBags,
+    this.bags,
     this.bulk,
     this.total,
-    this.exportBags,
-    this.exportBulk,
-    this.exportTrading,
+    this.expBags,
+    this.expBulk,
+    this.expTrading,
     this.loadExport,
-    this.totalExport,
+    this.tExport,
     this.jumbo,
     this.extra,
     this.clinker,
-    this.extraClinker,
+    this.exClinker,
   });
 
   factory CustomerDispatchResponse.fromJson(Map<String, dynamic> json) {
     return CustomerDispatchResponse(
       masry: json['masry'] as num?,
       wadie: json['wadie'] as num?,
-      totalBags: json['totalBags'] as num?,
+      bags: json['totalBags'] as num?,
       bulk: json['bulk'] as num?,
       total: json['total'] as num?,
-      exportBags: json['exportBags'] as num?,
-      exportBulk: json['exportBulk'] as num?,
-      exportTrading: json['exportTrading'] as num?,
-      loadExport: json['loadExport'] as num?,
-      totalExport: json['totalExport'] as num?,
+      expBags: json['exportBags'] as num?,
+      expBulk: json['exportBulk'] as num?,
       jumbo: json['jumbo'] as num?,
+      expTrading: json['exportTrading'] as num?,
+      tExport: json['totalExport'] as num?,
       extra: json['extra'] as num?,
       clinker: json['clinker'] as num?,
-      extraClinker: json['extraClinker'] as num?,
+      exClinker: json['extraClinker'] as num?,
     );
   }
 
   Map<String, dynamic> toJson() => {
         'masry': masry,
         'wadie': wadie,
-        'totalBags': totalBags,
+        'bags': bags,
         'bulk': bulk,
         'total': total,
-        'exportBags': exportBags,
-        'exportBulk': exportBulk,
-        'exportTrading': exportTrading,
-        'loadExport': loadExport,
-        'totalExport': totalExport,
+        'exp_Bags': expBags,
+        'exp_Bulk': expBulk,
         'jumbo': jumbo,
+
+        'exp_Trading': expTrading,
+        // 'loadExport': loadExport,
+        't_Export': tExport,
         'extra': extra,
         'clinker': clinker,
-        'extraClinker': extraClinker,
+        'ex_Clinker': exClinker,
       };
 
   @override
@@ -74,18 +74,18 @@ class CustomerDispatchResponse extends Equatable {
     return [
       masry,
       wadie,
-      totalBags,
+      bags,
       bulk,
       total,
-      exportBags,
-      exportBulk,
-      exportTrading,
+      expBags,
+      expBulk,
+      expTrading,
       loadExport,
-      totalExport,
+      tExport,
       jumbo,
       extra,
       clinker,
-      extraClinker,
+      exClinker,
     ];
   }
 }

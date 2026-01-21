@@ -23,7 +23,7 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  bool rememberme = false;
+  // bool rememberme = false;
 
   @override
   void dispose() {
@@ -85,15 +85,15 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                 ),
               ),
-              CustomCheckbox(
-                activeColor: kBtnColor,
-                isChecked: rememberme,
-                onChanged: (value) {
-                  setState(() {
-                    rememberme = value ?? false;
-                  });
-                },
-              ),
+              // CustomCheckbox(
+              //   activeColor: kBtnColor,
+              //   isChecked: rememberme,
+              //   onChanged: (value) {
+              //     setState(() {
+              //       rememberme = value ?? false;
+              //     });
+              //   },
+              // ),
             ],
           ),
           const SizedBox(height: 20),
@@ -110,9 +110,9 @@ class _LoginFormState extends State<LoginForm> {
       //check and login
       await context.read<AuthCubit>().login(
             loginEntity: LoginEntity(
-                userName: userNameController.text,
-                password: passwordController.text,
-                remmemberMe: rememberme),
+              userName: userNameController.text,
+              password: passwordController.text,
+            ),
           );
     } else {
       autovalidateMode = AutovalidateMode.always;

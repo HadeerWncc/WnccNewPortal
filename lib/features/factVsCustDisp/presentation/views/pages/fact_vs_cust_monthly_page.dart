@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/fact_vs_cust_monthly_body.dart';
@@ -18,7 +19,10 @@ class FactvscustMonthlypage extends StatelessWidget {
     BlocProvider.of<FactVsCustCubit>(context)
         .getFactVsCustDisp(1, DateTime.now());
 
-    return BlocBuilder<UserCubit, UserState>(
+    return BlocConsumer<UserCubit, UserState>(
+      listener: (context, state) => {
+        if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath)}
+      },
       builder: (context, state) {
         if (state is UserSuccess) {
           return SafeArea(
@@ -48,7 +52,7 @@ class FactvscustMonthlypage extends StatelessWidget {
             ),
           );
         } else if (state is UserFailure) {
-          GoRouter.of(context).go(AppRouter.loginPath);
+          ShowSnackbar.showSnackBar(context, state.error, 'F');
         }
         return const LoadingPage(
           title: "FactoryVsCustDispatch",

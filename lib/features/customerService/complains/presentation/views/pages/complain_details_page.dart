@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/complain_details_cubit/complain_details_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/complain_details_body.dart';
@@ -23,7 +24,10 @@ class ComplainDetailsPage extends StatelessWidget {
     BlocProvider.of<ComplainDetailsCubit>(context).openComplain(complainId);
 
     return SafeArea(
-      child: BlocBuilder<UserCubit, UserState>(
+      child: BlocConsumer<UserCubit, UserState>(
+        listener: (context, state) => {
+          if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath)}
+        },
         builder: (context, state) {
           if (state is UserSuccess) {
             return Scaffold(
@@ -79,7 +83,7 @@ class ComplainDetailsPage extends StatelessWidget {
               ),
             );
           } else if (state is UserFailure) {
-            GoRouter.of(context).go(AppRouter.loginPath);
+            ShowSnackbar.showSnackBar(context, state.error, 'F');
           }
           return const LoadingPage(
             title: 'Complains',

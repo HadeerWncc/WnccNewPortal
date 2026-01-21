@@ -14,7 +14,7 @@ class OrderResponse extends Equatable {
   final String? podAddress;
   final String? podPhone;
   final double? quantity;
-  final double? dispatchedQuantity;
+  final num? dispatchedQuantity;
   final String? dispatchChannel;
   final double? price;
   final Payer? payer;
@@ -71,7 +71,7 @@ class OrderResponse extends Equatable {
         podAddress: json['podAddress'] as String?,
         podPhone: json['podPhone'] as String?,
         quantity: json['quantity'] as double?,
-        dispatchedQuantity: json['dispatchedQuantity'] as double?,
+        dispatchedQuantity: json['dispatchedQuantity'] as num?,
         dispatchChannel: json['dispatchChannel'] as String?,
         price: json['price'] as double?,
         payer: json['payer'] == null

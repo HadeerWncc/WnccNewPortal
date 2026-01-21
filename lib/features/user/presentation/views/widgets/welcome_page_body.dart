@@ -13,7 +13,6 @@ class WelcomePageBody extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Center(child: WelcomeText()),
           FormHeading(
             title: 'Welcome to Wadi Elnile.',
             subTitle: '',

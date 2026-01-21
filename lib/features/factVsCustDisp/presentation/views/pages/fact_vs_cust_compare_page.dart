@@ -5,17 +5,20 @@ import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/fact_vs_cust_page_compare_body.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_menus_list.dart';
-import 'package:wncc_portal/features/payer/presentation/views/widgets/payer_page_body.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
-class PayerPage extends StatelessWidget {
-  const PayerPage({super.key});
+class FactVsCustComparePage extends StatelessWidget {
+  const FactVsCustComparePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserCubit, UserState>(
+    //  BlocProvider.of<FactVsCustCubit>(context)
+    //     .getFactVsCustDisp(2, DateTime.now());
+
+     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {
         if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath)}
       },
@@ -26,7 +29,7 @@ class PayerPage extends StatelessWidget {
               appBar: AppBar(
                 actionsPadding: const EdgeInsets.all(5),
                 title: const Text(
-                  'Payer',
+                  'Compare',
                   style: TextStyle(fontSize: 20),
                 ),
                 titleSpacing: 0.0,
@@ -40,18 +43,18 @@ class PayerPage extends StatelessWidget {
               drawer: Drawer(
                 shape: drawerBorde(),
                 child: CustomMenusList(
-                  activeTab: "Payer",
+                  activeTab: "FactoryVsCustDispatch",
                   user: state.user,
                 ),
               ),
-              body: const PayerPageBody(),
+              body: const FactVsCustPageCompareBody(),
             ),
           );
         } else if (state is UserFailure) {
           ShowSnackbar.showSnackBar(context, state.error, 'F');
         }
         return const LoadingPage(
-          title: "Payer",
+          title: "FactoryVsCustDispatch",
         );
       },
     );

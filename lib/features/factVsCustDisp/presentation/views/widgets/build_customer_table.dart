@@ -15,14 +15,18 @@ Widget buildCustomerTable({
   List<String> allKeys = firstRow.keys.toList();
 
   int totalIndex = allKeys.indexOf('total');
+  int bagsIndex = allKeys.indexOf('bags');
+  int totalExportIndex = allKeys.indexOf('t_Export');
 
   return IntrinsicHeight(
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         totalColumn(
-          values:
-              customerDispatchResponse.map((e) => e.day!=null ? e.day.toString() : e.displayDate.toString()).toList(),
+          values: customerDispatchResponse
+              .map((e) =>
+                  e.day != 0 ? e.day.toString() : e.displayDate.toString())
+              .toList(),
           lableName: lableName,
         ),
         Flexible(
@@ -38,7 +42,7 @@ Widget buildCustomerTable({
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),
                   columns: allKeys
-                      .sublist(0, totalIndex)
+                      .sublist(0, bagsIndex)
                       .map(
                         (key) => DataColumn(
                           label: Text(
@@ -52,7 +56,45 @@ Widget buildCustomerTable({
                     final data = model.customerDispatchResponse.toJson();
                     return DataRow(
                       cells: allKeys
-                          .sublist(0, totalIndex)
+                          .sublist(0, bagsIndex)
+                          .map((key) => DataCell(
+                              Center(child: Text(data[key].toString()))))
+                          .toList(),
+                    );
+                  }).toList(),
+                ),
+                totalColumn(
+                  values: customerDispatchResponse
+                      .map((e) => e.customerDispatchResponse.bags.toString())
+                      .toList(),
+                  lableName: 'Bags',
+                ),
+                DataTable(
+                  columnSpacing: 20,
+                  headingRowHeight: 45,
+                  dataRowMinHeight: 38,
+                  dataRowMaxHeight: 42,
+                  headingRowColor: WidgetStateProperty.all(tableHeaderColor),
+                  border: TableBorder.all(color: Colors.grey.shade300),
+                  columns: allKeys
+                      .sublist(bagsIndex + 1, totalIndex)
+                      .map(
+                        (key) => DataColumn(
+                          label: Center(
+                            child: Text(
+                              key.capitalize(),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  rows: customerDispatchResponse.map((model) {
+                    final data = model.customerDispatchResponse.toJson();
+                    return DataRow(
+                      cells: allKeys
+                          .sublist(bagsIndex + 1, totalIndex)
                           .map((key) => DataCell(
                               Center(child: Text(data[key].toString()))))
                           .toList(),
@@ -73,7 +115,7 @@ Widget buildCustomerTable({
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),
                   columns: allKeys
-                      .sublist(totalIndex + 1)
+                      .sublist(totalIndex + 1, totalExportIndex)
                       .map(
                         (key) => DataColumn(
                           label: Center(
@@ -90,7 +132,45 @@ Widget buildCustomerTable({
                     final data = model.customerDispatchResponse.toJson();
                     return DataRow(
                       cells: allKeys
-                          .sublist(totalIndex + 1)
+                          .sublist(totalIndex + 1, totalExportIndex)
+                          .map((key) => DataCell(
+                              Center(child: Text(data[key].toString()))))
+                          .toList(),
+                    );
+                  }).toList(),
+                ),
+                totalColumn(
+                  values: customerDispatchResponse
+                      .map((e) => e.customerDispatchResponse.tExport.toString())
+                      .toList(),
+                  lableName: 'T_Export',
+                ),
+                DataTable(
+                  columnSpacing: 20,
+                  headingRowHeight: 45,
+                  dataRowMinHeight: 38,
+                  dataRowMaxHeight: 42,
+                  headingRowColor: WidgetStateProperty.all(tableHeaderColor),
+                  border: TableBorder.all(color: Colors.grey.shade300),
+                  columns: allKeys
+                      .sublist(totalExportIndex+1)
+                      .map(
+                        (key) => DataColumn(
+                          label: Center(
+                            child: Text(
+                              key.capitalize(),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  rows: customerDispatchResponse.map((model) {
+                    final data = model.customerDispatchResponse.toJson();
+                    return DataRow(
+                      cells: allKeys
+                          .sublist(totalExportIndex+1)
                           .map((key) => DataCell(
                               Center(child: Text(data[key].toString()))))
                           .toList(),

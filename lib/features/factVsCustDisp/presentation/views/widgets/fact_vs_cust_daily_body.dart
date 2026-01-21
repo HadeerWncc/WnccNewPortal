@@ -13,7 +13,7 @@ class FactvscustpageDailyBody extends StatelessWidget {
         children: [
           DailyHeader(),
           SizedBox(height: 16),
-          DailyBody(),
+          Expanded(child: DailyBody()),
         ],
       ),
     );

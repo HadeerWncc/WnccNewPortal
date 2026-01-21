@@ -18,7 +18,10 @@ class ComplainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<ComplainsCubit>(context).getAllComplains();
-    return BlocBuilder<UserCubit, UserState>(
+    return BlocConsumer<UserCubit, UserState>(
+      listener: (context, state) => {
+        if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath)}
+      },
       builder: (context, state) {
         if (state is UserSuccess) {
           return SafeArea(
@@ -57,7 +60,7 @@ class ComplainPage extends StatelessWidget {
             ),
           );
         } else if (state is UserFailure) {
-          GoRouter.of(context).go(AppRouter.loginPath);
+          ShowSnackbar.showSnackBar(context, state.error, 'F');
         }
         return const LoadingPage(
           title: 'Complains',

@@ -13,7 +13,7 @@ class FactvscustpageMonthlyBody extends StatelessWidget {
         children: [
           MonthlyHeader(),
           SizedBox(height: 16),
-          MonthlyBody(),
+          Expanded(child: MonthlyBody()),
         ],
       ),
     );

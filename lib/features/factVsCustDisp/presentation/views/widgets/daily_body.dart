@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/build_customer_table.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/build_factory_table.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/loading/factory_loading.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/section_title.dart';
 
 class DailyBody extends StatelessWidget {
@@ -41,7 +42,7 @@ class DailyBody extends StatelessWidget {
             ),
           );
         }
-        return const Center(child: CircularProgressIndicator());
+        return const FactoryLoading(lableName: 'Day');
       },
     );
   }

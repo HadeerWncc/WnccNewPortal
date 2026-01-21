@@ -9,6 +9,7 @@ import 'package:wncc_portal/features/customerService/complains/presentation/view
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/create_complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_view.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_compare_page.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_monthly_page.dart';
@@ -65,6 +66,7 @@ abstract class AppRouter {
   static const factVsCustDispatchHourly = '/factvscustDailyHourlypage';
   static const factVsCustDispatchDaily = '/factvscustDailyDailypage';
   static const factVsCustDispatchMonthly = '/factvscustDailyMonthlypage';
+  static const factVsCustDispatchCompare = '/factvscustDailyComparepage';
 
   static final router = GoRouter(
     routes: [
@@ -93,7 +95,7 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
-        path: homePath,
+        path: salesQuotaPath,
         builder: (context, state) => const SalesQuotaPage(),
       ),
       GoRoute(
@@ -215,6 +217,10 @@ abstract class AppRouter {
       GoRoute(
         path: factVsCustDispatchMonthly,
         builder: (context, state) => const FactvscustMonthlypage(),
+      ),
+      GoRoute(
+        path: factVsCustDispatchCompare,
+        builder: (context, state) => const FactVsCustComparePage(),
       ),
     ],
   );

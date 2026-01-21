@@ -3,21 +3,21 @@ import 'package:equatable/equatable.dart';
 class FactoryDispatchResponse extends Equatable {
   final num? masry;
   final num? wadie;
-  final num? localBags;
+  final num? bags;
   final num? bulk;
   final num? roma;
-  final num? localBulk;
-  final num? exports;
+  final num? tBulk;
+  final num? export;
   final num? total;
 
   const FactoryDispatchResponse({
     this.masry,
     this.wadie,
-    this.localBags,
+    this.bags,
     this.bulk,
     this.roma,
-    this.localBulk,
-    this.exports,
+    this.tBulk,
+    this.export,
     this.total,
   });
 
@@ -25,11 +25,11 @@ class FactoryDispatchResponse extends Equatable {
     return FactoryDispatchResponse(
       masry: json['masry'] as num?,
       wadie: json['wadie'] as num?,
-      localBags: json['localBags'] as num?,
+      bags: json['localBags'] as num?,
       bulk: json['bulk'] as num?,
       roma: json['roma'] as num?,
-      localBulk: json['localBulk'] as num?,
-      exports: json['exports'] as num?,
+      tBulk: json['localBulk'] as num?,
+      export: json['exports'] as num?,
       total: json['total'] as num?,
     );
   }
@@ -37,11 +37,11 @@ class FactoryDispatchResponse extends Equatable {
   Map<String, dynamic> toJson() => {
         'masry': masry,
         'wadie': wadie,
-        'localBags': localBags,
+        'bags': bags,
         'bulk': bulk,
         'roma': roma,
-        'localBulk': localBulk,
-        'exports': exports,
+        't.Bulk': tBulk,
+        'export': export,
         'total': total,
       };
 
@@ -50,11 +50,11 @@ class FactoryDispatchResponse extends Equatable {
     return [
       masry,
       wadie,
-      localBags,
+      bags,
       bulk,
       roma,
-      localBulk,
-      exports,
+      tBulk,
+      export,
       total,
     ];
   }

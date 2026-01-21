@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/request_details_bloc_consumer.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
@@ -21,7 +22,12 @@ class RequestDetailsPage extends StatelessWidget {
     BlocProvider.of<RequestDetailsCubit>(context).openRequest(requestId);
 
     return SafeArea(
-      child: BlocBuilder<UserCubit, UserState>(
+      child: BlocConsumer<UserCubit, UserState>(
+        listener: (context, state) {
+          if (state is UserFailure) {
+            GoRouter.of(context).go(AppRouter.loginPath);
+          }
+        },
         builder: (context, state) {
           if (state is UserSuccess) {
             return Scaffold(
@@ -46,7 +52,7 @@ class RequestDetailsPage extends StatelessWidget {
                   RequestDetailsBlocConsumer(requestId: requestId, user: user),
             );
           } else if (state is UserFailure) {
-            GoRouter.of(context).go(AppRouter.loginPath);
+            ShowSnackbar.showSnackBar(context, state.error, 'F');
           }
           return const LoadingPage(
             title: 'Requests',

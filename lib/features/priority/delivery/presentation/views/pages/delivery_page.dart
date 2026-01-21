@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/delivery_page_body.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
@@ -14,7 +15,10 @@ class DeliveryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserCubit, UserState>(
+    return BlocConsumer<UserCubit, UserState>(
+      listener: (context, state) => {
+        if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath)}
+      },
       builder: (context, state) {
         if (state is UserSuccess) {
           return SafeArea(
@@ -38,7 +42,7 @@ class DeliveryPage extends StatelessWidget {
             ),
           );
         } else if (state is UserFailure) {
-          GoRouter.of(context).go(AppRouter.loginPath);
+          ShowSnackbar.showSnackBar(context, state.error, 'F');
         }
         return const LoadingPage(
           title: 'Delivery',

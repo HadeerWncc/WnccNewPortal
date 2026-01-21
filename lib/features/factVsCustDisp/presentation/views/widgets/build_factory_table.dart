@@ -17,6 +17,9 @@ Widget buildFactoryTable({
     ...firstRowResponse.toJson().keys.where((key) => key != 'total'),
     'Total',
   ];
+  int bagsIndex = columns.indexOf('bags');
+  int totalBulkIndex = columns.indexOf('t.Bulk');
+  int totalIndex = columns.indexOf('Total');
 
   List<List<dynamic>> data = factoryDispatchResponse.map((model) {
     final factoryData = model.factoryDispatchResponse.toJson();
@@ -37,7 +40,7 @@ Widget buildFactoryTable({
         totalColumn(
           values: factoryDispatchResponse
               .map((e) =>
-                  e.day != null ? e.day.toString() : e.displayDate.toString())
+                  e.day != 0 ? e.day.toString() : e.displayDate.toString())
               .toList(),
           lableName: lableName,
         ),
@@ -54,7 +57,7 @@ Widget buildFactoryTable({
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),
                   columns: columns
-                      .sublist(0, columns.length - 1)
+                      .sublist(0, bagsIndex)
                       .map((c) => DataColumn(
                           label: Text(c.capitalize(),
                               style: const TextStyle(
@@ -63,7 +66,67 @@ Widget buildFactoryTable({
                   rows: data
                       .map((row) => DataRow(
                             cells: row
-                                .sublist(0, row.length - 1)
+                                .sublist(0, bagsIndex)
+                                .map((cell) => DataCell(
+                                    Center(child: Text(cell.toString()))))
+                                .toList(),
+                          ))
+                      .toList(),
+                ),
+                totalColumn(
+                  values: factoryDispatchResponse
+                      .map((e) => e.factoryDispatchResponse.bags.toString())
+                      .toList(),
+                  lableName: 'Bags',
+                ),
+                DataTable(
+                  columnSpacing: 20,
+                  headingRowHeight: 45,
+                  dataRowMinHeight: 38,
+                  dataRowMaxHeight: 42,
+                  headingRowColor: WidgetStateProperty.all(tableHeaderColor),
+                  border: TableBorder.all(color: Colors.grey.shade300),
+                  columns: columns
+                      .sublist(bagsIndex + 1, totalBulkIndex)
+                      .map((c) => DataColumn(
+                          label: Text(c.capitalize(),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold))))
+                      .toList(),
+                  rows: data
+                      .map((row) => DataRow(
+                            cells: row
+                                .sublist(bagsIndex + 1, totalBulkIndex)
+                                .map((cell) => DataCell(
+                                    Center(child: Text(cell.toString()))))
+                                .toList(),
+                          ))
+                      .toList(),
+                ),
+                totalColumn(
+                  values: factoryDispatchResponse
+                      .map((e) => e.factoryDispatchResponse.tBulk.toString())
+                      .toList(),
+                  lableName: 'T_Bulk',
+                ),
+                DataTable(
+                  columnSpacing: 20,
+                  headingRowHeight: 45,
+                  dataRowMinHeight: 38,
+                  dataRowMaxHeight: 42,
+                  headingRowColor: WidgetStateProperty.all(tableHeaderColor),
+                  border: TableBorder.all(color: Colors.grey.shade300),
+                  columns: columns
+                      .sublist(totalBulkIndex + 1,totalIndex)
+                      .map((c) => DataColumn(
+                          label: Text(c.capitalize(),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold))))
+                      .toList(),
+                  rows: data
+                      .map((row) => DataRow(
+                            cells: row
+                                .sublist(totalBulkIndex + 1,totalIndex)
                                 .map((cell) => DataCell(
                                     Center(child: Text(cell.toString()))))
                                 .toList(),

@@ -25,7 +25,6 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDateSource {
       data: {
         "userName": loginEntity?.userName,
         "password": loginEntity?.password,
-        "remmemberMe": loginEntity?.remmemberMe,
       },
     );
     userModel = LoginModel.fromJson(result["data"]);

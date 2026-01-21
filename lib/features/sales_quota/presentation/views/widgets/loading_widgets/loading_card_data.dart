@@ -24,9 +24,8 @@ class LoadingCardData extends StatelessWidget {
             children: [
               SizedBox(height: 25),
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  LoadingBtnWhenGet(),
-                  SizedBox(width: 10),
                   LoadingBtnWhenGet(),
                 ],
               ),

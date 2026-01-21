@@ -17,24 +17,24 @@ class CustomTextActionBox extends StatelessWidget {
         Text(
           name,
           style: const TextStyle(
-            fontSize: 12,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
             color: Color(0xff99a1b7),
           ),
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * 0.4,
-          child: Text(
-            textAlign: TextAlign.end,
-            position,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-        ),
+        // SizedBox(
+        //   width: MediaQuery.of(context).size.width * 0.4,
+        //   child: Text(
+        //     textAlign: TextAlign.end,
+        //     position,
+        //     overflow: TextOverflow.ellipsis,
+        //     style: const TextStyle(
+        //       fontSize: 12,
+        //       fontWeight: FontWeight.bold,
+        //       color: Colors.white,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }
