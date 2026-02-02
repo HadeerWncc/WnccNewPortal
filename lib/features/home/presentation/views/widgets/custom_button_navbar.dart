@@ -22,8 +22,13 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       shadowColor: mainColor,
       items: const [
         TabItem(
-          icon: Icon(Icons.format_list_bulleted_sharp, weight: 900),
-          title: 'To_Do',
+          icon: Icon(Icons.system_update_alt_sharp, weight: 900),
+          title: 'Updates',
+          isIconBlend: true,
+        ),
+        TabItem(
+          icon: Icon(Icons.sticky_note_2_sharp, weight: 900),
+          title: 'Note',
           isIconBlend: true,
         ),
         TabItem(
@@ -35,16 +40,23 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
           isIconBlend: true,
         ),
         TabItem(
-          icon: Icon(Icons.notifications_sharp, weight: 900),
-          title: 'Notification',
+          icon: Icon(Icons.event_available_sharp, weight: 900),
+          title: 'Events',
+          isIconBlend: true,
+        ),
+        TabItem(
+          icon: Icon(Icons.check_box_sharp, weight: 900),
+          title: 'Tasks',
           isIconBlend: true,
         ),
       ],
       initialActiveIndex: widget.pageIndex,
       onTap: (index) {
         if (index == 0) {
-          GoRouter.of(context).push(AppRouter.toDoList);
+          GoRouter.of(context).push(AppRouter.updatesPagePath);
         } else if (index == 1) {
+          GoRouter.of(context).push(AppRouter.toDoList);
+        } else if (index == 2) {
           GoRouter.of(context).push(AppRouter.homePath);
         }
         // else if (index == 2) {

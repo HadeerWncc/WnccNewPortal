@@ -27,7 +27,9 @@ class ProfileBody extends StatelessWidget {
           cities: cities,
         ),
         const SizedBox(height: 20),
-        const ProfileChangePasswordSection(),
+        ProfileChangePasswordSection(
+          userModel: user,
+        ),
         const SizedBox(height: 20),
       ],
     );

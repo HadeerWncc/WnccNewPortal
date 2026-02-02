@@ -25,23 +25,26 @@ class DailyHeader extends StatelessWidget {
           spacing: 8, // مسافة أفقية بين العناصر
           runSpacing: 8,
           children: [
-            CustomDropDownInput(
-              title: 'Select',
-              items: factVsCustDispOptions,
-              selectedValue: 'Daily',
-              onChanged: (value) {
-                // Handle dropdown change
-                if (value == 'Hourly') {
-                  GoRouter.of(context).push(AppRouter.factVsCustDispatchHourly);
-                } else if (value == 'Monthly') {
-                  GoRouter.of(context)
-                      .push(AppRouter.factVsCustDispatchMonthly);
-                }
-                else if (value == 'Compare') {
-                  GoRouter.of(context)
-                      .push(AppRouter.factVsCustDispatchCompare);
-                }
-              },
+            SizedBox(
+              width: 180,
+              child: CustomDropDownInput(
+                title: 'Select',
+                items: factVsCustDispOptions,
+                selectedValue: 'Daily',
+                onChanged: (value) {
+                  // Handle dropdown change
+                  if (value == 'Hourly') {
+                    GoRouter.of(context)
+                        .push(AppRouter.factVsCustDispatchHourly);
+                  } else if (value == 'Monthly') {
+                    GoRouter.of(context)
+                        .push(AppRouter.factVsCustDispatchMonthly);
+                  } else if (value == 'Compare') {
+                    GoRouter.of(context)
+                        .push(AppRouter.factVsCustDispatchCompare);
+                  }
+                },
+              ),
             ),
             CustomMonthYearPicker(
               title: 'Select Date',

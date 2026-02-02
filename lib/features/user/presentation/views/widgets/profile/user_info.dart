@@ -25,7 +25,7 @@ class UserInfo extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             UserInfoItem(
-              title: '${user.state}, ${user.city}',
+              title: '${user.government}, ${user.city}',
               icon: Symbols.home,
             ),
             const SizedBox(height: 10),

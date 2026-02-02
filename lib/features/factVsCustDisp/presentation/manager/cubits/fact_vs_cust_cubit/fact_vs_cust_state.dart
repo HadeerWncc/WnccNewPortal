@@ -8,12 +8,15 @@ sealed class FactVsCubitState extends Equatable {
 }
 
 final class FactVsCustCubitInitial extends FactVsCubitState {}
+
 final class FactVsCustCubitLoading extends FactVsCubitState {}
+
 final class FactVsCustCubitFailure extends FactVsCubitState {
   final String error;
 
   const FactVsCustCubitFailure({required this.error});
 }
+
 final class FactVsCustCubitSuccess extends FactVsCubitState {
   final List<FactVsCustDispModel> factVsCustList;
 

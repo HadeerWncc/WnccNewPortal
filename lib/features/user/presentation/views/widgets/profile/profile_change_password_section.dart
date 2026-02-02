@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/profile/change_password_card_body.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/profile/profile_details_header.dart';
 
 class ProfileChangePasswordSection extends StatelessWidget {
-  const ProfileChangePasswordSection({super.key});
-
+  const ProfileChangePasswordSection({super.key, required this.userModel});
+  final UserModel userModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,15 +15,17 @@ class ProfileChangePasswordSection extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: const Column(
+      child: Column(
         children: [
-          SizedBox(height: 10),
-          ProfileDetailsHeader(
+          const SizedBox(height: 10),
+          const ProfileDetailsHeader(
             title: 'Sign_in Method',
           ),
-          SizedBox(height: 10),
-          Divider(),
-          ChangePasswordCardBody()
+          const SizedBox(height: 10),
+          const Divider(),
+          ChangePasswordCardBody(
+            userModel: userModel,
+          )
         ],
       ),
     );

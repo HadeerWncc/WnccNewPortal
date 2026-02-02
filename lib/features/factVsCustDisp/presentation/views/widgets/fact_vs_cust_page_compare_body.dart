@@ -13,7 +13,7 @@ class FactVsCustPageCompareBody extends StatelessWidget {
         children: [
           CompareHeader(),
           SizedBox(height: 16),
-          Expanded(child: CompareBody()), 
+          Expanded(child: CompareBody()),
         ],
       ),
     );

@@ -17,16 +17,37 @@ Widget buildCustomerTable({
   int totalIndex = allKeys.indexOf('total');
   int bagsIndex = allKeys.indexOf('bags');
   int totalExportIndex = allKeys.indexOf('t_Export');
+  // int finalTotalIndex = allKeys.indexOf('final_Total');
+  final bool showTotalRow = lableName != 'Time';
+
+  List<List<dynamic>> data = customerDispatchResponse.map((model) {
+    final json = model.customerDispatchResponse.toJson();
+    return allKeys.map((k) => json[k] ?? 0).toList();
+  }).toList();
+
+  if (showTotalRow) {
+    final totals = List.generate(allKeys.length, (colIndex) {
+      return data.fold<num>(
+        0,
+        (sum, row) => sum + (row[colIndex] as num),
+      );
+    });
+    data.add(totals);
+  }
+  List<String> labels = customerDispatchResponse
+      .map((e) => e.day != 0 ? e.day.toString() : e.displayDate.toString())
+      .toList();
+
+  if (showTotalRow) {
+    labels.add('Total');
+  }
 
   return IntrinsicHeight(
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         totalColumn(
-          values: customerDispatchResponse
-              .map((e) =>
-                  e.day != 0 ? e.day.toString() : e.displayDate.toString())
-              .toList(),
+          values: labels,
           lableName: lableName,
         ),
         Flexible(
@@ -52,21 +73,19 @@ Widget buildCustomerTable({
                         ),
                       )
                       .toList(),
-                  rows: customerDispatchResponse.map((model) {
-                    final data = model.customerDispatchResponse.toJson();
+                  rows: data.map((row) {
                     return DataRow(
-                      cells: allKeys
+                      cells: row
                           .sublist(0, bagsIndex)
-                          .map((key) => DataCell(
-                              Center(child: Text(data[key].toString()))))
+                          .map((cell) => DataCell(
+                                Center(child: Text(cell.toString())),
+                              ))
                           .toList(),
                     );
                   }).toList(),
                 ),
                 totalColumn(
-                  values: customerDispatchResponse
-                      .map((e) => e.customerDispatchResponse.bags.toString())
-                      .toList(),
+                  values: data.map((row) => row[bagsIndex].toString()).toList(),
                   lableName: 'Bags',
                 ),
                 DataTable(
@@ -90,21 +109,20 @@ Widget buildCustomerTable({
                         ),
                       )
                       .toList(),
-                  rows: customerDispatchResponse.map((model) {
-                    final data = model.customerDispatchResponse.toJson();
+                  rows: data.map((row) {
                     return DataRow(
-                      cells: allKeys
+                      cells: row
                           .sublist(bagsIndex + 1, totalIndex)
-                          .map((key) => DataCell(
-                              Center(child: Text(data[key].toString()))))
+                          .map((cell) => DataCell(
+                                Center(child: Text(cell.toString())),
+                              ))
                           .toList(),
                     );
                   }).toList(),
                 ),
                 totalColumn(
-                  values: customerDispatchResponse
-                      .map((e) => e.customerDispatchResponse.total.toString())
-                      .toList(),
+                  values:
+                      data.map((row) => row[totalIndex].toString()).toList(),
                   lableName: 'Total',
                 ),
                 DataTable(
@@ -128,54 +146,29 @@ Widget buildCustomerTable({
                         ),
                       )
                       .toList(),
-                  rows: customerDispatchResponse.map((model) {
-                    final data = model.customerDispatchResponse.toJson();
+                  rows: data.map((row) {
                     return DataRow(
-                      cells: allKeys
+                      cells: row
                           .sublist(totalIndex + 1, totalExportIndex)
-                          .map((key) => DataCell(
-                              Center(child: Text(data[key].toString()))))
+                          .map((cell) => DataCell(
+                                Center(child: Text(cell.toString())),
+                              ))
                           .toList(),
                     );
                   }).toList(),
                 ),
                 totalColumn(
-                  values: customerDispatchResponse
-                      .map((e) => e.customerDispatchResponse.tExport.toString())
+                  values: data
+                      .map((row) => row[totalExportIndex].toString())
                       .toList(),
                   lableName: 'T_Export',
                 ),
-                DataTable(
-                  columnSpacing: 20,
-                  headingRowHeight: 45,
-                  dataRowMinHeight: 38,
-                  dataRowMaxHeight: 42,
-                  headingRowColor: WidgetStateProperty.all(tableHeaderColor),
-                  border: TableBorder.all(color: Colors.grey.shade300),
-                  columns: allKeys
-                      .sublist(totalExportIndex+1)
-                      .map(
-                        (key) => DataColumn(
-                          label: Center(
-                            child: Text(
-                              key.capitalize(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      )
+                totalColumn(
+                  values: data
+                      .map((row) =>
+                          (row[totalExportIndex] + row[totalIndex]).toString())
                       .toList(),
-                  rows: customerDispatchResponse.map((model) {
-                    final data = model.customerDispatchResponse.toJson();
-                    return DataRow(
-                      cells: allKeys
-                          .sublist(totalExportIndex+1)
-                          .map((key) => DataCell(
-                              Center(child: Text(data[key].toString()))))
-                          .toList(),
-                    );
-                  }).toList(),
+                  lableName: 'Total',
                 ),
               ],
             ),

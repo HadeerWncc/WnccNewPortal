@@ -18,6 +18,7 @@ class PickupPriorityPage extends StatelessWidget {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {
         if (state is UserFailure) {
+          ShowSnackbar.showSnackBar(context, state.error, 'F');
           GoRouter.of(context).go(AppRouter.loginPath);
         }
       },
@@ -43,8 +44,6 @@ class PickupPriorityPage extends StatelessWidget {
               body: const PickupPriorityPageBody(),
             ),
           );
-        } else if (state is UserFailure) {
-          ShowSnackbar.showSnackBar(context, state.error, 'F');
         }
         return const LoadingPage(
           title: 'Pickup',

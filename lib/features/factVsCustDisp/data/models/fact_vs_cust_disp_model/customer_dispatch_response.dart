@@ -10,28 +10,23 @@ class CustomerDispatchResponse extends Equatable {
   final num? expBulk;
   final num? jumbo;
   final num? expTrading;
-  final num? loadExport;
   final num? tExport;
-  final num? extra;
-  final num? clinker;
-  final num? exClinker;
+  final num? finalTotal;
+  final num? clincker;
 
-  const CustomerDispatchResponse({
-    this.masry,
-    this.wadie,
-    this.bags,
-    this.bulk,
-    this.total,
-    this.expBags,
-    this.expBulk,
-    this.expTrading,
-    this.loadExport,
-    this.tExport,
-    this.jumbo,
-    this.extra,
-    this.clinker,
-    this.exClinker,
-  });
+  const CustomerDispatchResponse(
+      {this.masry,
+      this.wadie,
+      this.bags,
+      this.bulk,
+      this.total,
+      this.expBags,
+      this.expBulk,
+      this.expTrading,
+      this.tExport,
+      this.jumbo,
+      this.finalTotal,
+      this.clincker});
 
   factory CustomerDispatchResponse.fromJson(Map<String, dynamic> json) {
     return CustomerDispatchResponse(
@@ -45,9 +40,7 @@ class CustomerDispatchResponse extends Equatable {
       jumbo: json['jumbo'] as num?,
       expTrading: json['exportTrading'] as num?,
       tExport: json['totalExport'] as num?,
-      extra: json['extra'] as num?,
-      clinker: json['clinker'] as num?,
-      exClinker: json['extraClinker'] as num?,
+      clincker: json['clinker'] as num?,
     );
   }
 
@@ -60,13 +53,9 @@ class CustomerDispatchResponse extends Equatable {
         'exp_Bags': expBags,
         'exp_Bulk': expBulk,
         'jumbo': jumbo,
-
         'exp_Trading': expTrading,
-        // 'loadExport': loadExport,
         't_Export': tExport,
-        'extra': extra,
-        'clinker': clinker,
-        'ex_Clinker': exClinker,
+        'clinker': clincker,
       };
 
   @override
@@ -80,12 +69,10 @@ class CustomerDispatchResponse extends Equatable {
       expBags,
       expBulk,
       expTrading,
-      loadExport,
       tExport,
       jumbo,
-      extra,
-      clinker,
-      exClinker,
+      clincker,
+      finalTotal
     ];
   }
 }

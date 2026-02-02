@@ -14,8 +14,9 @@ class FirstLoginChangePasswordRemoteDataSourceImpl
   Future<bool> changePassword(
       {ChangePasswordEntity? changePasswordEnitiy}) async {
     var result = await apiService.put(
-      endPoint: 'api/CurrentUser/UpdatePassword',
+      endPoint: 'api/Authentication/ChangePassword',
       data: {
+        "id": changePasswordEnitiy?.id,
         "currentPassword": changePasswordEnitiy?.currentPassword,
         "password": changePasswordEnitiy?.newPassword,
         "confirmPassword": changePasswordEnitiy?.confirmPassword,

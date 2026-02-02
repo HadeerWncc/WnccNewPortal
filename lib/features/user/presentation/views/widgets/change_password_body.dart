@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/constants/constants.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/entites/change_password_entity.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/widgets/form_heading.dart';
@@ -12,7 +13,8 @@ import 'package:wncc_portal/features/user/presentation/views/widgets/change_pass
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 
 class ChangePasswordBody extends StatefulWidget {
-  const ChangePasswordBody({super.key});
+  const ChangePasswordBody({super.key, required this.userModel});
+  final UserModel userModel;
   @override
   State<ChangePasswordBody> createState() => _ChangePasswordBodyState();
 }
@@ -60,16 +62,17 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
             const SizedBox(
               height: 20,
             ),
-            const Opacity(
-              opacity: .5,
-              child: Text(
-                'Use 8 or more characters with a mix of letters, numbers and symbols.',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            // const Opacity(
+            //   opacity: .5,
+            //   child: Text(
+            //     'Use 8 or more characters with a mix of letters, numbers and symbols.',
+            //     style: TextStyle(
+            //       fontSize: 12,
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
+
             const SizedBox(
               height: 20,
             ),
@@ -78,7 +81,8 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
               children: [
                 CustomButtonWithIcon(
                   onTap: () {
-                    GoRouter.of(context).push(AppRouter.selectStartupRouting);
+                    GoRouter.of(context).push(AppRouter.selectStartupRouting,
+                        extra: {'userId': widget.userModel.id!});
                   },
                   child: 'Skip',
                   bgColor: const Color(0xffF1F1F3),
@@ -89,6 +93,7 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
                 const SizedBox(width: 13),
                 ChangePasswordBlocConsumer(
                   tryChangPassword: tryChangPassword,
+                  userId: widget.userModel.id!,
                 ),
               ],
             ),
@@ -104,6 +109,7 @@ class _ChangePasswordBodyState extends State<ChangePasswordBody> {
       context
           .read<FirstLoginChangePasswordCubit>()
           .changePassword(ChangePasswordEntity(
+            id: widget.userModel.id,
             currentPassword: currentPasswordController.text,
             newPassword: newPasswordController.text,
             confirmPassword: confirmPasswordController.text,

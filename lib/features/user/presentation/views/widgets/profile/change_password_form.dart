@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/entites/change_password_entity.dart';
 import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/first_login_change_password_cubit/first_login_change_password_cubit.dart';
@@ -9,8 +10,9 @@ import 'package:wncc_portal/features/user/presentation/views/widgets/profile/cha
 class ChangePasswordForm extends StatefulWidget {
   const ChangePasswordForm({
     super.key,
+    required this.userModel,
   });
-
+  final UserModel userModel;
   @override
   State<ChangePasswordForm> createState() => _ChangePasswordFormState();
 }
@@ -83,6 +85,7 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
       context
           .read<FirstLoginChangePasswordCubit>()
           .changePassword(ChangePasswordEntity(
+            id: widget.userModel.id,
             currentPassword: currentPasswordController.text,
             newPassword: newPasswordController.text,
             confirmPassword: confirmPasswordController.text,

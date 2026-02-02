@@ -11,11 +11,12 @@ class HourlyBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<FactVsCustCubit, FactVsCubitState>(
       builder: (context, state) {
         if (state is FactVsCustCubitFailure) {
-          return const Center(child: Text('Failed to load data', style: TextStyle(color: Colors.red)));
+          return const Center(
+              child: Text('Failed to load data',
+                  style: TextStyle(color: Colors.red)));
         } else if (state is FactVsCustCubitSuccess) {
           return SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -34,7 +35,7 @@ class HourlyBody extends StatelessWidget {
                 buildCustomerTable(
                   customerDispatchResponse: state.factVsCustList,
                   lableName: 'Time',
-                ), 
+                ),
               ],
             ),
           );

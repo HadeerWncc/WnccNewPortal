@@ -1,62 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/compare_table.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/loading/comareing_loading.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/section_title.dart';
 
 class CompareBody extends StatelessWidget {
   const CompareBody({super.key});
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
+      physics: const BouncingScrollPhysics(),
+      child: BlocBuilder<FactVsCustCompareCubit, FactVsCustCompareState>(
+        builder: (context, state) {
+          if (state is FactVsCustCompareSuccess) {
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                sectionTitle('Current Year'),
+                sectionTitle('Compare Year (${state.factVsCustDispCompare.compareYear[0].year})'),
                 const SizedBox(height: 8),
-                CompareTable(),
+                CompareTable(
+                    curerentYear: state.factVsCustDispCompare.compareYear),
                 const SizedBox(height: 30),
-                sectionTitle('Selected Year'),
+                sectionTitle('Selected Year (${state.factVsCustDispCompare.selectedYear[0].year})'),
                 const SizedBox(height: 8),
-                CompareTable(),
+                CompareTable(
+                    curerentYear: state.factVsCustDispCompare.selectedYear),
                 const SizedBox(height: 30),
                 sectionTitle('Differance'),
                 const SizedBox(height: 8),
-                CompareTable(),
+                CompareTable(
+                    curerentYear: state.factVsCustDispCompare.difference),
               ],
-            ),
-          );
-    // return BlocBuilder<FactVsCustCubit, FactVsCubitState>(
-    //   builder: (context, state) {
-    //     if (state is FactVsCustCubitFailure) {
-    //       return const Center(
-    //           child: Text('Failed to load data',
-    //               style: TextStyle(color: Colors.red)));
-    //     } else if (state is FactVsCustCubitSuccess) {
-    //       return SingleChildScrollView(
-    //         physics: const BouncingScrollPhysics(),
-    //         child: Column(
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           children: [
-    //             sectionTitle('Factory (FLS)'),
-    //             const SizedBox(height: 8),
-    //             buildFactoryTable(
-    //               factoryDispatchResponse: state.factVsCustList,
-    //               lableName: 'Time',
-    //             ),
-    //             const SizedBox(height: 30),
-    //             sectionTitle('Customer (P&L)'),
-    //             const SizedBox(height: 8),
-    //             buildCustomerTable(
-    //               customerDispatchResponse: state.factVsCustList,
-    //               lableName: 'Time',
-    //             ),
-    //           ],
-    //         ),
-    //       );
-    //     }
-    //     return const Center(child: CircularProgressIndicator());
-    //   },
-    // );
+            );
+          } else if (state is FactVsCustCompareFailure) {
+            return Center(
+              child: Text('Error: ${state.errorMessage}'),
+            );
+          } else {
+            return const ComareingLoading();
+          }
+        },
+      ),
+    );
   }
 }

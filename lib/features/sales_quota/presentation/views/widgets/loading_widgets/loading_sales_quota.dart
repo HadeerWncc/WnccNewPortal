@@ -15,7 +15,6 @@ class LoadingSalesQuota extends StatelessWidget {
       child: const Column(
         children: [
           LoadingCardData(),
-          
         ],
       ),
     );

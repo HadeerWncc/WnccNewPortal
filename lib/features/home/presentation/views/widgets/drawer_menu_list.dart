@@ -73,7 +73,13 @@ class DrawerMenuList extends StatelessWidget {
         //     ),
         //   ],
         // ),
-
+        CustomMenuItem(
+          title: 'Home',
+          active: activeTab == 'Home',
+          onTap: () {
+            GoRouter.of(context).push(AppRouter.homePath);
+          },
+        ),
         CustomDrawerMenu(
           icon: Icons.analytics,
           title: 'Reports',
@@ -86,9 +92,11 @@ class DrawerMenuList extends StatelessWidget {
               },
             ),
             CustomMenuItem(
-              title: 'Loading Details',
-              active: activeTab == 'Loading Details',
-              onTap: () {},
+              title: 'Morning Meeting',
+              active: activeTab == 'Morning Meeting',
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.morningMeatingPath);
+              },
             ),
           ],
         ),

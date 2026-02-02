@@ -11,9 +11,10 @@ class UserRepoImpl extends UserRepo {
 
   UserRepoImpl({required this.userRemoteDataSource});
   @override
-  Future<Either<Failure, UserModel>> completeProfile() async {
+  Future<Either<Failure, UserModel>> completeProfile(
+      String startupRoute) async {
     try {
-      UserModel user = await userRemoteDataSource.completeProfile();
+      UserModel user = await userRemoteDataSource.completeProfile(startupRoute);
       return Right(user);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -56,6 +57,21 @@ class UserRepoImpl extends UserRepo {
       List<UserModel> users = await userRemoteDataSource.getAllUsers();
       users = users.reversed.toList();
       return Right(users);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> selectStartUpRoute(
+      String id, String routeName) async {
+    try {
+      bool response =
+          await userRemoteDataSource.selectStartUpRoute(id, routeName);
+      return Right(response);
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

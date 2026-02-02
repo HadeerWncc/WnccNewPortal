@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_menus_list.dart';
@@ -15,7 +16,11 @@ class SalesQuotaPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {
-        if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath)}
+        if (state is UserFailure)
+          {
+            ShowSnackbar.showSnackBar(context, state.error, 'F'),
+            GoRouter.of(context).go(AppRouter.loginPath),
+          }
       },
       builder: (context, state) {
         if (state is UserSuccess) {
@@ -42,10 +47,6 @@ class SalesQuotaPage extends StatelessWidget {
               ),
               body: const SalesQuotaBody(),
             ),
-          );
-        } else if (state is UserFailure) {
-          return Center(
-            child: Text(state.error),
           );
         }
         return const LoadingPage(

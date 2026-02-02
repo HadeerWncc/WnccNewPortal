@@ -19,7 +19,7 @@ class UserCubit extends Cubit<UserState> {
       },
       (user) async {
         List<String> states = await baseRepos.getStates();
-        String stateId = await baseRepos.getStatesId(user.state!);
+        String stateId = await baseRepos.getStatesId(user.government!);
         List<String> cities = await baseRepos.getCities(stateId);
         emit(
           UserSuccess(

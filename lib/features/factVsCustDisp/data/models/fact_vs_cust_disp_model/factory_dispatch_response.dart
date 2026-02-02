@@ -5,8 +5,6 @@ class FactoryDispatchResponse extends Equatable {
   final num? wadie;
   final num? bags;
   final num? bulk;
-  final num? roma;
-  final num? tBulk;
   final num? export;
   final num? total;
 
@@ -15,8 +13,6 @@ class FactoryDispatchResponse extends Equatable {
     this.wadie,
     this.bags,
     this.bulk,
-    this.roma,
-    this.tBulk,
     this.export,
     this.total,
   });
@@ -27,8 +23,6 @@ class FactoryDispatchResponse extends Equatable {
       wadie: json['wadie'] as num?,
       bags: json['localBags'] as num?,
       bulk: json['bulk'] as num?,
-      roma: json['roma'] as num?,
-      tBulk: json['localBulk'] as num?,
       export: json['exports'] as num?,
       total: json['total'] as num?,
     );
@@ -39,8 +33,6 @@ class FactoryDispatchResponse extends Equatable {
         'wadie': wadie,
         'bags': bags,
         'bulk': bulk,
-        'roma': roma,
-        't.Bulk': tBulk,
         'export': export,
         'total': total,
       };
@@ -52,8 +44,6 @@ class FactoryDispatchResponse extends Equatable {
       wadie,
       bags,
       bulk,
-      roma,
-      tBulk,
       export,
       total,
     ];

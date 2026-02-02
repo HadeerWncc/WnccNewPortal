@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:wncc_portal/features/authentication/data/models/login_model.dart';
+import 'package:wncc_portal/features/authentication/data/models/login_model/login_model.dart';
 import 'package:wncc_portal/features/authentication/domain/entities/login_entity.dart';
 import 'package:wncc_portal/features/authentication/domain/use_cases/check_auth_use_case.dart';
 import 'package:wncc_portal/features/authentication/domain/use_cases/login_use_case.dart';

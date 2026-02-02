@@ -8,15 +8,17 @@ sealed class FactVsCustCompareState extends Equatable {
 }
 
 final class FactVsCustCompareInitial extends FactVsCustCompareState {}
+
 final class FactVsCustCompareLoading extends FactVsCustCompareState {}
+
 final class FactVsCustCompareFailure extends FactVsCustCompareState {
   final String errorMessage;
 
   const FactVsCustCompareFailure({required this.errorMessage});
-
 }
-final class FactVsCustCompareSuccess extends FactVsCustCompareState {
-  final List<FactVsCustDispCompare> factVsCustDispCompareList;
 
-  const FactVsCustCompareSuccess({required this.factVsCustDispCompareList});
+final class FactVsCustCompareSuccess extends FactVsCustCompareState {
+  final CompareingEntity factVsCustDispCompare;
+
+  const FactVsCustCompareSuccess({required this.factVsCustDispCompare});
 }

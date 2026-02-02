@@ -12,21 +12,21 @@ class FactoryLoading extends StatelessWidget {
       baseColor: Colors.grey.shade300,
       highlightColor: Colors.grey.shade100,
       child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                sectionTitle('Factory (FLS)'),
-                const SizedBox(height: 8),
-                LoadingFactTable(
-                  lableName: lableName,
-                ),
-                const SizedBox(height: 30),
-                sectionTitle('Customer (P&L)'),
-                const SizedBox(height: 8),
-                LoadingFactTable(
-                  lableName: lableName,
-                ), 
-              ],
-            ),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          sectionTitle('Factory (FLS)'),
+          const SizedBox(height: 8),
+          LoadingFactTable(
+            lableName: lableName,
+          ),
+          const SizedBox(height: 30),
+          sectionTitle('Customer (P&L)'),
+          const SizedBox(height: 8),
+          LoadingFactTable(
+            lableName: lableName,
+          ),
+        ],
+      ),
     );
   }
 }

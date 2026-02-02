@@ -5,17 +5,27 @@ class CustomYearPicker extends StatefulWidget {
   const CustomYearPicker({
     super.key,
     required this.title,
-    this.onChange,
+    this.onChange, this.initialDate,
   });
   final String title;
   final void Function(DateTime currentDate)? onChange;
+  final DateTime? initialDate;
   @override
   State<CustomYearPicker> createState() => _CustomYearPicker();
 }
 
 class _CustomYearPicker extends State<CustomYearPicker> {
-  String formattedDate = DateFormat('y').format(DateTime.now());
+  String formattedDate = 'Select Year';
   DateTime currentDate = DateTime.now();
+
+@override
+  initState() {
+    super.initState();
+    if (widget.initialDate != null) {
+      formattedDate = DateFormat('y').format(widget.initialDate!);
+      currentDate = widget.initialDate!=null ? widget.initialDate! : DateTime.now();
+    }
+  }
 
   Future<void> _selectYearPicker() async {
     showDialog(
@@ -24,7 +34,6 @@ class _CustomYearPicker extends State<CustomYearPicker> {
         return AlertDialog(
           title: const Text("Select Year"),
           content: SizedBox(
-            // تحديد حجم النافذة
             width: 300,
             height: 300,
             child: YearPicker(
@@ -40,7 +49,7 @@ class _CustomYearPicker extends State<CustomYearPicker> {
                   }
                 });
 
-                Navigator.pop(context); // إغلاق النافذة بعد الاختيار
+                Navigator.pop(context); 
               },
             ),
           ),

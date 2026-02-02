@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
+import 'package:wncc_portal/features/factVsCustDisp/domain/entities/comparing_entity_item.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/widgets/table_column.dart';
 
 class CompareTable extends StatelessWidget {
-  const CompareTable({super.key});
-
+  const CompareTable({super.key, required this.curerentYear});
+  final List<ComparingEntityItem> curerentYear;
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
@@ -12,7 +13,7 @@ class CompareTable extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           totalColumn(
-            values: ['1', '2', '3'],
+            values: curerentYear.map((e) => e.month.toString()).toList(),
             lableName: 'Month',
           ),
           Flexible(
@@ -34,16 +35,18 @@ class CompareTable extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14))))
                         .toList(),
-                    rows: [
-                      ['123', '456', '789', '101'],
-                      ['123', '456', '789', '101'],
-                      ['123', '456', '789', '101'],
-                    ]
+                    rows: curerentYear
                         .map((row) => DataRow(
-                              cells: row
-                                  .map((cell) => DataCell(
-                                      Center(child: Text(cell.toString()))))
-                                  .toList(),
+                              cells: [
+                                DataCell(
+                                    Center(child: Text(row.bags.toString()))),
+                                DataCell(
+                                    Center(child: Text(row.bulk.toString()))),
+                                DataCell(
+                                    Center(child: Text(row.export.toString()))),
+                                DataCell(Center(
+                                    child: Text(row.clincker.toString()))),
+                              ],
                             ))
                         .toList(),
                   ),

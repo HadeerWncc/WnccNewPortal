@@ -17,7 +17,8 @@ class RequestsPage extends StatelessWidget {
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
         listener: (context, state) => {
-          if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath)}
+          if (state is UserFailure)
+            {GoRouter.of(context).go(AppRouter.loginPath)}
         },
         builder: (context, state) {
           if (state is UserSuccess) {

@@ -1,147 +1,171 @@
 import 'package:equatable/equatable.dart';
 
 class UserModel extends Equatable {
-  final String? adminstratorId;
+  final List<dynamic>? permissions;
   final String? id;
-  final String? userId;
+  final dynamic profileId;
   final String? fullName;
-  final dynamic imageUrl;
-  final dynamic thumbnailUrl;
   final String? userName;
   final String? email;
-  final String? state;
+  final String? government;
   final String? city;
-  final String? departmentId;
+  final dynamic manager;
   final dynamic managerId;
   final String? department;
-  final dynamic manager;
+  final String? departmentId;
   final String? position;
-  final dynamic startupRoute;
-  final int? type;
   final String? phoneNumber;
-  final List<dynamic>? roles;
-  final List<dynamic>? favouriteRoutes;
+  final dynamic imageUrl;
+  final dynamic thumbnailUrl;
+  final String? startupRoute;
   final String? createdAt;
-  final String? lastUpdatedAt;
-  final dynamic createdBy;
+  final DateTime? updatedAt;
   final bool? isDeleted;
-  final bool? hasConfigurations;
-  final bool? isActive;
+  final bool? isDeactivated;
+  final bool? isConfigured;
+  final bool? is2FaRequired;
+  final bool? enableNotification;
+  final bool? enableForwarding;
+  final bool? enableChating;
+  final int? profileType;
+  final int? scope;
+  final int? notificationChannel;
+  final List<dynamic>? roles;
 
   const UserModel({
-    this.adminstratorId,
+    this.permissions,
     this.id,
-    this.userId,
+    this.profileId,
     this.fullName,
-    this.imageUrl,
-    this.thumbnailUrl,
     this.userName,
     this.email,
-    this.state,
+    this.government,
     this.city,
-    this.departmentId,
+    this.manager,
     this.managerId,
     this.department,
-    this.manager,
+    this.departmentId,
     this.position,
-    this.startupRoute,
-    this.type,
     this.phoneNumber,
-    this.roles,
-    this.favouriteRoutes,
+    this.imageUrl,
+    this.thumbnailUrl,
+    this.startupRoute,
     this.createdAt,
-    this.lastUpdatedAt,
-    this.createdBy,
+    this.updatedAt,
     this.isDeleted,
-    this.hasConfigurations,
-    this.isActive,
+    this.isDeactivated,
+    this.isConfigured,
+    this.is2FaRequired,
+    this.enableNotification,
+    this.enableForwarding,
+    this.enableChating,
+    this.profileType,
+    this.scope,
+    this.notificationChannel,
+    this.roles,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-        adminstratorId: json['adminstratorId'] as String?,
+        permissions: json['permissions'] as List<dynamic>?,
         id: json['id'] as String?,
-        userId: json['userId'] as String?,
+        profileId: json['profileId'] as dynamic,
         fullName: json['fullName'] as String?,
-        imageUrl: json['imageUrl'] as dynamic,
-        thumbnailUrl: json['thumbnailUrl'] as dynamic,
         userName: json['userName'] as String?,
         email: json['email'] as String?,
-        state: json['government'] as String?,
+        government: json['government'] as String?,
         city: json['city'] as String?,
-        departmentId: json['departmentId'] as String?,
+        manager: json['manager'] as dynamic,
         managerId: json['managerId'] as dynamic,
-        department: json['departmentName'] as String?,
-        manager: json['managerName'] as dynamic,
-        position: json['positionName'] as String?,
-        startupRoute: json['startupRoute'] as dynamic,
-        type: json['type'] as int?,
+        department: json['department'] as String?,
+        departmentId: json['departmentId'] as String?,
+        position: json['position'] as String?,
         phoneNumber: json['phoneNumber'] as String?,
-        roles: json['roles'] as List<dynamic>?,
-        favouriteRoutes: json['favourite_Routes'] as List<dynamic>?,
+        imageUrl: json['imageUrl'] as dynamic,
+        thumbnailUrl: json['thumbnailUrl'] as dynamic,
+        startupRoute: json['startupRoute'] as String?,
         createdAt: json['createdAt'] as String?,
-        lastUpdatedAt: json['lastUpdatedAt'] as String?,
-        createdBy: json['createdBy'] as dynamic,
+        updatedAt: json['updatedAt'] == null
+            ? null
+            : DateTime.parse(json['updatedAt'] as String),
         isDeleted: json['isDeleted'] as bool?,
-        isActive: json['isActive'] as bool?,
-        hasConfigurations: json['isConfigure'] as bool?,
+        isDeactivated: json['isDeactivated'] as bool?,
+        isConfigured: json['isConfigured'] as bool?,
+        is2FaRequired: json['is2FaRequired'] as bool?,
+        enableNotification: json['enableNotification'] as bool?,
+        enableForwarding: json['enableForwarding'] as bool?,
+        enableChating: json['enableChating'] as bool?,
+        profileType: json['profileType'] as int?,
+        scope: json['scope'] as int?,
+        notificationChannel: json['notificationChannel'] as int?,
+        roles: json['roles'] as List<dynamic>?,
       );
 
   Map<String, dynamic> toJson() => {
-        'adminstratorId': adminstratorId,
+        'permissions': permissions,
         'id': id,
-        'userId': userId,
+        'profileId': profileId,
         'fullName': fullName,
-        'imageUrl': imageUrl,
-        'thumbnailUrl': thumbnailUrl,
         'userName': userName,
         'email': email,
-        'state': state,
+        'government': government,
         'city': city,
-        'departmentId': departmentId,
+        'manager': manager,
         'managerId': managerId,
         'department': department,
-        'manager': manager,
+        'departmentId': departmentId,
         'position': position,
-        'startupRoute': startupRoute,
-        'type': type,
         'phoneNumber': phoneNumber,
-        'roles': roles,
-        'favourite_Routes': favouriteRoutes,
+        'imageUrl': imageUrl,
+        'thumbnailUrl': thumbnailUrl,
+        'startupRoute': startupRoute,
         'createdAt': createdAt,
-        'lastUpdatedAt': lastUpdatedAt,
-        'createdBy': createdBy,
+        'updatedAt': updatedAt?.toIso8601String(),
         'isDeleted': isDeleted,
-        'hasConfigurations': hasConfigurations,
+        'isDeactivated': isDeactivated,
+        'isConfigured': isConfigured,
+        'is2FaRequired': is2FaRequired,
+        'enableNotification': enableNotification,
+        'enableForwarding': enableForwarding,
+        'enableChating': enableChating,
+        'profileType': profileType,
+        'scope': scope,
+        'notificationChannel': notificationChannel,
+        'roles': roles,
       };
 
   @override
   List<Object?> get props {
     return [
-      adminstratorId,
+      permissions,
       id,
-      userId,
+      profileId,
       fullName,
-      imageUrl,
-      thumbnailUrl,
       userName,
       email,
-      state,
+      government,
       city,
-      departmentId,
+      manager,
       managerId,
       department,
-      manager,
+      departmentId,
       position,
-      startupRoute,
-      type,
       phoneNumber,
-      roles,
-      favouriteRoutes,
+      imageUrl,
+      thumbnailUrl,
+      startupRoute,
       createdAt,
-      lastUpdatedAt,
-      createdBy,
+      updatedAt,
       isDeleted,
-      hasConfigurations,
+      isDeactivated,
+      isConfigured,
+      is2FaRequired,
+      enableNotification,
+      enableForwarding,
+      enableChating,
+      profileType,
+      scope,
+      notificationChannel,
+      roles,
     ];
   }
 }

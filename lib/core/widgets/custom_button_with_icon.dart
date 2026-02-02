@@ -7,7 +7,7 @@ class CustomButtonWithIcon extends StatefulWidget {
     required this.child,
     required this.textColor,
     required this.bgColor,
-    required this.icon,
+    this.icon,
     required this.onHoverColor,
     this.onTap,
   });
@@ -15,7 +15,7 @@ class CustomButtonWithIcon extends StatefulWidget {
   final String child;
   final Color textColor;
   final Color bgColor;
-  final IconData icon;
+  final IconData? icon;
   final Color onHoverColor;
   final void Function()? onTap;
   @override
@@ -50,13 +50,14 @@ class _CustomButtonWithIconState extends State<CustomButtonWithIcon> {
         ),
         child: Row(
           children: [
-            Icon(
-              widget.icon,
-              color: isPressed ? Colors.white : widget.textColor,
-              weight: 700,
-              size: 20,
-            ),
-            const SizedBox(width: 10),
+            if (widget.icon != null)
+              Icon(
+                widget.icon,
+                color: isPressed ? Colors.white : widget.textColor,
+                weight: 700,
+                size: 20,
+              ),
+            if (widget.icon != null) const SizedBox(width: 10),
             Text(
               widget.child,
               style: TextStyle(

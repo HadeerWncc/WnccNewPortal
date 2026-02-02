@@ -18,7 +18,13 @@ import 'package:wncc_portal/features/customerService/complains/presentation/mana
 import 'package:wncc_portal/features/factVsCustDisp/data/data_sources/fact_vs_cust_data_source.dart';
 import 'package:wncc_portal/features/factVsCustDisp/data/repos/fact_vs_cust_repo_imp.dart';
 import 'package:wncc_portal/features/factVsCustDisp/domain/repos/fact_vs_cust_repo.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
+import 'package:wncc_portal/features/morningMeating/data/data_sources/morning_meeting_data_source.dart';
+import 'package:wncc_portal/features/morningMeating/data/models/morning_meeting/morning_meeting.dart';
+import 'package:wncc_portal/features/morningMeating/data/repos_impl/morning_meeting_repo_impl.dart';
+import 'package:wncc_portal/features/morningMeating/domain/repos/morning_meeting_repo.dart';
+import 'package:wncc_portal/features/morningMeating/presentation/manager/cubites/cubit/morning_meeting_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/data/datasources/delivery_data_source.dart';
 import 'package:wncc_portal/features/priority/delivery/data/repositories/delivery_repo_impl.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/repositories/delivery_repo.dart';
@@ -56,6 +62,10 @@ import 'package:wncc_portal/features/sales_quota/domain/usecases/daily_quota_use
 import 'package:wncc_portal/features/sales_quota/domain/usecases/set_quota_usecase.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/sales_quota_cubit/sales_quota_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
+import 'package:wncc_portal/features/updates/data/data_sources/update_data_source.dart';
+import 'package:wncc_portal/features/updates/data/repos/updates_repo_impl.dart';
+import 'package:wncc_portal/features/updates/domain/repos/updates_repo.dart';
+import 'package:wncc_portal/features/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
 import 'package:wncc_portal/features/user/domain/usecases/get_current_user_use_case.dart';
 import 'package:wncc_portal/features/authentication/domain/use_cases/login_use_case.dart';
 import 'package:wncc_portal/features/authentication/domain/use_cases/reset_password_use_case.dart';
@@ -73,10 +83,10 @@ import 'package:wncc_portal/features/user/presentation/manager/cubits/first_logi
 import 'package:wncc_portal/features/user/data/datasources/user_remote_data_source.dart';
 import 'package:wncc_portal/features/user/data/repositories/user_repo_impl.dart';
 import 'package:wncc_portal/features/user/domain/repositories/user_repo.dart';
-import 'package:wncc_portal/features/user/domain/usecases/complete_profile_use_case.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_all_users_cubit/get_all_users_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_cities_cubit/get_cities_cubit.dart';
+import 'package:wncc_portal/features/user/presentation/manager/cubits/select_start_up_route_cubit/select_start_up_route_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
@@ -100,6 +110,11 @@ void setupLocator() {
   //userDataSource
   getIt.registerLazySingleton<UserRemoteDataSource>(
       () => UserRemoteDataSourceImpl(apiService: getIt<ApiService>()));
+
+  //Home
+  //UpdatesDataSource
+  getIt.registerLazySingleton<UpdateDataSource>(
+      () => UpdateDataSourceImpl(apiService: getIt<ApiService>()));
 
   //salesQuotaDataSource
   getIt.registerLazySingleton<SalesQuotaRemoteDatasource>(
@@ -125,6 +140,10 @@ void setupLocator() {
   getIt.registerLazySingleton<FactVsCustDatasourse>(
       () => FactVsCustDatasourseImpl(apiService: getIt<ApiService>()));
 
+  //MorningMeetingDataSource
+  getIt.registerLazySingleton<MorningMeetingDataSource>(
+      () => MorningMeetingDataSourceImpl(apiService: getIt<ApiService>()));
+
   // Repositories
   //BaseRepo
   getIt.registerLazySingleton<BaseRepos>(() => BaseRepos());
@@ -142,6 +161,11 @@ void setupLocator() {
   //UserRepo
   getIt.registerLazySingleton<UserRepo>(
       () => UserRepoImpl(userRemoteDataSource: getIt<UserRemoteDataSource>()));
+
+  //Home
+  //UpdatesRepo
+  getIt.registerLazySingleton<UpdatesRepo>(
+      () => UpdatesRepoImpl(updatesDataSource: getIt<UpdateDataSource>()));
 
   //SalesQuotaRepo
   getIt.registerLazySingleton<DailyQuotaRepo>(() => DailyQuotaRepoImpl(
@@ -166,6 +190,10 @@ void setupLocator() {
   //FactVsCustRepo
   getIt.registerLazySingleton<FactVsCustRepo>(() =>
       Factvscustrepoimp(factVsCustDatasourse: getIt<FactVsCustDatasourse>()));
+
+  //FactVsCustRepo
+  getIt.registerLazySingleton<MorningMeetingRepo>(() => MorningMeetingRepoImpl(
+      morningMeetingDataSource: getIt<MorningMeetingDataSource>()));
 
   // Use Cases
   //login Use Case
@@ -197,8 +225,8 @@ void setupLocator() {
       () => GetCurrentUserUseCase(userRepo: getIt<UserRepo>()));
 
   //Complete Profile Use Case
-  getIt.registerLazySingleton<UserUseCases>(
-      () => UserUseCases(userRepo: getIt<UserRepo>()));
+  // getIt.registerLazySingleton<UserUseCases>(
+  //     () => UserUseCases(userRepo: getIt<UserRepo>()));
 
   //Update Profile Use Case
   getIt.registerLazySingleton<UpdateProfileUseCase>(
@@ -254,11 +282,15 @@ void setupLocator() {
 
   //CompleteProfileCubit
   getIt.registerFactory<CompleteProfileCubit>(
-      () => CompleteProfileCubit(getIt<UserUseCases>()));
+      () => CompleteProfileCubit(getIt<UserRepo>()));
 
   //UpdateProfileCubit
   getIt.registerFactory<UpdateProfileCubit>(
       () => UpdateProfileCubit(getIt<UpdateProfileUseCase>()));
+
+  //Home
+  //UpdatesCubit
+  getIt.registerFactory<UpdatesCubit>(() => UpdatesCubit(getIt<UpdatesRepo>()));
 
   //SalesQuotaCubit
   getIt.registerFactory<SalesQuotaCubit>(
@@ -382,9 +414,17 @@ void setupLocator() {
   getIt.registerFactory<ComplainRepliesCubit>(
       () => ComplainRepliesCubit(getIt<ComplainRepo>()));
 
-
   //FactVsCustCubit
   getIt.registerFactory<FactVsCustCubit>(
       () => FactVsCustCubit(getIt<FactVsCustRepo>()));
+  //FactVsCustCompareCubit
+  getIt.registerFactory<FactVsCustCompareCubit>(
+      () => FactVsCustCompareCubit(getIt<FactVsCustRepo>()));
 
+  //FactVsCustCubit
+  getIt.registerFactory<SelectStartUpRouteCubit>(
+      () => SelectStartUpRouteCubit(getIt<UserRepo>()));
+  //FactVsCustCubit
+  getIt.registerFactory<MorningMeetingCubit>(
+      () => MorningMeetingCubit(getIt<MorningMeetingRepo>()));
 }

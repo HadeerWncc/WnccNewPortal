@@ -1,10 +1,10 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
-import 'package:wncc_portal/features/factVsCustDisp/data/models/fact_vs_cust_compare_model/Fact_vs_cust_disp_compare.dart';
+import 'package:wncc_portal/features/factVsCustDisp/data/models/compare_model/compare_model.dart';
 import 'package:wncc_portal/features/factVsCustDisp/data/models/fact_vs_cust_disp_model/fact_vs_cust_disp_model.dart';
 
 abstract class FactVsCustDatasourse {
   Future<List<FactVsCustDispModel>> getFactVsCustDisp(int mode, DateTime date);
-  Future<List<FactVsCustDispCompare>> getFactVsCustDispCompare(DateTime date);
+  Future<CompareModel> getFactVsCustDispCompare(DateTime selectedDate, DateTime compareDate);
 }
 
 class FactVsCustDatasourseImpl extends FactVsCustDatasourse {
@@ -25,10 +25,12 @@ class FactVsCustDatasourseImpl extends FactVsCustDatasourse {
     }
     return factVsCustDispList;
   }
-  
+
   @override
-  Future<List<FactVsCustDispCompare>> getFactVsCustDispCompare(DateTime date) {
-    // TODO: implement getFactVsCustDispCompare
-    throw UnimplementedError();
+  Future<CompareModel> getFactVsCustDispCompare(DateTime selectedDate, DateTime compareDate) async {
+    var result = await apiService.get(
+        endPoint: 'api/Reports/GetFactoryVsDispatchCompare?selectedYear=$selectedDate&compareYear=$compareDate');
+    CompareModel compareModel = CompareModel.fromJson(result["data"]);
+    return compareModel;
   }
 }

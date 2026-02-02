@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
+import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/custom_configuration_item.dart';
@@ -25,7 +26,7 @@ class _CustomCheckBoxConfigurationState
     return Column(
       children: [
         CustomConfigurationItem(
-          title: 'Change your configurations',
+          title: 'Change Your Configurations',
           subTitle: 'If you want change configurations.',
           selected: (selectedValue == 'change') ? true : false,
           onTap: () {
@@ -38,7 +39,7 @@ class _CustomCheckBoxConfigurationState
           height: 30,
         ),
         CustomConfigurationItem(
-          title: 'with Current configurations',
+          title: 'With Current Configurations',
           subTitle: 'If you want skip configurations.',
           selected: (selectedValue == 'skip') ? true : false,
           onTap: () {
@@ -55,9 +56,7 @@ class _CustomCheckBoxConfigurationState
             if (state is CompleteProfileSuccess) {
               GoRouter.of(context).pushReplacement(AppRouter.homePath);
             } else if (state is CompleteProfileFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)),
-              );
+              ShowSnackbar.showSnackBar(context, state.error, 'F');
             }
           },
           builder: (context, state) {
@@ -85,6 +84,6 @@ class _CustomCheckBoxConfigurationState
   }
 
   void completeProfile(BuildContext context) async {
-    await context.read<CompleteProfileCubit>().completeProfile();
+    await context.read<CompleteProfileCubit>().completeProfile('');
   }
 }

@@ -13,7 +13,7 @@ class FactvscustpageHourlyBody extends StatelessWidget {
         children: [
           HourlyHeader(),
           SizedBox(height: 16),
-          Expanded(child: HourlyBody()), 
+          Expanded(child: HourlyBody()),
         ],
       ),
     );

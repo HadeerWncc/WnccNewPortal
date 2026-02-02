@@ -118,7 +118,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
     if (token != null && token.isNotEmpty) {
       BlocProvider.of<UserCubit>(context).getCurrentUser();
-      GoRouter.of(context).go(AppRouter.factVsCustDispatchHourly);
+      GoRouter.of(context).go(AppRouter.homePath);
     } else {
       GoRouter.of(context).go(AppRouter.loginPath);
     }

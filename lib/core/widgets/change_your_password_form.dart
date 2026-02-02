@@ -9,8 +9,9 @@ import 'package:wncc_portal/features/home/presentation/views/widgets/new_passwor
 class ChangeYourPasswordForm extends StatefulWidget {
   const ChangeYourPasswordForm({
     super.key,
+    this.id,
   });
-
+  final String? id;
   @override
   State<ChangeYourPasswordForm> createState() => _ChangeYourPasswordFormState();
 }
@@ -158,6 +159,7 @@ class _ChangeYourPasswordFormState extends State<ChangeYourPasswordForm> {
       context
           .read<FirstLoginChangePasswordCubit>()
           .changePassword(ChangePasswordEntity(
+            id: widget.id,
             currentPassword: currentPasswordController.text,
             newPassword: newPasswordController.text,
             confirmPassword: confirmPasswordController.text,

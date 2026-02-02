@@ -17,7 +17,11 @@ class BookingPricePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {
-        if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath)}
+        if (state is UserFailure)
+          {
+            ShowSnackbar.showSnackBar(context, state.error, 'F'),
+            GoRouter.of(context).go(AppRouter.loginPath)
+          }
       },
       builder: (context, state) {
         if (state is UserSuccess) {
@@ -47,8 +51,6 @@ class BookingPricePage extends StatelessWidget {
               body: const BookingPriceBody(),
             ),
           );
-        } else if (state is UserFailure) {
-          ShowSnackbar.showSnackBar(context, state.error, 'F');
         }
         return const LoadingPage(
           title: "Booking Price",

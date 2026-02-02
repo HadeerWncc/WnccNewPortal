@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 
-Widget totalColumn({
-  required List<String> values,
-  required String lableName,
-}) {
+Widget totalColumn(
+    {required List<String> values,
+    required String lableName,
+    double? cellWidth = 90}) {
   return Column(
     children: [
       // Header
       Container(
-        width: 90,
+        width: cellWidth ?? 90,
         height: 45,
         alignment: Alignment.center,
         decoration: BoxDecoration(
@@ -17,7 +17,7 @@ Widget totalColumn({
           border: Border.symmetric(
             horizontal: BorderSide(color: Colors.grey.shade300, width: 1),
             vertical: const BorderSide(
-                color: const Color.fromARGB(255, 77, 160, 83), width: 1.5),
+                color: Color.fromARGB(255, 77, 160, 83), width: 1.5),
           ),
         ),
         child: Text(
@@ -29,7 +29,7 @@ Widget totalColumn({
       // Rows
       ...values.map(
         (v) => Container(
-          width: 90,
+          width: cellWidth ?? 90,
           height: 42,
           alignment: Alignment.center,
           decoration: BoxDecoration(

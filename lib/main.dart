@@ -11,16 +11,20 @@ import 'package:wncc_portal/features/authentication/presentation/manager/auth_cu
 import 'package:wncc_portal/features/authentication/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
+import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
+import 'package:wncc_portal/features/morningMeating/presentation/manager/cubites/cubit/morning_meeting_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/sales_quota_cubit/sales_quota_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
+import 'package:wncc_portal/features/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/first_login_change_password_cubit/first_login_change_password_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_all_users_cubit/get_all_users_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_cities_cubit/get_cities_cubit.dart';
+import 'package:wncc_portal/features/user/presentation/manager/cubits/select_start_up_route_cubit/select_start_up_route_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 // import 'package:flutter_localizations/flutter_localizations.dart';
@@ -74,6 +78,9 @@ class WnccPortal extends StatelessWidget {
           return getIt<GetCitiesCubit>();
         }),
         BlocProvider(create: (context) {
+          return getIt<SelectStartUpRouteCubit>();
+        }),
+        BlocProvider(create: (context) {
           return getIt<SalesQuotaCubit>();
         }),
         BlocProvider(create: (context) {
@@ -84,6 +91,12 @@ class WnccPortal extends StatelessWidget {
         }),
         BlocProvider(create: (context) {
           return getIt<FactVsCustCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<FactVsCustCompareCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<MorningMeetingCubit>();
         }),
         // BlocProvider(create: (context) {
         //   return getIt<RequestsCubit>()..getAllRequests();
@@ -105,6 +118,9 @@ class WnccPortal extends StatelessWidget {
         // }),
         BlocProvider(create: (context) {
           return getIt<GetAllUsersCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<UpdatesCubit>();
         }),
         // BlocProvider(create: (context) {
         //   return getIt<CloseRequestCubit>();
@@ -145,10 +161,9 @@ class WnccPortal extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-
         supportedLocales: const [
           Locale('en'),
-          Locale('ar'), 
+          Locale('ar'),
         ],
         theme: ThemeData(
           scaffoldBackgroundColor: Colors.white,

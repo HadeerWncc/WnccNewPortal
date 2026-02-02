@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
-import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/api_service.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/user/domain/entities/profile_entity.dart';
 
 abstract class UserRemoteDataSource {
-  Future<UserModel> completeProfile();
+  Future<UserModel> completeProfile(String startupRoute);
   Future<UserModel> getCurrentUser();
   Future<UserModel> updateProfile(ProfileEntity profileEntity);
   Future<List<UserModel>> getAllUsers();
+  Future<bool> selectStartUpRoute(String id, String routeName);
 }
 
 class UserRemoteDataSourceImpl extends UserRemoteDataSource {
@@ -15,9 +16,10 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource {
 
   UserRemoteDataSourceImpl({required this.apiService});
   @override
-  Future<UserModel> completeProfile() async {
-    var result = await apiService
-        .put(endPoint: 'api/CurrentUser/CompleteProfile', data: {});
+  Future<UserModel> completeProfile(String startupRoute) async {
+    var result = await apiService.put(
+        endPoint: 'api/CurrentUser/CompleteProfile',
+        data: {"startupRoute": startupRoute});
     UserModel userModel = UserModel.fromJson(result['data']);
     return userModel;
   }
@@ -40,6 +42,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource {
       );
     }
     FormData formData = FormData.fromMap({
+      'Id': profileEntity.id,
       'FullName': profileEntity.fullName,
       'Government': profileEntity.government,
       'City': profileEntity.city,
@@ -47,7 +50,7 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource {
       'Image': multipartFile,
     });
     var result = await apiService.put(
-      endPoint: 'api/CurrentUser/UpdatePersonal',
+      endPoint: 'api/Users/UpdatePersonal',
       data: formData,
     );
     UserModel userModel = UserModel.fromJson(result['data']);
@@ -62,5 +65,17 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource {
       users.add(UserModel.fromJson(user));
     }
     return users;
+  }
+
+  @override
+  Future<bool> selectStartUpRoute(String id, String routeName) async {
+    var result = await apiService.put(
+      endPoint: 'api/Users/SelectStartupRoute',
+      data: {
+        'Id': id,
+        'StartupRoute': routeName,
+      },
+    );
+    return result['data'];
   }
 }

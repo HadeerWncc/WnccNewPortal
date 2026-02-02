@@ -20,7 +20,7 @@ class LoginBlocConsumer extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthSuccess) {
           BlocProvider.of<UserCubit>(context).getCurrentUser();
-          if (state.loginModel.hasConfigurations == false) {
+          if (state.loginModel.currentUser?.isConfigured == false) {
             GoRouter.of(context).pushReplacement(AppRouter.welcomePage);
           } else {
             GoRouter.of(context).pushReplacement(AppRouter.homePath);

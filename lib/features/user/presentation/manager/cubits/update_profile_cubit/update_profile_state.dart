@@ -17,4 +17,8 @@ final class UpdateProfileFailure extends UpdateProfileState {
 
 final class UpdateProfileLoading extends UpdateProfileState {}
 
-final class UpdateProfileSuccess extends UpdateProfileState {}
+final class UpdateProfileSuccess extends UpdateProfileState {
+  final UserModel user;
+
+  const UpdateProfileSuccess({required this.user});
+}

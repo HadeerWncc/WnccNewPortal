@@ -25,28 +25,32 @@ class HourlyHeader extends StatelessWidget {
           spacing: 8, // مسافة أفقية بين العناصر
           runSpacing: 8,
           children: [
-            CustomDropDownInput(
-              title: 'Select',
-              items: factVsCustDispOptions,
-              selectedValue: 'Hourly',
-              onChanged: (value) {
-                // Handle dropdown change
-                if (value == 'Daily') {
-                  GoRouter.of(context).push(AppRouter.factVsCustDispatchDaily);
-                } else if (value == 'Monthly') {
-                  GoRouter.of(context)
-                      .push(AppRouter.factVsCustDispatchMonthly);
-                }
-                else if(value == 'Compare'){
-                  GoRouter.of(context)
-                      .push(AppRouter.factVsCustDispatchCompare);
-                }
-              },
+            SizedBox(
+              width: 180,
+              child: CustomDropDownInput(
+                title: 'Select',
+                items: factVsCustDispOptions,
+                selectedValue: 'Hourly',
+                onChanged: (value) {
+                  // Handle dropdown change
+                  if (value == 'Daily') {
+                    GoRouter.of(context)
+                        .push(AppRouter.factVsCustDispatchDaily);
+                  } else if (value == 'Monthly') {
+                    GoRouter.of(context)
+                        .push(AppRouter.factVsCustDispatchMonthly);
+                  } else if (value == 'Compare') {
+                    GoRouter.of(context)
+                        .push(AppRouter.factVsCustDispatchCompare);
+                  }
+                },
+              ),
             ),
             DatePicker(
               title: 'Select Date',
               onChange: (value) {
-                BlocProvider.of<FactVsCustCubit>(context).getFactVsCustDisp(3, value);
+                BlocProvider.of<FactVsCustCubit>(context)
+                    .getFactVsCustDisp(3, value);
               },
             ),
           ]),

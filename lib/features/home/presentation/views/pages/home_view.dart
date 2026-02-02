@@ -20,7 +20,11 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {
-        if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath)}
+        if (state is UserFailure)
+          {
+            ShowSnackbar.showSnackBar(context, state.error, 'F'),
+            GoRouter.of(context).go(AppRouter.loginPath)
+          }
       },
       builder: (context, state) {
         if (state is UserSuccess) {
@@ -36,7 +40,7 @@ class HomeView extends StatelessWidget {
                   const SizedBox(width: 10),
                 ],
               ),
-              bottomNavigationBar: const CustomBottomNavBar(pageIndex: 1),
+              bottomNavigationBar: const CustomBottomNavBar(pageIndex: 2),
               drawer: Drawer(
                 shape: drawerBorde(),
                 child: CustomMenusList(
@@ -47,8 +51,6 @@ class HomeView extends StatelessWidget {
               body: const HomeViewBody(),
             ),
           );
-        } else if (state is UserFailure) {
-          ShowSnackbar.showSnackBar(context, state.error, 'F');
         }
         return const LoadingPage(
           title: 'Home',

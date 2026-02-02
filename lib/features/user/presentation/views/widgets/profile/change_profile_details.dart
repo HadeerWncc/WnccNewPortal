@@ -42,7 +42,7 @@ class _ChangeProfileDetailsState extends State<ChangeProfileDetails> {
   Widget build(BuildContext context) {
     fullNameController.text = widget.user.fullName ?? '';
     phoneController.text = widget.user.phoneNumber ?? '';
-    selectedState = widget.user.state ?? widget.states[0];
+    selectedState = widget.user.city ?? widget.states[0];
     selectedCity = widget.user.city ?? widget.cities[0];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,7 +71,7 @@ class _ChangeProfileDetailsState extends State<ChangeProfileDetails> {
             ),
             const SizedBox(height: 15),
             CustomDropDownInput(
-              selectedValue: widget.user.state,
+              selectedValue: widget.user.government,
               items: widget.states,
               title: 'Government',
               // width: MediaQuery.of(context).size.width * .5,
@@ -143,6 +143,7 @@ class _ChangeProfileDetailsState extends State<ChangeProfileDetails> {
 
   void tryToUpdateProfile(BuildContext context) {
     context.read<UpdateProfileCubit>().updateProfile(ProfileEntity(
+          id: widget.user.id!,
           fullName: fullNameController.text,
           government: selectedState!,
           city: selectedCity!,

@@ -28,7 +28,7 @@ class ChangePasswordInputs extends StatelessWidget {
           labelText: 'New Password',
           controller: newPasswordController,
           secure: true,
-          passwordRgex: true,
+          // passwordRgex: true,
         ),
         const SizedBox(height: 20),
         CustomPlaceholderInput(

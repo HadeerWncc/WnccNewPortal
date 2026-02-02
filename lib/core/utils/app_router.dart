@@ -13,6 +13,7 @@ import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fac
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
 import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_monthly_page.dart';
+import 'package:wncc_portal/features/morningMeating/presentation/views/pages/morning_meeting_page.dart';
 import 'package:wncc_portal/features/payer/presentation/views/pages/payer_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
@@ -22,6 +23,7 @@ import 'package:wncc_portal/features/customerService/requests/presentation/views
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/add_request_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
 import 'package:wncc_portal/features/to_do_list/presentation/views/pages/to_do_screen.dart';
+import 'package:wncc_portal/features/updates/presentation/views/pages/updates_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/change_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/forget_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/login_page.dart';
@@ -67,6 +69,8 @@ abstract class AppRouter {
   static const factVsCustDispatchDaily = '/factvscustDailyDailypage';
   static const factVsCustDispatchMonthly = '/factvscustDailyMonthlypage';
   static const factVsCustDispatchCompare = '/factvscustDailyComparepage';
+  static const updatesPagePath = '/updates';
+  static const morningMeatingPath = '/morningMeeting';
 
   static final router = GoRouter(
     routes: [
@@ -95,13 +99,19 @@ abstract class AppRouter {
         ),
       ),
       GoRoute(
+        path: homePath,
+        builder: (context, state) => const HomeView(),
+      ),
+      GoRoute(
         path: salesQuotaPath,
         builder: (context, state) => const SalesQuotaPage(),
       ),
       GoRoute(
-        path: changePasswordPath,
-        builder: (context, state) => const ChangePasswordPage(),
-      ),
+          path: changePasswordPath,
+          builder: (context, state) {
+            final data = state.extra as UserModel;
+            return ChangePasswordPage(userModel: data);
+          }),
       GoRoute(
         path: welcomePage,
         builder: (context, state) => const WelcomePage(),
@@ -112,15 +122,14 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: selectStartupRouting,
-        builder: (context, state) => const SelectStartupRoutingPage(),
+        builder: (context, state) {
+          final data = state.extra as Map<String, dynamic>;
+          return SelectStartupRoutingPage(userId: data['userId'] as String);
+        },
       ),
       GoRoute(
         path: thanksPagePath,
         builder: (context, state) => const ThanksPage(),
-      ),
-      GoRoute(
-        path: salesQuotaPath,
-        builder: (context, state) => const SalesQuotaPage(),
       ),
       GoRoute(
         path: deliveryPath,
@@ -221,6 +230,14 @@ abstract class AppRouter {
       GoRoute(
         path: factVsCustDispatchCompare,
         builder: (context, state) => const FactVsCustComparePage(),
+      ),
+      GoRoute(
+        path: updatesPagePath,
+        builder: (context, state) => const UpdatesPage(),
+      ),
+      GoRoute(
+        path: morningMeatingPath,
+        builder: (context, state) => const MorningMeetingPage(),
       ),
     ],
   );

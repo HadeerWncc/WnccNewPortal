@@ -47,7 +47,7 @@ class _CustomChangePersonalInfoFormState
     fullNameController.text = widget.user.fullName ?? '';
     phoneController.text = widget.user.phoneNumber ?? '';
 
-    selectedState = widget.user.state ?? widget.states[0];
+    selectedState = widget.user.government ?? widget.states[0];
     selectedCity = widget.user.city ?? widget.cities[0];
     return Column(
       children: [
@@ -63,10 +63,11 @@ class _CustomChangePersonalInfoFormState
         ),
         const SizedBox(height: 20),
         CustomDropDownInput(
-          selectedValue: null,
+          selectedValue:
+              widget.states.contains(selectedState) ? selectedState : null,
           items: widget.states,
           hintText: 'Select State',
-          title: 'State',
+          title: 'Government',
           onChanged: (value) async {
             selectedState = value!;
             await BlocProvider.of<GetCitiesCubit>(context)
@@ -101,14 +102,14 @@ class _CustomChangePersonalInfoFormState
           labelText: 'Phone Number',
           controller: phoneController,
         ),
-        // CustomPhoneInputList(phonesController: phonesController),
         const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomButtonWithIcon(
               onTap: () {
-                GoRouter.of(context).push(AppRouter.changePasswordPath);
+                GoRouter.of(context)
+                    .push(AppRouter.changePasswordPath, extra: widget.user);
               },
               child: 'Skip',
               bgColor: const Color(0xffF1F1F3),
@@ -129,12 +130,12 @@ class _CustomChangePersonalInfoFormState
   void tryToUpdateProfile(BuildContext context) {
     context.read<UpdateProfileCubit>().updateProfile(
           ProfileEntity(
+            id: widget.user.id!,
             fullName: fullNameController.text,
             government: selectedState!,
             city: selectedCity!,
             image: selectedBase64Image,
             phoneNumber: phoneController.text,
-            // phones: phonesController.map((ph) => ph.text).toList(),
           ),
         );
   }

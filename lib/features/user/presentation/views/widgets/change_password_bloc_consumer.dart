@@ -8,8 +8,10 @@ import 'package:wncc_portal/features/user/presentation/manager/cubits/first_logi
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 
 class ChangePasswordBlocConsumer extends StatelessWidget {
-  const ChangePasswordBlocConsumer({super.key, required this.tryChangPassword});
+  const ChangePasswordBlocConsumer(
+      {super.key, required this.tryChangPassword, required this.userId});
   final void Function(BuildContext) tryChangPassword;
+  final String userId;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<FirstLoginChangePasswordCubit,
@@ -20,7 +22,8 @@ class ChangePasswordBlocConsumer extends StatelessWidget {
             SnackBar(content: Text(state.failureMsg)),
           );
         } else if (state is FirstLoginChangePasswordSuccess) {
-          GoRouter.of(context).pushReplacement(AppRouter.selectStartupRouting);
+          GoRouter.of(context).pushReplacement(AppRouter.selectStartupRouting,
+              extra: {'userId': userId});
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("Updated Successfully")),
           );

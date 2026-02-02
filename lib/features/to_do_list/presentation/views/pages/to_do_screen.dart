@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
+import 'package:wncc_portal/features/home/presentation/views/widgets/custom_button_navbar.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_menus_list.dart';
-import 'package:wncc_portal/features/to_do_list/data/models/to_do_list_progress.dart';
-import 'package:wncc_portal/features/to_do_list/data/models/to_do_model.dart';
-import 'package:wncc_portal/features/to_do_list/presentation/manager/providers/providers/to_do_list_provider.dart';
-import 'package:wncc_portal/features/to_do_list/presentation/views/widgets/add_new_field_widget.dart';
 import 'package:wncc_portal/features/to_do_list/presentation/views/widgets/custom_to_do_list_date.dart';
 import 'package:wncc_portal/features/to_do_list/presentation/views/widgets/dotted_drop_down_button.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
@@ -28,11 +24,15 @@ class _ToDoScreenState extends State<ToDoScreen> {
   bool addNew = false;
   @override
   Widget build(BuildContext context) {
-    final toDoProvider = Provider.of<ToDoListProvider>(context);
-    ToDoModel toDoListModel = toDoProvider.toDoList;
+    // final toDoProvider = Provider.of<ToDoListProvider>(context);
+    // ToDoModel toDoListModel = toDoProvider.toDoList;
+    List<String> toDoListModel = [];
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) {
-        if (state is UserFailure) {GoRouter.of(context).go(AppRouter.loginPath);}
+        if (state is UserFailure) {
+          ShowSnackbar.showSnackBar(context, state.error, 'F');
+          GoRouter.of(context).go(AppRouter.loginPath);
+        }
       },
       builder: (context, state) {
         if (state is UserSuccess) {
@@ -42,7 +42,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
               appBar: AppBar(
                 actionsPadding: const EdgeInsets.all(5),
                 title: const Text(
-                  'ToDoList',
+                  'Note',
                 ),
                 titleSpacing: 0.0,
                 actions: [
@@ -52,9 +52,10 @@ class _ToDoScreenState extends State<ToDoScreen> {
                   const SizedBox(width: 10),
                 ],
               ),
+              bottomNavigationBar: const CustomBottomNavBar(pageIndex: 1),
               drawer: Drawer(
                 shape: drawerBorde(),
-                child: CustomMenusList(user: state.user, activeTab: 'ToDoList'),
+                child: CustomMenusList(user: state.user, activeTab: 'Home'),
               ),
               body: Container(
                 width: MediaQuery.of(context).size.width * 100,
@@ -75,10 +76,10 @@ class _ToDoScreenState extends State<ToDoScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 5),
                         child: ListView.builder(
-                          itemCount: toDoListModel.toDoList.length + 1,
+                          itemCount: toDoListModel.length + 1,
                           itemBuilder: (context, index) {
-                            return toDoListModel.toDoList.isNotEmpty
-                                ? (index < toDoListModel.toDoList.length)
+                            return toDoListModel.isNotEmpty
+                                ? (index < toDoListModel.length)
                                     ? Row(
                                         children: [
                                           SizedBox(
@@ -100,28 +101,26 @@ class _ToDoScreenState extends State<ToDoScreen> {
                                               maxLines: 3,
                                               minLines: 1,
                                               controller: TextEditingController(
-                                                text: toDoListModel
-                                                    .toDoList[index].name,
+                                                text: toDoListModel[index],
                                               ),
-                                              style: TextStyle(
-                                                decoration: toDoListModel
-                                                        .toDoList[index].isDone
+                                              style: const TextStyle(
+                                                decoration: false
                                                     ? TextDecoration.lineThrough
                                                     : TextDecoration.none,
                                                 fontSize: 18,
                                                 color: toDoListColor,
                                               ),
                                               onChanged: (value) {
-                                                toDoListModel.toDoList[index] =
-                                                    ToDoListProgress(
-                                                  name: value,
-                                                  isDone: toDoListModel
-                                                      .toDoList[index].isDone,
-                                                );
+                                                // toDoListModel.toDoList[index] =
+                                                //     ToDoListProgress(
+                                                //   name: value,
+                                                //   isDone: toDoListModel
+                                                //       .toDoList[index].isDone,
+                                                // );
 
-                                                toDoProvider.updateTask(
-                                                  toDoListModel,
-                                                );
+                                                // toDoProvider.updateTask(
+                                                //   toDoListModel,
+                                                // );
                                               },
                                               decoration: const InputDecoration(
                                                 border: OutlineInputBorder(
@@ -134,22 +133,22 @@ class _ToDoScreenState extends State<ToDoScreen> {
                                           DottedDropdownButton(
                                             onChanged: (value) {
                                               if (value == 'Delete') {
-                                                toDoListModel.toDoList.removeAt(
-                                                  index,
-                                                );
-                                                toDoProvider.updateTask(
-                                                  toDoListModel,
-                                                );
+                                                // toDoListModel.toDoList.removeAt(
+                                                //   index,
+                                                // );
+                                                // toDoProvider.updateTask(
+                                                //   toDoListModel,
+                                                // );
                                               } else if (value == 'Done') {
-                                                toDoListModel.toDoList[index] =
-                                                    ToDoListProgress(
-                                                  name: toDoListModel
-                                                      .toDoList[index].name,
-                                                  isDone: true,
-                                                );
-                                                toDoProvider.updateTask(
-                                                  toDoListModel,
-                                                );
+                                                // toDoListModel.toDoList[index] =
+                                                //     ToDoListProgress(
+                                                //   name: toDoListModel
+                                                //       .toDoList[index].name,
+                                                //   isDone: true,
+                                                // );
+                                                // toDoProvider.updateTask(
+                                                //   toDoListModel,
+                                                // );
                                               }
                                               setState(() {});
                                             },
@@ -157,17 +156,9 @@ class _ToDoScreenState extends State<ToDoScreen> {
                                         ],
                                       )
                                     : addNew == true
-                                        ? AddNewFieldWidget(
-                                            index: index,
-                                            toDoListModel: toDoListModel,
-                                            toDoProvider: toDoProvider,
-                                          )
+                                        ? const SizedBox()
                                         : const SizedBox()
-                                : AddNewFieldWidget(
-                                    index: 0,
-                                    toDoListModel: toDoListModel,
-                                    toDoProvider: toDoProvider,
-                                  );
+                                : const SizedBox();
                           },
                         ),
                       ),
@@ -187,8 +178,6 @@ class _ToDoScreenState extends State<ToDoScreen> {
               ),
             ),
           );
-        } else if (state is UserFailure) {
-          ShowSnackbar.showSnackBar(context, state.error, 'F');
         }
         return const LoadingPage(
           title: 'ToDoList',

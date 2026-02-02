@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/features/factVsCustDisp/data/data_sources/fact_vs_cust_data_source.dart';
-import 'package:wncc_portal/features/factVsCustDisp/data/models/fact_vs_cust_compare_model/Fact_vs_cust_disp_compare.dart';
+import 'package:wncc_portal/features/factVsCustDisp/data/models/compare_model/compare_model.dart';
 import 'package:wncc_portal/features/factVsCustDisp/data/models/fact_vs_cust_disp_model/fact_vs_cust_disp_model.dart';
 import 'package:wncc_portal/features/factVsCustDisp/domain/repos/fact_vs_cust_repo.dart';
 
@@ -26,8 +26,17 @@ class Factvscustrepoimp extends FactVsCustRepo {
   }
 
   @override
-  Future<Either<Failure, List<FactVsCustDispCompare>>> getFactVsCustDispCompare(DateTime date) {
-    // TODO: implement getFactVsCustDispCompare
-    throw UnimplementedError();
+  Future<Either<Failure, CompareModel>> getFactVsCustDispCompare(
+      DateTime selectedDate, DateTime compareDate) async {
+    try {
+      CompareModel compareModel =
+          await factVsCustDatasourse.getFactVsCustDispCompare(selectedDate, compareDate);
+      return Right(compareModel);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
   }
 }
