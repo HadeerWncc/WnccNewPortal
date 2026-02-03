@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
-import 'package:wncc_portal/features/morningMeating/data/models/morning_meeting/morning_meeting.dart';
-import 'package:wncc_portal/features/morningMeating/domain/entities/customer_dispatch_entity.dart';
+import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_meeting/morning_meeting.dart';
+import 'package:wncc_portal/features/reports/morningMeating/domain/entities/customer_dispatch_entity.dart';
 
 List<CustomerDispatchEntity> processCustomerEntities(
     List<MorningMeeting> list, DateTime date) {
@@ -13,6 +13,7 @@ List<CustomerDispatchEntity> processCustomerEntities(
     DateTime meetingDate = DateTime(m.date!.year, m.date!.month, m.date!.day);
     return meetingDate == today || meetingDate == yesterday;
   }).toList();
+  morningMeetingTwoDays.sort((a, b) => a.date!.compareTo(b.date!));
 
   // اجلب كل اليوميات للشهر الحالي
   List<MorningMeeting> sumationList = list
@@ -43,7 +44,7 @@ List<CustomerDispatchEntity> processCustomerEntities(
       extra: resp?.extra?.toDouble(),
     );
   }).toList();
-  customerDispatchEntities = customerDispatchEntities.reversed.toList();
+  customerDispatchEntities = customerDispatchEntities.toList();
   // CustomerDispatchEntity للشهر كامل (MTD)
   CustomerDispatchEntity customerDispatchEntity = CustomerDispatchEntity(
     date: 'MTD',

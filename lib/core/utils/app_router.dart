@@ -9,11 +9,11 @@ import 'package:wncc_portal/features/customerService/complains/presentation/view
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/create_complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_view.dart';
-import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_compare_page.dart';
-import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
-import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
-import 'package:wncc_portal/features/factVsCustDisp/presentation/views/pages/fact_vs_cust_monthly_page.dart';
-import 'package:wncc_portal/features/morningMeating/presentation/views/pages/morning_meeting_page.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_compare_page.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_monthly_page.dart';
+import 'package:wncc_portal/features/reports/morningMeating/presentation/views/pages/morning_meeting_page.dart';
 import 'package:wncc_portal/features/payer/presentation/views/pages/payer_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
@@ -22,8 +22,8 @@ import 'package:wncc_portal/features/customerService/requests/presentation/views
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/requests_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/add_request_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
-import 'package:wncc_portal/features/to_do_list/presentation/views/pages/to_do_screen.dart';
-import 'package:wncc_portal/features/updates/presentation/views/pages/updates_page.dart';
+import 'package:wncc_portal/features/home/to_do_list/presentation/views/pages/to_do_screen.dart';
+import 'package:wncc_portal/features/home/updates/presentation/views/pages/updates_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/change_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/forget_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/login_page.dart';

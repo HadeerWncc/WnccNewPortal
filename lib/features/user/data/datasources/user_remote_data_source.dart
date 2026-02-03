@@ -28,7 +28,10 @@ class UserRemoteDataSourceImpl extends UserRemoteDataSource {
   Future<UserModel> getCurrentUser() async {
     var result =
         await apiService.get(endPoint: 'api/CurrentUser/GetCurrentUser');
-    UserModel userModel = UserModel.fromJson(result["data"]);
+        if(result["data"]==null || result["message"].contains("you are not authenticated") ){
+          throw Exception("your session has expired. Please login again.");
+        }
+    UserModel userModel = UserModel.fromJson( result["data"]);
     return userModel;
   }
 

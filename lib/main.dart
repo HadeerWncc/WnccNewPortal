@@ -11,15 +11,15 @@ import 'package:wncc_portal/features/authentication/presentation/manager/auth_cu
 import 'package:wncc_portal/features/authentication/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
-import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
-import 'package:wncc_portal/features/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
-import 'package:wncc_portal/features/morningMeating/presentation/manager/cubites/cubit/morning_meeting_cubit.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
+import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/cubit/morning_meeting_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/sales_quota_cubit/sales_quota_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
-import 'package:wncc_portal/features/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
+import 'package:wncc_portal/features/home/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/first_login_change_password_cubit/first_login_change_password_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_all_users_cubit/get_all_users_cubit.dart';
@@ -37,6 +37,7 @@ void main() async {
   // await Hive.openBox<ToDoModel>('toDoDailyList');
   setupApp();
   HttpOverrides.global = MyHttpOverrides();
+  
   // final toDoLocalDataSource = ToDoLocalDataSource();
   // final toDoRepository = ToDoRepository(localDataSource: toDoLocalDataSource);
 

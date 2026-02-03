@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
-import 'package:wncc_portal/features/morningMeating/data/models/morning_meeting/morning_meeting.dart';
-import 'package:wncc_portal/features/morningMeating/domain/entities/factory_entity.dart';
+import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_meeting/morning_meeting.dart';
+import 'package:wncc_portal/features/reports/morningMeating/domain/entities/factory_entity.dart';
 
 List<FactoryEntity> processFactoryEntities(
     List<MorningMeeting> list, DateTime date) {
@@ -13,6 +13,7 @@ List<FactoryEntity> processFactoryEntities(
     DateTime meetingDate = DateTime(m.date!.year, m.date!.month, m.date!.day);
     return meetingDate == today || meetingDate == yesterday;
   }).toList();
+  morningMeetingTwoDays.sort((a, b) => a.date!.compareTo(b.date!));
 
   // اجلب كل اليوميات للشهر الحالي
   List<MorningMeeting> sumationList = list
@@ -32,7 +33,6 @@ List<FactoryEntity> processFactoryEntities(
       total: meeting.factoryDispatchResponse?.total?.toDouble(),
     );
   }).toList();
-  factoryEntities = factoryEntities.reversed.toList();
   FactoryEntity factoryEntity = FactoryEntity(
     date: 'MTD',
     bags: double.parse(sumationList

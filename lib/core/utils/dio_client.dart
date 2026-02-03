@@ -6,24 +6,32 @@ import 'dart:io';
 
 import 'my_interceptor.dart';
 
+import 'dart:io';
+import 'package:dio/io.dart'; // مهم جداً للأصدارات الجديدة من Dio
+
+import 'dart:io';
+import 'package:dio/io.dart';
+
 // Dio createDio() {
-//   final Dio dio = Dio(
+//   final dio = Dio(
 //     BaseOptions(
-//       // baseUrl: baseUrl,
-//       followRedirects: true,
+//       // baseUrl: "http://wncc-portal.com:551/",
+//       followRedirects: true, // لازم تكون true
 //       maxRedirects: 5,
 //       validateStatus: (status) => status! < 500,
 //     ),
-//   )..interceptors.add(MyInterceptor());
-
-//   dio.httpClientAdapter = IOHttpClientAdapter(
-//     createHttpClient: () {
-//       final client = HttpClient()
-//         ..badCertificateCallback =
-//             (X509Certificate cert, String host, int port) => true;
-//       return client;
-//     },
 //   );
+
+//   (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
+//     final client = HttpClient();
+    
+//     // السطر ده بيخلي الأبلكيشن يستخدم بروكسي الجهاز (الـ VPN) بشكل صحيح
+//     client.findProxy = (uri) {
+//       return "DIRECT"; // جربي كلمة DIRECT الأول عشان يتخطى البروكسي
+//     };
+
+//     return client;
+//   };
 
 //   return dio;
 // }
