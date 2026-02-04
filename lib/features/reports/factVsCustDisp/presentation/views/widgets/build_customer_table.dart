@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/methods/capitalize.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/models/fact_vs_cust_disp_model/fact_vs_cust_disp_model.dart';
@@ -78,14 +79,16 @@ Widget buildCustomerTable({
                       cells: row
                           .sublist(0, bagsIndex)
                           .map((cell) => DataCell(
-                                Center(child: Text(cell.toString())),
+                                Center(child: Text(NumberFormat.decimalPattern()
+                                  .format(cell ?? 0))),
                               ))
                           .toList(),
                     );
                   }).toList(),
                 ),
                 totalColumn(
-                  values: data.map((row) => row[bagsIndex].toString()).toList(),
+                  values: data.map((row) => NumberFormat.decimalPattern()
+                                  .format(row[bagsIndex] ?? 0)).toList(),
                   lableName: 'Bags',
                 ),
                 DataTable(
@@ -114,7 +117,8 @@ Widget buildCustomerTable({
                       cells: row
                           .sublist(bagsIndex + 1, totalIndex)
                           .map((cell) => DataCell(
-                                Center(child: Text(cell.toString())),
+                                Center(child: Text(NumberFormat.decimalPattern()
+                                  .format(cell ?? 0))),
                               ))
                           .toList(),
                     );
@@ -122,7 +126,8 @@ Widget buildCustomerTable({
                 ),
                 totalColumn(
                   values:
-                      data.map((row) => row[totalIndex].toString()).toList(),
+                      data.map((row) => NumberFormat.decimalPattern()
+                                  .format(row[totalIndex] ?? 0)).toList(),
                   lableName: 'Total',
                 ),
                 DataTable(
@@ -151,7 +156,8 @@ Widget buildCustomerTable({
                       cells: row
                           .sublist(totalIndex + 1, totalExportIndex)
                           .map((cell) => DataCell(
-                                Center(child: Text(cell.toString())),
+                                Center(child: Text(NumberFormat.decimalPattern()
+                                  .format(cell ?? 0))),
                               ))
                           .toList(),
                     );
@@ -159,14 +165,15 @@ Widget buildCustomerTable({
                 ),
                 totalColumn(
                   values: data
-                      .map((row) => row[totalExportIndex].toString())
+                      .map((row) => NumberFormat.decimalPattern()
+                                  .format(row[totalExportIndex] ?? 0))
                       .toList(),
                   lableName: 'T_Export',
                 ),
                 totalColumn(
                   values: data
-                      .map((row) =>
-                          (row[totalExportIndex] + row[totalIndex]).toString())
+                      .map((row) => NumberFormat.decimalPattern()
+                                  .format((row[totalExportIndex] ?? 0) + (row[totalIndex] ?? 0)))
                       .toList(),
                   lableName: 'Total',
                 ),

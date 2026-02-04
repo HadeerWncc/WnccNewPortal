@@ -27,7 +27,6 @@ import 'package:wncc_portal/features/user/presentation/manager/cubits/get_cities
 import 'package:wncc_portal/features/user/presentation/manager/cubits/select_start_up_route_cubit/select_start_up_route_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/update_profile_cubit/update_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
-// import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

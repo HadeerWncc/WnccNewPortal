@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/methods/capitalize.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/models/fact_vs_cust_disp_model/fact_vs_cust_disp_model.dart';
@@ -86,7 +87,8 @@ Widget buildFactoryTable({
                               .map(
                                 (cell) => DataCell(
                                   Center(
-                                    child: Text(cell.toString()),
+                                    child: Text(NumberFormat.decimalPattern()
+                                  .format(cell ?? 0)),
                                   ),
                                 ),
                               )
@@ -95,7 +97,8 @@ Widget buildFactoryTable({
                   ],
                 ),
                 totalColumn(
-                  values: data.map((row) => row[bagsIndex].toString()).toList(),
+                  values: data.map((row) => NumberFormat.decimalPattern()
+                                  .format(row[bagsIndex] ?? 0)).toList(),
                   lableName: 'Bags',
                 ),
                 DataTable(
@@ -117,13 +120,15 @@ Widget buildFactoryTable({
                             cells: row
                                 .sublist(bagsIndex + 1, totalIndex)
                                 .map((cell) => DataCell(
-                                    Center(child: Text(cell.toString()))))
+                                    Center(child: Text(NumberFormat.decimalPattern()
+                                  .format(cell ?? 0)))))
                                 .toList(),
                           ))
                       .toList(),
                 ),
                 totalColumn(
-                  values: data.map((e) => e.last.toString()).toList(),
+                  values: data.map((e) => NumberFormat.decimalPattern()
+                                  .format(e.last ?? 0)).toList(),
                   lableName: 'Total',
                 ),
               ],
