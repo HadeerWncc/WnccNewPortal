@@ -9,7 +9,8 @@ class FactCompareItem extends Equatable {
 
   const FactCompareItem({this.date, this.month, this.customerDispatchResponse});
 
-  factory FactCompareItem.fromJson(Map<String, dynamic> json) => FactCompareItem(
+  factory FactCompareItem.fromJson(Map<String, dynamic> json) =>
+      FactCompareItem(
         date: json['date'] as String?,
         month: json['month'] as int?,
         customerDispatchResponse: json['customerDispatchResponse'] == null

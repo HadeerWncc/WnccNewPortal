@@ -5,7 +5,8 @@ class CustomYearPicker extends StatefulWidget {
   const CustomYearPicker({
     super.key,
     required this.title,
-    this.onChange, this.initialDate,
+    this.onChange,
+    this.initialDate,
   });
   final String title;
   final void Function(DateTime currentDate)? onChange;
@@ -18,12 +19,13 @@ class _CustomYearPicker extends State<CustomYearPicker> {
   String formattedDate = 'Select Year';
   DateTime currentDate = DateTime.now();
 
-@override
+  @override
   initState() {
     super.initState();
     if (widget.initialDate != null) {
       formattedDate = DateFormat('y').format(widget.initialDate!);
-      currentDate = widget.initialDate!=null ? widget.initialDate! : DateTime.now();
+      currentDate =
+          widget.initialDate != null ? widget.initialDate! : DateTime.now();
     }
   }
 
@@ -49,7 +51,7 @@ class _CustomYearPicker extends State<CustomYearPicker> {
                   }
                 });
 
-                Navigator.pop(context); 
+                Navigator.pop(context);
               },
             ),
           ),

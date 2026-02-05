@@ -17,12 +17,14 @@ class CompareBody extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                sectionTitle('Compare Year (${state.factVsCustDispCompare.compareYear[0].year})'),
+                sectionTitle(
+                    'Compare Year (${state.factVsCustDispCompare.compareYear[0].year})'),
                 const SizedBox(height: 8),
                 CompareTable(
                     curerentYear: state.factVsCustDispCompare.compareYear),
                 const SizedBox(height: 30),
-                sectionTitle('Selected Year (${state.factVsCustDispCompare.selectedYear[0].year})'),
+                sectionTitle(
+                    'Selected Year (${state.factVsCustDispCompare.selectedYear[0].year})'),
                 const SizedBox(height: 8),
                 CompareTable(
                     curerentYear: state.factVsCustDispCompare.selectedYear),

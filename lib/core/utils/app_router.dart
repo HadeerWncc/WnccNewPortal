@@ -21,6 +21,9 @@ import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pi
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/request_details_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/requests_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/add_request_page.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_daily_page.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_hourly_page.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_monthly_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
 import 'package:wncc_portal/features/home/to_do_list/presentation/views/pages/to_do_screen.dart';
 import 'package:wncc_portal/features/home/updates/presentation/views/pages/updates_page.dart';
@@ -71,6 +74,9 @@ abstract class AppRouter {
   static const factVsCustDispatchCompare = '/factvscustDailyComparepage';
   static const updatesPagePath = '/updates';
   static const morningMeatingPath = '/morningMeeting';
+  static const paymentsPath = '/payments';
+  static const paymentsDailyPath = '/paymentsDaily';
+  static const paymentsHourlyPath = '/paymentsHourly';
 
   static final router = GoRouter(
     routes: [
@@ -238,6 +244,18 @@ abstract class AppRouter {
       GoRoute(
         path: morningMeatingPath,
         builder: (context, state) => const MorningMeetingPage(),
+      ),
+      GoRoute(
+        path: paymentsPath,
+        builder: (context, state) => const MonthlyPaymentsPage(),
+      ),
+       GoRoute(
+        path: paymentsDailyPath,
+        builder: (context, state) => const PaymentsDailyPage(),
+      ),
+       GoRoute(
+        path: paymentsHourlyPath,
+        builder: (context, state) => const PaymentsHourlyPage(),
       ),
     ],
   );

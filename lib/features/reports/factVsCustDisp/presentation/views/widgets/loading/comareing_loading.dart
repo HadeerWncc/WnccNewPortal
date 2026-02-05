@@ -30,8 +30,7 @@ class ComareingLoading extends StatelessWidget {
           const SizedBox(height: 8),
           CompareTable(curerentYear: [
             ComparingEntityItem(
-              year: 2024,
-                month: 1, bags: 1, bulk: 1, export: 1, clincker: 1),
+                year: 2024, month: 1, bags: 1, bulk: 1, export: 1, clincker: 1),
             ComparingEntityItem(
                 year: 2024, month: 1, bags: 1, bulk: 1, export: 1, clincker: 1),
             ComparingEntityItem(
@@ -42,8 +41,7 @@ class ComareingLoading extends StatelessWidget {
           const SizedBox(height: 8),
           CompareTable(curerentYear: [
             ComparingEntityItem(
-              year: 0,
-                month: 1, bags: 1, bulk: 1, export: 1, clincker: 1),
+                year: 0, month: 1, bags: 1, bulk: 1, export: 1, clincker: 1),
             ComparingEntityItem(
                 year: 0, month: 1, bags: 1, bulk: 1, export: 1, clincker: 1),
             ComparingEntityItem(

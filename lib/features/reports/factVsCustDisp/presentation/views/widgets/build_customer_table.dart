@@ -18,7 +18,6 @@ Widget buildCustomerTable({
   int totalIndex = allKeys.indexOf('total');
   int bagsIndex = allKeys.indexOf('bags');
   int totalExportIndex = allKeys.indexOf('t_Export');
-  // int finalTotalIndex = allKeys.indexOf('final_Total');
   final bool showTotalRow = lableName != 'Time';
 
   List<List<dynamic>> data = customerDispatchResponse.map((model) {
@@ -57,7 +56,6 @@ Widget buildCustomerTable({
             child: Row(
               children: [
                 DataTable(
-                  columnSpacing: 20,
                   headingRowHeight: 45,
                   dataRowMinHeight: 38,
                   dataRowMaxHeight: 42,
@@ -76,23 +74,40 @@ Widget buildCustomerTable({
                       .toList(),
                   rows: data.map((row) {
                     return DataRow(
+                      color: WidgetStateProperty.resolveWith<Color?>(
+                        (Set<WidgetState> states) {
+                          if (data.indexOf(row) == data.length - 1) {
+                            return tableHeaderColor;
+                          }
+                          return null;
+                        },
+                      ),
                       cells: row
                           .sublist(0, bagsIndex)
                           .map((cell) => DataCell(
-                                Center(child: Text(NumberFormat.decimalPattern()
-                                  .format(cell ?? 0))),
+                                Center(
+                                  child: Text(
+                                      NumberFormat.decimalPattern()
+                                          .format(cell ?? 0),
+                                      style: TextStyle(
+                                          fontWeight: (data.indexOf(row) ==
+                                                  data.length - 1)
+                                              ? FontWeight.bold
+                                              : FontWeight.normal)),
+                                ),
                               ))
                           .toList(),
                     );
                   }).toList(),
                 ),
                 totalColumn(
-                  values: data.map((row) => NumberFormat.decimalPattern()
-                                  .format(row[bagsIndex] ?? 0)).toList(),
+                  values: data
+                      .map((row) => NumberFormat.decimalPattern()
+                          .format(row[bagsIndex] ?? 0))
+                      .toList(),
                   lableName: 'Bags',
                 ),
                 DataTable(
-                  columnSpacing: 20,
                   headingRowHeight: 45,
                   dataRowMinHeight: 38,
                   dataRowMaxHeight: 42,
@@ -114,24 +129,40 @@ Widget buildCustomerTable({
                       .toList(),
                   rows: data.map((row) {
                     return DataRow(
+                      color: WidgetStateProperty.resolveWith<Color?>(
+                        (Set<WidgetState> states) {
+                          if (data.indexOf(row) == data.length - 1) {
+                            return tableHeaderColor;
+                          }
+                          return null;
+                        },
+                      ),
                       cells: row
                           .sublist(bagsIndex + 1, totalIndex)
                           .map((cell) => DataCell(
-                                Center(child: Text(NumberFormat.decimalPattern()
-                                  .format(cell ?? 0))),
+                                Center(
+                                  child: Text(
+                                      NumberFormat.decimalPattern()
+                                          .format(cell ?? 0),
+                                      style: TextStyle(
+                                          fontWeight: (data.indexOf(row) ==
+                                                  data.length - 1)
+                                              ? FontWeight.bold
+                                              : FontWeight.normal)),
+                                ),
                               ))
                           .toList(),
                     );
                   }).toList(),
                 ),
                 totalColumn(
-                  values:
-                      data.map((row) => NumberFormat.decimalPattern()
-                                  .format(row[totalIndex] ?? 0)).toList(),
+                  values: data
+                      .map((row) => NumberFormat.decimalPattern()
+                          .format(row[totalIndex] ?? 0))
+                      .toList(),
                   lableName: 'Total',
                 ),
                 DataTable(
-                  columnSpacing: 20,
                   headingRowHeight: 45,
                   dataRowMinHeight: 38,
                   dataRowMaxHeight: 42,
@@ -153,11 +184,27 @@ Widget buildCustomerTable({
                       .toList(),
                   rows: data.map((row) {
                     return DataRow(
+                      color: WidgetStateProperty.resolveWith<Color?>(
+                        (Set<WidgetState> states) {
+                          if (data.indexOf(row) == data.length - 1) {
+                            return tableHeaderColor;
+                          }
+                          return null;
+                        },
+                      ),
                       cells: row
                           .sublist(totalIndex + 1, totalExportIndex)
                           .map((cell) => DataCell(
-                                Center(child: Text(NumberFormat.decimalPattern()
-                                  .format(cell ?? 0))),
+                                Center(
+                                  child: Text(
+                                      NumberFormat.decimalPattern()
+                                          .format(cell ?? 0),
+                                      style: TextStyle(
+                                          fontWeight: (data.indexOf(row) ==
+                                                  data.length - 1)
+                                              ? FontWeight.bold
+                                              : FontWeight.normal)),
+                                ),
                               ))
                           .toList(),
                     );
@@ -166,14 +213,15 @@ Widget buildCustomerTable({
                 totalColumn(
                   values: data
                       .map((row) => NumberFormat.decimalPattern()
-                                  .format(row[totalExportIndex] ?? 0))
+                          .format(row[totalExportIndex] ?? 0))
                       .toList(),
                   lableName: 'T_Export',
                 ),
                 totalColumn(
                   values: data
-                      .map((row) => NumberFormat.decimalPattern()
-                                  .format((row[totalExportIndex] ?? 0) + (row[totalIndex] ?? 0)))
+                      .map((row) => NumberFormat.decimalPattern().format(
+                          (row[totalExportIndex] ?? 0) +
+                              (row[totalIndex] ?? 0)))
                       .toList(),
                   lableName: 'Total',
                 ),

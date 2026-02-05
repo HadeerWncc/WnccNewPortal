@@ -25,7 +25,6 @@ class CustomerDispatchTable extends StatelessWidget {
               child: Row(
                 children: [
                   DataTable(
-                    columnSpacing: 20,
                     headingRowHeight: 45,
                     dataRowMinHeight: 38,
                     dataRowMaxHeight: 42,
@@ -48,12 +47,20 @@ class CustomerDispatchTable extends StatelessWidget {
                     rows: List<DataRow>.generate(
                       customerDispatchResponse.length,
                       (index) => DataRow(
+                        color: (index == customerDispatchResponse.length - 1)
+                            ? WidgetStateProperty.all(tableHeaderColor)
+                            : null,
                         cells: [
                           DataCell(
                             Center(
                               child: Text(
                                 NumberFormat.decimalPattern().format(
                                     customerDispatchResponse[index].masry ?? 0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            customerDispatchResponse.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
                               ),
                             ),
                           ),
@@ -62,6 +69,11 @@ class CustomerDispatchTable extends StatelessWidget {
                               child: Text(
                                 NumberFormat.decimalPattern().format(
                                     customerDispatchResponse[index].wadi ?? 0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            customerDispatchResponse.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
                               ),
                             ),
                           ),
@@ -77,7 +89,6 @@ class CustomerDispatchTable extends StatelessWidget {
                     lableName: 'Bags',
                   ),
                   DataTable(
-                    columnSpacing: 20,
                     headingRowHeight: 45,
                     dataRowMinHeight: 38,
                     dataRowMaxHeight: 42,
@@ -94,12 +105,20 @@ class CustomerDispatchTable extends StatelessWidget {
                     rows: List<DataRow>.generate(
                       customerDispatchResponse.length,
                       (index) => DataRow(
+                        color: (index == customerDispatchResponse.length - 1)
+                            ? WidgetStateProperty.all(tableHeaderColor)
+                            : null,
                         cells: [
                           DataCell(
                             Center(
                               child: Text(
                                 NumberFormat.decimalPattern().format(
                                     customerDispatchResponse[index].bulk ?? 0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            customerDispatchResponse.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
                               ),
                             ),
                           ),
@@ -115,7 +134,6 @@ class CustomerDispatchTable extends StatelessWidget {
                     lableName: 'Total',
                   ),
                   DataTable(
-                    columnSpacing: 20,
                     headingRowHeight: 45,
                     dataRowMinHeight: 38,
                     dataRowMaxHeight: 42,
@@ -138,6 +156,9 @@ class CustomerDispatchTable extends StatelessWidget {
                     rows: List<DataRow>.generate(
                       customerDispatchResponse.length,
                       (index) => DataRow(
+                        color: (index == customerDispatchResponse.length - 1)
+                            ? WidgetStateProperty.all(tableHeaderColor)
+                            : null,
                         cells: [
                           DataCell(
                             Center(
@@ -145,6 +166,11 @@ class CustomerDispatchTable extends StatelessWidget {
                                 NumberFormat.decimalPattern().format(
                                     customerDispatchResponse[index].export ??
                                         0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            customerDispatchResponse.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
                               ),
                             ),
                           ),
@@ -155,6 +181,11 @@ class CustomerDispatchTable extends StatelessWidget {
                                     customerDispatchResponse[index]
                                             .expTrading ??
                                         0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            customerDispatchResponse.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
                               ),
                             ),
                           ),
@@ -177,7 +208,6 @@ class CustomerDispatchTable extends StatelessWidget {
                     lableName: 'Total',
                   ),
                   DataTable(
-                    columnSpacing: 20,
                     headingRowHeight: 45,
                     dataRowMinHeight: 38,
                     dataRowMaxHeight: 42,
@@ -200,12 +230,20 @@ class CustomerDispatchTable extends StatelessWidget {
                     rows: List<DataRow>.generate(
                       customerDispatchResponse.length,
                       (index) => DataRow(
+                        color: (index == customerDispatchResponse.length - 1)
+                            ? WidgetStateProperty.all(tableHeaderColor)
+                            : null,
                         cells: [
                           DataCell(
                             Center(
                               child: Text(
                                 NumberFormat.decimalPattern().format(
                                     customerDispatchResponse[index].extra ?? 0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            customerDispatchResponse.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
                               ),
                             ),
                           ),
@@ -215,6 +253,11 @@ class CustomerDispatchTable extends StatelessWidget {
                                 NumberFormat.decimalPattern().format(
                                     customerDispatchResponse[index].clincker ??
                                         0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            customerDispatchResponse.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
                               ),
                             ),
                           ),

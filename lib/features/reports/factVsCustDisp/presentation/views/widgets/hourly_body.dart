@@ -23,14 +23,14 @@ class HourlyBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                sectionTitle('Factory (FLS)'),
+                sectionTitle('Factory'),
                 const SizedBox(height: 8),
                 buildFactoryTable(
                   factoryDispatchResponse: state.factVsCustList,
                   lableName: 'Time',
                 ),
                 const SizedBox(height: 30),
-                sectionTitle('Customer (P&L)'),
+                sectionTitle('Customer'),
                 const SizedBox(height: 8),
                 buildCustomerTable(
                   customerDispatchResponse: state.factVsCustList,

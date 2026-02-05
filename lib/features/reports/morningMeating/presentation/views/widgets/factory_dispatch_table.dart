@@ -26,7 +26,6 @@ class FactoryDispatchTable extends StatelessWidget {
               child: Row(
                 children: [
                   DataTable(
-                    columnSpacing: 20,
                     headingRowHeight: 45,
                     dataRowMinHeight: 38,
                     dataRowMaxHeight: 42,
@@ -63,22 +62,53 @@ class FactoryDispatchTable extends StatelessWidget {
                       (index) {
                         final item = factoryDispatchResponse![index];
                         return DataRow(
+                          color: (index == factoryDispatchResponse!.length - 1)
+                              ? WidgetStateProperty.all(tableHeaderColor)
+                              : null,
                           cells: [
                             DataCell(
-                              Text(NumberFormat.decimalPattern()
-                                  .format(item.bags ?? 0)),
+                              Text(
+                                NumberFormat.decimalPattern()
+                                    .format(item.bags ?? 0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            factoryDispatchResponse!.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                              ),
                             ),
                             DataCell(
-                              Text(NumberFormat.decimalPattern()
-                                  .format(item.bulk ?? 0)),
+                              Text(
+                                NumberFormat.decimalPattern()
+                                    .format(item.bulk ?? 0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            factoryDispatchResponse!.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                              ),
                             ),
                             DataCell(
-                              Text(NumberFormat.decimalPattern()
-                                  .format(item.export ?? 0)),
+                              Text(
+                                NumberFormat.decimalPattern()
+                                    .format(item.export ?? 0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            factoryDispatchResponse!.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                              ),
                             ),
                             DataCell(
-                              Text(NumberFormat.decimalPattern()
-                                  .format(item.total ?? 0)),
+                              Text(
+                                NumberFormat.decimalPattern()
+                                    .format(item.total ?? 0),
+                                style: TextStyle(
+                                    fontWeight: (index ==
+                                            factoryDispatchResponse!.length - 1)
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                              ),
                             ),
                           ],
                         );

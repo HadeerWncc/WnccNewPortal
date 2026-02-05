@@ -98,6 +98,13 @@ class DrawerMenuList extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.morningMeatingPath);
               },
             ),
+             CustomMenuItem(
+              title: 'Payments',
+              active: activeTab == 'Payments',
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.paymentsPath);
+              },
+            ),
           ],
         ),
       ],

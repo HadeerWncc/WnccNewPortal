@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/date_picker.dart';
-import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/const/const_list.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/constants/const_list.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 
 class HourlyHeader extends StatelessWidget {
@@ -29,7 +29,7 @@ class HourlyHeader extends StatelessWidget {
               width: 180,
               child: CustomDropDownInput(
                 title: 'Select',
-                items: factVsCustDispOptions,
+                items: factreportOptionsList,
                 selectedValue: 'Hourly',
                 onChanged: (value) {
                   // Handle dropdown change

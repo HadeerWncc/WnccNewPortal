@@ -24,7 +24,7 @@ import 'package:dio/io.dart';
 
 //   (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
 //     final client = HttpClient();
-    
+
 //     // السطر ده بيخلي الأبلكيشن يستخدم بروكسي الجهاز (الـ VPN) بشكل صحيح
 //     client.findProxy = (uri) {
 //       return "DIRECT"; // جربي كلمة DIRECT الأول عشان يتخطى البروكسي

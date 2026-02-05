@@ -40,9 +40,11 @@ Widget totalColumn(
                   color: Color.fromARGB(255, 77, 160, 83), width: 1.5),
             ),
           ),
-          child: Text(
-            v,
-            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+          child: Center(
+            child: Text(
+              v,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
       ),

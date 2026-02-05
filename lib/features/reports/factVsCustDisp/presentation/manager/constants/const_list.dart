@@ -1,4 +1,4 @@
-List<String> factVsCustDispOptions = const [
+List<String> factreportOptionsList = const [
   'Hourly',
   'Daily',
   'Monthly',

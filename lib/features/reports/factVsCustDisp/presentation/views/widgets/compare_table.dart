@@ -13,7 +13,7 @@ class CompareTable extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           totalColumn(
-            values: [...curerentYear.map((e) => e.month.toString()),"Total"],
+            values: [...curerentYear.map((e) => e.month.toString()), "Total"],
             lableName: 'Month',
           ),
           Flexible(

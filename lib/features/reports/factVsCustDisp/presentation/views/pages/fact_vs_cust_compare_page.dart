@@ -16,8 +16,8 @@ class FactVsCustComparePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<FactVsCustCompareCubit>(context)
-        .getFactVsCustDispCompare(DateTime.now(),DateTime(DateTime.now().year - 1, 1, 1));
+    BlocProvider.of<FactVsCustCompareCubit>(context).getFactVsCustDispCompare(
+        DateTime.now(), DateTime(DateTime.now().year - 1, 1, 1));
 
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {

@@ -17,6 +17,7 @@ import 'package:wncc_portal/features/reports/morningMeating/presentation/manager
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/sales_quota_cubit/sales_quota_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
 import 'package:wncc_portal/features/home/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
@@ -36,7 +37,7 @@ void main() async {
   // await Hive.openBox<ToDoModel>('toDoDailyList');
   setupApp();
   HttpOverrides.global = MyHttpOverrides();
-  
+
   // final toDoLocalDataSource = ToDoLocalDataSource();
   // final toDoRepository = ToDoRepository(localDataSource: toDoLocalDataSource);
 
@@ -98,6 +99,9 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(create: (context) {
           return getIt<MorningMeetingCubit>();
         }),
+        // BlocProvider(create: (context) { 
+        //   return getIt<PaymentsCubit>();
+        // }),
         // BlocProvider(create: (context) {
         //   return getIt<RequestsCubit>()..getAllRequests();
         // }),

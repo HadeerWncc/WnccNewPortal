@@ -20,12 +20,12 @@ class MorningMeetingTables extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  sectionTitle('Factory (FLS)'),
+                  sectionTitle('Factory'),
                   const SizedBox(height: 8),
                   FactoryDispatchTable(
                       factoryDispatchResponse: state.factoryEntity),
                   const SizedBox(height: 30),
-                  sectionTitle('Customer (P&L)'),
+                  sectionTitle('Customer'),
                   const SizedBox(height: 8),
                   CustomerDispatchTable(
                     customerDispatchResponse: state.customerDispatchEntity,

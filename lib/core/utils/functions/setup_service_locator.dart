@@ -21,7 +21,6 @@ import 'package:wncc_portal/features/reports/factVsCustDisp/domain/repos/fact_vs
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 import 'package:wncc_portal/features/reports/morningMeating/data/data_sources/morning_meeting_data_source.dart';
-import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_meeting/morning_meeting.dart';
 import 'package:wncc_portal/features/reports/morningMeating/data/repos_impl/morning_meeting_repo_impl.dart';
 import 'package:wncc_portal/features/reports/morningMeating/domain/repos/morning_meeting_repo.dart';
 import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/cubit/morning_meeting_cubit.dart';
@@ -54,6 +53,10 @@ import 'package:wncc_portal/features/customerService/requests/presentation/manag
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/request_details_cubit/request_details_cubit.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/request_replies_cubit/request_replies_cubit.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/requests_cubit/requests_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/data/data_sources/payment_data_source.dart';
+import 'package:wncc_portal/features/reports/payment/data/repo_impl/payments_repo_impl.dart';
+import 'package:wncc_portal/features/reports/payment/domain/repos/payments_repo.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/data/datasources/sales_quota_remote_datasource.dart';
 import 'package:wncc_portal/features/sales_quota/data/repositories/daily_quota_repo_impl.dart';
 import 'package:wncc_portal/features/sales_quota/domain/repositories/daily_quota_repo.dart';
@@ -144,6 +147,10 @@ void setupLocator() {
   getIt.registerLazySingleton<MorningMeetingDataSource>(
       () => MorningMeetingDataSourceImpl(apiService: getIt<ApiService>()));
 
+  //PaymentsDataSource
+  getIt.registerLazySingleton<PaymentDataSource>(
+      () => PaymentDataSourceImpl(apiService: getIt<ApiService>()));
+
   // Repositories
   //BaseRepo
   getIt.registerLazySingleton<BaseRepos>(() => BaseRepos());
@@ -194,6 +201,10 @@ void setupLocator() {
   //FactVsCustRepo
   getIt.registerLazySingleton<MorningMeetingRepo>(() => MorningMeetingRepoImpl(
       morningMeetingDataSource: getIt<MorningMeetingDataSource>()));
+
+  //PaymentRepo
+  getIt.registerLazySingleton<PaymentsRepo>(() => PaymentsRepoImpl(
+      paymentDataSource: getIt<PaymentDataSource>()));
 
   // Use Cases
   //login Use Case
@@ -421,10 +432,15 @@ void setupLocator() {
   getIt.registerFactory<FactVsCustCompareCubit>(
       () => FactVsCustCompareCubit(getIt<FactVsCustRepo>()));
 
-  //FactVsCustCubit
+  //SewlectStartUpRouteCubit
   getIt.registerFactory<SelectStartUpRouteCubit>(
       () => SelectStartUpRouteCubit(getIt<UserRepo>()));
-  //FactVsCustCubit
+
+  //MorningMeetingCubit
   getIt.registerFactory<MorningMeetingCubit>(
       () => MorningMeetingCubit(getIt<MorningMeetingRepo>()));
+
+  //PaymentsCubit
+  getIt.registerFactory<PaymentsCubit>(
+      () => PaymentsCubit(getIt<PaymentsRepo>()));
 }

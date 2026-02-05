@@ -29,8 +29,8 @@ class Factvscustrepoimp extends FactVsCustRepo {
   Future<Either<Failure, CompareModel>> getFactVsCustDispCompare(
       DateTime selectedDate, DateTime compareDate) async {
     try {
-      CompareModel compareModel =
-          await factVsCustDatasourse.getFactVsCustDispCompare(selectedDate, compareDate);
+      CompareModel compareModel = await factVsCustDatasourse
+          .getFactVsCustDispCompare(selectedDate, compareDate);
       return Right(compareModel);
     } on Exception catch (e) {
       if (e is DioException) {

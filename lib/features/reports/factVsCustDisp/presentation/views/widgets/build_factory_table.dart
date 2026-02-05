@@ -67,7 +67,6 @@ Widget buildFactoryTable({
             child: Row(
               children: [
                 DataTable(
-                  columnSpacing: 20,
                   headingRowHeight: 45,
                   dataRowMinHeight: 38,
                   dataRowMaxHeight: 42,
@@ -76,19 +75,36 @@ Widget buildFactoryTable({
                   columns: columns
                       .sublist(0, bagsIndex)
                       .map((c) => DataColumn(
-                          label: Text(c.capitalize(),
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold))))
+                              label: Center(
+                            child: Text(c.capitalize(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                          )))
                       .toList(),
                   rows: [
                     ...data.map((row) => DataRow(
+                          color: WidgetStateProperty.resolveWith<Color?>(
+                            (Set<WidgetState> states) {
+                              if (data.indexOf(row) == data.length - 1) {
+                                return tableHeaderColor;
+                              }
+                              return null;
+                            },
+                          ),
                           cells: row
                               .sublist(0, bagsIndex)
                               .map(
                                 (cell) => DataCell(
                                   Center(
-                                    child: Text(NumberFormat.decimalPattern()
-                                  .format(cell ?? 0)),
+                                    child: Text(
+                                      NumberFormat.decimalPattern()
+                                          .format(cell ?? 0),
+                                      style: TextStyle(
+                                          fontWeight: (data.indexOf(row) ==
+                                                  data.length - 1)
+                                              ? FontWeight.bold
+                                              : FontWeight.normal),
+                                    ),
                                   ),
                                 ),
                               )
@@ -97,12 +113,13 @@ Widget buildFactoryTable({
                   ],
                 ),
                 totalColumn(
-                  values: data.map((row) => NumberFormat.decimalPattern()
-                                  .format(row[bagsIndex] ?? 0)).toList(),
+                  values: data
+                      .map((row) => NumberFormat.decimalPattern()
+                          .format(row[bagsIndex] ?? 0))
+                      .toList(),
                   lableName: 'Bags',
                 ),
                 DataTable(
-                  columnSpacing: 20,
                   headingRowHeight: 45,
                   dataRowMinHeight: 38,
                   dataRowMaxHeight: 42,
@@ -111,24 +128,48 @@ Widget buildFactoryTable({
                   columns: columns
                       .sublist(bagsIndex + 1, totalIndex)
                       .map((c) => DataColumn(
-                          label: Text(c.capitalize(),
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold))))
+                              label: Center(
+                            child: Text(c.capitalize(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                          )))
                       .toList(),
                   rows: data
                       .map((row) => DataRow(
+                            color: WidgetStateProperty.resolveWith<Color?>(
+                              (Set<WidgetState> states) {
+                                if (data.indexOf(row) == data.length - 1) {
+                                  return tableHeaderColor;
+                                }
+                                return null;
+                              },
+                            ),
                             cells: row
                                 .sublist(bagsIndex + 1, totalIndex)
-                                .map((cell) => DataCell(
-                                    Center(child: Text(NumberFormat.decimalPattern()
-                                  .format(cell ?? 0)))))
+                                .map(
+                                  (cell) => DataCell(
+                                    Center(
+                                      child: Text(
+                                        NumberFormat.decimalPattern()
+                                            .format(cell ?? 0),
+                                        style: TextStyle(
+                                            fontWeight: (data.indexOf(row) ==
+                                                    data.length - 1)
+                                                ? FontWeight.bold
+                                                : FontWeight.normal),
+                                      ),
+                                    ),
+                                  ),
+                                )
                                 .toList(),
                           ))
                       .toList(),
                 ),
                 totalColumn(
-                  values: data.map((e) => NumberFormat.decimalPattern()
-                                  .format(e.last ?? 0)).toList(),
+                  values: data
+                      .map((e) =>
+                          NumberFormat.decimalPattern().format(e.last ?? 0))
+                      .toList(),
                   lableName: 'Total',
                 ),
               ],

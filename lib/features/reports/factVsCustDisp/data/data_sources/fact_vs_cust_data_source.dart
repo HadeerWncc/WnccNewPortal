@@ -4,7 +4,8 @@ import 'package:wncc_portal/features/reports/factVsCustDisp/data/models/fact_vs_
 
 abstract class FactVsCustDatasourse {
   Future<List<FactVsCustDispModel>> getFactVsCustDisp(int mode, DateTime date);
-  Future<CompareModel> getFactVsCustDispCompare(DateTime selectedDate, DateTime compareDate);
+  Future<CompareModel> getFactVsCustDispCompare(
+      DateTime selectedDate, DateTime compareDate);
 }
 
 class FactVsCustDatasourseImpl extends FactVsCustDatasourse {
@@ -27,9 +28,11 @@ class FactVsCustDatasourseImpl extends FactVsCustDatasourse {
   }
 
   @override
-  Future<CompareModel> getFactVsCustDispCompare(DateTime selectedDate, DateTime compareDate) async {
+  Future<CompareModel> getFactVsCustDispCompare(
+      DateTime selectedDate, DateTime compareDate) async {
     var result = await apiService.get(
-        endPoint: 'api/Reports/GetFactoryVsDispatchCompare?selectedYear=$selectedDate&compareYear=$compareDate');
+        endPoint:
+            'api/Reports/GetFactoryVsDispatchCompare?selectedYear=$selectedDate&compareYear=$compareDate');
     CompareModel compareModel = CompareModel.fromJson(result["data"]);
     return compareModel;
   }
