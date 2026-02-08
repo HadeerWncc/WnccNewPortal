@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 class Bank extends Equatable {
   final String? name;
   final String? currency;
-  final int? transactions;
-  final int? totalAmount;
+  final num? transactions;
+  final num? totalAmount;
 
   const Bank({
     this.name,
@@ -16,8 +16,8 @@ class Bank extends Equatable {
   factory Bank.fromJson(Map<String, dynamic> json) => Bank(
         name: json['name'] as String?,
         currency: json['currency'] as String?,
-        transactions: json['transactions'] as int?,
-        totalAmount: json['totalAmount'] as int?,
+        transactions: json['transactions'] as num?,
+        totalAmount: json['totalAmount'] as num?,
       );
 
   Map<String, dynamic> toJson() => {

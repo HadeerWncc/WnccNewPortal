@@ -16,8 +16,8 @@ class MonthlyPaymentsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // BlocProvider.of<PaymentsCubit>(context)
-    //     .fetchPayments(1,DateTime.now());
+    BlocProvider.of<PaymentsCubit>(context)
+        .fetchPayments(1,DateTime.now());
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {
         if (state is UserFailure)

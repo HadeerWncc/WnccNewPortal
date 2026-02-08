@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/constants/report_options_list.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/custom_year_picker.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubit/payments_cubit.dart';
 
 class PaymentsMonthlyHeader extends StatelessWidget {
   const PaymentsMonthlyHeader({super.key});
@@ -26,9 +28,7 @@ class PaymentsMonthlyHeader extends StatelessWidget {
             selectedValue: 'Monthly',
             onChanged: (value) {
               // Handle dropdown change
-              if (value == 'Hourly') {
-                GoRouter.of(context).push(AppRouter.paymentsHourlyPath);
-              } else if (value == 'Daily') {
+              if (value == 'Daily') {
                 GoRouter.of(context).push(AppRouter.paymentsDailyPath);
               } 
             },
@@ -37,8 +37,8 @@ class PaymentsMonthlyHeader extends StatelessWidget {
         CustomYearPicker(
           title: 'Select Year',
           onChange: (value) {
-            // BlocProvider.of<FactVsCustCubit>(context)
-            //     .getFactVsCustDisp(1, value);
+            BlocProvider.of<PaymentsCubit>(context)
+                .fetchPayments(1, value);
           },
         ),
       ]),

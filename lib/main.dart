@@ -81,15 +81,15 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(create: (context) {
           return getIt<SelectStartUpRouteCubit>();
         }),
-        BlocProvider(create: (context) {
-          return getIt<SalesQuotaCubit>();
-        }),
-        BlocProvider(create: (context) {
-          return getIt<SetQuotaCubit>();
-        }),
-        BlocProvider(create: (context) {
-          return getIt<GetAllDeliveryCubit>();
-        }),
+        // BlocProvider(create: (context) {
+        //   return getIt<SalesQuotaCubit>();
+        // }),
+        // BlocProvider(create: (context) {
+        //   return getIt<SetQuotaCubit>();
+        // }),
+        // BlocProvider(create: (context) {
+        //   return getIt<GetAllDeliveryCubit>();
+        // }),
         BlocProvider(create: (context) {
           return getIt<FactVsCustCubit>();
         }),
@@ -99,9 +99,9 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(create: (context) {
           return getIt<MorningMeetingCubit>();
         }),
-        // BlocProvider(create: (context) { 
-        //   return getIt<PaymentsCubit>();
-        // }),
+        BlocProvider(create: (context) { 
+          return getIt<PaymentsCubit>();
+        }),
         // BlocProvider(create: (context) {
         //   return getIt<RequestsCubit>()..getAllRequests();
         // }),

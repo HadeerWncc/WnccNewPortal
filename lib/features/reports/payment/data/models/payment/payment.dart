@@ -8,8 +8,8 @@ class Payment extends Equatable {
   final int? mode;
   final String? date;
   final String? displayDate;
-  final int? totalAmount;
-  final int? transactions;
+  final num? totalAmount;
+  final num? transactions;
   final List<Bank>? banks;
 
   const Payment({
@@ -29,8 +29,8 @@ class Payment extends Equatable {
         mode: json['mode'] as int?,
         date: json['date'] as String?,
         displayDate: json['displayDate'] as String?,
-        totalAmount: json['totalAmount'] as int?,
-        transactions: json['transactions'] as int?,
+        totalAmount: json['totalAmount'] as num?,
+        transactions: json['transactions'] as num?,
         banks: (json['banks'] as List<dynamic>?)
             ?.map((e) => Bank.fromJson(e as Map<String, dynamic>))
             .toList(),

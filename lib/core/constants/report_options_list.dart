@@ -1,5 +1,5 @@
 List<String> reportOptionsList = const [
-  'Hourly',
+  // 'Hourly',
   'Daily',
   'Monthly',
 ];
