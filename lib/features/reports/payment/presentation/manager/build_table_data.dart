@@ -8,6 +8,7 @@ class TableData {
 }
 
 TableData buildTableData(List<Payment> days, String curr) {
+  
   final banks = days
       .expand((d) => d.banks!)
       .where((p) => p.currency == curr && p.name != null)

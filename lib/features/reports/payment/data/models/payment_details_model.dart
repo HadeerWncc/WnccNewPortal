@@ -1,12 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 
 class PaymentDetailsModel extends Equatable {
   final String? customer;
   final String? customerName;
   final String? customerRegion;
   final String? regionDesc;
-  final int? amountInLc;
-  final int? amount;
+  final num? amountInLc;
+  final num? amount;
   final String? houseBank;
   final String? accountId;
   final String? bankGl;
@@ -69,8 +70,8 @@ class PaymentDetailsModel extends Equatable {
       customerName: json['customerName'] as String?,
       customerRegion: json['customerRegion'] as String?,
       regionDesc: json['regionDesc'] as String?,
-      amountInLc: json['amountInLC'] as int?,
-      amount: json['amount'] as int?,
+      amountInLc: json['amountInLC'] as num?,
+      amount: json['amount'] as num?,
       houseBank: json['houseBank'] as String?,
       accountId: json['accountId'] as String?,
       bankGl: json['bankGL'] as String?,
@@ -128,6 +129,21 @@ class PaymentDetailsModel extends Equatable {
         'month': month,
         'year': year,
       };
+
+  Map<String, dynamic> toMap() {
+    return {
+      "Customer Name": customerName,
+      "Doc No": documentNo,
+      "Region": regionDesc,
+      "Amount": NumberFormat.decimalPattern().format(amount ?? 0),
+      "Bank": houseBank,
+      'Posting Date':
+          DateFormat('d/M/yyyy').format(DateTime.parse(postingDate!)),
+      'Document Date':
+          DateFormat('d/M/yyyy').format(DateTime.parse(documentDate!)),
+      'Sales Rep': salesRepName,
+    };
+  }
 
   @override
   List<Object?> get props {

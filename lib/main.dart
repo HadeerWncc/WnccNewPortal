@@ -16,11 +16,10 @@ import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager
 import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/cubit/morning_meeting_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/cubit/payments_cubit.dart';
-import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/sales_quota_cubit/sales_quota_cubit.dart';
-import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/home/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_daily_header.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/first_login_change_password_cubit/first_login_change_password_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_all_users_cubit/get_all_users_cubit.dart';
@@ -81,15 +80,6 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(create: (context) {
           return getIt<SelectStartUpRouteCubit>();
         }),
-        // BlocProvider(create: (context) {
-        //   return getIt<SalesQuotaCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<SetQuotaCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<GetAllDeliveryCubit>();
-        // }),
         BlocProvider(create: (context) {
           return getIt<FactVsCustCubit>();
         }),
@@ -99,54 +89,18 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(create: (context) {
           return getIt<MorningMeetingCubit>();
         }),
-        BlocProvider(create: (context) { 
+        BlocProvider(create: (context) {
           return getIt<PaymentsCubit>();
         }),
-        // BlocProvider(create: (context) {
-        //   return getIt<RequestsCubit>()..getAllRequests();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<RequestDetailsCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<ForwardedRequestCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<RequestRepliesCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<CreateRequestCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<RemoveRequestCubit>();
-        // }),
+        BlocProvider(create: (context) {
+          return getIt<PaymentsDetailsCubit>();
+        }),
         BlocProvider(create: (context) {
           return getIt<GetAllUsersCubit>();
         }),
         BlocProvider(create: (context) {
           return getIt<UpdatesCubit>();
         }),
-        // BlocProvider(create: (context) {
-        //   return getIt<CloseRequestCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<ComplainsCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<CreateNewComplainCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<DeleteComplainCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<ComplainDetailsCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<ForwardedComplainCubit>();
-        // }),
-        // BlocProvider(create: (context) {
-        //   return getIt<ComplainRepliesCubit>();
-        // }),
         BlocProvider(create: (context) {
           return getIt<GetAgentsCubit>()..getAgents();
         }),

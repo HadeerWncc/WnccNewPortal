@@ -9,7 +9,7 @@ import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/w
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/table_column.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment/payment.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/build_table_data.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/cubit/payments_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_button_item.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/monthly_payment_tables_section.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payment_report_buttons_list.dart';
@@ -20,11 +20,11 @@ class MonthlyPaymentsBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: Column(
-        children: const [
-          PaymentReportButtonsList(),
+        children: [
+          PaymentReportButtonsList(activeTab: 0,),
           SizedBox(height: 16),
 
           PaymentsMonthlyHeader(),

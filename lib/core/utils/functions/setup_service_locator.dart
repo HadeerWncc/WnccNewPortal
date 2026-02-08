@@ -56,7 +56,8 @@ import 'package:wncc_portal/features/customerService/requests/presentation/manag
 import 'package:wncc_portal/features/reports/payment/data/data_sources/payment_data_source.dart';
 import 'package:wncc_portal/features/reports/payment/data/repo_impl/payments_repo_impl.dart';
 import 'package:wncc_portal/features/reports/payment/domain/repos/payments_repo.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/cubit/payments_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/data/datasources/sales_quota_remote_datasource.dart';
 import 'package:wncc_portal/features/sales_quota/data/repositories/daily_quota_repo_impl.dart';
 import 'package:wncc_portal/features/sales_quota/domain/repositories/daily_quota_repo.dart';
@@ -443,4 +444,8 @@ void setupLocator() {
   //PaymentsCubit
   getIt.registerFactory<PaymentsCubit>(
       () => PaymentsCubit(getIt<PaymentsRepo>()));
+
+  //PaymentsDetailsCubit
+  getIt.registerFactory<PaymentsDetailsCubit>(
+      () => PaymentsDetailsCubit(getIt<PaymentsRepo>()));
 }

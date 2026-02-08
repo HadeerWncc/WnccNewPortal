@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/table_column.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/build_table_data.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/cubit/payments_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 
 class MonthlyPaymentTable extends StatelessWidget {
   const MonthlyPaymentTable({

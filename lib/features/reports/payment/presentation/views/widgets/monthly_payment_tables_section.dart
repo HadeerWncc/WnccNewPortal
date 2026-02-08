@@ -19,32 +19,37 @@ class _MonthlyPaymentTablesSectionState
   int activeTab = 0;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * .6,
+      child: SingleChildScrollView(
+        child: Column(
           children: [
-            CustomChckButtons(
-                buttons: const ["EGP", "USD"],
-                activeTab: activeTab,
-                onTap: (value) {
-                  if (value == "EGP") {
-                    activeTab = 0;
-                  } else {
-                    activeTab = 1;
-                  }
-                  setState(() {});
-                }),
-            CustomToggleButton(onToggle: (value) {}),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomChckButtons(
+                    buttons: const ["EGP", "USD"],
+                    activeTab: activeTab,
+                    onTap: (value) {
+                      if (value == "EGP") {
+                        activeTab = 0;
+                      } else {
+                        activeTab = 1;
+                      }
+                      setState(() {});
+                    }),
+                CustomToggleButton(onToggle: (value) {}),
+              ],
+            ),
+            const SizedBox(height: 10),
+            sectionTitle('Payments Per Bank'),
+            const SizedBox(height: 8),
+            MonthlyPaymentTable(
+              currency: activeTab == 0 ? "EGP" : "USD",
+            ),
           ],
         ),
-        const SizedBox(height: 10),
-        sectionTitle('Payments Per Bank'),
-        const SizedBox(height: 8),
-        MonthlyPaymentTable(
-          currency: activeTab == 0 ? "EGP" : "USD",
-        ),
-      ],
+      ),
     );
   }
 }

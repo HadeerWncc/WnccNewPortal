@@ -7,14 +7,16 @@ import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_menus_list.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/hourly_payments_body.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payment_details_body.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
-class PaymentsHourlyPage extends StatelessWidget {
-  const PaymentsHourlyPage({super.key});
+class PaymentsDetailsPage extends StatelessWidget {
+  const PaymentsDetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<PaymentsDetailsCubit>(context).getPaymentDetails(DateTime.now(), DateTime.now());
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {
         if (state is UserFailure)
@@ -30,7 +32,7 @@ class PaymentsHourlyPage extends StatelessWidget {
               appBar: AppBar(
                 actionsPadding: const EdgeInsets.all(5),
                 title: const Text(
-                  'Patments',
+                  'Payments Details',
                   style: TextStyle(fontSize: 20),
                 ),
                 titleSpacing: 0.0,
@@ -48,12 +50,12 @@ class PaymentsHourlyPage extends StatelessWidget {
                   user: state.user,
                 ),
               ),
-              body: const HourlyPaymentsBody(),
+              body: const PaymentDetailsBody(),
             ),
           );
         }
         return const LoadingPage(
-          title: "Payments",
+          title: "Payments Details",
         );
       },
     );
