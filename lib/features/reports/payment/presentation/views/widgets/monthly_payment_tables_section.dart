@@ -19,10 +19,7 @@ class _MonthlyPaymentTablesSectionState
   int activeTab = 0;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * .6,
-      child: SingleChildScrollView(
-        child: Column(
+    return Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,12 +41,13 @@ class _MonthlyPaymentTablesSectionState
             const SizedBox(height: 10),
             sectionTitle('Payments Per Bank'),
             const SizedBox(height: 8),
-            MonthlyPaymentTable(
-              currency: activeTab == 0 ? "EGP" : "USD",
+            Expanded(
+              child: MonthlyPaymentTable(
+                currency: activeTab == 0 ? "EGP" : "USD",
+              ),
             ),
           ],
-        ),
-      ),
-    );
+        );
+   
   }
 }

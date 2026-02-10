@@ -6,7 +6,7 @@ import 'package:wncc_portal/core/utils/methods/validate_password_with_regex.dart
 class CustomPlaceholderInput extends StatelessWidget {
   const CustomPlaceholderInput({
     super.key,
-    required this.controller,
+    this.controller,
     required this.labelText,
     this.width,
     this.actions,
@@ -16,9 +16,9 @@ class CustomPlaceholderInput extends StatelessWidget {
     this.onChanged,
     this.keyboardType,
     this.linesNum,
-    this.xAxis,
+    this.xAxis, this.icon,
   });
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String labelText;
   final double? width;
   final List<Widget>? actions;
@@ -29,6 +29,7 @@ class CustomPlaceholderInput extends StatelessWidget {
   final TextInputType? keyboardType;
   final int? linesNum;
   final MainAxisAlignment? xAxis;
+  final Widget? icon;
   @override
   Widget build(BuildContext context) {
     double defaultWidth =
@@ -39,6 +40,7 @@ class CustomPlaceholderInput extends StatelessWidget {
         SizedBox(
           width: width ?? defaultWidth,
           child: TextFormField(
+            
             textAlignVertical: TextAlignVertical.top,
             autofocus: false,
             onChanged: onChanged,
@@ -61,6 +63,7 @@ class CustomPlaceholderInput extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             decoration: InputDecoration(
+              prefixIcon: icon,
               focusedBorder: customfocusedBorder(),
               fillColor: const Color(0xffF9F9F9),
               enabledBorder: inputBorder(),

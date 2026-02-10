@@ -20,9 +20,11 @@ Widget totalColumn(
                 color: Color.fromARGB(255, 77, 160, 83), width: 1.5),
           ),
         ),
-        child: Text(
-          lableName,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+        child: Center(
+          child: Text(
+            lableName,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
       ),
 

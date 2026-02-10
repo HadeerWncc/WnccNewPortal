@@ -35,13 +35,10 @@ class _PaymentsDetailsSectionState extends State<PaymentsDetailsSection> {
           ],
         ),
         const SizedBox(height: 10),
-        const SizedBox(height: 8),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.5,
-          child: SingleChildScrollView(
-            child: DetailsPaymentTable(
-              currency: activeTab == 0 ? "EGP" : "USD",
-            ),
+    
+        Expanded(
+          child: DetailsPaymentTable(
+            currency: activeTab == 0 ? "EGP" : "USD",
           ),
         ),
       ],

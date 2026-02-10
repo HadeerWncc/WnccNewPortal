@@ -29,6 +29,8 @@ class PaymentsDetailsPage extends StatelessWidget {
         if (state is UserSuccess) {
           return SafeArea(
             child: Scaffold(
+              resizeToAvoidBottomInset: true,
+
               appBar: AppBar(
                 actionsPadding: const EdgeInsets.all(5),
                 title: const Text(

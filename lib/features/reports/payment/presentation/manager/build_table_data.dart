@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment/payment.dart';
 
 class TableData {
@@ -8,7 +9,6 @@ class TableData {
 }
 
 TableData buildTableData(List<Payment> days, String curr) {
-  
   final banks = days
       .expand((d) => d.banks!)
       .where((p) => p.currency == curr && p.name != null)
@@ -17,7 +17,7 @@ TableData buildTableData(List<Payment> days, String curr) {
       .toList();
 
   /// headers
-  final headers = [...banks, "TOTAL"];
+  final headers = ["Date", ...banks, "TOTAL"];
 
   List<List<dynamic>> rows = [];
 
@@ -26,10 +26,11 @@ TableData buildTableData(List<Payment> days, String curr) {
 
   /// ===== صفوف الأيام =====
   for (var day in days) {
-final bankMap = {
-  for (var b in day.banks!.where((p) => p.currency == curr && p.name != null))
-    b.name: b.totalAmount
-};
+    final bankMap = {
+      for (var b
+          in day.banks!.where((p) => p.currency == curr && p.name != null))
+        b.name: b.totalAmount
+    };
 
     double dayTotal = 0;
 
@@ -43,6 +44,9 @@ final bankMap = {
     }).toList();
 
     rows.add([
+      (day.mode == 1)
+          ? DateFormat("MMM").format(DateTime.parse(day.date!))
+          : day.day,
       ...rowValues,
       dayTotal, // ✅ total اليوم
     ]);
@@ -52,6 +56,7 @@ final bankMap = {
   final grandTotal = bankTotals.values.fold(0.0, (sum, v) => sum + v);
 
   rows.add([
+    "TOTAL",
     ...banks.map((b) => bankTotals[b]),
     grandTotal,
   ]);

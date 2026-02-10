@@ -132,6 +132,7 @@ class PaymentDetailsModel extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
+      'customer': customer,
       "Customer Name": customerName,
       "Doc No": documentNo,
       "Region": regionDesc,
