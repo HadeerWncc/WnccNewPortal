@@ -4,6 +4,8 @@ import 'package:wncc_portal/features/reports/payment/data/models/payment/payment
 import 'package:wncc_portal/features/reports/payment/data/models/payment_details_model.dart';
 
 abstract class PaymentsRepo {
-  Future<Either<Failure, List<Payment>>> getPaymentPerBanks(int mode, DateTime date);
-  Future<Either<Failure, List<PaymentDetailsModel>>> fetchPaymentDetailsData(DateTime fromDate, DateTime toDate);
+  Future<Either<Failure, List<Payment>>> getPaymentPerBanks(
+      int mode, DateTime date);
+  Future<Either<Failure, List<PaymentDetailsModel>>> fetchPaymentDetailsData(
+      DateTime fromDate, DateTime toDate);
 }

@@ -58,6 +58,10 @@ import 'package:wncc_portal/features/reports/payment/data/repo_impl/payments_rep
 import 'package:wncc_portal/features/reports/payment/domain/repos/payments_repo.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
+import 'package:wncc_portal/features/reports/pending/data/data_sources/pending_data_source.dart';
+import 'package:wncc_portal/features/reports/pending/data/repo_impl/pending_repo_impl.dart';
+import 'package:wncc_portal/features/reports/pending/domain/repos/pending_repo.dart';
+import 'package:wncc_portal/features/reports/pending/presentation/manager/pending_cubit/pending_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/data/datasources/sales_quota_remote_datasource.dart';
 import 'package:wncc_portal/features/sales_quota/data/repositories/daily_quota_repo_impl.dart';
 import 'package:wncc_portal/features/sales_quota/domain/repositories/daily_quota_repo.dart';
@@ -152,6 +156,10 @@ void setupLocator() {
   getIt.registerLazySingleton<PaymentDataSource>(
       () => PaymentDataSourceImpl(apiService: getIt<ApiService>()));
 
+  //PendingDataSource
+  getIt.registerLazySingleton<PendingDataSource>(
+      () => PendingDataSourceImpl(apiService: getIt<ApiService>()));
+
   // Repositories
   //BaseRepo
   getIt.registerLazySingleton<BaseRepos>(() => BaseRepos());
@@ -204,8 +212,12 @@ void setupLocator() {
       morningMeetingDataSource: getIt<MorningMeetingDataSource>()));
 
   //PaymentRepo
-  getIt.registerLazySingleton<PaymentsRepo>(() => PaymentsRepoImpl(
-      paymentDataSource: getIt<PaymentDataSource>()));
+  getIt.registerLazySingleton<PaymentsRepo>(
+      () => PaymentsRepoImpl(paymentDataSource: getIt<PaymentDataSource>()));
+
+  //PendingRepo
+  getIt.registerLazySingleton<PendingRepo>(
+      () => PendingRepoImpl(pendingDataSource: getIt<PendingDataSource>()));
 
   // Use Cases
   //login Use Case
@@ -448,4 +460,7 @@ void setupLocator() {
   //PaymentsDetailsCubit
   getIt.registerFactory<PaymentsDetailsCubit>(
       () => PaymentsDetailsCubit(getIt<PaymentsRepo>()));
+
+  //PendingDeliveryCubit
+  getIt.registerFactory<PendingCubit>(() => PendingCubit(getIt<PendingRepo>()));
 }

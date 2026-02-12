@@ -40,7 +40,6 @@ class CustomDropDownInput extends StatelessWidget {
           ),
         ),
         value: items.contains(selectedValue) ? selectedValue : null,
-
         hint: hintText != null
             ? Text(
                 hintText!,
@@ -51,7 +50,6 @@ class CustomDropDownInput extends StatelessWidget {
                 ),
               )
             : null,
-
         items: items
             .map((item) => DropdownMenuItem(
                   value: item,

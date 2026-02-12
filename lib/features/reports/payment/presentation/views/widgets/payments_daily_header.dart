@@ -30,15 +30,14 @@ class PaymentsDailyHeader extends StatelessWidget {
               // Handle dropdown change
               if (value == 'Monthly') {
                 GoRouter.of(context).push(AppRouter.paymentsMonthlyPath);
-              } 
+              }
             },
           ),
         ),
         CustomMonthYearPicker(
           title: 'Select Date',
           onChange: (value) {
-           BlocProvider.of<PaymentsCubit>(context)
-                .fetchPayments(2, value);
+            BlocProvider.of<PaymentsCubit>(context).fetchPayments(2, value);
           },
         ),
       ]),

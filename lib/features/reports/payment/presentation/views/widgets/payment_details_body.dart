@@ -12,7 +12,9 @@ class PaymentDetailsBody extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       child: Column(
         children: [
-          PaymentReportButtonsList(activeTab: 1,),
+          PaymentReportButtonsList(
+            activeTab: 1,
+          ),
           SizedBox(height: 16),
           PaymentsDetailsHeader(),
           SizedBox(height: 16),

@@ -249,11 +249,11 @@ abstract class AppRouter {
         path: paymentsMonthlyPath,
         builder: (context, state) => const MonthlyPaymentsPage(),
       ),
-       GoRoute(
+      GoRoute(
         path: paymentsDailyPath,
         builder: (context, state) => const PaymentsDailyPage(),
       ),
-       GoRoute(
+      GoRoute(
         path: paymentsDetailsPath,
         builder: (context, state) => const PaymentsDetailsPage(),
       ),

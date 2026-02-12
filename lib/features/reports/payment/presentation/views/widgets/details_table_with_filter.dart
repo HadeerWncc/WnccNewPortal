@@ -46,7 +46,7 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
           children: [
             CustomPlaceholderInput(
               labelText: 'DocNo',
-              width: MediaQuery.of(context).size.width * 0.31,
+              width: MediaQuery.of(context).size.width * 0.3,
               icon: const Icon(
                 Symbols.document_search,
                 color: Colors.grey,
@@ -94,6 +94,7 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
             : Expanded(
                 child: DataTable2(
                   minWidth: data.first.toMap().length * 150,
+                  isVerticalScrollBarVisible: false,
                   horizontalMargin: 0,
                   columnSpacing: 0,
                   fixedTopRows: 1,

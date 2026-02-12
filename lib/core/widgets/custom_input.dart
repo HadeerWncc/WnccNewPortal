@@ -9,7 +9,6 @@ class CustomInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      
       controller: TextEditingController(text: '1256'),
       textAlign: TextAlign.center,
       textAlignVertical: TextAlignVertical.top,

@@ -7,45 +7,44 @@ class CustomTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-  children: [
-    /// HEADER
-    Row(
       children: [
-        cell("Customer", header: true),
-        cell("Bank", header: true),
-        cell("Amount", header: true),
-        cell("Amount", header: true),
-        cell("Amount", header: true),
-        cell("Amount", header: true),
-        cell("Amount", header: true),
-        cell("Amount", header: true),
+        /// HEADER
+        Row(
+          children: [
+            cell("Customer", header: true),
+            cell("Bank", header: true),
+            cell("Amount", header: true),
+            cell("Amount", header: true),
+            cell("Amount", header: true),
+            cell("Amount", header: true),
+            cell("Amount", header: true),
+            cell("Amount", header: true),
+          ],
+        ),
+
+        /// BODY
+        Expanded(
+          child: ListView.builder(
+            itemCount: 1000,
+            itemBuilder: (context, index) {
+              // final p = payments[index];
+
+              return Row(
+                children: [
+                  cell('p.customer '),
+                  cell('p.houseBank '),
+                  cell('p.amount'),
+                  cell('p.amount'),
+                  cell('p.amount'),
+                  cell('p.amount'),
+                  cell('p.amount'),
+                  cell('p.amount'),
+                ],
+              );
+            },
+          ),
+        ),
       ],
-    ),
-
-    /// BODY
-    Expanded(
-      child: ListView.builder(
-        itemCount: 1000,
-        itemBuilder: (context, index) {
-          // final p = payments[index];
-
-          return Row(
-            children: [
-              cell('p.customer '),
-              cell('p.houseBank '),
-              cell('p.amount'),
-              cell('p.amount'),
-              cell('p.amount'),
-              cell('p.amount'),
-              cell('p.amount'),
-              cell('p.amount'),
-            ],
-          );
-        },
-      ),
-    ),
-  ],
-)
-;
+    );
   }
 }

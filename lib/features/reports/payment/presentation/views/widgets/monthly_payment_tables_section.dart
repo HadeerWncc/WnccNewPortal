@@ -17,37 +17,54 @@ class MonthlyPaymentTablesSection extends StatefulWidget {
 class _MonthlyPaymentTablesSectionState
     extends State<MonthlyPaymentTablesSection> {
   int activeTab = 0;
+  bool openCharts = false;
   @override
   Widget build(BuildContext context) {
+    var orientation = MediaQuery.of(context).orientation;
+
     return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            CustomChckButtons(
+              buttons: const ["EGP", "USD"],
+              activeTab: activeTab,
+              onTap: (value) =>
+                  setState(() => activeTab = (value == "EGP") ? 0 : 1),
+            ),
+            CustomToggleButton(
+                onToggle: (value) => setState(() => openCharts = value)),
+          ],
+        ),
+        const SizedBox(height: 10),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CustomChckButtons(
-                    buttons: const ["EGP", "USD"],
-                    activeTab: activeTab,
-                    onTap: (value) {
-                      if (value == "EGP") {
-                        activeTab = 0;
-                      } else {
-                        activeTab = 1;
-                      }
-                      setState(() {});
-                    }),
-                CustomToggleButton(onToggle: (value) {}),
+                if (!openCharts) ...[
+                  sectionTitle('Payments Per Bank'),
+                  const SizedBox(height: 8),
+                ],
+                if (openCharts)
+                  MonthlyPaymentTable(
+                    currency: activeTab == 0 ? "EGP" : "USD",
+                    showCharts: openCharts,
+                  )
+                else
+                  SizedBox(
+                    height: orientation == Orientation.landscape ? 400 : 600,
+                    child: MonthlyPaymentTable(
+                      currency: activeTab == 0 ? "EGP" : "USD",
+                      showCharts: openCharts,
+                    ),
+                  ),
               ],
             ),
-            const SizedBox(height: 10),
-            sectionTitle('Payments Per Bank'),
-            const SizedBox(height: 8),
-            Expanded(
-              child: MonthlyPaymentTable(
-                currency: activeTab == 0 ? "EGP" : "USD",
-              ),
-            ),
-          ],
-        );
-   
+          ),
+        ),
+      ],
+    );
   }
 }

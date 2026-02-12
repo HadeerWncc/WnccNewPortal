@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 
 import 'my_interceptor.dart';
 
-
 // Dio createDio() {
 //   final dio = Dio(
 //     BaseOptions(

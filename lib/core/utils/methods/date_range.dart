@@ -11,5 +11,4 @@ Future<DateTimeRange?> pickDateRange({required BuildContext context}) async {
     ),
   );
   return range;
-
 }

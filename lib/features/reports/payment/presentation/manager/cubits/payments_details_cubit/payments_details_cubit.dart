@@ -14,7 +14,8 @@ class PaymentsDetailsCubit extends Cubit<PaymentsDetailsState> {
     final result = await paymentsRepo.fetchPaymentDetailsData(fromDate, toDate);
     result.fold(
       (failure) => emit(PaymentsDetailsFailure(errorMsg: failure.msg)),
-      (paymentDetails) => emit(PaymentsDetailsSuccess(paymentDetails: paymentDetails)),
+      (paymentDetails) =>
+          emit(PaymentsDetailsSuccess(paymentDetails: paymentDetails)),
     );
   }
 }

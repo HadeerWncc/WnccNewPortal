@@ -5,6 +5,8 @@ import 'package:shimmer/shimmer.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
+import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
 
 class DetailsLoading extends StatelessWidget {
   const DetailsLoading({super.key});
@@ -19,6 +21,17 @@ class DetailsLoading extends StatelessWidget {
           highlightColor: Colors.grey.shade100,
           child: Column(
             children: [
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomChckButtons(
+                    buttons: ["EGP", "USD"],
+                    activeTab: 1,
+                  ),
+                  CustomToggleButton(),
+                ],
+              ),
+              const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

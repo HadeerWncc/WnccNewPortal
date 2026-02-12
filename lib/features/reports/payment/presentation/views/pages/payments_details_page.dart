@@ -16,7 +16,8 @@ class PaymentsDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<PaymentsDetailsCubit>(context).getPaymentDetails(DateTime.now(), DateTime.now());
+    BlocProvider.of<PaymentsDetailsCubit>(context)
+        .getPaymentDetails(DateTime.now(), DateTime.now());
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {
         if (state is UserFailure)
@@ -30,7 +31,6 @@ class PaymentsDetailsPage extends StatelessWidget {
           return SafeArea(
             child: Scaffold(
               resizeToAvoidBottomInset: true,
-
               appBar: AppBar(
                 actionsPadding: const EdgeInsets.all(5),
                 title: const Text(

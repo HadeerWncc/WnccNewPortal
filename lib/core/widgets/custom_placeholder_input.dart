@@ -16,7 +16,8 @@ class CustomPlaceholderInput extends StatelessWidget {
     this.onChanged,
     this.keyboardType,
     this.linesNum,
-    this.xAxis, this.icon,
+    this.xAxis,
+    this.icon,
   });
   final TextEditingController? controller;
   final String labelText;
@@ -40,7 +41,6 @@ class CustomPlaceholderInput extends StatelessWidget {
         SizedBox(
           width: width ?? defaultWidth,
           child: TextFormField(
-            
             textAlignVertical: TextAlignVertical.top,
             autofocus: false,
             onChanged: onChanged,

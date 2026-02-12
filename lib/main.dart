@@ -20,6 +20,7 @@ import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits
 import 'package:wncc_portal/features/home/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_daily_header.dart';
+import 'package:wncc_portal/features/reports/pending/presentation/manager/pending_cubit/pending_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/first_login_change_password_cubit/first_login_change_password_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_all_users_cubit/get_all_users_cubit.dart';
@@ -107,6 +108,11 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(
           create: (context) {
             return getIt<DispatchDeliveryOrderCubit>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return getIt<PendingCubit>();
           },
         ),
       ],

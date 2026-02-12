@@ -33,16 +33,16 @@ class PaymentLoaing extends StatelessWidget {
               DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               )
             ]),
@@ -50,16 +50,16 @@ class PaymentLoaing extends StatelessWidget {
               DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               )
             ]),
@@ -67,16 +67,16 @@ class PaymentLoaing extends StatelessWidget {
               DataCell(
                 Text("Total"),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               ),
-               DataCell(
+              DataCell(
                 Text(""),
               )
             ]),

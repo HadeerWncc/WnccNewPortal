@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 class CustomRangeDatePicker extends StatefulWidget {
   const CustomRangeDatePicker({super.key, required this.title, this.onChange});
- final String title;
+  final String title;
   final void Function(DateTimeRange rangeDate)? onChange;
   @override
   State<CustomRangeDatePicker> createState() => _CustomRangeDatePickerState();
@@ -45,7 +45,8 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
       // },
     );
 
-    if (selected != null && selected != DateTimeRange(start: DateTime.now(), end: DateTime.now())) {
+    if (selected != null &&
+        selected != DateTimeRange(start: DateTime.now(), end: DateTime.now())) {
       setState(() {
         fomFormattedDate = DateFormat('d-M-y').format(selected.start);
         toformattedDate = DateFormat('d-M-y').format(selected.end);
@@ -87,5 +88,4 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
       ),
     );
   }
-
 }

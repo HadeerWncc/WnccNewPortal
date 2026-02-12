@@ -8,7 +8,9 @@ sealed class PaymentsState extends Equatable {
 }
 
 final class PaymentsInitial extends PaymentsState {}
+
 final class PaymentsLoading extends PaymentsState {}
+
 final class PaymentsSuccess extends PaymentsState {
   final List<Payment> payments;
 
@@ -17,6 +19,7 @@ final class PaymentsSuccess extends PaymentsState {
   @override
   List<Object> get props => [payments];
 }
+
 final class PaymentsFailure extends PaymentsState {
   final String errorMessage;
 

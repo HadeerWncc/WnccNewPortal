@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 
 class CustomButtonItem extends StatelessWidget {
   const CustomButtonItem({
-    super.key, required this.title, this.borderRadius, this.isSelected =false, this.onSelected, this.buttonWidth,
+    super.key,
+    required this.title,
+    this.borderRadius,
+    this.isSelected = false,
+    this.onSelected,
+    this.buttonWidth,
   });
   final String title;
   final BorderRadiusGeometry? borderRadius;
@@ -12,7 +17,6 @@ class CustomButtonItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      
       onTap: () {
         onSelected?.call(title);
       },
@@ -21,8 +25,7 @@ class CustomButtonItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: borderRadius,
-          color:isSelected? const Color(0xff447a46):const Color(0xfff8f9fa),
-          
+          color: isSelected ? const Color(0xff447a46) : const Color(0xfff8f9fa),
         ),
         child: Center(
           child: Text(
@@ -30,7 +33,7 @@ class CustomButtonItem extends StatelessWidget {
             style: TextStyle(
               fontSize: 17,
               fontWeight: FontWeight.bold,
-              color: isSelected ? Colors.white :  Colors.grey,
+              color: isSelected ? Colors.white : Colors.grey,
             ),
           ),
         ),

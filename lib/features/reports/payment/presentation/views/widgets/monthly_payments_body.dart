@@ -12,7 +12,9 @@ class MonthlyPaymentsBody extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       child: Column(
         children: [
-          PaymentReportButtonsList(activeTab: 0,),
+          PaymentReportButtonsList(
+            activeTab: 0,
+          ),
           SizedBox(height: 16),
           PaymentsMonthlyHeader(),
           SizedBox(height: 16),
@@ -22,4 +24,3 @@ class MonthlyPaymentsBody extends StatelessWidget {
     );
   }
 }
-
