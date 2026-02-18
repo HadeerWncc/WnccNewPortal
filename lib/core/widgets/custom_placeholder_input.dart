@@ -73,6 +73,7 @@ class CustomPlaceholderInput extends StatelessWidget {
               alignLabelWithHint: true,
               labelStyle: const TextStyle(
                 color: Color.fromARGB(255, 83, 83, 83),
+                fontSize: 13,
               ),
             ),
           ),

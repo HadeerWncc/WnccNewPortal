@@ -37,6 +37,7 @@ class CustomDropDownInput extends StatelessWidget {
           labelText: title,
           labelStyle: const TextStyle(
             color: Color.fromARGB(255, 83, 83, 83),
+            fontSize: 12,
           ),
         ),
         value: items.contains(selectedValue) ? selectedValue : null,
@@ -44,7 +45,8 @@ class CustomDropDownInput extends StatelessWidget {
             ? Text(
                 hintText!,
                 style: const TextStyle(
-                  fontSize: 10,
+                  fontSize: 9,
+
                   color: Colors.grey,
                   fontStyle: FontStyle.italic,
                 ),
@@ -57,7 +59,7 @@ class CustomDropDownInput extends StatelessWidget {
                     child: Text(
                       item,
                       style: const TextStyle(
-                          overflow: TextOverflow.ellipsis, fontSize: 10),
+                          overflow: TextOverflow.ellipsis, fontSize: 9),
                     ),
                   ),
                 ))

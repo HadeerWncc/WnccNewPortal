@@ -7,10 +7,16 @@ class InsightCardsSection extends StatelessWidget {
       {super.key,
       required this.topTwo,
       required this.title1,
-      required this.title2});
+      required this.title2,
+      this.subtitle = 'Peak deposit period',
+      this.label1 = 'Deposits',
+      this.label2 = 'Transactions'});
   final TopTwo topTwo;
   final String title1;
   final String title2;
+  final String subtitle;
+  final String label1;
+  final String label2;
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +25,24 @@ class InsightCardsSection extends StatelessWidget {
         InsightCard(
           badgeText: title1,
           title: topTwo.topFirst.name ?? "",
-          subtitle: 'Peak deposit period',
+          subtitle: subtitle,
           value1: NumberFormat.decimalPattern()
               .format(topTwo.topFirst.totalAmount ?? 0),
-          label1: 'Deposits',
+          label1: label1,
           value2: topTwo.topFirst.transactions.toString(),
-          label2: 'Transactions',
+          label2: label2,
           accentColor: Colors.green,
         ),
         const SizedBox(height: 10),
         InsightCard(
           badgeText: title2,
           title: topTwo.topSecound.name ?? "",
-          subtitle: 'Leading by total deposits',
+          subtitle: subtitle,
           value1: NumberFormat.decimalPattern()
               .format(topTwo.topSecound.totalAmount ?? 0),
-          label1: 'Deposits',
+          label1: label1,
           value2: topTwo.topSecound.transactions.toString(),
-          label2: 'Transactions',
+          label2: label2,
           accentColor: Colors.green,
         ),
       ],

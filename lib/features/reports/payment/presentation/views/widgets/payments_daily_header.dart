@@ -13,7 +13,7 @@ class PaymentsDailyHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      // width: double.infinity,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: const Color(0xfff9f9f9),
@@ -21,7 +21,9 @@ class PaymentsDailyHeader extends StatelessWidget {
       ),
       child: Wrap(spacing: 8, runSpacing: 8, children: [
         SizedBox(
-          width: 180,
+          width: (MediaQuery.of(context).orientation == Orientation.landscape)
+              ? MediaQuery.of(context).size.width * .2
+              : MediaQuery.of(context).size.width * .35,
           child: CustomDropDownInput(
             title: 'Select',
             items: reportOptionsList,
@@ -34,11 +36,16 @@ class PaymentsDailyHeader extends StatelessWidget {
             },
           ),
         ),
-        CustomMonthYearPicker(
-          title: 'Select Date',
-          onChange: (value) {
-            BlocProvider.of<PaymentsCubit>(context).fetchPayments(2, value);
-          },
+        SizedBox(
+          width: (MediaQuery.of(context).orientation == Orientation.landscape)
+              ? MediaQuery.of(context).size.width * .25
+              : MediaQuery.of(context).size.width * .5,
+          child: CustomMonthYearPicker(
+            title: 'Select Date',
+            onChange: (value) {
+              BlocProvider.of<PaymentsCubit>(context).fetchPayments(2, value);
+            },
+          ),
         ),
       ]),
     );

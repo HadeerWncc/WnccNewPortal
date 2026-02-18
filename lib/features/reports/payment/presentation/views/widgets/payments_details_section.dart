@@ -5,6 +5,7 @@ import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/details_payment_table.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/loading/details_loading.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_details_header.dart';
 
 class PaymentsDetailsSection extends StatefulWidget {
   const PaymentsDetailsSection({super.key});
@@ -30,9 +31,11 @@ class _PaymentsDetailsSectionState extends State<PaymentsDetailsSection> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Wrap(
+                        alignment: WrapAlignment.spaceBetween,
                         children: [
+                          const PaymentsDetailsHeader(),
+                          const SizedBox(width: 7),
                           CustomChckButtons(
                               buttons: const ["EGP", "USD"],
                               activeTab: activeTab,
@@ -44,6 +47,7 @@ class _PaymentsDetailsSectionState extends State<PaymentsDetailsSection> {
                                 }
                                 setState(() {});
                               }),
+                          const SizedBox(width: 7),
                           CustomToggleButton(
                               onToggle: (value) =>
                                   setState(() => openCharts = value)),

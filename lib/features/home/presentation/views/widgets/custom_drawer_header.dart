@@ -20,18 +20,26 @@ class CustomDrawerHeader extends StatelessWidget {
             children: [
               Container(
                 width: double.infinity,
-                height: 70,
+                height: (MediaQuery.of(context).orientation ==
+                        Orientation.landscape)
+                    ? 200
+                    : 70,
                 color: Colors.white,
               ),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
-                height: 100,
+                height: (MediaQuery.of(context).orientation ==
+                        Orientation.landscape)
+                    ? 170
+                    : 100,
               )
             ],
           ),
         ),
         Positioned.fill(
-          top: 20,
+          top: (MediaQuery.of(context).orientation == Orientation.landscape)
+              ? 90
+              : 20,
           child: Center(
             child: Column(
               children: [

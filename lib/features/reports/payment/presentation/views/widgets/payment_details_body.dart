@@ -16,8 +16,6 @@ class PaymentDetailsBody extends StatelessWidget {
             activeTab: 1,
           ),
           SizedBox(height: 16),
-          PaymentsDetailsHeader(),
-          SizedBox(height: 16),
           Expanded(child: PaymentsDetailsSection()),
         ],
       ),

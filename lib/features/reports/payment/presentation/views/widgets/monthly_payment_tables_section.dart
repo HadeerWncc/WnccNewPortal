@@ -3,6 +3,7 @@ import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/monthly_payment_table.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_monthly_header.dart';
 
 class MonthlyPaymentTablesSection extends StatefulWidget {
   const MonthlyPaymentTablesSection({
@@ -23,16 +24,20 @@ class _MonthlyPaymentTablesSectionState
     var orientation = MediaQuery.of(context).orientation;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Wrap(
+          alignment: WrapAlignment.spaceBetween,
           children: [
+            const PaymentsMonthlyHeader(),
+            const SizedBox(width: 7),
             CustomChckButtons(
               buttons: const ["EGP", "USD"],
               activeTab: activeTab,
               onTap: (value) =>
                   setState(() => activeTab = (value == "EGP") ? 0 : 1),
             ),
+            const SizedBox(width: 7),
             CustomToggleButton(
                 onToggle: (value) => setState(() => openCharts = value)),
           ],

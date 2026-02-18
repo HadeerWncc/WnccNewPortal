@@ -20,6 +20,10 @@ import 'package:wncc_portal/features/reports/factVsCustDisp/data/repos/fact_vs_c
 import 'package:wncc_portal/features/reports/factVsCustDisp/domain/repos/fact_vs_cust_repo.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
+import 'package:wncc_portal/features/reports/loading_details/data/data_sources/loading_data_sourse.dart';
+import 'package:wncc_portal/features/reports/loading_details/data/repos/loading_repo_impl.dart';
+import 'package:wncc_portal/features/reports/loading_details/domain/repos/loading_repo.dart';
+import 'package:wncc_portal/features/reports/loading_details/presentation/manager/loading_details_cubit/loading_details_cubit.dart';
 import 'package:wncc_portal/features/reports/morningMeating/data/data_sources/morning_meeting_data_source.dart';
 import 'package:wncc_portal/features/reports/morningMeating/data/repos_impl/morning_meeting_repo_impl.dart';
 import 'package:wncc_portal/features/reports/morningMeating/domain/repos/morning_meeting_repo.dart';
@@ -160,6 +164,10 @@ void setupLocator() {
   getIt.registerLazySingleton<PendingDataSource>(
       () => PendingDataSourceImpl(apiService: getIt<ApiService>()));
 
+  //LoadingDataSource
+  getIt.registerLazySingleton<LoadingDetailsDataSourse>(
+      () => LoadingDetailsDataSourseImpl(apiService: getIt<ApiService>()));
+
   // Repositories
   //BaseRepo
   getIt.registerLazySingleton<BaseRepos>(() => BaseRepos());
@@ -218,6 +226,10 @@ void setupLocator() {
   //PendingRepo
   getIt.registerLazySingleton<PendingRepo>(
       () => PendingRepoImpl(pendingDataSource: getIt<PendingDataSource>()));
+
+  //PendingRepo
+  getIt.registerLazySingleton<LoadingRepo>(
+      () => LoadingRepoImpl(loadingDetailsDataSourse: getIt<LoadingDetailsDataSourse>()));
 
   // Use Cases
   //login Use Case
@@ -463,4 +475,7 @@ void setupLocator() {
 
   //PendingDeliveryCubit
   getIt.registerFactory<PendingCubit>(() => PendingCubit(getIt<PendingRepo>()));
+
+   //LoadingDetailsCubit
+  getIt.registerFactory<LoadingDetailsCubit>(() => LoadingDetailsCubit(getIt<LoadingRepo>()));
 }

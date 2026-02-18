@@ -3,6 +3,7 @@ import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/monthly_payment_table.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_daily_header.dart';
 
 class DailyPaymentTablesSection extends StatefulWidget {
   const DailyPaymentTablesSection({
@@ -22,10 +23,13 @@ class _DailyPaymentTablesSectionState extends State<DailyPaymentTablesSection> {
     var orientation = MediaQuery.of(context).orientation;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Wrap(
+          alignment: WrapAlignment.spaceBetween,
           children: [
+            const PaymentsDailyHeader(),
+            const SizedBox(width: 7),
             CustomChckButtons(
                 buttons: const ["EGP", "USD"],
                 activeTab: activeTab,
@@ -37,6 +41,7 @@ class _DailyPaymentTablesSectionState extends State<DailyPaymentTablesSection> {
                   }
                   setState(() {});
                 }),
+            const SizedBox(width: 7),
             CustomToggleButton(
                 onToggle: (value) => setState(() => openCharts = value)),
           ],

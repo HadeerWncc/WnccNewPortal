@@ -14,8 +14,8 @@ class PendingModel extends Equatable {
   final String? branchTransZoneDesc;
   final String? salesDocument;
   final String? delivery;
-  final int? deliveryQuantity;
-  final int? unitPrice;
+  final num? deliveryQuantity;
+  final num? unitPrice;
   final String? currency;
   final String? materialId;
   final String? materialDescription;
@@ -101,8 +101,8 @@ class PendingModel extends Equatable {
         branchTransZoneDesc: json['branchTransZoneDesc'] as String?,
         salesDocument: json['salesDocument'] as String?,
         delivery: json['delivery'] as String?,
-        deliveryQuantity: json['deliveryQuantity'] as int?,
-        unitPrice: json['unitPrice'] as int?,
+        deliveryQuantity: json['deliveryQuantity'] as num?,
+        unitPrice: json['unitPrice'] as num?,
         currency: json['currency'] as String?,
         materialId: json['materialId'] as String?,
         materialDescription: json['materialDescription'] as String?,
@@ -174,6 +174,18 @@ class PendingModel extends Equatable {
         'truckNo': truckNo,
         'isDeleted': isDeleted,
         'isDeactivated': isDeactivated,
+      };
+
+  Map<String, dynamic> toMap() => {
+        'Customer': customerId,
+        'Customer Name': customerName,
+        'Order No': delivery,
+        'Product': materialName,
+        'Quantity': deliveryQuantity,
+        'Region': branchName,
+        'City': country,
+        'Sales': salesName,
+        'Date': registerDate,
       };
 
   @override

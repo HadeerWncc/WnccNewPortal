@@ -13,6 +13,7 @@ import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/p
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_monthly_page.dart';
+import 'package:wncc_portal/features/reports/loading_details/presentation/views/pages/loading_details_page.dart';
 import 'package:wncc_portal/features/reports/morningMeating/presentation/views/pages/morning_meeting_page.dart';
 import 'package:wncc_portal/features/payer/presentation/views/pages/payer_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
@@ -24,6 +25,7 @@ import 'package:wncc_portal/features/customerService/requests/presentation/views
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_daily_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_details_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_monthly_page.dart';
+import 'package:wncc_portal/features/reports/pending/presentation/views/pages/pending_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
 import 'package:wncc_portal/features/home/to_do_list/presentation/views/pages/to_do_screen.dart';
 import 'package:wncc_portal/features/home/updates/presentation/views/pages/updates_page.dart';
@@ -77,6 +79,8 @@ abstract class AppRouter {
   static const paymentsMonthlyPath = '/paymentsMonthly';
   static const paymentsDailyPath = '/paymentsDaily';
   static const paymentsDetailsPath = '/paymentsDetails';
+  static const pendingPath = '/pending';
+  static const loadingDetailsPath = '/loadingDetails';
 
   static final router = GoRouter(
     routes: [
@@ -256,6 +260,14 @@ abstract class AppRouter {
       GoRoute(
         path: paymentsDetailsPath,
         builder: (context, state) => const PaymentsDetailsPage(),
+      ),
+      GoRoute(
+        path: pendingPath,
+        builder: (context, state) => const PendingPage(),
+      ),
+      GoRoute(
+        path: loadingDetailsPath,
+        builder: (context, state) => const LoadingDetailspage(),
       ),
     ],
   );
