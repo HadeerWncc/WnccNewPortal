@@ -30,6 +30,7 @@ class RequestDetailsInfo extends StatelessWidget {
             MarkedText(
               child:
                   'Request delivery by ${getRequestDeliveryText(requestDetailsEntity.delivery)}',
+              color: const Color.fromARGB(255, 250, 250, 250),
             ),
             const SizedBox(width: 10),
           ],

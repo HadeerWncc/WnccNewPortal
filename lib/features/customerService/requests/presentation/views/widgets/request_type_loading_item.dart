@@ -21,7 +21,10 @@ class RequestTypeLoadingItem extends StatelessWidget {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width * .4,
-              child: const MarkedText(child: 'typeName'),
+              child: const MarkedText(
+                child: 'typeName',
+                color: Color.fromARGB(255, 250, 250, 250),
+              ),
             ),
             const SizedBox(width: 3),
             const CustomMarkedColorContainer(

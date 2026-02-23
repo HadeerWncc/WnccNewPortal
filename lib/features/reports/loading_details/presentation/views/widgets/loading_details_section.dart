@@ -1,66 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wncc_portal/features/reports/loading_details/presentation/manager/loading_details_cubit/loading_details_cubit.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/views/widgets/loading_details_summary.dart';
-import 'package:wncc_portal/features/reports/loading_details/presentation/views/widgets/loading_details_table.dart';
+import 'package:wncc_portal/features/reports/loading_details/presentation/views/widgets/loading_table_with_filter.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/loading/payment_loaing.dart';
 
-class LoadingDetailsSection extends StatefulWidget {
-  const LoadingDetailsSection({
-    super.key,
-  });
+class LoadingDetailsSection extends StatelessWidget {
+  const LoadingDetailsSection({super.key});
 
-  @override
-  State<LoadingDetailsSection> createState() =>
-      _LoadingDetailsSectionState();
-}
-
-class _LoadingDetailsSectionState extends State<LoadingDetailsSection> {
-  int activeTab = 2;
-  // bool openCharts = false;
   @override
   Widget build(BuildContext context) {
-    var orientation = MediaQuery.of(context).orientation;
+    final orientation = MediaQuery.of(context).orientation;
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Column(
-          children: [
-            const LoadingDetailsSummary(),
-            const SizedBox(height: 7),
-            CustomChckButtons(
-                buttons: const ["Check In", "Loading","Both"],
-                activeTab: activeTab,
+    return BlocBuilder<LoadingDetailsCubit, LoadingDetailsState>(
+      builder: (context, state) {
+        if (state is LoadingDetailsSuccess) {
+          final cubit = context.read<LoadingDetailsCubit>();
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              /// ===== Summary =====
+              LoadingDetailsSummary(
+                loadingDetailsSummaryEntity: state.summary,
+              ),
+              const SizedBox(height: 7),
+
+              /// ===== Tabs =====
+              CustomChckButtons(
+                buttons: const ["Check In", "Loading", "Both"],
+                activeTab: state.activeTab,
                 onTap: (value) {
                   if (value == "Check In") {
-                    activeTab = 0;
-                  } else if(value == "Loading") {
-                    activeTab = 1;
+                    cubit.changeTab(0);
+                  } else if (value == "Loading") {
+                    cubit.changeTab(1);
+                  } else {
+                    cubit.changeTab(2);
                   }
-                  else{
-                    activeTab = 2;
-                  }
-                  setState(() {});
-                }),
-            
-          ],
-        ),
-        const SizedBox(height: 10),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 SizedBox(
+                },
+              ),
+              const SizedBox(height: 10),
+
+              /// ===== Filters & Table =====
+              Expanded(
+                child: SingleChildScrollView(
+                  child: SizedBox(
                     height: orientation == Orientation.landscape ? 400 : 600,
-                    child: LoadingDetailsTable(
-                      status: activeTab == 0 ? "Check In" : activeTab == 1? "Loading": "USD",
+                    child: LoadingDetailsTableWithFilter(
+                      tableData: state.loadingDetails,
+                      allData: cubit.allData, // لإظهار كل العناصر في dropdown
                     ),
                   ),
-              ],
-            ),
-          ),
-        ),
-      ],
+                ),
+              ),
+            ],
+          );
+        }
+
+        if (state is LoadingDetailsFailure) {
+          return Center(child: Text(state.errorMsg));
+        }
+
+        return const PaymentLoaing();
+      },
     );
   }
 }

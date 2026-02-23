@@ -1,8 +1,10 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
 import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_meeting/morning_meeting.dart';
+import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_meeting_priority/morning_meeting_priority.dart';
 
 abstract class MorningMeetingDataSource {
   Future<List<MorningMeeting>> getMorningMeetingData(DateTime date);
+  Future<List<MorningMeetingPriority>> getMorningMeetingPriorityData(DateTime date);
 }
 
 class MorningMeetingDataSourceImpl extends MorningMeetingDataSource {
@@ -17,6 +19,18 @@ class MorningMeetingDataSourceImpl extends MorningMeetingDataSource {
     List<MorningMeeting> morningMeetingList = [];
     for (var meeting in result["data"]) {
       MorningMeeting morningMeeting = MorningMeeting.fromJson(meeting);
+      morningMeetingList.add(morningMeeting);
+    }
+    return morningMeetingList;
+  }
+  
+  @override
+  Future<List<MorningMeetingPriority>> getMorningMeetingPriorityData(DateTime date) async{
+    var result = await apiService.get(
+        endPoint: 'api/Reports/GetMorningIncotermMeeting?date=$date');
+    List<MorningMeetingPriority> morningMeetingList = [];
+    for (var meeting in result["data"]) {
+      MorningMeetingPriority morningMeeting = MorningMeetingPriority.fromJson(meeting);
       morningMeetingList.add(morningMeeting);
     }
     return morningMeetingList;

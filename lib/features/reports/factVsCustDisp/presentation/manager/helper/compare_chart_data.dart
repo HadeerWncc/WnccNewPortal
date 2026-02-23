@@ -24,7 +24,7 @@ List<CartesionChartData> buildCompareColumnChartData(CompareingEntity compare) {
   chartsData.add(compareData);
 
   CartesionChartData differenceData = CartesionChartData(
-      title: compare.difference[0].year.toString(),
+      title: 'Difference',
       data: compare.difference
           .map((c) => CustomChartData(
               DateFormat("MMM").format(DateTime(c.year, c.month)),

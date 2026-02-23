@@ -40,27 +40,27 @@ class CartesianColumnChart extends StatelessWidget {
           ...cartesionChart.map(
             (c) {
               return ColumnSeries<CustomChartData, String>(
-                  // Bind data source
-                  dataLabelSettings: const DataLabelSettings(
-                    isVisible: true,
-                  ),
-                  dataSource: c.data,
-                  xValueMapper: (CustomChartData item, _) => item.title,
-                  yValueMapper: (CustomChartData item, _) => item.amount,
-                  name: c.title,
-                  pointColorMapper: (CustomChartData item, _) =>
-                      item.amount >= 0
-                          ? (c.title == '2025')
-                              ? const Color(0xff4e73df)
-                              : (c.title == '2026')
-                                  ? Colors.green
-                                  : Colors.green
-                          : Colors.red,
-                  color: c.title == '2025'
-                      ? const Color(0xff4e73df)
-                      : (c.title == '2026')
-                          ? Colors.green
-                          : const Color.fromARGB(255, 218, 27, 27));
+                // Bind data source
+                dataLabelSettings: const DataLabelSettings(
+                  isVisible: true,
+                ),
+                dataSource: c.data,
+                xValueMapper: (CustomChartData item, _) => item.title,
+                yValueMapper: (CustomChartData item, _) => item.amount,
+                name: c.title,
+                pointColorMapper: (CustomChartData item, _) => item.amount >= 0
+                    ? (c.title == cartesionChart[0].title)
+                        ? const Color(0xff4e73df)
+                        : (c.title == cartesionChart[1].title)
+                            ? Colors.green
+                            : Colors.red
+                    : Colors.red,
+                color: c.title == cartesionChart[0].title
+                    ? const Color(0xff4e73df)
+                    : (c.title == cartesionChart[1].title)
+                        ? Colors.green
+                        : Colors.red,
+              );
             },
           )
 

@@ -8,7 +8,7 @@ class CustomDropDownInput extends StatelessWidget {
     required this.selectedValue,
     required this.items,
     this.onChanged,
-    required this.title,
+    this.title,
     this.width,
     this.hintText,
   });
@@ -16,7 +16,7 @@ class CustomDropDownInput extends StatelessWidget {
   final String? selectedValue;
   final List<String> items;
   final ValueChanged<String?>? onChanged;
-  final String title;
+  final String? title;
   final double? width;
   final String? hintText;
 
@@ -46,7 +46,6 @@ class CustomDropDownInput extends StatelessWidget {
                 hintText!,
                 style: const TextStyle(
                   fontSize: 9,
-
                   color: Colors.grey,
                   fontStyle: FontStyle.italic,
                 ),
@@ -59,7 +58,9 @@ class CustomDropDownInput extends StatelessWidget {
                     child: Text(
                       item,
                       style: const TextStyle(
-                          overflow: TextOverflow.ellipsis, fontSize: 9),
+                        overflow: TextOverflow.ellipsis,
+                        fontSize: 9,
+                      ),
                     ),
                   ),
                 ))

@@ -14,9 +14,8 @@ import 'package:wncc_portal/features/authentication/presentation/manager/validat
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/manager/loading_details_cubit/loading_details_cubit.dart';
-import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/cubit/morning_meeting_cubit.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
+import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/dispatch_cubit/morning_meeting_cubit.dart';
+import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/morning_meeting_priority_cubit/morning_meeting_priority_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/home/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
@@ -91,6 +90,9 @@ class WnccPortal extends StatelessWidget {
           return getIt<MorningMeetingCubit>();
         }),
         BlocProvider(create: (context) {
+          return getIt<MorningMeetingPriorityCubit>();
+        }),
+        BlocProvider(create: (context) {
           return getIt<PaymentsCubit>();
         }),
         BlocProvider(create: (context) {
@@ -115,7 +117,7 @@ class WnccPortal extends StatelessWidget {
             return getIt<PendingCubit>();
           },
         ),
-         BlocProvider(
+        BlocProvider(
           create: (context) {
             return getIt<LoadingDetailsCubit>();
           },

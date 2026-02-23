@@ -234,20 +234,21 @@ class LoadingDetailsModel extends Equatable {
         'year': year,
       };
 
-
   Map<String, dynamic> toMap() => {
         'Customer': customerId,
         'Customer Name': customerName,
         'Branch': branchName,
         'Shipment Type': shipmentType,
-        'Status': loadStartDate==null?'Check In':'Loading',
+        'Status': loadStartDate == null ? 'Check In' : 'Loading',
         'Product': materialName,
         'Quantity': deliveryQuantity,
-        'CheckIn Date': '${DateFormat('d/m/yyyy').format(DateTime.parse(checkInDate!))} ${DateFormat('hh:mm:ss').format(DateTime.parse(checkInTime!))}',
-        'loading Date': loadStartDate==null?'':'${DateFormat('d/m/yyyy').format(DateTime.parse(loadStartDate))} ${DateFormat('hh:mm:ss').format(DateTime.parse(loadStartTime!))}',
-        'Shipment No': shipmentNo??'-',
-        'Sales Name': salesName??'-',
-
+        'CheckIn Date':
+            '${DateFormat('d/m/yyyy').format(DateTime.parse(checkInDate!))} ${DateFormat('hh:mm:ss').format(DateTime.parse(checkInTime!))}',
+        'loading Date': loadStartDate == null
+            ? ''
+            : '${DateFormat('d/m/yyyy').format(DateTime.parse(loadStartDate))} ${DateFormat('hh:mm:ss').format(DateTime.parse(loadStartTime!))}',
+        'Shipment No': shipmentNo ?? '-',
+        'Sales Name': salesName ?? '-',
       };
 
   @override

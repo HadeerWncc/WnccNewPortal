@@ -41,7 +41,10 @@ class RequestTypeItem extends StatelessWidget {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width * .4,
-                child: MarkedText(child: typeName),
+                child: MarkedText(
+                  child: typeName,
+                  color: const Color.fromARGB(255, 250, 250, 250),
+                ),
               ),
               CustomMarkedColorContainer(
                   title: status,

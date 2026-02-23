@@ -71,6 +71,7 @@ class LoadingSupportDetailsInfo extends StatelessWidget {
             children: [
               MarkedText(
                 child: 'Request delivery by hadeer',
+                color: Color.fromARGB(255, 250, 250, 250),
               ),
               SizedBox(width: 10),
             ],

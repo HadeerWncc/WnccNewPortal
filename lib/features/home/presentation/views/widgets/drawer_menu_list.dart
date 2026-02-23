@@ -121,7 +121,6 @@ class DrawerMenuList extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.loadingDetailsPath);
               },
             ),
-           
           ],
         ),
       ],

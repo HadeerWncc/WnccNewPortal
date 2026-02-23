@@ -8,14 +8,23 @@ sealed class LoadingDetailsState extends Equatable {
 }
 
 final class LoadingDetailsInitial extends LoadingDetailsState {}
+
 final class LoadingDetailsFailure extends LoadingDetailsState {
   final String errorMsg;
 
   const LoadingDetailsFailure({required this.errorMsg});
 }
+
 final class LoadingDetailsLoading extends LoadingDetailsState {}
+
 final class LoadingDetailsSuccess extends LoadingDetailsState {
   final List<LoadingDetailsModel> loadingDetails;
+  final int activeTab;
+  final LoadingDetailsSummaryEntity summary;
 
-  const LoadingDetailsSuccess({required this.loadingDetails});
+  const LoadingDetailsSuccess({
+    required this.loadingDetails,
+    required this.activeTab,
+    required this.summary,
+  });
 }

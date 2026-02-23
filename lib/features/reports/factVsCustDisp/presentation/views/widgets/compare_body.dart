@@ -6,6 +6,7 @@ import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/helper/compare_chart_data.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/compare_table.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/loading/comareing_loading.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/monthly_compersion.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
 
 class CompareBody extends StatelessWidget {
@@ -26,26 +27,13 @@ class CompareBody extends StatelessWidget {
                     children: [
                       CartesianColumnChart(
                         cartesionChart: compareChart,
-                        title: 'Annual Comparison 2026 vs 2025',
+                        title:
+                            'Annual Comparison ${compareChart[0].title} vs ${compareChart[1].title}',
                       ),
-                      // sectionTitle(
-                      //     'Compare Year (${state.factVsCustDispCompare.compareYear[0].year})'),
-                      // const SizedBox(height: 8),
-                      // CompareTable(
-                      //     curerentYear:
-                      //         state.factVsCustDispCompare.compareYear),
-                      // const SizedBox(height: 30),
-                      // sectionTitle(
-                      //     'Selected Year (${state.factVsCustDispCompare.selectedYear[0].year})'),
-                      // const SizedBox(height: 8),
-                      // CompareTable(
-                      //     curerentYear:
-                      //         state.factVsCustDispCompare.selectedYear),
-                      // const SizedBox(height: 30),
-                      // sectionTitle('Differance'),
-                      // const SizedBox(height: 8),
-                      // CompareTable(
-                      //     curerentYear: state.factVsCustDispCompare.difference),
+                      const SizedBox(height: 10),
+                      MonthlyCompersion(
+                        compareingEntity: state.factVsCustDispCompare,
+                      )
                     ],
                   )
                 : Column(

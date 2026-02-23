@@ -25,6 +25,7 @@ class ComplainDetailsInfo extends StatelessWidget {
           children: [
             MarkedText(
               child: '1 images uploaded',
+              color: Color.fromARGB(255, 250, 250, 250),
             ),
             SizedBox(width: 10),
           ],

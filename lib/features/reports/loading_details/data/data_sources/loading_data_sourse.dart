@@ -5,18 +5,19 @@ abstract class LoadingDetailsDataSourse {
   Future<List<LoadingDetailsModel>> getLoadingDetails();
 }
 
-
-class LoadingDetailsDataSourseImpl extends LoadingDetailsDataSourse{
+class LoadingDetailsDataSourseImpl extends LoadingDetailsDataSourse {
   final ApiService apiService;
 
   LoadingDetailsDataSourseImpl({required this.apiService});
   @override
-  Future<List<LoadingDetailsModel>> getLoadingDetails() async{
+  Future<List<LoadingDetailsModel>> getLoadingDetails() async {
     var result = await apiService.get(
-        endPoint: 'api/Reports/GetLoadingDetails?fromDate=2/16/2026&toDate=2/16/2026');
+        endPoint:
+            'api/Reports/GetLoadingDetails?fromDate=1/2/2026&toDate=${DateTime.now()}');
     List<LoadingDetailsModel> loadingdetailsList = [];
     for (var loading in result["data"]) {
-      LoadingDetailsModel loadingDetails = LoadingDetailsModel.fromJson(loading);
+      LoadingDetailsModel loadingDetails =
+          LoadingDetailsModel.fromJson(loading);
       loadingdetailsList.add(loadingDetails);
     }
     return loadingdetailsList;

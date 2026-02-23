@@ -4,19 +4,35 @@ class MarkedText extends StatelessWidget {
   const MarkedText({
     super.key,
     required this.child,
+    required this.color,
+    this.textColor = Colors.black,
+    this.padding,
+    this.fontSize,
   });
   final String child;
+  final Color color;
+  final Color textColor;
+  final EdgeInsetsGeometry? padding;
+  final double? fontSize;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(5),
+      padding: padding ??
+          const EdgeInsets.symmetric(
+            horizontal: 13,
+            vertical: 7,
+          ),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 250, 250, 250),
+        color: color,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         child,
-        style: const TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: textColor,
+          fontSize: fontSize,
+        ),
       ),
     );
   }

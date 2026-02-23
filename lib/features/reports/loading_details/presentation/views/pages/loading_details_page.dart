@@ -19,8 +19,7 @@ class LoadingDetailspage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<LoadingDetailsCubit>(context)
-        .getLoadingDetails();
+    BlocProvider.of<LoadingDetailsCubit>(context).getLoadingDetails();
 
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {

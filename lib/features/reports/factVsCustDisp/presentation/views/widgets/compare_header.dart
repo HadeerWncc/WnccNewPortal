@@ -35,29 +35,24 @@ class _CompareHeaderState extends State<CompareHeader> {
           setState(() => openCharts = value);
           widget.onToggle?.call(value);
         }),
-        openCharts
-            ? const SizedBox()
-            : SizedBox(
-                width: MediaQuery.of(context).size.width * .4,
-                child: CustomDropDownInput(
-                  title: 'Select',
-                  items: factreportOptionsList,
-                  selectedValue: 'Compare',
-                  onChanged: (value) {
-                    // Handle dropdown change
-                    if (value == 'Hourly') {
-                      GoRouter.of(context)
-                          .push(AppRouter.factVsCustDispatchHourly);
-                    } else if (value == 'Daily') {
-                      GoRouter.of(context)
-                          .push(AppRouter.factVsCustDispatchDaily);
-                    } else if (value == 'Monthly') {
-                      GoRouter.of(context)
-                          .push(AppRouter.factVsCustDispatchMonthly);
-                    }
-                  },
-                ),
-              ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * .4,
+          child: CustomDropDownInput(
+            title: 'Select',
+            items: factreportOptionsList,
+            selectedValue: 'Compare',
+            onChanged: (value) {
+              // Handle dropdown change
+              if (value == 'Hourly') {
+                GoRouter.of(context).push(AppRouter.factVsCustDispatchHourly);
+              } else if (value == 'Daily') {
+                GoRouter.of(context).push(AppRouter.factVsCustDispatchDaily);
+              } else if (value == 'Monthly') {
+                GoRouter.of(context).push(AppRouter.factVsCustDispatchMonthly);
+              }
+            },
+          ),
+        ),
         openCharts
             ? const SizedBox()
             : CustomYearPicker(
