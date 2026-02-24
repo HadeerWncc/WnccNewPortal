@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
 
-class Delivery extends Equatable {
+class Priority extends Equatable {
   final num? bags;
   final num? bulk;
 
-  const Delivery({this.bags, this.bulk});
+  const Priority({this.bags, this.bulk});
 
-  factory Delivery.fromJson(Map<String, dynamic> json) => Delivery(
+  factory Priority.fromJson(Map<String, dynamic> json) => Priority(
         bags: json['bags'] as num?,
-        bulk: json['bulk'] as num?,
+        bulk: (json['bulk'] as num?)?.toDouble(),
       );
 
   Map<String, dynamic> toJson() => {

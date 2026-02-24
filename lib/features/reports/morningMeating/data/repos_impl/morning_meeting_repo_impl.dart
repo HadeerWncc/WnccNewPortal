@@ -23,7 +23,8 @@ class MorningMeetingRepoImpl extends MorningMeetingRepo {
   }
 
   @override
-  Future<Either<Failure, List<MorningMeetingPriority>>> getMorningMeetingPriorityData(DateTime date) async{
+  Future<Either<Failure, List<MorningMeetingPriority>>>
+      getMorningMeetingPriorityData(DateTime date) async {
     try {
       List<MorningMeetingPriority> morningMeetingList =
           await morningMeetingDataSource.getMorningMeetingPriorityData(date);

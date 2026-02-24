@@ -68,7 +68,8 @@ class FactoryDispatchTable extends StatelessWidget {
                           cells: [
                             DataCell(
                               Text(
-                                NumberFormat.decimalPattern()
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
                                     .format(item.bags ?? 0),
                                 style: TextStyle(
                                     fontWeight: (index ==
@@ -79,7 +80,8 @@ class FactoryDispatchTable extends StatelessWidget {
                             ),
                             DataCell(
                               Text(
-                                NumberFormat.decimalPattern()
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
                                     .format(item.bulk ?? 0),
                                 style: TextStyle(
                                     fontWeight: (index ==
@@ -90,7 +92,8 @@ class FactoryDispatchTable extends StatelessWidget {
                             ),
                             DataCell(
                               Text(
-                                NumberFormat.decimalPattern()
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
                                     .format(item.export ?? 0),
                                 style: TextStyle(
                                     fontWeight: (index ==
@@ -101,7 +104,8 @@ class FactoryDispatchTable extends StatelessWidget {
                             ),
                             DataCell(
                               Text(
-                                NumberFormat.decimalPattern()
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
                                     .format(item.total ?? 0),
                                 style: TextStyle(
                                     fontWeight: (index ==

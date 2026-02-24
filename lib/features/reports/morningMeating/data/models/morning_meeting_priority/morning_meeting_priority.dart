@@ -1,12 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-import 'delivery.dart';
-import 'pickup.dart';
+import 'priority.dart';
 
 class MorningMeetingPriority extends Equatable {
   final String? date;
-  final Delivery? delivery;
-  final Pickup? pickup;
+  final Priority? delivery;
+  final Priority? pickup;
 
   const MorningMeetingPriority({this.date, this.delivery, this.pickup});
 
@@ -15,10 +14,10 @@ class MorningMeetingPriority extends Equatable {
       date: json['date'] as String?,
       delivery: json['delivery'] == null
           ? null
-          : Delivery.fromJson(json['delivery'] as Map<String, dynamic>),
+          : Priority.fromJson(json['delivery'] as Map<String, dynamic>),
       pickup: json['pickup'] == null
           ? null
-          : Pickup.fromJson(json['pickup'] as Map<String, dynamic>),
+          : Priority.fromJson(json['pickup'] as Map<String, dynamic>),
     );
   }
 

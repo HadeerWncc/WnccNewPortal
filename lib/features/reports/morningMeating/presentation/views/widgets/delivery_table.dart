@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/table_column.dart';
-import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_meeting_priority/morning_meeting_priority.dart';
+import 'package:wncc_portal/features/reports/morningMeating/domain/entities/priority_entity.dart';
 
-class MorningMeetingDeliveryTable extends StatelessWidget {
-  const MorningMeetingDeliveryTable({super.key, this.priorityResponse});
-  final List<MorningMeetingPriority>? priorityResponse;
+class MorningMeetingPriorityTable extends StatelessWidget {
+  const MorningMeetingPriorityTable({super.key, this.priorityResponse});
+  final List<PriorityMorningMeetingEntity>? priorityResponse;
   @override
   Widget build(BuildContext context) {
     return IntrinsicHeight(
@@ -14,9 +14,7 @@ class MorningMeetingDeliveryTable extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           totalColumn(
-            values:
-                priorityResponse?.map((e) => e.date ?? "").toList() ??
-                    [],
+            values: priorityResponse?.map((e) => e.date ?? "").toList() ?? [],
             lableName: 'Date',
             cellWidth: 110,
           ),
@@ -44,7 +42,6 @@ class MorningMeetingDeliveryTable extends StatelessWidget {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
-                     
                     ],
                     rows: List<DataRow>.generate(
                       priorityResponse?.length ?? 0,
@@ -57,27 +54,28 @@ class MorningMeetingDeliveryTable extends StatelessWidget {
                           cells: [
                             DataCell(
                               Text(
-                                NumberFormat.decimalPattern()
-                                    .format(item.delivery?.bags ?? 0),
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
+                                    .format(item.bags ?? 0),
                                 style: TextStyle(
-                                    fontWeight: (index ==
-                                            priorityResponse!.length - 1)
-                                        ? FontWeight.bold
-                                        : FontWeight.normal),
+                                    fontWeight:
+                                        (index == priorityResponse!.length - 1)
+                                            ? FontWeight.bold
+                                            : FontWeight.normal),
                               ),
                             ),
                             DataCell(
                               Text(
-                                NumberFormat.decimalPattern()
-                                    .format(item.delivery?.bulk ?? 0),
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
+                                    .format(item.bulk ?? 0),
                                 style: TextStyle(
-                                    fontWeight: (index ==
-                                            priorityResponse!.length - 1)
-                                        ? FontWeight.bold
-                                        : FontWeight.normal),
+                                    fontWeight:
+                                        (index == priorityResponse!.length - 1)
+                                            ? FontWeight.bold
+                                            : FontWeight.normal),
                               ),
                             ),
-                            
                           ],
                         );
                       },

@@ -54,8 +54,11 @@ class CustomerDispatchTable extends StatelessWidget {
                           DataCell(
                             Center(
                               child: Text(
-                                NumberFormat.decimalPattern().format(
-                                    customerDispatchResponse[index].masry ?? 0),
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
+                                    .format(
+                                        customerDispatchResponse[index].masry ??
+                                            0),
                                 style: TextStyle(
                                     fontWeight: (index ==
                                             customerDispatchResponse.length - 1)
@@ -67,8 +70,11 @@ class CustomerDispatchTable extends StatelessWidget {
                           DataCell(
                             Center(
                               child: Text(
-                                NumberFormat.decimalPattern().format(
-                                    customerDispatchResponse[index].wadi ?? 0),
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
+                                    .format(
+                                        customerDispatchResponse[index].wadi ??
+                                            0),
                                 style: TextStyle(
                                     fontWeight: (index ==
                                             customerDispatchResponse.length - 1)
@@ -84,7 +90,8 @@ class CustomerDispatchTable extends StatelessWidget {
                   totalColumn(
                     values: customerDispatchResponse
                         .map((e) =>
-                            NumberFormat.decimalPattern().format(e.bags ?? 0))
+                            NumberFormat.decimalPatternDigits(decimalDigits: 0)
+                                .format(e.bags ?? 0))
                         .toList(),
                     lableName: 'Bags',
                   ),
@@ -112,8 +119,11 @@ class CustomerDispatchTable extends StatelessWidget {
                           DataCell(
                             Center(
                               child: Text(
-                                NumberFormat.decimalPattern().format(
-                                    customerDispatchResponse[index].bulk ?? 0),
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
+                                    .format(
+                                        customerDispatchResponse[index].bulk ??
+                                            0),
                                 style: TextStyle(
                                     fontWeight: (index ==
                                             customerDispatchResponse.length - 1)
@@ -129,7 +139,8 @@ class CustomerDispatchTable extends StatelessWidget {
                   totalColumn(
                     values: customerDispatchResponse
                         .map((e) =>
-                            NumberFormat.decimalPattern().format(e.total ?? 0))
+                            NumberFormat.decimalPatternDigits(decimalDigits: 0)
+                                .format(e.total ?? 0))
                         .toList(),
                     lableName: 'Total',
                   ),
@@ -163,8 +174,10 @@ class CustomerDispatchTable extends StatelessWidget {
                           DataCell(
                             Center(
                               child: Text(
-                                NumberFormat.decimalPattern().format(
-                                    customerDispatchResponse[index].export ??
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
+                                    .format(customerDispatchResponse[index]
+                                            .export ??
                                         0),
                                 style: TextStyle(
                                     fontWeight: (index ==
@@ -177,8 +190,9 @@ class CustomerDispatchTable extends StatelessWidget {
                           DataCell(
                             Center(
                               child: Text(
-                                NumberFormat.decimalPattern().format(
-                                    customerDispatchResponse[index]
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
+                                    .format(customerDispatchResponse[index]
                                             .expTrading ??
                                         0),
                                 style: TextStyle(
@@ -195,15 +209,17 @@ class CustomerDispatchTable extends StatelessWidget {
                   ),
                   totalColumn(
                     values: customerDispatchResponse
-                        .map((e) => NumberFormat.decimalPattern()
-                            .format(e.totalExport ?? 0))
+                        .map((e) =>
+                            NumberFormat.decimalPatternDigits(decimalDigits: 0)
+                                .format(e.totalExport ?? 0))
                         .toList(),
                     lableName: 'TotalExp',
                   ),
                   totalColumn(
                     values: customerDispatchResponse
-                        .map((e) => NumberFormat.decimalPattern()
-                            .format(e.alltotal ?? 0))
+                        .map((e) =>
+                            NumberFormat.decimalPatternDigits(decimalDigits: 0)
+                                .format(e.alltotal ?? 0))
                         .toList(),
                     lableName: 'Total',
                   ),
@@ -237,8 +253,11 @@ class CustomerDispatchTable extends StatelessWidget {
                           DataCell(
                             Center(
                               child: Text(
-                                NumberFormat.decimalPattern().format(
-                                    customerDispatchResponse[index].extra ?? 0),
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
+                                    .format(
+                                        customerDispatchResponse[index].extra ??
+                                            0),
                                 style: TextStyle(
                                     fontWeight: (index ==
                                             customerDispatchResponse.length - 1)
@@ -250,8 +269,10 @@ class CustomerDispatchTable extends StatelessWidget {
                           DataCell(
                             Center(
                               child: Text(
-                                NumberFormat.decimalPattern().format(
-                                    customerDispatchResponse[index].clincker ??
+                                NumberFormat.decimalPatternDigits(
+                                        decimalDigits: 0)
+                                    .format(customerDispatchResponse[index]
+                                            .clincker ??
                                         0),
                                 style: TextStyle(
                                     fontWeight: (index ==

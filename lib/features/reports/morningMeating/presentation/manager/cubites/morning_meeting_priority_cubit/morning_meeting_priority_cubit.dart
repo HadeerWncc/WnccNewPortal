@@ -1,7 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_meeting_priority/morning_meeting_priority.dart';
+import 'package:wncc_portal/features/reports/morningMeating/domain/entities/priority_entity.dart';
 import 'package:wncc_portal/features/reports/morningMeating/domain/repos/morning_meeting_repo.dart';
+import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/helper/data_processing/process_priority_entity.dart';
 
 part 'morning_meeting_priority_state.dart';
 
@@ -17,8 +19,11 @@ class MorningMeetingPriorityCubit extends Cubit<MorningMeetingPriorityState> {
     result.fold((error) {
       emit(MorningMeetingPriorityFailure(error: error.msg));
     }, (morningMeetingPriority) {
-      emit(MorningMeetingPrioritySuccess(
-          morningMeetingPriority: morningMeetingPriority));
+      List<PriorityMorningMeetingEntity> pickup =
+          processPriorityEntities(morningMeetingPriority, date, 'Pickup');
+      List<PriorityMorningMeetingEntity> delivery =
+          processPriorityEntities(morningMeetingPriority, date, 'Delivery');
+      emit(MorningMeetingPrioritySuccess(pickup: pickup, delivery: delivery));
     });
   }
 }

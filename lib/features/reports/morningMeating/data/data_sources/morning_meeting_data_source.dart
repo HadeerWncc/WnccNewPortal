@@ -4,7 +4,8 @@ import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_
 
 abstract class MorningMeetingDataSource {
   Future<List<MorningMeeting>> getMorningMeetingData(DateTime date);
-  Future<List<MorningMeetingPriority>> getMorningMeetingPriorityData(DateTime date);
+  Future<List<MorningMeetingPriority>> getMorningMeetingPriorityData(
+      DateTime date);
 }
 
 class MorningMeetingDataSourceImpl extends MorningMeetingDataSource {
@@ -23,14 +24,16 @@ class MorningMeetingDataSourceImpl extends MorningMeetingDataSource {
     }
     return morningMeetingList;
   }
-  
+
   @override
-  Future<List<MorningMeetingPriority>> getMorningMeetingPriorityData(DateTime date) async{
+  Future<List<MorningMeetingPriority>> getMorningMeetingPriorityData(
+      DateTime date) async {
     var result = await apiService.get(
         endPoint: 'api/Reports/GetMorningIncotermMeeting?date=$date');
     List<MorningMeetingPriority> morningMeetingList = [];
     for (var meeting in result["data"]) {
-      MorningMeetingPriority morningMeeting = MorningMeetingPriority.fromJson(meeting);
+      MorningMeetingPriority morningMeeting =
+          MorningMeetingPriority.fromJson(meeting);
       morningMeetingList.add(morningMeeting);
     }
     return morningMeetingList;

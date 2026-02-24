@@ -8,16 +8,21 @@ sealed class MorningMeetingPriorityState extends Equatable {
 }
 
 final class MorningMeetingPriorityInitial extends MorningMeetingPriorityState {}
+
 final class MorningMeetingPriorityFailure extends MorningMeetingPriorityState {
   final String error;
 
   const MorningMeetingPriorityFailure({required this.error});
 }
+
 final class MorningMeetingPriorityLoading extends MorningMeetingPriorityState {}
+
 final class MorningMeetingPrioritySuccess extends MorningMeetingPriorityState {
+  final List<PriorityMorningMeetingEntity> pickup;
+  final List<PriorityMorningMeetingEntity> delivery;
 
-  final List<MorningMeetingPriority> morningMeetingPriority;
-
-  const MorningMeetingPrioritySuccess({required this.morningMeetingPriority});
-
+  const MorningMeetingPrioritySuccess({
+    required this.pickup,
+    required this.delivery,
+  });
 }
