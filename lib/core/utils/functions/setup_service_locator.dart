@@ -15,6 +15,11 @@ import 'package:wncc_portal/features/customerService/complains/presentation/mana
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/forwarded_complain_cubit/forwarded_complain_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/repo_impl/dispatch_details_repo_impl.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/data_sources/fact_vs_cust_data_source.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/repos/fact_vs_cust_repo_imp.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/domain/repos/fact_vs_cust_repo.dart';
@@ -169,6 +174,10 @@ void setupLocator() {
   getIt.registerLazySingleton<LoadingDetailsDataSourse>(
       () => LoadingDetailsDataSourseImpl(apiService: getIt<ApiService>()));
 
+  //DispatchDetailsDataSource
+  getIt.registerLazySingleton<DispatchDetailsDataSource>(
+      () => DispatchDetailsDataSourceImpl(apiService: getIt<ApiService>()));
+
   // Repositories
   //BaseRepo
   getIt.registerLazySingleton<BaseRepos>(() => BaseRepos());
@@ -228,9 +237,14 @@ void setupLocator() {
   getIt.registerLazySingleton<PendingRepo>(
       () => PendingRepoImpl(pendingDataSource: getIt<PendingDataSource>()));
 
-  //PendingRepo
+  //LoadingDetailsRepo
   getIt.registerLazySingleton<LoadingRepo>(() => LoadingRepoImpl(
       loadingDetailsDataSourse: getIt<LoadingDetailsDataSourse>()));
+
+  //DispatchDetailsRepo
+  getIt.registerLazySingleton<DispatchDetailsRepo>(() =>
+      DispatchDetailsRepoImpl(
+          dispatchDetailsDataSource: getIt<DispatchDetailsDataSource>()));
 
   // Use Cases
   //login Use Case
@@ -484,4 +498,12 @@ void setupLocator() {
   //LoadingDetailsCubit
   getIt.registerFactory<LoadingDetailsCubit>(
       () => LoadingDetailsCubit(getIt<LoadingRepo>()));
+
+  //DispatchDetailsCubit
+  getIt.registerFactory<DispatchDetailsCubit>(
+      () => DispatchDetailsCubit(getIt<DispatchDetailsRepo>()));
+
+  //ShipmentDetailsCubit
+  getIt.registerFactory<ShipmentDetailsCubit>(
+      () => ShipmentDetailsCubit(getIt<DispatchDetailsRepo>()));
 }

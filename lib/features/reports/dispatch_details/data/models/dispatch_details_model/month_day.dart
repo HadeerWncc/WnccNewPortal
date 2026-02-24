@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'region.dart';
+import '../region.dart';
 
 class MonthDay extends Equatable {
   final String? date;
