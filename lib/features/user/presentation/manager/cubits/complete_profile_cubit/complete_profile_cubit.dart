@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/user/domain/repositories/user_repo.dart';
-import 'package:wncc_portal/features/user/domain/usecases/complete_profile_use_case.dart';
 
 part 'complete_profile_state.dart';
 

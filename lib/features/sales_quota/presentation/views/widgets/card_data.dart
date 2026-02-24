@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/features/sales_quota/data/models/daily_quota_model/sales_quota.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/daily_quota_section.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/distribute_bloc_consumer.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/sales_quota_section.dart';
-import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 
 class CardData extends StatefulWidget {
   const CardData({

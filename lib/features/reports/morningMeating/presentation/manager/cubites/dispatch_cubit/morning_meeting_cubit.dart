@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/helper/data_processing/process_customer_entity.dart';
 import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/helper/data_processing/process_factory_entity.dart';
-import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_meeting_priority/morning_meeting_priority.dart';
 import 'package:wncc_portal/features/reports/morningMeating/domain/entities/customer_dispatch_entity.dart';
 import 'package:wncc_portal/features/reports/morningMeating/domain/entities/factory_entity.dart';
 import 'package:wncc_portal/features/reports/morningMeating/domain/repos/morning_meeting_repo.dart';

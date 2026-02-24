@@ -25,7 +25,6 @@ import 'package:wncc_portal/features/reports/loading_details/data/repos/loading_
 import 'package:wncc_portal/features/reports/loading_details/domain/repos/loading_repo.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/manager/loading_details_cubit/loading_details_cubit.dart';
 import 'package:wncc_portal/features/reports/morningMeating/data/data_sources/morning_meeting_data_source.dart';
-import 'package:wncc_portal/features/reports/morningMeating/data/models/morning_meeting_priority/morning_meeting_priority.dart';
 import 'package:wncc_portal/features/reports/morningMeating/data/repos_impl/morning_meeting_repo_impl.dart';
 import 'package:wncc_portal/features/reports/morningMeating/domain/repos/morning_meeting_repo.dart';
 import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/dispatch_cubit/morning_meeting_cubit.dart';

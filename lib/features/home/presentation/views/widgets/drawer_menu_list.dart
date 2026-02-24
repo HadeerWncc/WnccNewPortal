@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/customer_drawer_menu.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/customer_menu_item.dart';
