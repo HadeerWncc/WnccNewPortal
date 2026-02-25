@@ -9,6 +9,7 @@ import 'package:wncc_portal/features/customerService/complains/presentation/view
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/create_complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_view.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_details_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_compare_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
@@ -81,6 +82,7 @@ abstract class AppRouter {
   static const paymentsDetailsPath = '/paymentsDetails';
   static const pendingPath = '/pending';
   static const loadingDetailsPath = '/loadingDetails';
+  static const dispatchDetailsPath = '/dispatchDetails';
 
   static final router = GoRouter(
     routes: [
@@ -269,6 +271,11 @@ abstract class AppRouter {
         path: loadingDetailsPath,
         builder: (context, state) => const LoadingDetailspage(),
       ),
+      GoRoute(
+        path: dispatchDetailsPath,
+        builder: (context, state) => const DispatchDetailsPage(),
+      ),
+
     ],
   );
 }
