@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
 
 class ShipmentDetailsModel extends Equatable {
   final String? status;
@@ -8,7 +8,7 @@ class ShipmentDetailsModel extends Equatable {
   final int? totalDelta;
   final int? total;
   final int? totalExport;
-  final List<Region>? regions;
+  final List<DispatchRegion>? regions;
 
   const ShipmentDetailsModel({
     this.status,
@@ -29,7 +29,7 @@ class ShipmentDetailsModel extends Equatable {
       total: json['total'] as int?,
       totalExport: json['totalExport'] as int?,
       regions: (json['regions'] as List<dynamic>?)
-          ?.map((e) => Region.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => DispatchRegion.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
   }

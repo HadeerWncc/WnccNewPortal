@@ -6,8 +6,8 @@ import 'pickup.dart';
 class Quantity extends Equatable {
   final Delivery? delivery;
   final Pickup? pickup;
-  final int? total;
-  final int? totalCount;
+  final num? total;
+  final num? totalCount;
 
   const Quantity({this.delivery, this.pickup, this.total, this.totalCount});
 

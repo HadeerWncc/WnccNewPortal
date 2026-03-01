@@ -7,13 +7,12 @@ abstract class DispatchDetailsDataSource {
   Future<List<ShipmentDetailsModel>> getShipmentDetails();
 }
 
-class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource{
-
+class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource {
   final ApiService apiService;
 
   DispatchDetailsDataSourceImpl({required this.apiService});
   @override
-  Future<List<DispatchDetailsModel>> getDispatchDetails(DateTime date) async{
+  Future<List<DispatchDetailsModel>> getDispatchDetails(DateTime date) async {
     var result = await apiService.get(
         endPoint: 'api/Reports/GetDispatchDetails?date=$date');
     List<DispatchDetailsModel> dispatchDetailsList = [];
@@ -26,9 +25,9 @@ class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource{
   }
 
   @override
-  Future<List<ShipmentDetailsModel>> getShipmentDetails() async{
-    var result = await apiService.get(
-        endPoint: 'api/Reports/GetShipmentDetails');
+  Future<List<ShipmentDetailsModel>> getShipmentDetails() async {
+    var result =
+        await apiService.get(endPoint: 'api/Reports/GetShipmentDetails');
     List<ShipmentDetailsModel> shipmentDetailsList = [];
     for (var dispach in result["data"]) {
       ShipmentDetailsModel shipmentDetailsModel =
@@ -37,6 +36,4 @@ class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource{
     }
     return shipmentDetailsList;
   }
-
 }
-

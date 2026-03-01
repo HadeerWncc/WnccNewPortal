@@ -275,7 +275,6 @@ abstract class AppRouter {
         path: dispatchDetailsPath,
         builder: (context, state) => const DispatchDetailsPage(),
       ),
-
     ],
   );
 }

@@ -8,12 +8,17 @@ sealed class DispatchDetailsState extends Equatable {
 }
 
 final class DispatchDetailsInitial extends DispatchDetailsState {}
+
 final class DispatchDetailsFailure extends DispatchDetailsState {
   final String error;
 
   const DispatchDetailsFailure({required this.error});
 }
+
 final class DispatchDetailsLoading extends DispatchDetailsState {}
+
 final class DispatchDetailsSuccess extends DispatchDetailsState {
-  
+  final List<DispatchDetailsModel> dispatchDetailsList;
+
+  const DispatchDetailsSuccess({required this.dispatchDetailsList});
 }

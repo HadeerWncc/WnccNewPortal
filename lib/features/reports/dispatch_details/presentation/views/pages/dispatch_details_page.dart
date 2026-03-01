@@ -7,6 +7,7 @@ import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_menus_list.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_details_body.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
@@ -15,7 +16,8 @@ class DispatchDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // BlocProvider.of<DispatchDetailsCubit>(context).getFactVsCustDispCompare(DateTime.now());
+    BlocProvider.of<DispatchDetailsCubit>(context)
+        .getDispatchDetails(DateTime.now());
 
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {

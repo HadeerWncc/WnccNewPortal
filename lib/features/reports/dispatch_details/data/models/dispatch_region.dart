@@ -1,13 +1,15 @@
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_quantity.dart';
 
-class Region extends Equatable {
+
+class DispatchRegion extends Equatable {
   final String? regionId;
   final String? regionName;
   final String? areaName;
   final bool? enableDispatchReporting;
-  final num? quantity;
+  final DispatchQuantity? quantity;
 
-  const Region({
+  const DispatchRegion({
     this.regionId,
     this.regionName,
     this.areaName,
@@ -15,12 +17,14 @@ class Region extends Equatable {
     this.quantity,
   });
 
-  factory Region.fromJson(Map<String, dynamic> json) => Region(
+  factory DispatchRegion.fromJson(Map<String, dynamic> json) => DispatchRegion(
         regionId: json['regionId'] as String?,
         regionName: json['regionName'] as String?,
         areaName: json['areaName'] as String?,
         enableDispatchReporting: json['enableDispatchReporting'] as bool?,
-        quantity: json['quantity'] as num?,
+        quantity: json['quantity'] == null
+            ? null
+            : DispatchQuantity.fromJson(json['quantity'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
@@ -28,7 +32,7 @@ class Region extends Equatable {
         'regionName': regionName,
         'areaName': areaName,
         'enableDispatchReporting': enableDispatchReporting,
-        'quantity': quantity,
+        'quantity': quantity?.toJson(),
       };
 
   @override

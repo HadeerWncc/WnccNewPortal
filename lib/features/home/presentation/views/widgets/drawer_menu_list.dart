@@ -103,7 +103,7 @@ class DrawerMenuList extends StatelessWidget {
               title: 'Payments',
               active: activeTab == 'Payments',
               onTap: () {
-                GoRouter.of(context).push(AppRouter.paymentsMonthlyPath);
+                GoRouter.of(context).push(AppRouter.paymentsDailyPath);
               },
             ),
             CustomMenuItem(
@@ -124,10 +124,9 @@ class DrawerMenuList extends StatelessWidget {
               title: 'Dispatch Details',
               active: activeTab == 'Dispatch Details',
               onTap: () {
-                GoRouter.of(context).push(AppRouter.loadingDetailsPath);
+                GoRouter.of(context).push(AppRouter.dispatchDetailsPath);
               },
             ),
-            
           ],
         ),
       ],

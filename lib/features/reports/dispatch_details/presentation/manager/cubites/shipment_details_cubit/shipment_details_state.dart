@@ -8,12 +8,13 @@ sealed class ShipmentDetailsState extends Equatable {
 }
 
 final class ShipmentDetailsInitial extends ShipmentDetailsState {}
+
 final class ShipmentDetailsFailure extends ShipmentDetailsState {
   final String error;
 
   const ShipmentDetailsFailure({required this.error});
 }
+
 final class ShipmentDetailsLoading extends ShipmentDetailsState {}
-final class ShipmentDetailsSuccess extends ShipmentDetailsState {
-  
-}
+
+final class ShipmentDetailsSuccess extends ShipmentDetailsState {}

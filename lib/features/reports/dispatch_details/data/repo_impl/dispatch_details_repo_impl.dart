@@ -6,12 +6,13 @@ import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispat
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/shipment_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
 
-class DispatchDetailsRepoImpl extends DispatchDetailsRepo{
+class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
   final DispatchDetailsDataSource dispatchDetailsDataSource;
 
   DispatchDetailsRepoImpl({required this.dispatchDetailsDataSource});
   @override
-  Future<Either<Failure, List<DispatchDetailsModel>>> getDispatchDetails(DateTime date) async{
+  Future<Either<Failure, List<DispatchDetailsModel>>> getDispatchDetails(
+      DateTime date) async {
     try {
       List<DispatchDetailsModel> dispatchDetails =
           await dispatchDetailsDataSource.getDispatchDetails(date);
@@ -25,7 +26,8 @@ class DispatchDetailsRepoImpl extends DispatchDetailsRepo{
   }
 
   @override
-  Future<Either<Failure, List<ShipmentDetailsModel>>> getShipmentDetails() async{
+  Future<Either<Failure, List<ShipmentDetailsModel>>>
+      getShipmentDetails() async {
     try {
       List<ShipmentDetailsModel> shipmentDetails =
           await dispatchDetailsDataSource.getShipmentDetails();

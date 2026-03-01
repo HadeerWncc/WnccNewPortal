@@ -168,14 +168,19 @@ TopTwo getTop(List<Payment> days, String currency) {
     }
   }
 
-  final maxBank = totals.entries.reduce(
-    (a, b) => a.value.amount > b.value.amount ? a : b,
-  );
+  Bank topBank = const Bank();
+  if (totals.isEmpty) {
+    topBank = const Bank(name: 'N/A', totalAmount: 0, transactions: 0);
+  } else {
+    final maxBank = totals.entries.reduce(
+      (a, b) => a.value.amount > b.value.amount ? a : b,
+    );
 
-  Bank topBank = Bank(
-      name: maxBank.key,
-      totalAmount: maxBank.value.amount,
-      transactions: maxBank.value.transactions);
+    topBank = Bank(
+        name: maxBank.key,
+        totalAmount: maxBank.value.amount,
+        transactions: maxBank.value.transactions);
+  }
 
   return TopTwo(topFirst: topDate, topSecound: topBank);
 }
