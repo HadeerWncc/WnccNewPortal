@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_quantity.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_quantity.dart';
 
 class DispatchRegion extends Equatable {
   final String? regionId;

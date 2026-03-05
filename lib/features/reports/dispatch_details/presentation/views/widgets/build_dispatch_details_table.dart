@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_quantity.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_quantity.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/column_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/dispatch_row.dart';

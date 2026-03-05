@@ -62,6 +62,7 @@ dependencies:
   signalr_core: ^1.1.1
   syncfusion_flutter_charts: ^29.1.38
   syncfusion_flutter_datagrid: ^29.2.11
+  linked_scroll_controller: ^0.2.0
 
 dev_dependencies:
   build_runner: ^2.4.14

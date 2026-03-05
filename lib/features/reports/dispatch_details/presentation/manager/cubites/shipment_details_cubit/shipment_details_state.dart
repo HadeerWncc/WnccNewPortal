@@ -17,4 +17,8 @@ final class ShipmentDetailsFailure extends ShipmentDetailsState {
 
 final class ShipmentDetailsLoading extends ShipmentDetailsState {}
 
-final class ShipmentDetailsSuccess extends ShipmentDetailsState {}
+final class ShipmentDetailsSuccess extends ShipmentDetailsState {
+  final List<ShipmentDetailsModel> shipmentDetails;
+
+  const ShipmentDetailsSuccess({required this.shipmentDetails});
+}
