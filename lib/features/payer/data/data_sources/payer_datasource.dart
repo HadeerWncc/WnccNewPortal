@@ -43,7 +43,7 @@ class PayerDatasourceImpl extends PayerDatasource {
   @override
   Future<List<PayerModel>> getAll() async {
     var result = await apiService.get(
-      endPoint: 'api/Payers/GetAll',
+      endPoint: 'api/Customers/GetAll',
     );
     List<PayerModel> payers = [];
     for (var payer in result["data"]) {

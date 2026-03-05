@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_quantity.dart';
@@ -15,8 +13,7 @@ Map<String, List<DispatchRegion>> groupRegionsByArea(
 
   if (months.isEmpty) return result;
 
-  final firstDay =
-      months.last.monthDays?.last;
+  final firstDay = months.last.monthDays?.last;
 
   final regions = firstDay?.regions ?? [];
 
@@ -31,7 +28,6 @@ Map<String, List<DispatchRegion>> groupRegionsByArea(
 
   return result;
 }
-
 
 List<DispatchColumn> buildColumns(
   Map<String, List<DispatchRegion>> grouped,
@@ -69,7 +65,6 @@ List<DispatchColumn> buildColumns(
   return columns;
 }
 
-
 num getQuantityValue(DispatchQuantity? q, QuantityType type) {
   if (q == null) return 0;
 
@@ -93,8 +88,7 @@ List<DispatchRow> buildRowsFromMonths({
   final now = DateTime.now();
 
   for (final month in months) {
-    final isCurrentMonth =
-        month.month == now.month && now.year == now.year;
+    final isCurrentMonth = month.month == now.month && now.year == now.year;
 
     final days = month.monthDays ?? [];
 
@@ -136,9 +130,8 @@ List<DispatchRow> buildRowsFromMonths({
 
       rows.add(
         DispatchRow(
-          label: isCurrentMonth
-              ? (day.date ?? '')
-              : '${month.monthLabel} Total',
+          label:
+              isCurrentMonth ? (day.date ?? '') : '${month.monthLabel} Total',
           values: values,
         ),
       );
@@ -147,7 +140,6 @@ List<DispatchRow> buildRowsFromMonths({
 
   return rows;
 }
-
 
 List<DataColumn> buildDataColumns(List<DispatchColumn> columns) {
   return [
@@ -163,7 +155,6 @@ List<DataColumn> buildDataColumns(List<DispatchColumn> columns) {
     ),
   ];
 }
-
 
 List<DataRow> buildDataRows(
   List<DispatchRow> rows,
@@ -188,7 +179,6 @@ List<DataRow> buildDataRows(
   }).toList();
 }
 
-
 Widget buildDispatchTable({
   required List<DispatchColumn> columns,
   required List<DispatchRow> rows,
@@ -203,16 +193,6 @@ Widget buildDispatchTable({
     ),
   );
 }
-
-
-
-
-
-
-
-
-
-
 
 // Widget buildDispatchDetailsTable({
 //   required List<DispatchDetailsModel> dispatchDetailsResponse,

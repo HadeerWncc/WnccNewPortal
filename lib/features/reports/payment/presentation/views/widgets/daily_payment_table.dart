@@ -64,7 +64,7 @@ class DailyPaymentTable extends StatelessWidget {
                                     (Set<WidgetState> states) {
                                       if (tableData.rows.indexOf(row) ==
                                           tableData.rows.length - 1) {
-                                        return tableHeaderColor;
+                                        return fixedColumnsColor;
                                       }
                                       return null;
                                     },

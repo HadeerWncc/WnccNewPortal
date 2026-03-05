@@ -49,7 +49,7 @@ class MorningMeetingPriorityTable extends StatelessWidget {
                         final item = priorityResponse![index];
                         return DataRow(
                           color: (index == priorityResponse!.length - 1)
-                              ? WidgetStateProperty.all(tableHeaderColor)
+                              ? WidgetStateProperty.all(fixedColumnsColor)
                               : null,
                           cells: [
                             DataCell(

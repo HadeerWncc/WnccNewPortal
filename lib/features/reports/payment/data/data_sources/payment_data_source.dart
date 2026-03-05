@@ -3,7 +3,8 @@ import 'package:wncc_portal/features/reports/payment/data/models/payment/payment
 import 'package:wncc_portal/features/reports/payment/data/models/payment_details_model.dart';
 
 abstract class PaymentDataSource {
-  Future<List<Payment>> fetchPaymentDataPerBank(int mode, DateTime date);
+  Future<List<Payment>> fetchPaymentDataPerBank(int mode, DateTime date,
+      {String? customerName = ""});
   Future<List<PaymentDetailsModel>> fetchPaymentDetailsData(
       DateTime fromDate, DateTime toDate);
 }
@@ -13,9 +14,11 @@ class PaymentDataSourceImpl implements PaymentDataSource {
 
   PaymentDataSourceImpl({required this.apiService});
   @override
-  Future<List<Payment>> fetchPaymentDataPerBank(int mode, DateTime date) async {
+  Future<List<Payment>> fetchPaymentDataPerBank(int mode, DateTime date,
+      {String? customerName = ""}) async {
     var result = await apiService.get(
-        endPoint: 'api/Reports/GetPaymentBanks?mode=$mode&date=$date');
+        endPoint:
+            'api/Reports/GetPaymentBanks?mode=$mode&date=$date&customerCode=$customerName');
     List<Payment> payments = [];
     for (var payment in result["data"]) {
       Payment paymentPerBank = Payment.fromJson(payment);

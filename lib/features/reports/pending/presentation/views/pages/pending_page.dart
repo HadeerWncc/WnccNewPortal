@@ -33,7 +33,7 @@ class PendingPage extends StatelessWidget {
               appBar: AppBar(
                 actionsPadding: const EdgeInsets.all(5),
                 title: const Text(
-                  'Pending',
+                  'Pending Details',
                   style: TextStyle(fontSize: 20),
                 ),
                 titleSpacing: 0.0,

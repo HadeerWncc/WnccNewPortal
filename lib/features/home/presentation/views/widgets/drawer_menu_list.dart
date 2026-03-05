@@ -8,8 +8,10 @@ class DrawerMenuList extends StatelessWidget {
   const DrawerMenuList({
     super.key,
     required this.activeTab,
+    required this.userPos,
   });
   final String activeTab;
+  final String userPos;
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -86,20 +88,6 @@ class DrawerMenuList extends StatelessWidget {
           title: 'Reports',
           children: [
             CustomMenuItem(
-              title: 'FactoryVsCustDispatch',
-              active: activeTab == 'FactoryVsCustDispatch',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.factVsCustDispatchHourly);
-              },
-            ),
-            CustomMenuItem(
-              title: 'Morning Meeting',
-              active: activeTab == 'Morning Meeting',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.morningMeatingPath);
-              },
-            ),
-            CustomMenuItem(
               title: 'Payments',
               active: activeTab == 'Payments',
               onTap: () {
@@ -107,12 +95,21 @@ class DrawerMenuList extends StatelessWidget {
               },
             ),
             CustomMenuItem(
-              title: 'Pending',
-              active: activeTab == 'Pending',
+              title: 'FactoryVsCustDispatch',
+              active: activeTab == 'FactoryVsCustDispatch',
               onTap: () {
-                GoRouter.of(context).push(AppRouter.pendingPath);
+                GoRouter.of(context).push(AppRouter.factVsCustDispatchHourly);
               },
             ),
+            (userPos != "Sales Agent")
+                ? CustomMenuItem(
+                    title: 'Morning Meeting',
+                    active: activeTab == 'Morning Meeting',
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.morningMeatingPath);
+                    },
+                  )
+                : const SizedBox(),
             CustomMenuItem(
               title: 'Loading Details',
               active: activeTab == 'Loading Details',
@@ -121,12 +118,21 @@ class DrawerMenuList extends StatelessWidget {
               },
             ),
             CustomMenuItem(
-              title: 'Dispatch Details',
-              active: activeTab == 'Dispatch Details',
+              title: 'Pending Details',
+              active: activeTab == 'Pending Details',
               onTap: () {
-                GoRouter.of(context).push(AppRouter.dispatchDetailsPath);
+                GoRouter.of(context).push(AppRouter.pendingPath);
               },
             ),
+            (userPos != "Sales Agent")
+                ? CustomMenuItem(
+                    title: 'Dispatch Details',
+                    active: activeTab == 'Dispatch Details',
+                    onTap: () {
+                      GoRouter.of(context).push(AppRouter.dispatchDetailsPath);
+                    },
+                  )
+                : const SizedBox(),
           ],
         ),
       ],

@@ -9,9 +9,9 @@ class PaymentsCubit extends Cubit<PaymentsState> {
   PaymentsCubit(this.paymentsRepo) : super(PaymentsInitial());
   final PaymentsRepo paymentsRepo;
 
-  Future<void> fetchPayments(int mode, DateTime date) async {
+  Future<void> fetchPayments(int mode, DateTime date, String? payer) async {
     emit(PaymentsLoading());
-    final payments = await paymentsRepo.getPaymentPerBanks(mode, date);
+    final payments = await paymentsRepo.getPaymentPerBanks(mode, date, payer);
     payments.fold(
       (failure) => emit(PaymentsFailure(failure.toString())),
       (paymentsData) => emit(PaymentsSuccess(paymentsData)),

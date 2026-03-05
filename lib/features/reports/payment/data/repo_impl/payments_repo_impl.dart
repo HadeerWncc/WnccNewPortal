@@ -27,10 +27,10 @@ class PaymentsRepoImpl extends PaymentsRepo {
 
   @override
   Future<Either<Failure, List<Payment>>> getPaymentPerBanks(
-      int mode, DateTime date) async {
+      int mode, DateTime date, String? payer) async {
     try {
-      List<Payment> payments =
-          await paymentDataSource.fetchPaymentDataPerBank(mode, date);
+      List<Payment> payments = await paymentDataSource
+          .fetchPaymentDataPerBank(mode, date, customerName: payer);
       return Right(payments);
     } on Exception catch (e) {
       if (e is DioException) {

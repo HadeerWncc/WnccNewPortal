@@ -63,7 +63,7 @@ class FactoryDispatchTable extends StatelessWidget {
                         final item = factoryDispatchResponse![index];
                         return DataRow(
                           color: (index == factoryDispatchResponse!.length - 1)
-                              ? WidgetStateProperty.all(tableHeaderColor)
+                              ? WidgetStateProperty.all(fixedColumnsColor)
                               : null,
                           cells: [
                             DataCell(

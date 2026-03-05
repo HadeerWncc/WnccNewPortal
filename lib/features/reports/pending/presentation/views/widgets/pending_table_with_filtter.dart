@@ -122,7 +122,7 @@ class _PendingTableWithFulterState extends State<PendingTableWithFulter> {
                     columnSpacing: 0,
                     fixedTopRows: 1,
                     fixedLeftColumns: 1,
-                    fixedColumnsColor: tableHeaderColor,
+                    fixedColumnsColor: fixedColumnsColor,
                     headingRowHeight: 45,
                     headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                     border: TableBorder.all(color: Colors.grey.shade300),
@@ -131,7 +131,7 @@ class _PendingTableWithFulterState extends State<PendingTableWithFulter> {
                         .keys
                         .toList()
                         .map(
-                          (e) => (e == "Customer Name")
+                          (e) => (e == "Customer Name" || e == "Product")
                               ? DataColumn2(
                                   fixedWidth: 230,
                                   label: Center(

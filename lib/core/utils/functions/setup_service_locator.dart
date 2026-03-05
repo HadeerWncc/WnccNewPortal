@@ -15,6 +15,10 @@ import 'package:wncc_portal/features/customerService/complains/presentation/mana
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/complains_cubit/complains_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/forwarded_complain_cubit/forwarded_complain_cubit.dart';
+import 'package:wncc_portal/features/payer/data/data_sources/payer_datasource.dart';
+import 'package:wncc_portal/features/payer/data/repos_impl/payer_repo_impl.dart';
+import 'package:wncc_portal/features/payer/domain/repos/payer_repo.dart';
+import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/repo_impl/dispatch_details_repo_impl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
@@ -178,6 +182,10 @@ void setupLocator() {
   getIt.registerLazySingleton<DispatchDetailsDataSource>(
       () => DispatchDetailsDataSourceImpl(apiService: getIt<ApiService>()));
 
+  //payerDataSource
+  getIt.registerLazySingleton<PayerDatasource>(
+      () => PayerDatasourceImpl(apiService: getIt<ApiService>()));
+
   // Repositories
   //BaseRepo
   getIt.registerLazySingleton<BaseRepos>(() => BaseRepos());
@@ -245,6 +253,10 @@ void setupLocator() {
   getIt.registerLazySingleton<DispatchDetailsRepo>(() =>
       DispatchDetailsRepoImpl(
           dispatchDetailsDataSource: getIt<DispatchDetailsDataSource>()));
+
+  //PayerRepo
+  getIt.registerLazySingleton<PayerRepo>(
+      () => PayerRepoImpl(payerDatasource: getIt<PayerDatasource>()));
 
   // Use Cases
   //login Use Case
@@ -506,4 +518,7 @@ void setupLocator() {
   //ShipmentDetailsCubit
   getIt.registerFactory<ShipmentDetailsCubit>(
       () => ShipmentDetailsCubit(getIt<DispatchDetailsRepo>()));
+
+  //PayerCubit
+  getIt.registerFactory<PayerCubit>(() => PayerCubit(getIt<PayerRepo>()));
 }

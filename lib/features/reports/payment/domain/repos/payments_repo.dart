@@ -5,7 +5,7 @@ import 'package:wncc_portal/features/reports/payment/data/models/payment_details
 
 abstract class PaymentsRepo {
   Future<Either<Failure, List<Payment>>> getPaymentPerBanks(
-      int mode, DateTime date);
+      int mode, DateTime date, String? payer);
   Future<Either<Failure, List<PaymentDetailsModel>>> fetchPaymentDetailsData(
       DateTime fromDate, DateTime toDate);
 }

@@ -77,7 +77,7 @@ Widget buildCustomerTable({
                       color: WidgetStateProperty.resolveWith<Color?>(
                         (Set<WidgetState> states) {
                           if (data.indexOf(row) == data.length - 1) {
-                            return tableHeaderColor;
+                            return fixedColumnsColor;
                           }
                           return null;
                         },
@@ -132,7 +132,7 @@ Widget buildCustomerTable({
                       color: WidgetStateProperty.resolveWith<Color?>(
                         (Set<WidgetState> states) {
                           if (data.indexOf(row) == data.length - 1) {
-                            return tableHeaderColor;
+                            return fixedColumnsColor;
                           }
                           return null;
                         },
@@ -187,7 +187,7 @@ Widget buildCustomerTable({
                       color: WidgetStateProperty.resolveWith<Color?>(
                         (Set<WidgetState> states) {
                           if (data.indexOf(row) == data.length - 1) {
-                            return tableHeaderColor;
+                            return fixedColumnsColor;
                           }
                           return null;
                         },

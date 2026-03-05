@@ -65,7 +65,7 @@ class MonthlyPaymentTable extends StatelessWidget {
                   minWidth: tableData.headers.length * 150,
                   fixedLeftColumns: 1,
                   fixedTopRows: 1,
-                  fixedColumnsColor: tableHeaderColor,
+                  fixedColumnsColor: fixedColumnsColor,
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),
                   columns: tableData.headers
@@ -88,7 +88,7 @@ class MonthlyPaymentTable extends StatelessWidget {
                             (Set<WidgetState> states) {
                               if (tableData.rows.indexOf(row) ==
                                   tableData.rows.length - 1) {
-                                return tableHeaderColor;
+                                return fixedColumnsColor;
                               }
                               return null;
                             },

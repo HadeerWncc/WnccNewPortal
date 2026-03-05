@@ -20,7 +20,10 @@ class CustomMenusList extends StatelessWidget {
             user: user,
           ),
           const Divider(),
-          DrawerMenuList(activeTab: activeTab),
+          DrawerMenuList(
+            activeTab: activeTab,
+            userPos: user.position ?? "",
+          ),
         ],
       ),
     );

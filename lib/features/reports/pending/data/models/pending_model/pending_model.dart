@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:intl/intl.dart';
 
 class PendingModel extends Equatable {
   final String? customerId;
@@ -185,7 +186,9 @@ class PendingModel extends Equatable {
         'Region': branchName,
         'City': country,
         'Sales': salesName,
-        'Date': registerDate,
+        'Date': registerDate == null
+            ? ""
+            : DateFormat("d/m/yyyy").format(DateTime.parse(registerDate!)),
       };
 
   @override

@@ -48,7 +48,7 @@ class CustomerDispatchTable extends StatelessWidget {
                       customerDispatchResponse.length,
                       (index) => DataRow(
                         color: (index == customerDispatchResponse.length - 1)
-                            ? WidgetStateProperty.all(tableHeaderColor)
+                            ? WidgetStateProperty.all(fixedColumnsColor)
                             : null,
                         cells: [
                           DataCell(
@@ -113,7 +113,7 @@ class CustomerDispatchTable extends StatelessWidget {
                       customerDispatchResponse.length,
                       (index) => DataRow(
                         color: (index == customerDispatchResponse.length - 1)
-                            ? WidgetStateProperty.all(tableHeaderColor)
+                            ? WidgetStateProperty.all(fixedColumnsColor)
                             : null,
                         cells: [
                           DataCell(
@@ -168,7 +168,7 @@ class CustomerDispatchTable extends StatelessWidget {
                       customerDispatchResponse.length,
                       (index) => DataRow(
                         color: (index == customerDispatchResponse.length - 1)
-                            ? WidgetStateProperty.all(tableHeaderColor)
+                            ? WidgetStateProperty.all(fixedColumnsColor)
                             : null,
                         cells: [
                           DataCell(
@@ -247,7 +247,7 @@ class CustomerDispatchTable extends StatelessWidget {
                       customerDispatchResponse.length,
                       (index) => DataRow(
                         color: (index == customerDispatchResponse.length - 1)
-                            ? WidgetStateProperty.all(tableHeaderColor)
+                            ? WidgetStateProperty.all(fixedColumnsColor)
                             : null,
                         cells: [
                           DataCell(

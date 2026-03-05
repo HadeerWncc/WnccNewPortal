@@ -35,7 +35,7 @@ Widget totalColumn(
           height: 42,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: tableHeaderColor,
+            color: fixedColumnsColor,
             border: Border.symmetric(
               horizontal: BorderSide(color: Colors.grey.shade300, width: 1),
               vertical: const BorderSide(

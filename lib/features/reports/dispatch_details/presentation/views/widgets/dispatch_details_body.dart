@@ -16,15 +16,6 @@ class DispatchDetailsBody extends StatelessWidget {
       child: BlocBuilder<DispatchDetailsCubit, DispatchDetailsState>(
         builder: (context, state) {
           if (state is DispatchDetailsSuccess) {
-            final grouped = groupRegionsByArea(state.dispatchDetailsList);
-
-            final columns = buildColumns(grouped);
-
-            final rows = buildRowsFromMonths(
-              months: state.dispatchDetailsList,
-              columns: columns,
-              quantityType: QuantityType.total,
-            );
             return Column(
               children: [
                 DispatchDetailsHeader(

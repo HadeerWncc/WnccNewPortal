@@ -39,7 +39,6 @@ class DetailsPaymentTable extends StatelessWidget {
                 child: Text('No Data Available'),
               )
             : Column(
-                // شلنا الـ SingleChildScrollView من هنا
                 children: [
                   ColumnChart(
                     barChart: charts,

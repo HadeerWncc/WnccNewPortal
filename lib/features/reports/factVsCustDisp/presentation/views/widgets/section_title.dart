@@ -5,15 +5,13 @@ Widget sectionTitle(String title) {
     width: double.infinity,
     padding: const EdgeInsets.all(12),
     decoration: BoxDecoration(
-      color: Colors.green.shade300,
+      color: const Color(0xff2b6617),
       borderRadius: BorderRadius.circular(6),
     ),
     child: Text(
       title,
       style: const TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-      ),
+          fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
     ),
   );
 }

@@ -5,9 +5,11 @@ class DispatchQuantity extends Equatable {
   final num? pickupQuantity;
   final num? total;
 
-  const DispatchQuantity({this.deliveryQuantity, this.pickupQuantity, this.total});
+  const DispatchQuantity(
+      {this.deliveryQuantity, this.pickupQuantity, this.total});
 
-  factory DispatchQuantity.fromJson(Map<String, dynamic> json) => DispatchQuantity(
+  factory DispatchQuantity.fromJson(Map<String, dynamic> json) =>
+      DispatchQuantity(
         deliveryQuantity: json['deliveryQuantity'] as num?,
         pickupQuantity: json['pickupQuantity'] as num?,
         total: json['total'] as num?,

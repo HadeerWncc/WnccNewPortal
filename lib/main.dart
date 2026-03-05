@@ -11,6 +11,7 @@ import 'package:wncc_portal/features/authentication/presentation/manager/auth_cu
 import 'package:wncc_portal/features/authentication/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
+import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
@@ -126,6 +127,11 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(
           create: (context) {
             return getIt<DispatchDetailsCubit>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return getIt<PayerCubit>();
           },
         ),
       ],

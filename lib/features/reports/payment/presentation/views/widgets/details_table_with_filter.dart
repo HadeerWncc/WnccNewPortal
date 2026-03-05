@@ -25,7 +25,10 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
   List<PaymentDetailsModel> get filteredData {
     return widget.tableData.where((t) {
       final matchDoc = searchText.isEmpty ||
-          (t.documentNo ?? "").toLowerCase().contains(searchText.toLowerCase());
+          (t.documentNo ?? "")
+              .toLowerCase()
+              .contains(searchText.toLowerCase()) ||
+          (t.customer ?? "").toLowerCase().contains(searchText.toLowerCase());
 
       final matchSales =
           selectedSales == "All" || t.salesRepName == selectedSales;
@@ -99,7 +102,7 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
                   columnSpacing: 0,
                   fixedTopRows: 1,
                   fixedLeftColumns: 1,
-                  fixedColumnsColor: tableHeaderColor,
+                  fixedColumnsColor: fixedColumnsColor,
                   headingRowHeight: 45,
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),

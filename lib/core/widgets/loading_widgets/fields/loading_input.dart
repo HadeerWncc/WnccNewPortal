@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class LoadingInput extends StatelessWidget {
   const LoadingInput({
@@ -7,10 +8,14 @@ class LoadingInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 50,
-      color: Colors.grey,
+    return Shimmer.fromColors(
+      baseColor: Colors.grey.shade300,
+      highlightColor: Colors.grey.shade100,
+      child: Container(
+        width: double.infinity,
+        height: 50,
+        color: Colors.grey,
+      ),
     );
   }
 }
