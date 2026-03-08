@@ -21,18 +21,10 @@ class DispatchDetailsBody extends StatelessWidget {
             BlocProvider.of<ShipmentDetailsCubit>(context).getShipmentDetails();
             return Column(
               children: [
-                DispatchDetailsHeader(
-                  allCities: ['Alex'],
-                  selectedCities: ['Alex'],
-                ),
-                const SizedBox(height: 16),
-                sectionTitle('Dispatch Details'),
-                const SizedBox(height: 5),
-                Expanded(
-                    child: DispatchTablesBody(
+                DispatchTablesBody(
                   dispatchDetailsResponse: state.dispatchDetailsList,
                   year: DateTime.now().year,
-                )),
+                ),
               ],
             );
           } else if (state is DispatchDetailsFailure) {

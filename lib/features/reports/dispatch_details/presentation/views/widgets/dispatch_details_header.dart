@@ -4,9 +4,10 @@ import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/w
 
 class DispatchDetailsHeader extends StatelessWidget {
   const DispatchDetailsHeader(
-      {super.key, required this.allCities, required this.selectedCities});
+      {super.key, required this.allCities, required this.selectedCities, this.onChanged});
   final List<String> allCities;
   final List<String> selectedCities;
+   final Function(List<String>)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,6 +35,7 @@ class DispatchDetailsHeader extends StatelessWidget {
               child: MultiSelectDropDown(
                 cities: allCities,
                 selectedCities: selectedCities,
+                onChanged: onChanged,
               ),
             )
             // CustomMultiSelectDropDown(

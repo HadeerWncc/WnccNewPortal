@@ -3,35 +3,28 @@ import 'package:flutter/material.dart';
 
 class MultiSelectDropDown extends StatefulWidget {
   const MultiSelectDropDown(
-      {super.key, required this.cities, required this.selectedCities});
+      {super.key, required this.cities, required this.selectedCities, this.onChanged});
   final List<String> cities;
   final List<String> selectedCities;
+  final Function(List<String>)? onChanged;
   @override
   State<MultiSelectDropDown> createState() => _MultiSelectDropDownState();
 }
 
 class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
-  List<String> selectedCities = [];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    selectedCities = widget.selectedCities;
-  }
-
+ 
   final GlobalKey<DropdownSearchState<String>> _dropdownKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<String>.multiSelection(
       key: _dropdownKey,
       items: widget.cities,
-      selectedItems: selectedCities,
+      selectedItems: widget.selectedCities,
       dropdownBuilder: (context, selectedItems) {
         return Text(
           selectedItems.isEmpty
               ? "Select items"
-              : "${selectedItems.length} items selected",
+              : "${widget.selectedCities.length} items selected",
           style: const TextStyle(color: Colors.black),
         );
       },
@@ -50,7 +43,7 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
                 title: const Text("Select All",
                     style: TextStyle(color: Colors.blue)),
                 trailing: Checkbox(
-                  value: selectedCities.length == widget.cities.length,
+                  value: widget.selectedCities.length == widget.cities.length,
                   onChanged: (val) {
                     if (val == true) {
                       _dropdownKey.currentState?.popupSelectAllItems();
@@ -66,11 +59,7 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
           );
         },
       ),
-      onChanged: (values) {
-        setState(() {
-          selectedCities = values;
-        });
-      },
+      onChanged: widget.onChanged
     );
   }
 }
