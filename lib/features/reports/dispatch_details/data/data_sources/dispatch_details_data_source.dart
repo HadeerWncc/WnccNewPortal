@@ -14,7 +14,7 @@ class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource {
   @override
   Future<List<DispatchDetailsModel>> getDispatchDetails(DateTime date) async {
     var result = await apiService.get(
-        endPoint: 'api/Reports/GetDispatchDetails?date=$date');
+        endPoint: 'api/Reports/GetRegionDispatchDetails?date=$date');
     List<DispatchDetailsModel> dispatchDetailsList = [];
     for (var dispach in result["data"]) {
       DispatchDetailsModel dispatchDetailsModel =

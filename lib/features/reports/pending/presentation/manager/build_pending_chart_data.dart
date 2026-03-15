@@ -1,6 +1,6 @@
 import 'package:wncc_portal/core/models/chart_data.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment/bank.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/build_table_data.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/helper/build_table_data.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/helper/top_two.dart';
 import 'package:wncc_portal/features/reports/pending/data/models/pending_model/pending_model.dart';
 

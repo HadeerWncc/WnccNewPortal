@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/widgets/multi_select_drop_down.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/custom_year_picker.dart';
 
 class DispatchDetailsHeader extends StatelessWidget {
   const DispatchDetailsHeader(
       {super.key, required this.allCities, required this.selectedCities, this.onChanged});
-  final List<String> allCities;
+  final List<DispatchRegion> allCities;
   final List<String> selectedCities;
    final Function(List<String>)? onChanged;
   @override
@@ -38,14 +39,6 @@ class DispatchDetailsHeader extends StatelessWidget {
                 onChanged: onChanged,
               ),
             )
-            // CustomMultiSelectDropDown(
-            //   items: const ['Alex', 'Cairo', 'Aswan', 'Fayoum', 'Swiz', 'Giza'],
-            //   selectedValue: const ['Alex', 'Cairo', 'Aswan'],
-            //   title: '4 items selected',
-            //   hintText: 'Select',
-            //   width: MediaQuery.of(context).size.width * .2,
-            //   onChanged: (value) {},
-            // )
           ]),
     );
   }

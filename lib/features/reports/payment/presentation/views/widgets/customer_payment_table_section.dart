@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/monthly_payment_table.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_daily_header.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/customer_payment_header.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/customer_payment_table.dart';
 
-class DailyPaymentTablesSection extends StatefulWidget {
-  const DailyPaymentTablesSection({
+class CustomerPaymentTablesSection extends StatefulWidget {
+  const CustomerPaymentTablesSection({
     super.key,
   });
 
   @override
-  State<DailyPaymentTablesSection> createState() =>
-      _DailyPaymentTablesSectionState();
+  State<CustomerPaymentTablesSection> createState() =>
+      _CustomerPaymentTablesSectionState();
 }
 
-class _DailyPaymentTablesSectionState extends State<DailyPaymentTablesSection> {
+class _CustomerPaymentTablesSectionState
+    extends State<CustomerPaymentTablesSection> {
   int activeTab = 0;
   bool openCharts = false;
+  String selectedSales = "All";
+  String? selectedPayer = "All";
+
   @override
   Widget build(BuildContext context) {
     var orientation = MediaQuery.of(context).orientation;
@@ -28,7 +32,14 @@ class _DailyPaymentTablesSectionState extends State<DailyPaymentTablesSection> {
         Wrap(
           alignment: WrapAlignment.start,
           children: [
-            const PaymentsDailyHeader(),
+            CustomerPaymentHeader(
+              onChangePayer: (value) {
+                selectedPayer = value;
+                setState(() {
+                  
+                });
+              },
+            ),
             const SizedBox(width: 7),
             CustomChckButtons(
                 buttons: const ["EGP", "USD"],
@@ -53,20 +64,22 @@ class _DailyPaymentTablesSectionState extends State<DailyPaymentTablesSection> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (!openCharts) ...[
-                  sectionTitle('Payments Per Bank'),
+                  sectionTitle('Payments Per Customer'),
                   const SizedBox(height: 8),
                 ],
                 if (openCharts)
-                  MonthlyPaymentTable(
+                  CustomerPaymentTable(
                     currency: activeTab == 0 ? "EGP" : "USD",
                     showCharts: openCharts,
+                    payerId: selectedPayer,
                   )
                 else
                   SizedBox(
                     height: orientation == Orientation.landscape ? 400 : 600,
-                    child: MonthlyPaymentTable(
+                    child: CustomerPaymentTable(
                       currency: activeTab == 0 ? "EGP" : "USD",
                       showCharts: openCharts,
+                      payerId: selectedPayer,
                     ),
                   ),
               ],

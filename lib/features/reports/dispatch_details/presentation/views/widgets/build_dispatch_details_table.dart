@@ -93,7 +93,7 @@ List<DispatchRow> buildRowsFromMonths({
     final days = month.monthDays ?? [];
 
     final iterableDays =
-        isCurrentMonth ? days : [days.last]; // 👈 القديم = total بس
+        isCurrentMonth ? days : [days.last]; 
 
     for (final day in iterableDays) {
       final values = <String, num>{};

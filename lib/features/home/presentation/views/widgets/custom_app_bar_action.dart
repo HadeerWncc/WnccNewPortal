@@ -17,7 +17,7 @@ class CustomAppbarActions extends StatelessWidget {
       itemBuilder: (context) => [
         PopupMenuItem(
           onTap: () {
-            GoRouter.of(context).push(AppRouter.profile);
+            // GoRouter.of(context).push(AppRouter.profile);
           },
           value: "Profile",
           child: const CustomPopMenuItem(

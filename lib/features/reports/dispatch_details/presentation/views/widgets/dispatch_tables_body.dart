@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
+import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_month_data.dart';
@@ -11,6 +13,7 @@ import 'package:wncc_portal/features/reports/dispatch_details/presentation/views
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_top_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_details_header.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
 
 class DispatchTablesBody extends StatefulWidget {
   const DispatchTablesBody(
@@ -31,8 +34,10 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
 
   static const double dateWidth = 150.0;
   static const double cellWidth = 100.0;
-  List<String> allRegions =[];
+  List<DispatchRegion> allRegions = [];
   List<String> regions = [];
+  QuantityType quantityType = QuantityType.total;
+  int activeTab = 2;
   @override
   void initState() {
     super.initState();
@@ -46,9 +51,8 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
 
     allRegions = widget.dispatchDetailsResponse.isNotEmpty
         ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
-            .map((d) => d.regionName!)
             .toList()
-        : <String>[];
+        : <DispatchRegion>[];
     regions = widget.dispatchDetailsResponse.isNotEmpty
         ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
             .where((r) => r.enableDispatchReporting == true)
@@ -70,7 +74,6 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
 
   @override
   Widget build(BuildContext context) {
-    
     List<DispatchRegion> visibleRegions = widget
             .dispatchDetailsResponse.isNotEmpty
         ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
@@ -91,14 +94,36 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
                 DispatchDetailsHeader(
                   allCities: allRegions,
                   selectedCities: regions,
-                  onChanged: (values){
+                  onChanged: (values) {
                     regions = values;
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CustomChckButtons(
+                      buttons: const ["Delivery", "Pickup", "Both"],
+                      activeTab: activeTab,
+                      onTap: (value) {
+                        if (value == "Delivery") {
+                          activeTab = 0;
+                          quantityType = QuantityType.delivery;
+                        } else if (value == "Pickup") {
+                          activeTab = 1;
+                          quantityType = QuantityType.pickup;
+                        } else {
+                          activeTab = 2;
+                          quantityType = QuantityType.total;
+                        }
+                        setState(() {});
+                      },
+                    ),
+                    CustomToggleButton(onToggle: (value) {}),
+                  ],
+                ),
+                const SizedBox(height: 8),
                 sectionTitle('Dispatch Details'),
                 const SizedBox(height: 5),
                 buildTopHeader(visibleRegions, _headerController),
@@ -121,18 +146,21 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
                                     widget.dispatchDetailsResponse.length,
                                     (index) {
                                   return buildMonthData(
-                                      widget.dispatchDetailsResponse[index],
-                                      index,
-                                      visibleRegions,
-                                      totalBorder,
-                                      _expandedMonths);
+                                    widget.dispatchDetailsResponse[index],
+                                    index,
+                                    visibleRegions,
+                                    totalBorder,
+                                    _expandedMonths,
+                                    quantityType,
+                                  );
                                 }),
                                 ...List.generate(state.shipmentDetails.length,
                                     (index) {
                                   return buildShipmentData(
                                       state.shipmentDetails[index],
                                       visibleRegions,
-                                      totalBorder);
+                                      totalBorder,
+                                      quantityType);
                                 })
                               ]),
                             ),

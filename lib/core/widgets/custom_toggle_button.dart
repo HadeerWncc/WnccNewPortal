@@ -14,7 +14,7 @@ class _CustomToggleButtonState extends State<CustomToggleButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
         borderRadius: BorderRadius.circular(8),
@@ -34,10 +34,12 @@ class _CustomToggleButtonState extends State<CustomToggleButton> {
           ),
           const SizedBox(width: 8),
           Text(
-            isActive ? "Show Charts" : "Hide Charts",
+            'charts',
             style: TextStyle(
               color: isActive ? kBtnColor : Colors.grey,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.bold,
+              fontSize: 11,
+
             ),
           ),
         ],

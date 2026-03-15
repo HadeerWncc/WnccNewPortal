@@ -38,6 +38,6 @@ class BaseRepos {
       states.add(StateModel.fromJson(jsonState));
     }
     states = states.where((s) => s.state == state).toList();
-    return states.map<String>((item) => item.id as String).toList()[0];
+    return states.map<String>((item) => item.id as String).toList().isNotEmpty? states.map<String>((item) => item.id as String).toList()[0]:"";
   }
 }

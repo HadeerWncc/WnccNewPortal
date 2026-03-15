@@ -1,11 +1,12 @@
   import 'package:flutter/material.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/shipment_details_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_shipment_data_row.dart';
 
 Widget buildShipmentData(
-      ShipmentDetailsModel ship, List<DispatchRegion> regions, BoxBorder? totalBorder) {
+      ShipmentDetailsModel ship, List<DispatchRegion> regions, BoxBorder? totalBorder, QuantityType quantityType) {
     return Column(
-      children: [buildShipmentDataRow(ship, regions,totalBorder: totalBorder)],
+      children: [buildShipmentDataRow(ship, regions,totalBorder: totalBorder, quantityType: quantityType)],
     );
   }

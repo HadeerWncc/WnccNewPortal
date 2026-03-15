@@ -1,11 +1,14 @@
  import 'package:flutter/material.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/month_day.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_data_row.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_dispatch_details_table.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_total_row.dart';
 
 Widget buildMonthData(
-      DispatchDetailsModel month, int index, List<DispatchRegion> regions, BoxBorder totalBorder,  Map<int, bool> expandedMonths) {
+      DispatchDetailsModel month, int index, List<DispatchRegion> regions, BoxBorder totalBorder,  Map<int, bool> expandedMonths, QuantityType quantityType){
     final isExpanded = expandedMonths[index] ?? false;
 
     num totalDelta = 0;
@@ -16,14 +19,16 @@ Widget buildMonthData(
     num totalAll = 0;
     num totalExport = 0;
 
-    for (var day in month.monthDays ?? []) {
-      totalDelta += day.totalDelta?.total ?? 0;
-      totalGCairo += day.totalGCairo?.total ?? 0;
-      totalUEgypt += day.totalUEgypt?.total ?? 0;
-      totalBags += day.totalBags?.total ?? 0;
-      totalBulk += day.totalBulk?.total ?? 0;
-      totalAll += day.total?.total ?? 0;
-      totalExport += day.totalExport?.total ?? 0;
+    for (MonthDay day in month.monthDays ?? []) {
+      
+      
+      totalDelta += getQuantityValue(day.totalDelta,quantityType);
+      totalGCairo +=  getQuantityValue(day.totalGCairo, quantityType);
+      totalUEgypt += getQuantityValue(day.totalUEgypt,quantityType);
+      totalBags += getQuantityValue(day.totalBags,quantityType);
+      totalBulk += getQuantityValue(day.totalBulk,quantityType);
+      totalAll += getQuantityValue(day.total,quantityType);
+      totalExport += getQuantityValue(day.totalExport,quantityType);
     }
 
     return Column(
@@ -38,10 +43,14 @@ Widget buildMonthData(
           totalBulk: totalBulk,
           totalAll: totalAll,
           totalExport: totalExport,
-          totalBorder: totalBorder
+          totalBorder: totalBorder,
+          quantityType: quantityType,
         ),
         if (isExpanded)
-          ...(month.monthDays?.map((day) => buildDataRow(day, regions)) ?? []),
+          ...(month.monthDays?.map((day) => buildDataRow(day, regions,quantityType: quantityType)) ?? []),
       ],
     );
   }
+
+
+  

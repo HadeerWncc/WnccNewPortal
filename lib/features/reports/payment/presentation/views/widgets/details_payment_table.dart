@@ -3,8 +3,8 @@ import 'package:wncc_portal/core/widgets/column_chart.dart';
 import 'package:wncc_portal/core/widgets/insight_card.dart';
 import 'package:wncc_portal/core/widgets/stacked_line_chart.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment_details_model.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/build_details_chart_date.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/build_table_data.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/helper/build_details_chart_date.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/helper/build_table_data.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/currency_dart_chart.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/details_table_with_filter.dart';
 

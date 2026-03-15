@@ -71,7 +71,9 @@ import 'package:wncc_portal/features/reports/payment/data/data_sources/payment_d
 import 'package:wncc_portal/features/reports/payment/data/repo_impl/payments_repo_impl.dart';
 import 'package:wncc_portal/features/reports/payment/domain/repos/payments_repo.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_percustomer_page.dart';
 import 'package:wncc_portal/features/reports/pending/data/data_sources/pending_data_source.dart';
 import 'package:wncc_portal/features/reports/pending/data/repo_impl/pending_repo_impl.dart';
 import 'package:wncc_portal/features/reports/pending/domain/repos/pending_repo.dart';
@@ -503,6 +505,9 @@ void setupLocator() {
   //PaymentsDetailsCubit
   getIt.registerFactory<PaymentsDetailsCubit>(
       () => PaymentsDetailsCubit(getIt<PaymentsRepo>()));
+  
+  //PayementPerCustomerCubit
+  getIt.registerFactory<PaymentPerCustomerCubit>(() => PaymentPerCustomerCubit(getIt<PaymentsRepo>(),getIt<PayerRepo>()));
 
   //PendingDeliveryCubit
   getIt.registerFactory<PendingCubit>(() => PendingCubit(getIt<PendingRepo>()));
@@ -521,4 +526,6 @@ void setupLocator() {
 
   //PayerCubit
   getIt.registerFactory<PayerCubit>(() => PayerCubit(getIt<PayerRepo>()));
+
+  
 }

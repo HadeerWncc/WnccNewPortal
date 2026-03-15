@@ -4,7 +4,8 @@ import 'package:wncc_portal/core/constants/colors.dart';
 Widget totalColumn(
     {required List<String> values,
     required String lableName,
-    double? cellWidth = 90}) {
+    double? cellWidth = 90,
+    Color? columnColor = fixedColumnsColor}) {
   return Column(
     children: [
       // Header
@@ -35,7 +36,7 @@ Widget totalColumn(
           height: 42,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: fixedColumnsColor,
+            color: columnColor,
             border: Border.symmetric(
               horizontal: BorderSide(color: Colors.grey.shade300, width: 1),
               vertical: const BorderSide(

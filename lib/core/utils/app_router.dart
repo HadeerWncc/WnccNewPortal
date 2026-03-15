@@ -26,6 +26,7 @@ import 'package:wncc_portal/features/customerService/requests/presentation/views
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_daily_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_details_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_monthly_page.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_percustomer_page.dart';
 import 'package:wncc_portal/features/reports/pending/presentation/views/pages/pending_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
 import 'package:wncc_portal/features/home/to_do_list/presentation/views/pages/to_do_screen.dart';
@@ -79,6 +80,7 @@ abstract class AppRouter {
   static const morningMeatingPath = '/morningMeeting';
   static const paymentsMonthlyPath = '/paymentsMonthly';
   static const paymentsDailyPath = '/paymentsDaily';
+  static const paymentsPerCustomerPath = '/customerPayment';
   static const paymentsDetailsPath = '/paymentsDetails';
   static const pendingPath = '/pending';
   static const loadingDetailsPath = '/loadingDetails';
@@ -258,6 +260,10 @@ abstract class AppRouter {
       GoRoute(
         path: paymentsDailyPath,
         builder: (context, state) => const PaymentsDailyPage(),
+      ),
+      GoRoute(
+        path: paymentsPerCustomerPath,
+        builder: (context, state) => const PaymentsPerCustomerPage(),
       ),
       GoRoute(
         path: paymentsDetailsPath,

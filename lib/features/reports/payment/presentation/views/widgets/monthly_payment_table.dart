@@ -6,7 +6,7 @@ import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/widgets/column_chart.dart';
 import 'package:wncc_portal/core/widgets/insight_card.dart';
 import 'package:wncc_portal/core/widgets/stacked_line_chart.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/build_table_data.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/helper/build_table_data.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/currency_dart_chart.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/loading/payment_loaing.dart';
@@ -65,7 +65,7 @@ class MonthlyPaymentTable extends StatelessWidget {
                   minWidth: tableData.headers.length * 150,
                   fixedLeftColumns: 1,
                   fixedTopRows: 1,
-                  fixedColumnsColor: fixedColumnsColor,
+                  fixedColumnsColor: tableHeaderColor,
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),
                   columns: tableData.headers
@@ -88,7 +88,7 @@ class MonthlyPaymentTable extends StatelessWidget {
                             (Set<WidgetState> states) {
                               if (tableData.rows.indexOf(row) ==
                                   tableData.rows.length - 1) {
-                                return fixedColumnsColor;
+                                return tableHeaderColor;
                               }
                               return null;
                             },

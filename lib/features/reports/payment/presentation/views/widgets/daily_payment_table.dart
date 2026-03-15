@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/table_column.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/build_table_data.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/helper/build_table_data.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 
 class DailyPaymentTable extends StatelessWidget {
@@ -29,6 +29,7 @@ class DailyPaymentTable extends StatelessWidget {
                         : e.day!.toString()),
                     "Total"
                   ],
+                  columnColor: tableHeaderColor,
                   lableName: 'Date',
                 ),
                 Flexible(
@@ -64,7 +65,7 @@ class DailyPaymentTable extends StatelessWidget {
                                     (Set<WidgetState> states) {
                                       if (tableData.rows.indexOf(row) ==
                                           tableData.rows.length - 1) {
-                                        return fixedColumnsColor;
+                                        return tableHeaderColor;
                                       }
                                       return null;
                                     },

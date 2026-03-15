@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:material_symbols_icons/symbols.dart';
-import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/constants/report_options_list.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
-import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/fields/loading_input.dart';
-import 'package:wncc_portal/core/widgets/month_year_picker.dart';
 import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 
-class PaymentsDailyHeader extends StatefulWidget {
-  const PaymentsDailyHeader({super.key});
-
+class CustomerPaymentHeader extends StatefulWidget {
+  const CustomerPaymentHeader({super.key, this.onChangePayer});
+  final Function(String? payer)? onChangePayer;
   @override
-  State<PaymentsDailyHeader> createState() => _PaymentsDailyHeaderState();
+  State<CustomerPaymentHeader> createState() => _CustomerPaymentHeaderState();
 }
 
-class _PaymentsDailyHeaderState extends State<PaymentsDailyHeader> {
+class _CustomerPaymentHeaderState extends State<CustomerPaymentHeader> {
   DateTime date = DateTime.now();
   String? payer = "";
   @override
@@ -38,31 +33,30 @@ class _PaymentsDailyHeaderState extends State<PaymentsDailyHeader> {
               : MediaQuery.of(context).size.width * .35,
           child: CustomDropDownInput(
             title: 'Select',
-            items: [...reportOptionsList,"Per Customer"],
-            selectedValue: 'Daily',
+            items: [...reportOptionsList, "Per Customer"],
+            selectedValue: 'Per Customer',
             onChanged: (value) {
               // Handle dropdown change
-              if (value == 'Monthly') {
+              if (value == 'Daily') {
+                GoRouter.of(context).push(AppRouter.paymentsDailyPath);
+              } else if (value == "Monthly") {
                 GoRouter.of(context).push(AppRouter.paymentsMonthlyPath);
               }
-              else if(value == "Per Customer"){
-                GoRouter.of(context).push(AppRouter.paymentsPerCustomerPath);
-              }
             },
           ),
         ),
-        SizedBox(
-          width: (MediaQuery.of(context).orientation == Orientation.landscape)
-              ? MediaQuery.of(context).size.width * .25
-              : MediaQuery.of(context).size.width * .5,
-          child: CustomMonthYearPicker(
-            title: 'Select Date',
-            onChange: (value) {
-              date = value;
-              setState(() {});
-            },
-          ),
-        ),
+        // SizedBox(
+        //   width: (MediaQuery.of(context).orientation == Orientation.landscape)
+        //       ? MediaQuery.of(context).size.width * .25
+        //       : MediaQuery.of(context).size.width * .5,
+        //   child: CustomYearPicker(
+        //     title: 'Select Year',
+        //     onChange: (value) {
+        //       date = value;
+        //       setState(() {});
+        //     },
+        //   ),
+        // ),
         const SizedBox(
           width: 10,
         ),
@@ -72,19 +66,23 @@ class _PaymentsDailyHeaderState extends State<PaymentsDailyHeader> {
               return CustomDropDownInput(
                 items: [
                   "All",
-                  ...state.payerModel.map((p) => "${p.fullName}|${p.id}")
+                  ...state.payerModel.map((p) => p.fullName ?? "")
                 ],
                 selectedValue: "All",
                 hintText: "payer",
                 title: "Payer",
                 width: MediaQuery.of(context).size.width * .5,
                 onChanged: (value) {
-                  if (value!.startsWith("All")) {
+                  if (value == "All") {
                     payer = "";
                   } else {
-                    payer = value.split('|').last; // id
+                    payer = state.payerModel
+                        .firstWhere((p) => p.fullName == value)
+                        .id;
                   }
                   setState(() {});
+                  widget.onChangePayer?.call(payer);
+
                 },
               );
             } else {
@@ -95,20 +93,21 @@ class _PaymentsDailyHeaderState extends State<PaymentsDailyHeader> {
             }
           },
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * .3,
-          child: CustomButtonWithIcon(
-            child: 'Search',
-            textColor: Colors.white,
-            bgColor: kBtnColor,
-            onHoverColor: const Color.fromARGB(255, 98, 224, 128),
-            icon: Symbols.document_search,
-            onTap: () {
-              BlocProvider.of<PaymentsCubit>(context)
-                  .fetchPayments(2, date, payer);
-            },
-          ),
-        )
+
+        // SizedBox(
+        //   width: MediaQuery.of(context).size.width * .3,
+        //   child: CustomButtonWithIcon(
+        //     child: 'Search',
+        //     textColor: Colors.white,
+        //     bgColor: kBtnColor,
+        //     onHoverColor: const Color.fromARGB(255, 98, 224, 128),
+        //     icon: Symbols.document_search,
+        //     onTap: () {
+        //       BlocProvider.of<PaymentsCubit>(context)
+        //           .fetchPayments(1, date, payer);
+        //     },
+        //   ),
+        // )
       ]),
     );
   }

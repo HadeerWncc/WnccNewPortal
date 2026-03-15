@@ -7,20 +7,18 @@ import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_menus_list.dart';
-import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/monthly_payments_body.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_per_customer_body.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
-class MonthlyPaymentsPage extends StatelessWidget {
-  const MonthlyPaymentsPage({super.key});
+class PaymentsPerCustomerPage extends StatelessWidget {
+  const PaymentsPerCustomerPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<PaymentsCubit>(context)
-        .fetchPayments(1, DateTime.now(), "");
-    BlocProvider.of<PayerCubit>(context).getAllPayers();
-
+    BlocProvider.of<PaymentPerCustomerCubit>(context)
+        .getPaymentPerCustomer(DateTime(DateTime.now().year, DateTime.now().month, 1), DateTime.now());
+   
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => {
         if (state is UserFailure)
@@ -54,7 +52,7 @@ class MonthlyPaymentsPage extends StatelessWidget {
                   user: state.user,
                 ),
               ),
-              body: const MonthlyPaymentsBody(),
+              body: const PaymentsPerCustomerBody(),
             ),
           );
         }
