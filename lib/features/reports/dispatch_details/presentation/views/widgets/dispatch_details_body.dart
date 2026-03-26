@@ -22,7 +22,6 @@ class DispatchDetailsBody extends StatelessWidget {
               children: [
                 const DispatchDetailsButtonsList(activeTab: 0),
                 const SizedBox(height: 8),
-                
                 DispatchTablesBody(
                   dispatchDetailsResponse: state.dispatchDetailsList,
                   year: DateTime.now().year,

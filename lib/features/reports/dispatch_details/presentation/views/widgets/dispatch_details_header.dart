@@ -5,10 +5,13 @@ import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/w
 
 class DispatchDetailsHeader extends StatelessWidget {
   const DispatchDetailsHeader(
-      {super.key, required this.allCities, required this.selectedCities, this.onChanged});
+      {super.key,
+      required this.allCities,
+      required this.selectedCities,
+      this.onChanged});
   final List<DispatchRegion> allCities;
   final List<String> selectedCities;
-   final Function(List<String>)? onChanged;
+  final Function(List<String>)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Container(

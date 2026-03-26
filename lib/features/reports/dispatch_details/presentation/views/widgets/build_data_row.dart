@@ -35,40 +35,40 @@ Widget buildDataRow(
             ?.firstWhere((r) => r.regionId == vr.regionId, orElse: () => vr);
         return buildCell(
             NumberFormat.decimalPatternDigits(decimalDigits: 0)
-                .format(getQuantityValue(reg?.quantity,quantityType)),
+                .format(getQuantityValue(reg?.quantity, quantityType)),
             color: rowColor);
       }),
       buildCell(
           NumberFormat.decimalPatternDigits(decimalDigits: 0)
-              .format(getQuantityValue(day.totalGCairo,quantityType)),
+              .format(getQuantityValue(day.totalGCairo, quantityType)),
           color: const Color(0xfffff1df)),
       ...regions.where((r) => r.areaName == "Upper Egypt").map((vr) {
         final reg = day.regions
             ?.firstWhere((r) => r.regionId == vr.regionId, orElse: () => vr);
         return buildCell(
             NumberFormat.decimalPatternDigits(decimalDigits: 0)
-                .format(getQuantityValue(reg?.quantity,quantityType)),
+                .format(getQuantityValue(reg?.quantity, quantityType)),
             color: rowColor);
       }),
       buildCell(
           NumberFormat.decimalPatternDigits(decimalDigits: 0)
-              .format(getQuantityValue(day.totalUEgypt,quantityType)),
+              .format(getQuantityValue(day.totalUEgypt, quantityType)),
           color: const Color(0xfffff1df)),
       buildCell(
           NumberFormat.decimalPatternDigits(decimalDigits: 0)
-              .format(getQuantityValue(day.totalBags,quantityType)),
+              .format(getQuantityValue(day.totalBags, quantityType)),
           color: rowColor),
       buildCell(
           NumberFormat.decimalPatternDigits(decimalDigits: 0)
-              .format(getQuantityValue(day.totalBulk,quantityType)),
+              .format(getQuantityValue(day.totalBulk, quantityType)),
           color: rowColor),
       buildCell(
           NumberFormat.decimalPatternDigits(decimalDigits: 0)
-              .format(getQuantityValue(day.total,quantityType)),
+              .format(getQuantityValue(day.total, quantityType)),
           color: const Color(0xffe9e9e7)),
       buildCell(
           NumberFormat.decimalPatternDigits(decimalDigits: 0)
-              .format(getQuantityValue(day.totalExport,quantityType)),
+              .format(getQuantityValue(day.totalExport, quantityType)),
           color: rowColor),
     ],
   );

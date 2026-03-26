@@ -23,6 +23,8 @@ import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/
 import 'package:wncc_portal/features/reports/dispatch_details/data/repo_impl/dispatch_details_repo_impl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_customer_cubit/dispatch_details_per_customer_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_sales_cubit/dispatch_details_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/data_sources/fact_vs_cust_data_source.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/repos/fact_vs_cust_repo_imp.dart';
@@ -68,8 +70,10 @@ import 'package:wncc_portal/features/customerService/requests/presentation/manag
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/requests_cubit/requests_cubit.dart';
 import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/morning_meeting_priority_cubit/morning_meeting_priority_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/data/data_sources/payment_data_source.dart';
+import 'package:wncc_portal/features/reports/payment/data/models/customer_balance.dart';
 import 'package:wncc_portal/features/reports/payment/data/repo_impl/payments_repo_impl.dart';
 import 'package:wncc_portal/features/reports/payment/domain/repos/payments_repo.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/customer_balance_cubit/customer_balance_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
@@ -505,9 +509,14 @@ void setupLocator() {
   //PaymentsDetailsCubit
   getIt.registerFactory<PaymentsDetailsCubit>(
       () => PaymentsDetailsCubit(getIt<PaymentsRepo>()));
-  
+
+  //PaymentsDetailsCubit
+  getIt.registerFactory<CustomerBalanceCubit>(
+      () => CustomerBalanceCubit(getIt<PaymentsRepo>()));
+
   //PayementPerCustomerCubit
-  getIt.registerFactory<PaymentPerCustomerCubit>(() => PaymentPerCustomerCubit(getIt<PaymentsRepo>(),getIt<PayerRepo>()));
+  getIt.registerFactory<PaymentPerCustomerCubit>(
+      () => PaymentPerCustomerCubit(getIt<PaymentsRepo>(), getIt<PayerRepo>()));
 
   //PendingDeliveryCubit
   getIt.registerFactory<PendingCubit>(() => PendingCubit(getIt<PendingRepo>()));
@@ -520,12 +529,18 @@ void setupLocator() {
   getIt.registerFactory<DispatchDetailsCubit>(
       () => DispatchDetailsCubit(getIt<DispatchDetailsRepo>()));
 
+  //DispatchDetailsPerCustomerCubit
+  getIt.registerFactory<DispatchDetailsPerCustomerCubit>(
+      () => DispatchDetailsPerCustomerCubit(getIt<DispatchDetailsRepo>()));
+
+  //DispatchDetailsPerSalesCubit
+  getIt.registerFactory<DispatchDetailsPerSalesCubit>(
+      () => DispatchDetailsPerSalesCubit(getIt<DispatchDetailsRepo>()));
+
   //ShipmentDetailsCubit
   getIt.registerFactory<ShipmentDetailsCubit>(
       () => ShipmentDetailsCubit(getIt<DispatchDetailsRepo>()));
 
   //PayerCubit
   getIt.registerFactory<PayerCubit>(() => PayerCubit(getIt<PayerRepo>()));
-
-  
 }

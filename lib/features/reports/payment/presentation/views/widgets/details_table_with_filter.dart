@@ -102,7 +102,7 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
                   columnSpacing: 0,
                   fixedTopRows: 1,
                   fixedLeftColumns: 1,
-                  fixedColumnsColor: fixedColumnsColor,
+                  fixedColumnsColor: tableHeaderColor,
                   headingRowHeight: 45,
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),

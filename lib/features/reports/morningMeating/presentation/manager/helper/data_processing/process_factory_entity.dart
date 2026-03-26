@@ -28,7 +28,7 @@ List<FactoryEntity> processFactoryEntities(
     return FactoryEntity(
       date: DateFormat('MMM d, yyyy').format(meeting.date!),
       bags: meeting.factoryDispatchResponse?.localBags?.toDouble(),
-      bulk: meeting.factoryDispatchResponse?.bulk?.toDouble(),
+      bulk: meeting.factoryDispatchResponse?.localBulk?.toDouble(),
       export: meeting.factoryDispatchResponse?.exports?.toDouble(),
       total: meeting.factoryDispatchResponse?.total?.toDouble(),
     );
@@ -41,7 +41,7 @@ List<FactoryEntity> processFactoryEntities(
         .toStringAsFixed(2)),
     bulk: double.parse(sumationList
         .fold<double>(
-            0, (prev, e) => prev + (e.factoryDispatchResponse?.bulk ?? 0))
+            0, (prev, e) => prev + (e.factoryDispatchResponse?.localBulk ?? 0))
         .toStringAsFixed(2)),
     export: double.parse(sumationList
         .fold<double>(

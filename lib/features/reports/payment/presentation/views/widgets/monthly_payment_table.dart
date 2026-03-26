@@ -34,32 +34,35 @@ class MonthlyPaymentTable extends StatelessWidget {
               .map((e) => CurrencyChartData(e.key, e.value))
               .toList();
           return (showCharts)
-              ? Column(
-                  children: [
-                    ColumnChart(
-                      barChart: charts.banks,
-                      title:
-                          '${(state.payments[0].mode == 1) ? 'Annual' : 'Monthly'} Comparison (Banks)',
-                    ),
-                    const SizedBox(height: 10),
-                    StackedLineChart(
-                      stackedData: stackedData,
-                      title: 'Period Trend (Selected Period)',
-                    ),
-                    const SizedBox(height: 10),
-                    InsightCardsSection(
-                      topTwo: tops,
-                      title1:
-                          state.payments[0].mode == 1 ? 'Top Month' : 'Top Day',
-                      title2: 'Top Bank',
-                    ),
-                    const SizedBox(height: 10),
-                    CurrencyDonutCard(chartData: chartData)
-                  ],
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ColumnChart(
+                        barChart: charts.banks,
+                        title:
+                            '${(state.payments[0].mode == 1) ? 'Annual' : 'Monthly'} Comparison (Banks)',
+                      ),
+                      const SizedBox(height: 10),
+                      StackedLineChart(
+                        stackedData: stackedData,
+                        title: 'Period Trend (Selected Period)',
+                      ),
+                      const SizedBox(height: 10),
+                      InsightCardsSection(
+                        topTwo: tops,
+                        title1: state.payments[0].mode == 1
+                            ? 'Top Month'
+                            : 'Top Day',
+                        title2: 'Top Bank',
+                      ),
+                      const SizedBox(height: 10),
+                      CurrencyDonutCard(chartData: chartData)
+                    ],
+                  ),
                 )
               : DataTable2(
                   horizontalMargin: 0,
-                  scrollController: ScrollController(keepScrollOffset: false),
+                  // scrollController: ScrollController(keepScrollOffset: false),
                   columnSpacing: 0,
                   headingRowHeight: 45,
                   minWidth: tableData.headers.length * 150,

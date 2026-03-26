@@ -20,5 +20,4 @@ class DailyPaymentsBody extends StatelessWidget {
       ),
     );
   }
-
 }

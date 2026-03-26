@@ -8,7 +8,6 @@ class CustomerDeposit {
   String todayDepositUsd;
   String monthDepositUsd;
 
-
   CustomerDeposit({
     required this.customer,
     required this.customerName,

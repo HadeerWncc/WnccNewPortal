@@ -5,6 +5,7 @@ class SalesQuota extends Equatable {
   final String? userId;
   final String? salesId;
   final String? salesName;
+  final String? salesPosition;
   final num totalQuota;
   final num deliveryBulkQuota;
   final num pickupBulkQuota;
@@ -24,17 +25,24 @@ class SalesQuota extends Equatable {
   final num deliveryBagsDispatch;
   final num totalBagsDispatch;
   final num totalBulkDispatch;
-  final num extraBulkQuota;
+  final num extraDeliveryBulkQuota;
+  final num extraPickupBulkQuota;
   final num settelementBulkQuota;
-  final num extraBagsQuota;
+  final num extraDeliveryBagsQuota;
+  final num extraPickupBagsQuota;
   final num settelementBagsQuota;
   final int? salesType;
 
   const SalesQuota({
-    this.id,
-    this.userId,
-    this.salesId,
-    this.salesName,
+    required this.salesPosition,
+    required this.extraDeliveryBulkQuota,
+    required this.extraPickupBulkQuota,
+    required this.extraDeliveryBagsQuota,
+    required this.extraPickupBagsQuota,
+    required this.id,
+    required this.userId,
+    required this.salesId,
+    required this.salesName,
     required this.totalQuota,
     required this.deliveryBulkQuota,
     required this.pickupBulkQuota,
@@ -54,9 +62,7 @@ class SalesQuota extends Equatable {
     required this.deliveryBagsDispatch,
     required this.totalBagsDispatch,
     required this.totalBulkDispatch,
-    required this.extraBulkQuota,
     required this.settelementBulkQuota,
-    required this.extraBagsQuota,
     required this.settelementBagsQuota,
     this.salesType,
   });
@@ -66,6 +72,7 @@ class SalesQuota extends Equatable {
         userId: json['userId'] as String?,
         salesId: json['salesId'] as String?,
         salesName: json['salesName'] as String?,
+        salesPosition: json['salesPosition'] as String?,
         totalQuota: json['totalQuota'] as num,
         deliveryBulkQuota: json['deliveryBulkQuota'] as num,
         pickupBulkQuota: json['pickupBulkQuota'] as num,
@@ -85,9 +92,11 @@ class SalesQuota extends Equatable {
         deliveryBagsDispatch: json['deliveryBagsDispatch'] as num,
         totalBagsDispatch: json['totalBagsDispatch'] as num,
         totalBulkDispatch: json['totalBulkDispatch'] as num,
-        extraBulkQuota: json['extraBulkQuota'] as num,
+        extraDeliveryBagsQuota: json['extraDeliveryBagsQuota'] as num,
+        extraDeliveryBulkQuota: json['extraDeliveryBulkQuota'] as num,
         settelementBulkQuota: json['settelementBulkQuota'] as num,
-        extraBagsQuota: json['extraBagsQuota'] as num,
+        extraPickupBagsQuota: json['extraPickupBagsQuota'] as num,
+        extraPickupBulkQuota: json['extraPickupBulkQuota'] as num,
         settelementBagsQuota: json['settelementBagsQuota'] as num,
         salesType: json['salesType'] as int?,
       );
@@ -97,6 +106,7 @@ class SalesQuota extends Equatable {
         'userId': userId,
         'salesId': salesId,
         'salesName': salesName,
+        'salesPosition': salesName,
         'totalQuota': totalQuota,
         'deliveryBulkQuota': deliveryBulkQuota,
         'pickupBulkQuota': pickupBulkQuota,
@@ -116,9 +126,11 @@ class SalesQuota extends Equatable {
         'deliveryBagsDispatch': deliveryBagsDispatch,
         'totalBagsDispatch': totalBagsDispatch,
         'totalBulkDispatch': totalBulkDispatch,
-        'extraBulkQuota': extraBulkQuota,
+        'extraDeliveryBulkQuota': extraDeliveryBulkQuota,
+        'extraPickupBulkQuota': extraPickupBulkQuota,
         'settelementBulkQuota': settelementBulkQuota,
-        'extraBagsQuota': extraBagsQuota,
+        'extraPickupBagsQuota': extraPickupBagsQuota,
+        'extraDeliveryBagsQuota': extraDeliveryBagsQuota,
         'settelementBagsQuota': settelementBagsQuota,
         'salesType': salesType,
       };
@@ -149,9 +161,11 @@ class SalesQuota extends Equatable {
       deliveryBagsDispatch,
       totalBagsDispatch,
       totalBulkDispatch,
-      extraBulkQuota,
+      extraDeliveryBagsQuota,
+      extraDeliveryBulkQuota,
       settelementBulkQuota,
-      extraBagsQuota,
+      extraPickupBagsQuota,
+      extraPickupBulkQuota,
       settelementBagsQuota,
       salesType,
     ];

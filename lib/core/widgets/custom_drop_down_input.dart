@@ -29,16 +29,12 @@ class CustomDropDownInput extends StatelessWidget {
     return SizedBox(
       width: width ?? defaultWidth,
       child: DropdownSearch<String>(
-        selectedItem: items.contains(selectedValue)
-            ? selectedValue
-            : null,
+        selectedItem: items.contains(selectedValue) ? selectedValue : null,
         items: items,
         dropdownBuilder: (context, selectedItem) {
-          // عرض الاسم فقط
           if (selectedItem == null) return Text(hintText ?? "");
           return Text(selectedItem.split('|').first,
-              style: const TextStyle(
-                  fontSize: 9, fontWeight: FontWeight.bold));
+              style: const TextStyle(fontSize: 9, fontWeight: FontWeight.bold));
         },
         popupProps: PopupProps.menu(
           showSearchBox: true,

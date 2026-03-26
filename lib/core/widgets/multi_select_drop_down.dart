@@ -57,7 +57,7 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
       popupProps: PopupPropsMultiSelection.menu(
         showSearchBox: true,
         showSelectedItems: false,
-        
+
         // 1. تخصيص الـ Checkbox الافتراضي ليكون في المكان والسطر المظبوط
         selectionWidget: (context, item, isSelected) {
           return Padding(
@@ -72,7 +72,8 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
 
         // 2. تعديل الـ itemBuilder ليعرض النص فقط بجانب الـ selectionWidget
         itemBuilder: (context, item, isSelected) {
-          final currentData = processedRegions.firstWhere((r) => r['regionName'] == item);
+          final currentData =
+              processedRegions.firstWhere((r) => r['regionName'] == item);
           final String currentArea = currentData['areaName'] as String;
           int currentIndex = sortedNames.indexOf(item);
 
@@ -80,7 +81,8 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
           if (currentIndex == 0) {
             isFirstInGroup = true;
           } else {
-            final prevArea = processedRegions[currentIndex - 1]['areaName'] as String;
+            final prevArea =
+                processedRegions[currentIndex - 1]['areaName'] as String;
             if (prevArea != currentArea) {
               isFirstInGroup = true;
             }
@@ -107,7 +109,8 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
               // ],
               // هنا نعرض النص فقط، والمكتبة ستضع الـ selectionWidget بجانبه تلقائياً
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
                 child: Text(
                   item,
                   style: const TextStyle(color: Colors.black, fontSize: 14),
@@ -119,7 +122,5 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
       ),
       onChanged: widget.onChanged,
     );
-  
-  
   }
 }

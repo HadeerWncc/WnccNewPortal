@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/core/utils/methods/parse_to_int.dart';
 import 'package:wncc_portal/features/sales_quota/data/models/daily_quota_model/sales_quota.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/custom_table_input_cell.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/table_header_cell.dart';
@@ -28,24 +29,73 @@ class CustomBagsTable extends StatelessWidget {
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
             const TableRow(
-              decoration:
-                  BoxDecoration(color: Color.fromARGB(255, 234, 234, 235)),
+              decoration: BoxDecoration(color: Color(0xff2b6617)),
               children: [
                 TableCell(
                   child: Padding(
-                    padding:
-                        EdgeInsets.only(top: 8, bottom: 8, left: 20, right: 60),
+                    padding: EdgeInsets.only(
+                        top: 15, bottom: 15, left: 20, right: 60),
                     child: Text(
                       'Name',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
                 ),
-                TableHeaderCell(child: 'Pickup'),
-                TableHeaderCell(child: 'Delivery'),
-                TableHeaderCell(child: 'Total'),
-                TableHeaderCell(child: 'Extra'),
-                TableHeaderCell(child: 'Settelment'),
+                TableCell(
+                    child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                  child: Text(
+                    'Pickup',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                )),
+                TableCell(
+                    child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                  child: Text(
+                    'delivery',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                )),
+                TableCell(
+                    child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                  child: Text(
+                    'Total',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                )),
+                TableCell(
+                    child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                  child: Text(
+                    'Delivery Extra',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                )),
+                TableCell(
+                    child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                  child: Text(
+                    'Pickup Extra',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                )),
+                TableCell(
+                    child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                  child: Text(
+                    'Settelment',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                )),
               ],
             ),
             ...List.generate(salesQuotaList.length, (rowIndex) {
@@ -65,7 +115,8 @@ class CustomBagsTable extends StatelessWidget {
                           Opacity(
                             opacity: .5,
                             child: Text(
-                              salesQuotaList[rowIndex].salesId!,
+                              parseToInt(salesQuotaList[rowIndex].salesId!)
+                                  .toString(),
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 14),
                             ),
@@ -112,7 +163,14 @@ class CustomBagsTable extends StatelessWidget {
                     controller: controllers.where((controller) {
                       return controller['salesId']!.text ==
                           salesQuotaList[rowIndex].salesId;
-                    }).first['extraBagsQuota']!,
+                    }).first['extraDeliveryBagsQuota']!,
+                    keyboardType: TextInputType.number,
+                  ),
+                  CustomTableInputCell(
+                    controller: controllers.where((controller) {
+                      return controller['salesId']!.text ==
+                          salesQuotaList[rowIndex].salesId;
+                    }).first['extraPickupBagsQuota']!,
                     keyboardType: TextInputType.number,
                   ),
                   CustomTableInputCell(

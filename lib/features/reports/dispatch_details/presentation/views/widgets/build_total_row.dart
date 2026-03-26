@@ -27,7 +27,7 @@ Widget buildTotalRow({
         num regionSum = monthDays.fold(0, (prev, day) {
           final reg = day.regions
               ?.firstWhere((r) => r.regionId == vr.regionId, orElse: () => vr);
-          return prev + getQuantityValue(reg?.quantity,quantityType);
+          return prev + getQuantityValue(reg?.quantity, quantityType);
         });
         return buildCell(
             NumberFormat.decimalPatternDigits(decimalDigits: 0)
@@ -45,7 +45,7 @@ Widget buildTotalRow({
         num regionSum = monthDays.fold(0, (prev, day) {
           final reg = day.regions
               ?.firstWhere((r) => r.regionId == vr.regionId, orElse: () => vr);
-          return prev + getQuantityValue(reg?.quantity,quantityType);
+          return prev + getQuantityValue(reg?.quantity, quantityType);
         });
         return buildCell(
             NumberFormat.decimalPatternDigits(decimalDigits: 0)
@@ -63,7 +63,7 @@ Widget buildTotalRow({
         num regionSum = monthDays.fold(0, (prev, day) {
           final reg = day.regions
               ?.firstWhere((r) => r.regionId == vr.regionId, orElse: () => vr);
-          return prev + getQuantityValue(reg?.quantity,quantityType);
+          return prev + getQuantityValue(reg?.quantity, quantityType);
         });
         return buildCell(
             NumberFormat.decimalPatternDigits(decimalDigits: 0)

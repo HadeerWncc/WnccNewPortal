@@ -12,15 +12,17 @@ class DispatchDetailsButtonsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomButtonsList(
-      buttons: const ['Summary', 'Details'],
+      buttons: const ['PerRegion', 'PerSales', 'PerCustomer'],
       activeTab: activeTab,
       onTap: (value) {
         // Handle button tap
-        if (value == 'Details') {
-          // GoRouter.of(context).push(AppRouter.paymentsDetailsPath);
-        } else if (value == 'Summary') {
+        if (value == 'PerRegion') {
           GoRouter.of(context).push(AppRouter.dispatchDetailsPath);
-        } 
+        } else if (value == 'PerSales') {
+          GoRouter.of(context).push(AppRouter.dispatchDetailsPerSalesPath);
+        } else {
+          GoRouter.of(context).push(AppRouter.dispatchDetailsPerCustomerPath);
+        }
       },
     );
   }

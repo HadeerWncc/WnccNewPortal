@@ -10,6 +10,8 @@ import 'package:wncc_portal/features/customerService/complains/presentation/view
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_view.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_details_page.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_customer_page.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_sales_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_compare_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
@@ -23,6 +25,7 @@ import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pi
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/request_details_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/requests_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/add_request_page.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_balance_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_daily_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_details_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_monthly_page.dart';
@@ -82,9 +85,12 @@ abstract class AppRouter {
   static const paymentsDailyPath = '/paymentsDaily';
   static const paymentsPerCustomerPath = '/customerPayment';
   static const paymentsDetailsPath = '/paymentsDetails';
+  static const paymentsBalancePath = '/paymentBalance';
   static const pendingPath = '/pending';
   static const loadingDetailsPath = '/loadingDetails';
   static const dispatchDetailsPath = '/dispatchDetails';
+  static const dispatchDetailsPerCustomerPath = '/dispatchDetailsPerCustomer';
+  static const dispatchDetailsPerSalesPath = '/dispatchDetailsPerSales';
 
   static final router = GoRouter(
     routes: [
@@ -270,6 +276,10 @@ abstract class AppRouter {
         builder: (context, state) => const PaymentsDetailsPage(),
       ),
       GoRoute(
+        path: paymentsBalancePath,
+        builder: (context, state) => const PaymentsBalancePage(),
+      ),
+      GoRoute(
         path: pendingPath,
         builder: (context, state) => const PendingPage(),
       ),
@@ -280,6 +290,14 @@ abstract class AppRouter {
       GoRoute(
         path: dispatchDetailsPath,
         builder: (context, state) => const DispatchDetailsPage(),
+      ),
+      GoRoute(
+        path: dispatchDetailsPerCustomerPath,
+        builder: (context, state) => const DispatchPerCustomerPage(),
+      ),
+      GoRoute(
+        path: dispatchDetailsPerSalesPath,
+        builder: (context, state) => const DispatchPerSalesPage(),
       ),
     ],
   );

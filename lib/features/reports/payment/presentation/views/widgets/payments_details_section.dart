@@ -70,6 +70,7 @@ class _PaymentsDetailsSectionState extends State<PaymentsDetailsSection> {
                             paymentDetails: state.paymentDetails,
                           ),
                         ),
+                      const SizedBox(height: 60),
                     ],
                   ),
                 ),

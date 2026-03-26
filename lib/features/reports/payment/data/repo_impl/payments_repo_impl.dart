@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/features/reports/payment/data/data_sources/payment_data_source.dart';
+import 'package:wncc_portal/features/reports/payment/data/models/customer_balance.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment/payment.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment_details_model.dart';
 import 'package:wncc_portal/features/reports/payment/domain/repos/payments_repo.dart';
@@ -32,6 +33,21 @@ class PaymentsRepoImpl extends PaymentsRepo {
       List<Payment> payments = await paymentDataSource
           .fetchPaymentDataPerBank(mode, date, customerName: payer);
       return Right(payments);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<CustomerBalance>>>
+      fetchPaymentBalanceData() async {
+    try {
+      List<CustomerBalance> paymentsDFetails =
+          await paymentDataSource.fetchPaymentBalanceData();
+      return Right(paymentsDFetails);
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

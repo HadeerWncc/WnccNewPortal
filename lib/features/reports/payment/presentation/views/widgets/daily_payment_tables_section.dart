@@ -20,8 +20,6 @@ class _DailyPaymentTablesSectionState extends State<DailyPaymentTablesSection> {
   bool openCharts = false;
   @override
   Widget build(BuildContext context) {
-    var orientation = MediaQuery.of(context).orientation;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,29 +46,20 @@ class _DailyPaymentTablesSectionState extends State<DailyPaymentTablesSection> {
         ),
         const SizedBox(height: 10),
         Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (!openCharts) ...[
-                  sectionTitle('Payments Per Bank'),
-                  const SizedBox(height: 8),
-                ],
-                if (openCharts)
-                  MonthlyPaymentTable(
-                    currency: activeTab == 0 ? "EGP" : "USD",
-                    showCharts: openCharts,
-                  )
-                else
-                  SizedBox(
-                    height: orientation == Orientation.landscape ? 400 : 600,
-                    child: MonthlyPaymentTable(
-                      currency: activeTab == 0 ? "EGP" : "USD",
-                      showCharts: openCharts,
-                    ),
-                  ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (!openCharts) ...[
+                sectionTitle('Payments Per Bank'),
+                const SizedBox(height: 8),
               ],
-            ),
+              Expanded(
+                child: MonthlyPaymentTable(
+                  currency: activeTab == 0 ? "EGP" : "USD",
+                  showCharts: openCharts,
+                ),
+              ),
+            ],
           ),
         ),
       ],

@@ -66,7 +66,7 @@ class _CustomerPaymentHeaderState extends State<CustomerPaymentHeader> {
               return CustomDropDownInput(
                 items: [
                   "All",
-                  ...state.payerModel.map((p) => p.fullName ?? "")
+                  ...state.payerModel.map((p) => "${p.fullName}|${p.id}")
                 ],
                 selectedValue: "All",
                 hintText: "payer",
@@ -76,13 +76,10 @@ class _CustomerPaymentHeaderState extends State<CustomerPaymentHeader> {
                   if (value == "All") {
                     payer = "";
                   } else {
-                    payer = state.payerModel
-                        .firstWhere((p) => p.fullName == value)
-                        .id;
+                    payer = value?.split("|")[1];
                   }
                   setState(() {});
                   widget.onChangePayer?.call(payer);
-
                 },
               );
             } else {

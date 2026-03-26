@@ -38,14 +38,13 @@ class _PaymentsDailyHeaderState extends State<PaymentsDailyHeader> {
               : MediaQuery.of(context).size.width * .35,
           child: CustomDropDownInput(
             title: 'Select',
-            items: [...reportOptionsList,"Per Customer"],
+            items: [...reportOptionsList, "Per Customer"],
             selectedValue: 'Daily',
             onChanged: (value) {
               // Handle dropdown change
               if (value == 'Monthly') {
                 GoRouter.of(context).push(AppRouter.paymentsMonthlyPath);
-              }
-              else if(value == "Per Customer"){
+              } else if (value == "Per Customer") {
                 GoRouter.of(context).push(AppRouter.paymentsPerCustomerPath);
               }
             },

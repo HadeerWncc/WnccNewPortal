@@ -38,14 +38,13 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
               : MediaQuery.of(context).size.width * .35,
           child: CustomDropDownInput(
             title: 'Select',
-            items: [...reportOptionsList,"Per Customer"],
+            items: [...reportOptionsList, "Per Customer"],
             selectedValue: 'Monthly',
             onChanged: (value) {
               // Handle dropdown change
               if (value == 'Daily') {
                 GoRouter.of(context).push(AppRouter.paymentsDailyPath);
-              }
-              else if(value == "Per Customer"){
+              } else if (value == "Per Customer") {
                 GoRouter.of(context).push(AppRouter.paymentsPerCustomerPath);
               }
             },
@@ -72,7 +71,7 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
               return CustomDropDownInput(
                 items: [
                   "All",
-                  ...state.payerModel.map((p) => p.fullName ?? "")
+                  ...state.payerModel.map((p) => "${p.fullName}|${p.id}")
                 ],
                 selectedValue: "All",
                 hintText: "payer",
@@ -82,7 +81,9 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
                   if (value == "All") {
                     payer = "";
                   } else {
-                    payer = state.payerModel.firstWhere((p)=>p.fullName == value).id;
+                    payer = state.payerModel
+                        .firstWhere((p) => p.fullName == value)
+                        .id;
                   }
                   setState(() {});
                 },

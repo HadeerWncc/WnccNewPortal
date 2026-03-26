@@ -8,14 +8,19 @@ sealed class PaymentPerCustomerState extends Equatable {
 }
 
 final class PaymentPerCustomerInitial extends PaymentPerCustomerState {}
+
 final class PaymentPerCustomerLoading extends PaymentPerCustomerState {}
+
 final class PaymentPerCustomerFailure extends PaymentPerCustomerState {
   final String error;
 
   const PaymentPerCustomerFailure({required this.error});
 }
+
 final class PaymentPerCustomerSuccess extends PaymentPerCustomerState {
   final List<CustomerDeposit> customerDeposit;
+  final List<String> sales;
 
-  const PaymentPerCustomerSuccess({required this.customerDeposit});
+  const PaymentPerCustomerSuccess(
+      {required this.customerDeposit, required this.sales});
 }

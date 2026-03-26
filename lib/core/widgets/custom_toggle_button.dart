@@ -39,7 +39,6 @@ class _CustomToggleButtonState extends State<CustomToggleButton> {
               color: isActive ? kBtnColor : Colors.grey,
               fontWeight: FontWeight.bold,
               fontSize: 11,
-
             ),
           ),
         ],

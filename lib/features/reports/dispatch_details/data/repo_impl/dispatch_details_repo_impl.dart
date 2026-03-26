@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_customer_model/dispatch_per_customer_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_sales_model/dispatch_per_sales_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/shipment_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
 
@@ -32,6 +34,37 @@ class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
       List<ShipmentDetailsModel> shipmentDetails =
           await dispatchDetailsDataSource.getShipmentDetails();
       return Right(shipmentDetails);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<DispatchPerCustomerModel>>>
+      getDispatchDetailsPerCustomer(DateTime from, DateTime to) async {
+    try {
+      List<DispatchPerCustomerModel> dispatchDetails =
+          await dispatchDetailsDataSource.getDispatchDetailsPerCustomer(
+              from, to);
+      return Right(dispatchDetails);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<DispatchPerSalesModel>>>
+      getDispatchDetailsPerSales(DateTime from, DateTime to) async {
+    try {
+      List<DispatchPerSalesModel> dispatchDetails =
+          await dispatchDetailsDataSource.getDispatchDetailsPerSales(from, to);
+      return Right(dispatchDetails);
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

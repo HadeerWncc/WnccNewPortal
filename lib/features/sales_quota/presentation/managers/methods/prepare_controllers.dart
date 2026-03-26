@@ -20,10 +20,14 @@ List<Map<String, TextEditingController>> prepareControllers(
           TextEditingController(text: quota.totalBagsQuota.toString()),
       'totalBulkQuota':
           TextEditingController(text: quota.totalBulkQuota.toString()),
-      'extraBagsQuota':
-          TextEditingController(text: quota.extraBagsQuota.toString()),
-      'extraBulkQuota':
-          TextEditingController(text: quota.extraBulkQuota.toString()),
+      'extraDeliveryBagsQuota':
+          TextEditingController(text: quota.extraDeliveryBagsQuota.toString()),
+      'extraDeliveryBulkQuota':
+          TextEditingController(text: quota.extraDeliveryBulkQuota.toString()),
+      'extraPickupBagsQuota':
+          TextEditingController(text: quota.extraPickupBagsQuota.toString()),
+      'extraPickupBulkQuota':
+          TextEditingController(text: quota.extraPickupBulkQuota.toString()),
       'settelementBagsQuota':
           TextEditingController(text: quota.settelementBagsQuota.toString()),
       'settelementBulkQuota':

@@ -58,41 +58,41 @@ class _SelesQuotaSuccessState extends State<SelesQuotaSuccess> {
             widget.tryToDistribute(context);
           },
         ),
-        (selectedQuota == "Bags")
-            ? CardCharts(
-                quota: ChartDataEntity(
-                  pickup: widget.chartBagsData.pickup,
-                  delivery: widget.chartBagsData.delivery,
-                  remaining: widget.chartBagsData.remaining,
-                ),
-                priority: ChartDataEntity(
-                  pickup: widget.chartBagsDataPriority.pickup,
-                  delivery: widget.chartBagsDataPriority.delivery,
-                  remaining: widget.chartBagsDataPriority.remaining,
-                ),
-                dispatch: ChartDataEntity(
-                  pickup: widget.chartDispatchBags.pickup,
-                  delivery: widget.chartDispatchBags.delivery,
-                  remaining: widget.chartDispatchBags.remaining,
-                ),
-              )
-            : CardCharts(
-                quota: ChartDataEntity(
-                  pickup: widget.chartBulkData.pickup,
-                  delivery: widget.chartBulkData.delivery,
-                  remaining: widget.chartBulkData.remaining,
-                ),
-                priority: ChartDataEntity(
-                  pickup: widget.chartBulkDataPriority.pickup,
-                  delivery: widget.chartBulkDataPriority.delivery,
-                  remaining: widget.chartBulkDataPriority.remaining,
-                ),
-                dispatch: ChartDataEntity(
-                  pickup: widget.chartDispatchBulk.pickup,
-                  delivery: widget.chartDispatchBulk.delivery,
-                  remaining: widget.chartDispatchBulk.remaining,
-                ),
-              ),
+        // (selectedQuota == "Bags")
+        //     ? CardCharts(
+        //         quota: ChartDataEntity(
+        //           pickup: widget.chartBagsData.pickup,
+        //           delivery: widget.chartBagsData.delivery,
+        //           remaining: widget.chartBagsData.remaining,
+        //         ),
+        //         priority: ChartDataEntity(
+        //           pickup: widget.chartBagsDataPriority.pickup,
+        //           delivery: widget.chartBagsDataPriority.delivery,
+        //           remaining: widget.chartBagsDataPriority.remaining,
+        //         ),
+        //         dispatch: ChartDataEntity(
+        //           pickup: widget.chartDispatchBags.pickup,
+        //           delivery: widget.chartDispatchBags.delivery,
+        //           remaining: widget.chartDispatchBags.remaining,
+        //         ),
+        //       )
+        //     : CardCharts(
+        //         quota: ChartDataEntity(
+        //           pickup: widget.chartBulkData.pickup,
+        //           delivery: widget.chartBulkData.delivery,
+        //           remaining: widget.chartBulkData.remaining,
+        //         ),
+        //         priority: ChartDataEntity(
+        //           pickup: widget.chartBulkDataPriority.pickup,
+        //           delivery: widget.chartBulkDataPriority.delivery,
+        //           remaining: widget.chartBulkDataPriority.remaining,
+        //         ),
+        //         dispatch: ChartDataEntity(
+        //           pickup: widget.chartDispatchBulk.pickup,
+        //           delivery: widget.chartDispatchBulk.delivery,
+        //           remaining: widget.chartDispatchBulk.remaining,
+        //         ),
+              // ),
       ],
     );
   }
