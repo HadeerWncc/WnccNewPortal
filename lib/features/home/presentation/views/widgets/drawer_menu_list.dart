@@ -48,7 +48,7 @@ class DrawerMenuList extends StatelessWidget {
         //   ],
         // ),
         // const Divider(),
-          CustomMenuItem(
+        CustomMenuItem(
           title: 'Home',
           active: activeTab == 'Home',
           onTap: () {
@@ -59,18 +59,21 @@ class DrawerMenuList extends StatelessWidget {
           icon: Icons.keyboard_double_arrow_up,
           title: 'Priority',
           children: [
-            CustomMenuItem(
-              title: 'Sales Quota',
-              active: activeTab == 'Sales Quota',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.salesQuotaPath);
-              },
-            ),
+            if (userPos != "Sales Agent" &&
+                userPos != "Sales Area Manager" &&
+                userPos != "Dispatch Coordinator")
+              CustomMenuItem(
+                title: 'Sales Quota',
+                active: activeTab == 'Sales Quota',
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.salesQuotaPath);
+                },
+              ),
             CustomMenuItem(
               title: 'Delivery',
               active: activeTab == 'Delivery',
               onTap: () {
-                // GoRouter.of(context).push(AppRouter.deliveryPath);
+                GoRouter.of(context).push(AppRouter.deliveryPath);
               },
             ),
             CustomMenuItem(
@@ -82,7 +85,6 @@ class DrawerMenuList extends StatelessWidget {
             ),
           ],
         ),
-      
 
         CustomDrawerMenu(
           icon: Icons.article,
@@ -125,7 +127,7 @@ class DrawerMenuList extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.pendingPath);
               },
             ),
-            (userPos != "Sales Agent")
+            (userPos != "Sales Agent" && userPos != "Sales Area Manager")
                 ? CustomMenuItem(
                     title: 'Dispatch Details',
                     active: activeTab == 'Dispatch Details',

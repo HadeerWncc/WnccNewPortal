@@ -233,8 +233,14 @@ class _SalesQuotaBlocConsumerState extends State<SalesQuotaBlocConsumer> {
             parseToInt(controllers[i]["deliveryBagsQuota"]!.text),
         deliveryBulkQuota:
             parseToInt(controllers[i]["deliveryBulkQuota"]!.text),
-        extraBagsQuota: parseToInt(controllers[i]["extraBagsQuota"]!.text),
-        extraBulkQuota: parseToInt(controllers[i]["extraBulkQuota"]!.text),
+        extraDeliveryBagsQuota:
+            parseToInt(controllers[i]["extraDeliveryBagsQuota"]!.text),
+        extraPickupBagsQuota:
+            parseToInt(controllers[i]["extraPickupBagsQuota"]!.text),
+        extraDeliveryBulkQuota:
+            parseToInt(controllers[i]["extraDeliveryBulkQuota"]!.text),
+        extraPickupBulkQuota:
+            parseToInt(controllers[i]["extraPickupBulkQuota"]!.text),
         pickupBagsQuota: parseToInt(controllers[i]["pickupBagsQuota"]!.text),
         pickupBulkQuota: parseToInt(controllers[i]["pickupBulkQuota"]!.text),
         settelementBagsQuota:

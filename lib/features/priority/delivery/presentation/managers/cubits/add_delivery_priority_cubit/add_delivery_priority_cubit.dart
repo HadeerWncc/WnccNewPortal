@@ -10,9 +10,11 @@ class AddDeliveryPriorityCubit extends Cubit<AddDeliveryPriorityState> {
 
   final DeliveryRepo deliveryRepo;
 
-  Future<void> addDeliveryPriority(List<String> orders, bool asTruck) async {
+  Future<void> addDeliveryPriority(
+      List<String> orders, bool asTruck, DateTime? priorityDate) async {
     emit(AddDeliveryPriorityLoading());
-    var result = await deliveryRepo.makeDeliveryPriority(orders, asTruck);
+    var result = await deliveryRepo.makeDeliveryPriority(
+        orders, asTruck, 0, priorityDate);
     result.fold((error) {
       emit(AddDeliveryPriorityFailure(error: error.msg));
     }, (success) {

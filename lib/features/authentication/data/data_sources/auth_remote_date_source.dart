@@ -27,6 +27,9 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDateSource {
         "password": loginEntity?.password,
       },
     );
+    if (result["data"] == null) {
+      throw Exception(result["message"]);
+    }
     userModel = LoginModel.fromJson(result["data"]);
     return userModel;
   }

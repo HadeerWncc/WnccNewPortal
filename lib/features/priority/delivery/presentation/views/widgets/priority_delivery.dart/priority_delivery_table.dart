@@ -2,11 +2,13 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
-import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
+import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/custom_priority_delivery_action.dart';
@@ -15,10 +17,13 @@ import 'package:wncc_portal/features/priority/delivery/presentation/views/widget
 
 class PriorityDeliveryTable extends StatefulWidget {
   const PriorityDeliveryTable(
-      {super.key, required this.onSelectOrders, required this.priorityOrders});
+      {super.key,
+      required this.onSelectOrders,
+      required this.priorityOrders,
+      required this.user});
   final Function(List<DispatchDeliveryEntity> selectedOrders) onSelectOrders;
-  final List<OrderResponse> priorityOrders;
-
+  final List<PriorityDeliveryModel> priorityOrders;
+  final UserModel user;
   @override
   State<PriorityDeliveryTable> createState() => _PriorityDeliveryTableState();
 }
@@ -36,27 +41,35 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
         child: DataTable2(
           columnSpacing: 0,
           horizontalMargin: 0,
-          minWidth: 1800,
+          minWidth: 1600,
           showCheckboxColumn: true,
           dataRowHeight: 60,
           border: const TableBorder.symmetric(
               outside: BorderSide(color: Color.fromARGB(255, 195, 193, 193))),
           headingRowColor: WidgetStateProperty.all(
-            const Color(0xffF9FAFC),
+            kBtnColor,
+          ),
+          headingTextStyle: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
           columns: const [
-            DataColumn(label: DataColumnText(text: 'Select')),
-            DataColumn(label: DataColumnText(text: 'OrderNo')),
-            DataColumn(label: DataColumnText(text: 'Agent')),
-            DataColumn(label: DataColumnText(text: 'Product')),
-            DataColumn(label: DataColumnText(text: 'Payer')),
-            DataColumn(label: DataColumnText(text: 'Pod')),
-            DataColumn(label: DataColumnText(text: 'PodAddress')),
-            DataColumn(label: DataColumnText(text: 'Sales')),
-            DataColumn(label: DataColumnText(text: 'Quantity')),
-            DataColumn(label: DataColumnText(text: 'Priorited At')),
-            DataColumn(label: DataColumnText(text: 'Truck No')),
-            DataColumn(label: DataColumnText(text: 'Actions')),
+            DataColumn2(label: DataColumnText(text: 'Select'), fixedWidth: 60),
+            DataColumn2(
+                label: DataColumnText(text: 'Dispatcher'), fixedWidth: 150),
+            DataColumn2(
+                label: DataColumnText(text: 'Priorited At'), fixedWidth: 140),
+            DataColumn2(label: DataColumnText(text: 'Code'), fixedWidth: 100),
+            DataColumn(label: DataColumnText(text: 'Customer')),
+            DataColumn2(label: DataColumnText(text: 'No'), fixedWidth: 120),
+            DataColumn(label: DataColumnText(text: 'Matrial')),
+            DataColumn2(label: DataColumnText(text: 'Qty'), fixedWidth: 100),
+            DataColumn2(label: DataColumnText(text: 'Truck'), fixedWidth: 60),
+            DataColumn2(label: DataColumnText(text: 'Zone'), fixedWidth: 120),
+            DataColumn2(
+                label: DataColumnText(text: 'Receiver'), fixedWidth: 130),
+            DataColumn2(label: DataColumnText(text: 'Sales'), fixedWidth: 150),
+            DataColumn2(label: DataColumnText(text: 'Actions'), fixedWidth: 80),
           ],
           rows: List<DataRow>.generate(
             widget.priorityOrders.length,
@@ -70,16 +83,17 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
               return DataRow(color: WidgetStateProperty.all(color), cells: [
                 DataCell(
                   CustomDataCellCheckbox(
-                    orderId: item.id!,
+                    orderId: item.delivery!,
                     onChanged: (value) {
                       if (value == true) {
                         orders.add(DispatchDeliveryEntity(
-                          id: item.id!,
+                          id: item.delivery!,
                           agentName: agentName,
                         ));
                         setState(() {});
                       } else {
-                        orders.removeWhere((element) => element.id == item.id);
+                        orders.removeWhere(
+                            (element) => element.id == item.delivery);
                         setState(() {});
                       }
                       widget.onSelectOrders(orders);
@@ -90,12 +104,15 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                   GetAgentBlocBuilder(
                     onChange: (agent) {
                       agentName = agent ?? "";
-                      if (orders.where((o) => o.id == item.id).isNotEmpty) {
+                      if (orders
+                          .where((o) => o.id == item.delivery)
+                          .isNotEmpty) {
                         //To modify agent name
-                        orders.removeWhere((element) => element.id == item.id);
+                        orders.removeWhere(
+                            (element) => element.id == item.delivery);
                         orders.add(
                           DispatchDeliveryEntity(
-                            id: item.id!,
+                            id: item.delivery!,
                             agentName: agentName,
                           ),
                         );
@@ -105,41 +122,89 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                   ),
                 ),
                 DataCell(
+                  CustomDataCellWidget(
+                      title: DateFormat('MMM d, y').format(DateTime.parse(
+                          item.priorityDate ?? DateTime.now().toString())),
+                      subTitle: "Time: 12:00 PM"),
+                ),
+                DataCell(
                   Center(
                     child: Text(
-                      item.id.toString(),
+                      int.parse(item.customerId ?? "").toString(),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                DataCell(CustomDataCellWidget(
-                    title: item.product?.name ?? "",
-                    subTitle: "category: ${item.product?.category}")),
-                DataCell(CustomDataCellWidget(
-                    title: item.payer?.fullName ?? "",
-                    subTitle: "Code: ${item.payer?.id}")),
-                DataCell(CustomDataCellWidget(
-                    title: item.podName ?? "",
-                    subTitle: "Phone: ${item.podPhone}")),
-                DataCell(CustomDataCellWidget(
-                    title: item.podCity ?? "",
-                    subTitle: "address: ${item.podAddress}")),
-                DataCell(CustomDataCellWidget(
-                    title: item.sales?.fullName ?? "",
-                    subTitle: "Code: ${item.sales?.id}")),
-                DataCell(CustomDataCellWidget(
-                    title: item.quantity.toString(),
-                    subTitle: "Price: ${item.price}")),
-                DataCell(CustomDataCellWidget(
-                    title: DateFormat('MMM d, y')
-                        .format(item.priorityDate ?? DateTime.now()),
-                    subTitle: "Time: 12:00 PM")),
-                DataCell(Center(child: Text(item.truckNo.toString()))),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.customerName ?? "",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.delivery ?? "",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.materialDescription ?? "",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.deliveryQuantity.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.truckNo.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.addressTransZoneDesc.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.receiver.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.salesName.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
                 DataCell(
                   CustomPriorityDeliveryAction(
-                    orderId: item.id!,
+                    user: widget.user,
+                    orderId: item.delivery!,
                     dispatchDeliveryEntity: DispatchDeliveryEntity(
-                        id: item.id!, agentName: agentName),
+                        id: item.delivery!, agentName: agentName),
                     onTap: () async {
                       makeSureDialog(
                         context,
@@ -154,7 +219,7 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                                 .dispatchDeliveryOrders(
                               [
                                 DispatchDeliveryEntity(
-                                  id: item.id!,
+                                  id: item.delivery!,
                                   agentName: agentName,
                                 ),
                               ],

@@ -11,8 +11,10 @@ class CustomSubmitPendingButtons extends StatefulWidget {
   const CustomSubmitPendingButtons({
     super.key,
     required this.selectedOrders,
+    required this.priorityDate,
   });
   final List<String> selectedOrders;
+  final DateTime priorityDate;
   @override
   State<CustomSubmitPendingButtons> createState() =>
       _CustomSubmitPendingButtonsState();
@@ -87,7 +89,8 @@ class _CustomSubmitPendingButtonsState
                             'W');
                       } else {
                         BlocProvider.of<AddDeliveryPriorityCubit>(context)
-                            .addDeliveryPriority(widget.selectedOrders, true);
+                            .addDeliveryPriority(widget.selectedOrders, true,
+                                widget.priorityDate);
                       }
                     },
                   );
@@ -123,7 +126,8 @@ class _CustomSubmitPendingButtonsState
                     onHoverColor: const Color.fromARGB(255, 182, 208, 236),
                     onTap: () {
                       BlocProvider.of<AddDeliveryPriorityCubit>(context)
-                          .addDeliveryPriority(widget.selectedOrders, false);
+                          .addDeliveryPriority(widget.selectedOrders, false,
+                              widget.priorityDate);
                     },
                   );
                 },

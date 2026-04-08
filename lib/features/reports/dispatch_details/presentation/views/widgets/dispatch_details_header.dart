@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/widgets/multi_select_drop_down.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/custom_year_picker.dart';
 
 class DispatchDetailsHeader extends StatelessWidget {
@@ -30,8 +32,8 @@ class DispatchDetailsHeader extends StatelessWidget {
             CustomYearPicker(
               title: 'Select Year',
               onChange: (value) {
-                // BlocProvider.of<FactVsCustCubit>(context)
-                //     .getFactVsCustDisp(1, value);
+                BlocProvider.of<DispatchDetailsCubit>(context)
+                    .getDispatchDetails(value);
               },
             ),
             SizedBox(

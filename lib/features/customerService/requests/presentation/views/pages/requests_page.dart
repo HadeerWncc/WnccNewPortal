@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wncc_portal/core/errors/handel_error.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
@@ -16,10 +17,7 @@ class RequestsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: BlocConsumer<UserCubit, UserState>(
-        listener: (context, state) => {
-          if (state is UserFailure)
-            {GoRouter.of(context).go(AppRouter.loginPath)}
-        },
+        listener: (context, state) => handelError(state, context),
         builder: (context, state) {
           if (state is UserSuccess) {
             return Scaffold(

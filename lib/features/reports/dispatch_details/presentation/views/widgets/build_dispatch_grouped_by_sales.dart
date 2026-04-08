@@ -118,7 +118,7 @@ List<Widget> buildDispatchPerCustomerGroups(
                   color: Colors.grey.shade100,
                   alignment: Alignment.center,
                   child: Text(
-                    code,
+                    int.parse(code).toString(),
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),

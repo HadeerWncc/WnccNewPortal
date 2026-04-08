@@ -44,27 +44,19 @@ class _CardDataState extends State<CardData> {
               ),
             ],
           ),
-          // Column(
-          //   children: [
-          //     const SizedBox(height: 25),
-          //     Row(
-          //       mainAxisAlignment: MainAxisAlignment.end,
-          //       children: [
-          //         // const CustomButtonWithIcon(
-          //         //   child: 'Reset',
-          //         //   textColor: Colors.black,
-          //         //   bgColor: Color.fromARGB(255, 234, 234, 235),
-          //         //   icon: Symbols.restart_alt,
-          //         //   onHoverColor: Color.fromARGB(255, 170, 170, 172),
-          //         // ),
-          //         // const SizedBox(width: 10),
-          //         DistributeBlocConsumer(
-          //           tryToDistribute: widget.tryToDistribute,
-          //         ),
-          //       ],
-          //     ),
-          //   ],
-          // )
+          Column(
+            children: [
+              const SizedBox(height: 25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  DistributeBlocConsumer(
+                    tryToDistribute: widget.tryToDistribute,
+                  ),
+                ],
+              ),
+            ],
+          )
         ],
       ),
     );

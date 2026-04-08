@@ -7,9 +7,11 @@ class SalesQuotaEntity {
   final int deliveryBagsQuota;
   final int pickupBagsQuota;
   final int totalBagsQuota;
-  final int extraBulkQuota;
+  final int extraDeliveryBulkQuota;
+  final int extraPickupBulkQuota;
   final int settelementBulkQuota;
-  final int extraBagsQuota;
+  final int extraDeliveryBagsQuota;
+  final int extraPickupBagsQuota;
   final int settelementBagsQuota;
 
   SalesQuotaEntity({
@@ -21,9 +23,11 @@ class SalesQuotaEntity {
     required this.deliveryBagsQuota,
     required this.pickupBagsQuota,
     required this.totalBagsQuota,
-    required this.extraBulkQuota,
+    required this.extraDeliveryBulkQuota,
+    required this.extraPickupBulkQuota,
     required this.settelementBulkQuota,
-    required this.extraBagsQuota,
+    required this.extraPickupBagsQuota,
+    required this.extraDeliveryBagsQuota,
     required this.settelementBagsQuota,
   });
 
@@ -37,9 +41,11 @@ class SalesQuotaEntity {
       'deliveryBagsQuota': deliveryBagsQuota,
       'pickupBagsQuota': pickupBagsQuota,
       'totalBagsQuota': totalBagsQuota,
-      'extraBulkQuota': extraBulkQuota,
+      'extraDeliveryBulkQuota': extraDeliveryBulkQuota,
+      'extraPickupBulkQuota': extraPickupBulkQuota,
       'settelementBulkQuota': settelementBulkQuota,
-      'extraBagsQuota': extraBagsQuota,
+      'extraDeliveryBagsQuota': extraDeliveryBagsQuota,
+      'extraPickupBagsQuota': extraPickupBagsQuota,
       'settelementBagsQuota': settelementBagsQuota,
     };
   }

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
-import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
 import 'package:wncc_portal/features/priority/delivery/data/datasources/delivery_data_source.dart';
+import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/repositories/delivery_repo.dart';
 
@@ -11,11 +11,11 @@ class DeliveryRepoImpl extends DeliveryRepo {
 
   DeliveryRepoImpl({required this.deliveryDataSource});
   @override
-  Future<Either<Failure, bool>> makeDeliveryPriority(
-      List<String> orderIds, bool asTruck) async {
+  Future<Either<Failure, bool>> makeDeliveryPriority(List<String> orderIds,
+      bool asTruck, int prioritySource, DateTime? priorityDate) async {
     try {
-      bool successed =
-          await deliveryDataSource.makeDeliveryPriority(orderIds, asTruck);
+      bool successed = await deliveryDataSource.makeDeliveryPriority(
+          orderIds, asTruck, prioritySource, priorityDate);
       return Right(successed);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -54,11 +54,11 @@ class DeliveryRepoImpl extends DeliveryRepo {
   }
 
   @override
-  Future<Either<Failure, List<OrderResponse>>> getDispatchDeliveryOrdersByDate(
-      String date) async {
+  Future<Either<Failure, List<PriorityDeliveryModel>>>
+      getDispatchDeliveryOrdersByDate(String fromDate, String toDate) async {
     try {
-      List<OrderResponse> orders =
-          await deliveryDataSource.getDispatchDeliveryOrdersByDate(date);
+      List<PriorityDeliveryModel> orders = await deliveryDataSource
+          .getDispatchDeliveryOrdersByDate(fromDate, toDate);
       return Right(orders);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -69,10 +69,10 @@ class DeliveryRepoImpl extends DeliveryRepo {
   }
 
   @override
-  Future<Either<Failure, List<OrderResponse>>>
+  Future<Either<Failure, List<PriorityDeliveryModel>>>
       getPendingDeliveryOrders() async {
     try {
-      List<OrderResponse> orders =
+      List<PriorityDeliveryModel> orders =
           await deliveryDataSource.getPendingDeliveryOrders();
       return Right(orders);
     } on Exception catch (e) {
@@ -84,10 +84,10 @@ class DeliveryRepoImpl extends DeliveryRepo {
   }
 
   @override
-  Future<Either<Failure, List<OrderResponse>>>
+  Future<Either<Failure, List<PriorityDeliveryModel>>>
       getPriorityDeliveryOrders() async {
     try {
-      List<OrderResponse> order =
+      List<PriorityDeliveryModel> order =
           await deliveryDataSource.getPriorityDeliveryOrders();
       return Right(order);
     } on Exception catch (e) {

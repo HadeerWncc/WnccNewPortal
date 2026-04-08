@@ -18,7 +18,7 @@ class DispatchPerCustomerBody extends StatelessWidget {
             return Column(
               children: [
                 const DispatchDetailsButtonsList(
-                  activeTab: 1,
+                  activeTab: 2,
                 ),
                 const SizedBox(height: 8),
                 DispatchPerCustomerTableBody(

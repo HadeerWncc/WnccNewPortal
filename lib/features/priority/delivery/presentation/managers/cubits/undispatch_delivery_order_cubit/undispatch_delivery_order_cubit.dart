@@ -12,7 +12,8 @@ class UndispatchDeliveryOrderCubit extends Cubit<UndispatchDeliveryOrderState> {
 
   Future<void> undispatchDeliveryOrders(List<String> orders) async {
     emit(UndispatchDeliveryOrderLoading());
-    var result = await deliveryRepo.makeDeliveryPriority(orders, false);
+    var result =
+        await deliveryRepo.makeDeliveryPriority(orders, false, 1, null);
     result.fold((error) {
       emit(UndispatchDeliveryOrderFailure(error: error.msg));
     }, (success) {

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/core/utils/methods/parse_to_int.dart';
 
 class CustomerBalance extends Equatable {
   final String? customer;
@@ -7,6 +8,7 @@ class CustomerBalance extends Equatable {
   final String? customerRegionDesc;
   final num? amountBalance;
   final num? credit;
+  final num? effectivelim;
   final String? creditSegment;
   final String? salesRep;
   final String? salesRepDesc;
@@ -18,6 +20,7 @@ class CustomerBalance extends Equatable {
     this.customerRegionDesc,
     this.amountBalance,
     this.credit,
+    this.effectivelim,
     this.creditSegment,
     this.salesRep,
     this.salesRepDesc,
@@ -34,6 +37,7 @@ class CustomerBalance extends Equatable {
       creditSegment: json['creditSegment'] as String?,
       salesRep: json['salesRep'] as String?,
       salesRepDesc: json['salesRepDesc'] as String?,
+      effectivelim: json['effectivelim'] as num?,
     );
   }
 
@@ -47,19 +51,17 @@ class CustomerBalance extends Equatable {
         'creditSegment': creditSegment,
         'salesRep': salesRep,
         'salesRepDesc': salesRepDesc,
+        'effectivelim': effectivelim,
       };
 
   Map<String, dynamic> toMap() => {
-        'Code':int.parse(customer??""),
+        'Code': int.parse(customer ?? ""),
         'Customer': customerName,
-        'Region': customerRegionDesc,
         'Balance': amountBalance,
-        'Credit limit': credit,
+        'Credit limit': parseToInt(effectivelim.toString()),
         'Credit Segment': creditSegment,
         'Sales': salesRepDesc,
-
-        // 'customerRegionDesc': customerRegionDesc,
-        // 'salesRep': salesRep,
+        'Region': customerRegionDesc,
       };
 
   @override
@@ -74,6 +76,7 @@ class CustomerBalance extends Equatable {
       creditSegment,
       salesRep,
       salesRepDesc,
+      effectivelim,
     ];
   }
 }

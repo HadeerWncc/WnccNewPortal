@@ -3,18 +3,21 @@ import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
 
 class FilterDataInputs extends StatelessWidget {
-  const FilterDataInputs({
-    super.key,
-    required this.payerController,
-    required this.selectedSales,
-    required this.selectedRegion,
-    required this.selectedProduct,
-    required this.onFilter,
-  });
+  const FilterDataInputs(
+      {super.key,
+      required this.payerController,
+      required this.selectedSales,
+      required this.selectedRegion,
+      required this.selectedProduct,
+      required this.onFilter,
+      required this.salesNames,
+      required this.regions});
   final TextEditingController payerController;
   final String selectedSales;
   final String selectedRegion;
   final String selectedProduct;
+  final List<String> salesNames;
+  final List<String> regions;
   final Function(String payer, String sales, String region, String product)
       onFilter;
   @override
@@ -37,15 +40,10 @@ class FilterDataInputs extends StatelessWidget {
           },
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * .24,
+          width: MediaQuery.of(context).size.width * .4,
           child: CustomDropDownInput(
             selectedValue: selectedSales,
-            items: const [
-              "All",
-              "Sales 1",
-              "Sales 2",
-              "Sales 3",
-            ],
+            items: salesNames,
             title: "Sales",
             onChanged: (value) {
               onFilter(
@@ -61,12 +59,7 @@ class FilterDataInputs extends StatelessWidget {
           width: MediaQuery.of(context).size.width * .24,
           child: CustomDropDownInput(
             selectedValue: selectedRegion,
-            items: const [
-              "All",
-              "Region 1",
-              "Region 2",
-              "Region 3",
-            ],
+            items: regions,
             title: "Region",
             onChanged: (value) {
               onFilter(
@@ -78,27 +71,27 @@ class FilterDataInputs extends StatelessWidget {
             },
           ),
         ),
-        SizedBox(
-          width: MediaQuery.of(context).size.width * .24,
-          child: CustomDropDownInput(
-            selectedValue: selectedProduct,
-            items: const [
-              "All",
-              "مصرى",
-              "وادى النيل",
-              "سائب",
-            ],
-            title: "Product",
-            onChanged: (value) {
-              onFilter(
-                payerController.text,
-                selectedSales,
-                selectedRegion,
-                value!,
-              );
-            },
-          ),
-        ),
+        // SizedBox(
+        //   width: MediaQuery.of(context).size.width * .24,
+        //   child: CustomDropDownInput(
+        //     selectedValue: selectedProduct,
+        //     items: const [
+        //       "All",
+        //       "مصري",
+        //       "وادي النيل",
+        //       "سائب",
+        //     ],
+        //     title: "Product",
+        //     onChanged: (value) {
+        //       onFilter(
+        //         payerController.text,
+        //         selectedSales,
+        //         selectedRegion,
+        //         value!,
+        //       );
+        //     },
+        //   ),
+        // ),
       ],
     );
   }

@@ -22,7 +22,8 @@ class _PaymentsBalanceSectionState extends State<PaymentsBalanceSection> {
       builder: (context, state) {
         if (state is CustomerBalanceSuccess) {
           List<CustomerBalance> sortingBanalnce = state.customerBalance;
-          sortingBanalnce.sort((a,b)=>b.amountBalance!.compareTo(a.amountBalance!));
+          sortingBanalnce
+              .sort((a, b) => a.amountBalance!.compareTo(b.amountBalance!));
           return Column(
             children: [
               Expanded(
@@ -30,17 +31,14 @@ class _PaymentsBalanceSectionState extends State<PaymentsBalanceSection> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      
                       const SizedBox(height: 10),
-                      
-                        SizedBox(
-                          height:
-                              orientation == Orientation.landscape ? 400 : 600,
-                          child: PaymentBalanceTable(
-                            paymentBalance: sortingBanalnce,
-                          ),
+                      SizedBox(
+                        height:
+                            orientation == Orientation.landscape ? 400 : 600,
+                        child: PaymentBalanceTable(
+                          paymentBalance: sortingBanalnce,
                         ),
-                      const SizedBox(height: 20),
+                      ),
                     ],
                   ),
                 ),

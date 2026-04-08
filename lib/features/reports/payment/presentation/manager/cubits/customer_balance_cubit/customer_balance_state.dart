@@ -8,12 +8,15 @@ sealed class CustomerBalanceState extends Equatable {
 }
 
 final class CustomerBalanceInitial extends CustomerBalanceState {}
+
 final class CustomerBalanceLoading extends CustomerBalanceState {}
+
 final class CustomerBalanceFailure extends CustomerBalanceState {
   final String error;
 
   const CustomerBalanceFailure({required this.error});
 }
+
 final class CustomerBalanceSuccess extends CustomerBalanceState {
   final List<CustomerBalance> customerBalance;
 

@@ -9,7 +9,7 @@ class CustomPriorityActionsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
       icon: const Icon(
-        Symbols.window,
+        Symbols.settings,
         color: kMainColor,
         weight: 900,
       ),

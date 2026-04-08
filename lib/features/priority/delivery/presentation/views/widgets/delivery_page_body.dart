@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/functions/setup_service_locator.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/add_delivery_priority_cubit/add_delivery_priority_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/delete_delivery_priority_order_cubit/delete_delivery_priority_order_cubit.dart';
@@ -8,8 +9,8 @@ import 'package:wncc_portal/features/priority/delivery/presentation/managers/cub
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/delivery_main_data.dart';
 
 class DeliveryPageBody extends StatelessWidget {
-  const DeliveryPageBody({super.key});
-
+  const DeliveryPageBody({super.key, required this.user});
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -34,7 +35,9 @@ class DeliveryPageBody extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),
-            child: const DeliveryMainData(),
+            child: DeliveryMainData(
+              user: user,
+            ),
           )
         ],
       ),

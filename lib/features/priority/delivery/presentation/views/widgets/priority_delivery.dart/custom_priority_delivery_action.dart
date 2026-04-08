@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_priority_action_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
@@ -13,56 +14,61 @@ class CustomPriorityDeliveryAction extends StatelessWidget {
     required this.orderId,
     required this.dispatchDeliveryEntity,
     this.onTap,
+    required this.user,
   });
   final String orderId;
   final DispatchDeliveryEntity dispatchDeliveryEntity;
   final void Function()? onTap;
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: CustomPriorityActionsWidget(
         itemBuilder: (context) => [
-          PopupMenuItem(
-            value: "pending",
-            child: const Row(
-              children: [
-                Icon(
-                  Symbols.task_alt,
-                  color: Colors.black,
-                  size: 20,
-                ),
-                SizedBox(width: 5),
-                Text("Delete order"),
-              ],
+          if (user.position != "Dispatch Coordinator")
+            PopupMenuItem(
+              value: "pending",
+              child: const Row(
+                children: [
+                  Icon(
+                    Symbols.task_alt,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                  SizedBox(width: 5),
+                  Text("Delete order"),
+                ],
+              ),
+              onTap: () {
+                makeSureDialog(
+                  context,
+                  contentText: 'Are you want to delete this Order?',
+                  submitText: 'Yes, delete',
+                  onSubmit: () {
+                    BlocProvider.of<DeleteDeliveryPriorityOrderCubit>(context)
+                        .deleteDeliveryPriorityOrder([orderId]);
+                    GoRouter.of(context).pop();
+                  },
+                );
+              },
             ),
-            onTap: () {
-              makeSureDialog(
-                context,
-                contentText: 'Are you want to delete this Order?',
-                submitText: 'Yes, delete',
-                onSubmit: () {
-                  BlocProvider.of<DeleteDeliveryPriorityOrderCubit>(context)
-                      .deleteDeliveryPriorityOrder([orderId]);
-                  GoRouter.of(context).pop();
-                },
-              );
-            },
-          ),
-          PopupMenuItem(
-            value: "dispatch",
-            onTap: onTap,
-            child: const Row(
-              children: [
-                Icon(
-                  Symbols.task_alt,
-                  color: Colors.black,
-                  size: 20,
-                ),
-                SizedBox(width: 5),
-                Text("Dispatch order"),
-              ],
+          if (user.position != "Sales Agent" &&
+              user.position != "Sales Area Manager")
+            PopupMenuItem(
+              value: "dispatch",
+              onTap: onTap,
+              child: const Row(
+                children: [
+                  Icon(
+                    Symbols.task_alt,
+                    color: Colors.black,
+                    size: 20,
+                  ),
+                  SizedBox(width: 5),
+                  Text("Dispatch order"),
+                ],
+              ),
             ),
-          ),
           PopupMenuItem(
             value: "Details",
             child: const Row(

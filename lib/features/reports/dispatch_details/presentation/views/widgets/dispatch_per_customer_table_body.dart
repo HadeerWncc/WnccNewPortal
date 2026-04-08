@@ -3,7 +3,7 @@ import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_customer_model/dispatch_per_customer_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_dispatch_grouped_by_sales.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_per_sales_header.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_per_header.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
 
@@ -24,7 +24,9 @@ class _DispatchPerCustomerTableBodyState
     return Expanded(
       child: Column(
         children: [
-          const DispatchPerSalesHeader(),
+          const DispatchPerHeader(
+            per: 1,
+          ),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -9,6 +9,7 @@ import 'package:wncc_portal/features/customerService/complains/presentation/view
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/create_complain_page.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_view.dart';
+import 'package:wncc_portal/features/error/presentaion/view/page/error_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_details_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_customer_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_sales_page.dart';
@@ -21,7 +22,7 @@ import 'package:wncc_portal/features/reports/morningMeating/presentation/views/p
 import 'package:wncc_portal/features/payer/presentation/views/pages/payer_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/pages/delivery_page.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/details_page.dart';
-import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
+import '../../../assets/copy/pickup/presentation/views/pages/pickup_priority_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/request_details_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/requests_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/add_request_page.dart';
@@ -91,6 +92,7 @@ abstract class AppRouter {
   static const dispatchDetailsPath = '/dispatchDetails';
   static const dispatchDetailsPerCustomerPath = '/dispatchDetailsPerCustomer';
   static const dispatchDetailsPerSalesPath = '/dispatchDetailsPerSales';
+  static const errorPagePath = '/errorPage';
 
   static final router = GoRouter(
     routes: [
@@ -298,6 +300,10 @@ abstract class AppRouter {
       GoRoute(
         path: dispatchDetailsPerSalesPath,
         builder: (context, state) => const DispatchPerSalesPage(),
+      ),
+      GoRoute(
+        path: errorPagePath,
+        builder: (context, state) => ErrorPage(error: state.extra as String),
       ),
     ],
   );

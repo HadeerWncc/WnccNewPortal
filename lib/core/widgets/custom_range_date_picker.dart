@@ -2,9 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class CustomRangeDatePicker extends StatefulWidget {
-  const CustomRangeDatePicker({super.key, required this.title, this.onChange});
+  const CustomRangeDatePicker(
+      {super.key,
+      required this.title,
+      this.onChange,
+      this.width,
+      this.ititialFromDate,
+      this.ititialToDate});
   final String title;
   final void Function(DateTimeRange rangeDate)? onChange;
+  final double? width;
+  final DateTime? ititialFromDate;
+  final DateTime? ititialToDate;
+
   @override
   State<CustomRangeDatePicker> createState() => _CustomRangeDatePickerState();
 }
@@ -14,14 +24,28 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
   String toformattedDate = DateFormat('d-M-y').format(DateTime.now());
   // DateTime currentDate = DateTime.now();
 
+  @override
+  void initState() {
+    super.initState();
+    // Perform one-time initialization here
+    fomFormattedDate =
+        DateFormat('d-M-y').format(widget.ititialFromDate ?? DateTime.now());
+    toformattedDate =
+        DateFormat('d-M-y').format(widget.ititialToDate ?? DateTime.now());
+  }
+
   Future<void> _selectmonthYearPicker() async {
     final selected = await showDateRangePicker(
       context: context,
       firstDate: DateTime(2000),
       lastDate: DateTime(2050),
       initialDateRange: DateTimeRange(
-        start: DateTime.now(),
-        end: DateTime.now(),
+        start: widget.ititialFromDate == null
+            ? DateTime.now()
+            : widget.ititialFromDate!,
+        end: widget.ititialToDate == null
+            ? DateTime.now()
+            : widget.ititialToDate!,
       ),
       // builder: (context, child) {
       //   return Theme(
@@ -63,7 +87,7 @@ class _CustomRangeDatePickerState extends State<CustomRangeDatePicker> {
       onTap: _selectmonthYearPicker,
       child: Container(
         padding: const EdgeInsets.all(8),
-        width: MediaQuery.of(context).size.width * .43,
+        width: widget.width ?? MediaQuery.of(context).size.width * .43,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Colors.white,

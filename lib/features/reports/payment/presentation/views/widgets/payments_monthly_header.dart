@@ -78,12 +78,10 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
                 title: "Payer",
                 width: MediaQuery.of(context).size.width * .5,
                 onChanged: (value) {
-                  if (value == "All") {
+                  if (value!.startsWith("All")) {
                     payer = "";
                   } else {
-                    payer = state.payerModel
-                        .firstWhere((p) => p.fullName == value)
-                        .id;
+                    payer = value.split('|').last; // id
                   }
                   setState(() {});
                 },

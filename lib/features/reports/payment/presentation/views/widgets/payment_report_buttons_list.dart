@@ -23,12 +23,12 @@ class PaymentReportButtonsList extends StatelessWidget {
         // Handle button tap
         if (value == 'Details') {
           BlocProvider.of<PaymentsDetailsCubit>(context)
-        .getPaymentDetails(DateTime.now(), DateTime.now());
+              .getPaymentDetails(DateTime.now(), DateTime.now());
           GoRouter.of(context).push(AppRouter.paymentsDetailsPath);
         } else if (value == 'Summary') {
-          BlocProvider.of<PaymentsCubit>(context)
-              .fetchPayments(2, DateTime.now(), "");
-          BlocProvider.of<PayerCubit>(context).getAllPayers();
+          // BlocProvider.of<PaymentsCubit>(context)
+          //     .fetchPayments(2, DateTime.now(), "");
+          // BlocProvider.of<PayerCubit>(context).getAllPayers();
           GoRouter.of(context).push(AppRouter.paymentsDailyPath);
         } else if (value == 'Balance') {
           BlocProvider.of<CustomerBalanceCubit>(context).getPaymentBalance();

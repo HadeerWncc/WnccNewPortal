@@ -24,7 +24,9 @@ class ServerFailure extends Failure {
       case DioExceptionType.cancel:
         return ServerFailure(msg: 'Request to api server was canceled');
       case DioExceptionType.connectionError:
-        return ServerFailure(msg: 'No Internet Connection');
+        return ServerFailure(
+            msg:
+                'Unable to connect. Please check your internet or enable your VPN and try again');
       case DioExceptionType.unknown:
         return ServerFailure(msg: 'Opps there was an error, Please try again');
     }
@@ -34,7 +36,7 @@ class ServerFailure extends Failure {
     if (statusCode == 404) {
       return ServerFailure(msg: 'Your request was not found, Please try later');
     } else if (statusCode == 500) {
-      return ServerFailure(msg: response['message']);
+      return ServerFailure(msg: 'Internal Server Error');
     } else if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return ServerFailure(
           msg: response['message'] ?? 'there was an error, please try again');

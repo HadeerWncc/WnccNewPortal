@@ -18,7 +18,7 @@ class PrioritySummary extends StatelessWidget {
             widthRatio: 0.25,
             icon: Symbols.weight,
             child: CustomQuantityComparing(
-              mainTitle: '2780',
+              mainTitle: '0',
             ),
           ),
           CustomDailyQuotaItem(
@@ -39,7 +39,7 @@ class PrioritySummary extends StatelessWidget {
           ),
           CustomDailyQuotaItem(
             landingtitle: 'Undispatched',
-            widthRatio: 0.25,
+            widthRatio: 0.3,
             icon: Symbols.hourglass_empty,
             child: CustomQuantityComparing(
               mainTitle: '0',

@@ -11,8 +11,10 @@ class CustomPendingDeliveryActions extends StatelessWidget {
   const CustomPendingDeliveryActions({
     super.key,
     required this.orderId,
+    required this.priorityDate,
   });
   final String orderId;
+  final DateTime priorityDate;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -38,7 +40,7 @@ class CustomPendingDeliveryActions extends StatelessWidget {
                 submitText: 'Yes, Add',
                 onSubmit: () {
                   BlocProvider.of<AddDeliveryPriorityCubit>(context)
-                      .addDeliveryPriority([orderId], false);
+                      .addDeliveryPriority([orderId], false, priorityDate);
                   GoRouter.of(context).pop();
                 },
               );

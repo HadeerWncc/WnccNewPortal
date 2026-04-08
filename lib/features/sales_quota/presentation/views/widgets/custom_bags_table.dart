@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/utils/methods/parse_to_int.dart';
 import 'package:wncc_portal/features/sales_quota/data/models/daily_quota_model/sales_quota.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/custom_table_input_cell.dart';
-import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/table_header_cell.dart';
 
 class CustomBagsTable extends StatelessWidget {
   const CustomBagsTable({
@@ -33,8 +32,7 @@ class CustomBagsTable extends StatelessWidget {
               children: [
                 TableCell(
                   child: Padding(
-                    padding: EdgeInsets.only(
-                        top: 15, bottom: 15, left: 20, right: 60),
+                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                     child: Text(
                       'Name',
                       style: TextStyle(
@@ -103,8 +101,8 @@ class CustomBagsTable extends StatelessWidget {
                 children: [
                   TableCell(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 8, bottom: 8, left: 20, right: 60),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [

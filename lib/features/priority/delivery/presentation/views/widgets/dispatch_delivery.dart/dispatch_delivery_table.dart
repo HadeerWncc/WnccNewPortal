@@ -1,10 +1,11 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
-import 'package:wncc_portal/features/priority/comm/models/order_response/order_response.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
+import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/custom_dispatch_delivery_actions.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
 
@@ -12,9 +13,11 @@ class DispatchDeliveryTable extends StatefulWidget {
   const DispatchDeliveryTable(
       {super.key,
       required this.onSelectOrders,
-      required this.dispatchedOrders});
+      required this.dispatchedOrders,
+      required this.user});
   final Function(List<String> ordersId) onSelectOrders;
-  final List<OrderResponse> dispatchedOrders;
+  final List<PriorityDeliveryModel> dispatchedOrders;
+  final UserModel user;
 
   @override
   State<DispatchDeliveryTable> createState() => _DispatchDeliveryTableState();
@@ -33,27 +36,37 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
         child: DataTable2(
           columnSpacing: 0,
           horizontalMargin: 0,
-          minWidth: 1800,
+          minWidth: 1700,
           showCheckboxColumn: true,
           dataRowHeight: 60,
           border: const TableBorder.symmetric(
               outside: BorderSide(color: Color.fromARGB(255, 195, 193, 193))),
           headingRowColor: WidgetStateProperty.all(
-            const Color(0xffF9FAFC),
+            kBtnColor,
+          ),
+          headingTextStyle: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
           ),
           columns: const [
-            DataColumn(label: DataColumnText(text: 'Select')),
-            DataColumn(label: DataColumnText(text: 'OrderNo')),
-            DataColumn(label: DataColumnText(text: 'Product')),
-            DataColumn(label: DataColumnText(text: 'Payer')),
-            DataColumn(label: DataColumnText(text: 'Pod')),
-            DataColumn(label: DataColumnText(text: 'PodAddress')),
-            DataColumn(label: DataColumnText(text: 'Sales')),
-            DataColumn(label: DataColumnText(text: 'Quantity')),
-            DataColumn(label: DataColumnText(text: 'Dispatched At')),
-            DataColumn(label: DataColumnText(text: 'Truck No')),
-            DataColumn(label: DataColumnText(text: 'Status')),
-            DataColumn(label: DataColumnText(text: 'Actions')),
+            DataColumn2(label: DataColumnText(text: 'Select'), fixedWidth: 60),
+            DataColumn2(
+                label: DataColumnText(text: 'Dispatcher'), fixedWidth: 160),
+            DataColumn2(
+                label: DataColumnText(text: 'Priorited At'), fixedWidth: 140),
+            DataColumn2(
+                label: DataColumnText(text: 'Dispatched At'), fixedWidth: 140),
+            DataColumn2(label: DataColumnText(text: 'Code'), fixedWidth: 100),
+            DataColumn(label: DataColumnText(text: 'Customer')),
+            DataColumn2(label: DataColumnText(text: 'No'), fixedWidth: 100),
+            DataColumn(label: DataColumnText(text: 'Matrial')),
+            DataColumn2(label: DataColumnText(text: 'Qty'), fixedWidth: 120),
+            DataColumn2(label: DataColumnText(text: 'Truck'), fixedWidth: 60),
+            DataColumn2(label: DataColumnText(text: 'Zone'), fixedWidth: 120),
+            DataColumn2(
+                label: DataColumnText(text: 'Receiver'), fixedWidth: 140),
+            DataColumn2(label: DataColumnText(text: 'Sales'), fixedWidth: 150),
+            DataColumn2(label: DataColumnText(text: 'Actions'), fixedWidth: 80),
           ],
           rows: List<DataRow>.generate(
             widget.dispatchedOrders.length,
@@ -65,14 +78,15 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
               return DataRow(color: WidgetStateProperty.all(color), cells: [
                 DataCell(
                   CustomDataCellCheckbox(
-                    orderId: item.id!,
+                    orderId: item.delivery!,
                     onChanged: (value) {
                       //save orderId
                       if (value == true) {
-                        orders.add(item.id!);
+                        orders.add(item.delivery!);
                         setState(() {});
                       } else {
-                        orders.removeWhere((element) => element == item.id!);
+                        orders.removeWhere(
+                            (element) => element == item.delivery!);
                         setState(() {});
                       }
                       widget.onSelectOrders(orders);
@@ -82,47 +96,105 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                 DataCell(
                   Center(
                     child: Text(
-                      item.id.toString(),
+                      item.dispatcher.toString(),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                DataCell(CustomDataCellWidget(
-                  title: item.product?.name ?? "",
-                  subTitle: "category: ${item.product?.category}",
-                )),
-                DataCell(CustomDataCellWidget(
-                    title: item.payer?.fullName ?? "",
-                    subTitle: "Code: ${item.payer?.id}")),
-                DataCell(CustomDataCellWidget(
-                    title: item.podName ?? "",
-                    subTitle: "Phone: ${item.podPhone}")),
-                DataCell(CustomDataCellWidget(
-                    title: item.podCity ?? "",
-                    subTitle: "address: ${item.podAddress}")),
-                DataCell(CustomDataCellWidget(
-                    title: item.sales?.fullName ?? "",
-                    subTitle: "Code: ${item.sales?.id}")),
-                DataCell(CustomDataCellWidget(
-                    title: item.quantity.toString(),
-                    subTitle: "Price: ${item.price}")),
-                DataCell(CustomDataCellWidget(
-                    title: DateFormat('MMM d, y')
-                        .format(item.dispatchDate ?? DateTime.now()),
-                    subTitle: "Time: 12:00 PM")),
-                DataCell(Center(child: Text(item.truckNo.toString()))),
-                const DataCell(
+                DataCell(
                   Center(
-                    child: CustomMarkedColorContainer(
-                      title: 'CheckIn',
-                      color: Colors.green,
-                      bgColor: Color(0xffD9FDE3),
+                    child: Text(
+                      DateFormat('d/M/yyyy')
+                          .format(DateTime.parse(item.priorityDate)),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      DateFormat('d/M/yyyy')
+                          .format(DateTime.parse(item.dispatchDate)),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.customerId.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.customerName.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.delivery.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.materialDescription.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.deliveryQuantity.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.truckNo.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.addressTransZoneDesc.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.receiver.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.salesName.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
                 DataCell(
                   CustomDispatchDeliveryActions(
-                    orderId: item.id!,
+                    orderId: item.delivery!,
+                    user: widget.user,
                   ),
                 ),
               ]);

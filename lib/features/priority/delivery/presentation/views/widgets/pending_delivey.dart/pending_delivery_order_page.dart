@@ -16,8 +16,8 @@ class PendingDeliveryOrdersPage extends StatelessWidget {
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 10),
-        PrioritySummary(),
+        // SizedBox(height: 10),
+        // PrioritySummary(),
         SizedBox(height: 10),
         DividerLine(),
         SizedBox(height: 10),

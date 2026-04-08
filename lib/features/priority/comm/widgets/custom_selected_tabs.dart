@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/widgets/selected_tab_item.dart';
 
 class CustemSelectedTabs extends StatefulWidget {
   const CustemSelectedTabs({
     super.key,
     this.onChangeTab,
+    required this.user,
   });
   final Function(String)? onChangeTab;
-
+  final UserModel user;
   @override
   State<CustemSelectedTabs> createState() => _CustemSelectedTabsState();
 }
 
 class _CustemSelectedTabsState extends State<CustemSelectedTabs> {
-  String selectedTab = 'Pending';
+  String selectedTab = '';
+  @override
+  void initState() {
+    // TODO: implement initState
+    if (widget.user.position == "Dispatch Coordinator") {
+      selectedTab = 'Priority';
+    } else {
+      selectedTab = 'Pending';
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,16 +38,17 @@ class _CustemSelectedTabsState extends State<CustemSelectedTabs> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SelectedTabItem(
-            title: 'Pending',
-            active: selectedTab == 'Pending',
-            onTap: () {
-              setState(() {
-                selectedTab = 'Pending';
-                widget.onChangeTab?.call(selectedTab);
-              });
-            },
-          ),
+          if (widget.user.position != "Dispatch Coordinator")
+            SelectedTabItem(
+              title: 'Pending',
+              active: selectedTab == 'Pending',
+              onTap: () {
+                setState(() {
+                  selectedTab = 'Pending';
+                  widget.onChangeTab?.call(selectedTab);
+                });
+              },
+            ),
           SelectedTabItem(
             title: 'Priority',
             active: selectedTab == 'Priority',

@@ -24,7 +24,6 @@ class _BalanceTableWithFilterState extends State<BalanceTableWithFilter> {
   List<CustomerBalance> get filteredData {
     return widget.tableData.where((t) {
       final matchDoc = searchText.isEmpty ||
-          
           (t.customer ?? "").toLowerCase().contains(searchText.toLowerCase());
 
       final matchSales =
@@ -77,7 +76,7 @@ class _BalanceTableWithFilterState extends State<BalanceTableWithFilter> {
               )
             : Expanded(
                 child: DataTable2(
-                  minWidth: data.first.toMap().length * 150,
+                  minWidth: data.first.toMap().length * 120,
                   isVerticalScrollBarVisible: false,
                   horizontalMargin: 0,
                   columnSpacing: 0,
@@ -103,15 +102,26 @@ class _BalanceTableWithFilterState extends State<BalanceTableWithFilter> {
                                   ),
                                 ),
                               )
-                            : DataColumn(
-                                label: Center(
-                                  child: Text(
-                                    e,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
+                            : (e == "Credit Segment" || e == "Sales")
+                                ? DataColumn2(
+                                    fixedWidth: 140,
+                                    label: Center(
+                                      child: Text(
+                                        e,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  )
+                                : DataColumn(
+                                    label: Center(
+                                      child: Text(
+                                        e,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
                       )
                       .toList(),
                   rows: data.map(

@@ -5,7 +5,7 @@ import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispat
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_sales_cubit/dispatch_details_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_dispatch_grouped_by_sales.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_per_sales_header.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_per_header.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
 
@@ -25,7 +25,9 @@ class _DispatchPerSalesTableBodyState extends State<DispatchPerSalesTableBody> {
     return Expanded(
       child: Column(
         children: [
-          const DispatchPerSalesHeader(),
+          const DispatchPerHeader(
+            per: 0,
+          ),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

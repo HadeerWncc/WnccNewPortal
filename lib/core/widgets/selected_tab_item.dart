@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/core/constants/colors.dart';
 
 class SelectedTabItem extends StatelessWidget {
   const SelectedTabItem({
@@ -18,7 +19,7 @@ class SelectedTabItem extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.3,
         height: 40,
         decoration: BoxDecoration(
-          color: active ? const Color(0xff008855) : const Color(0xffF9F9F9),
+          color: active ? kBtnColor : const Color(0xffF9F9F9),
           borderRadius: BorderRadius.circular(5),
         ),
         child: Center(
