@@ -19,8 +19,8 @@ class DispatchDetailsBody extends StatelessWidget {
           BlocBuilder<DispatchDetailsCubit, DispatchDetailsState>(
             builder: (context, state) {
               if (state is DispatchDetailsSuccess) {
-                BlocProvider.of<ShipmentDetailsCubit>(context)
-                    .getShipmentDetails();
+                // BlocProvider.of<ShipmentDetailsCubit>(context)
+                //     .getShipmentDetails();
 
                 return DispatchTablesBody(
                   dispatchDetailsResponse: state.dispatchDetailsList,

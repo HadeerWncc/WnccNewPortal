@@ -1,10 +1,14 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
+import 'package:wncc_portal/features/priority/comm/models/priority_summary_model.dart';
 import 'package:wncc_portal/features/priority/pickup/data/models/pickup_model/pickup_model.dart';
+import 'package:wncc_portal/features/priority/comm/entities/get_summary_entity.dart';
 import 'package:wncc_portal/features/priority/pickup/domin/entities/make_pickupility_entity.dart';
 
 abstract class PickupDataSource {
   Future<List<PickupModel>> getPickupPriority(DateTime date);
   Future<String> makePickupilityEntity(MakePickupilityEntity makePickupility);
+  Future<PrioritySummaryModel> getPickupSummary(
+      GetSummaryEntity getpicSummaryEntity);
 }
 
 class PickupDataSourceImpl extends PickupDataSource {
@@ -35,14 +39,25 @@ class PickupDataSourceImpl extends PickupDataSource {
                 "salesId": m.salesId
               })
           .toList(),
-      "type": makePickupility.type,
       "date": (makePickupility.date).toIso8601String(),
     };
-    var result = await apiService.post(
-      endPoint: 'api/Delivery/MakePriority',
+    var result = await apiService.put(
+      endPoint: 'api/Pickup/MakePickupility',
       data: data,
     );
     String successed = result["message"] as String;
     return successed;
+  }
+
+  @override
+  Future<PrioritySummaryModel> getPickupSummary(
+      GetSummaryEntity getpicSummaryEntity) async {
+    var result = await apiService.get(
+      endPoint:
+          'api/Quotas/GetSummary?Date=${getpicSummaryEntity.date.toIso8601String()}&SalesId=${getpicSummaryEntity.salesId}&RegionId=${getpicSummaryEntity.regionId}&MaterialId=${getpicSummaryEntity.matrialId}&DispatchChannel=Pickup',
+    );
+    PrioritySummaryModel summary =
+        PrioritySummaryModel.fromJson(result["data"]);
+    return summary;
   }
 }

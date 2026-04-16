@@ -9,7 +9,7 @@ class SetPickupPriorityCubit extends Cubit<SetPickupPriorityState> {
   SetPickupPriorityCubit(this.pickupRepo) : super(SetPickupPriorityInitial());
   final PickupRepo pickupRepo;
 
-   Future<void> setPickupPriority(MakePickupilityEntity makePickupility) async {
+  Future<void> setPickupPriority(MakePickupilityEntity makePickupility) async {
     emit(SetPickupPriorityLoading());
     var result = await pickupRepo.makePickupility(makePickupility);
     result.fold((msg) {

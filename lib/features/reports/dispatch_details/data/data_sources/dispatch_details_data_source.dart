@@ -1,11 +1,12 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_customer_model/dispatch_per_customer_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_sales_model/dispatch_per_sales_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/shipment_details_model.dart';
 
 abstract class DispatchDetailsDataSource {
-  Future<List<DispatchDetailsModel>> getDispatchDetails(DateTime date);
+  Future<List<DispatchDetailsModel2>> getDispatchDetails(
+      DateTime date, int group);
   Future<List<ShipmentDetailsModel>> getShipmentDetails();
   Future<List<DispatchPerSalesModel>> getDispatchDetailsPerSales(
       DateTime from, DateTime to);
@@ -18,13 +19,15 @@ class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource {
 
   DispatchDetailsDataSourceImpl({required this.apiService});
   @override
-  Future<List<DispatchDetailsModel>> getDispatchDetails(DateTime date) async {
+  Future<List<DispatchDetailsModel2>> getDispatchDetails(
+      DateTime date, int group) async {
     var result = await apiService.get(
-        endPoint: 'api/Reports/GetRegionDispatchDetails?date=$date');
-    List<DispatchDetailsModel> dispatchDetailsList = [];
+        endPoint:
+            'api/Reports/GetDispatchDetails?fromDate=${DateTime(date.year, 1)}&toDate=${DateTime(date.year + 1, 1)}&group=$group');
+    List<DispatchDetailsModel2> dispatchDetailsList = [];
     for (var dispach in result["data"]) {
-      DispatchDetailsModel dispatchDetailsModel =
-          DispatchDetailsModel.fromJson(dispach);
+      DispatchDetailsModel2 dispatchDetailsModel =
+          DispatchDetailsModel2.fromJson(dispach);
       dispatchDetailsList.add(dispatchDetailsModel);
     }
     return dispatchDetailsList;

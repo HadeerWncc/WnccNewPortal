@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/widgets/divider_line.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/priority_summary.dart';
 import '../../../managers/cubits/get_all_pickup_cubit/getall_pickup_cubit.dart';
 import 'pending_pickup_section.dart';
 
@@ -15,7 +14,7 @@ class PendingPickupOrdersPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 10),
-        PrioritySummary(),
+        // PrioritySummary(),
         SizedBox(height: 10),
         DividerLine(),
         SizedBox(height: 10),

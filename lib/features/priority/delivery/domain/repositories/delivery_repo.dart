@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
+import 'package:wncc_portal/features/priority/comm/entities/get_summary_entity.dart';
+import 'package:wncc_portal/features/priority/comm/models/priority_summary_model.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 
@@ -22,4 +24,6 @@ abstract class DeliveryRepo {
       List<DispatchDeliveryEntity> orders);
   // Future<Either<Failure, bool>> undispatchDeliveryOrders(List<String> orders);
   Future<Either<Failure, List<String>>> getDispatchAgents();
+  Future<Either<Failure, PrioritySummaryModel>> getDeliverySummary(
+      GetSummaryEntity getpicSummaryEntity);
 }

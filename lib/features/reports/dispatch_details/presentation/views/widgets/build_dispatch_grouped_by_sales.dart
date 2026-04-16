@@ -6,9 +6,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_quantity.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_customer_model/dispatch_per_customer_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_sales_model/dispatch_per_sales_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_quantity.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_dispatch_details_table.dart';
 
@@ -157,12 +157,12 @@ List<Widget> buildDispatchPerCustomerGroups(
                         children: [
                           cell(item.customerRegion, 2),
                           cell(item.branchRegionDesc, 2),
-                          cell(getFormatted(item.totalBulk, quantityType), 1),
-                          cell(getFormatted(item.totalBags, quantityType), 1),
-                          cell(getFormatted(item.total, quantityType), 1),
-                          cell(
-                              getFormatted(item.totalMonthly, quantityType), 1),
-                          cell(getFormatted(item.totalDaily, quantityType), 1),
+                          // cell(getFormatted(item.totalBulk, quantityType), 1),
+                          // cell(getFormatted(item.totalBags, quantityType), 1),
+                          // cell(getFormatted(item.total, quantityType), 1),
+                          // cell(
+                          //     getFormatted(item.totalMonthly, quantityType), 1),
+                          // cell(getFormatted(item.totalDaily, quantityType), 1),
                           cell(item.salesName, 3),
                         ],
                       ),
@@ -228,12 +228,12 @@ List<Widget> buildDispatchPerSalesGroups(
                       child: Row(
                         children: [
                           cell(item.branchRegionDesc, 2),
-                          cell(getFormatted(item.totalBulk, quantityType), 1),
-                          cell(getFormatted(item.totalBags, quantityType), 1),
-                          cell(getFormatted(item.total, quantityType), 1),
-                          cell(
-                              getFormatted(item.totalMonthly, quantityType), 1),
-                          cell(getFormatted(item.totalDaily, quantityType), 1),
+                          // cell(getFormatted(item.totalBulk, quantityType), 1),
+                          // cell(getFormatted(item.totalBags, quantityType), 1),
+                          // cell(getFormatted(item.total, quantityType), 1),
+                          // cell(
+                          //     getFormatted(item.totalMonthly, quantityType), 1),
+                          // cell(getFormatted(item.totalDaily, quantityType), 1),
                         ],
                       ),
                     );
@@ -253,7 +253,7 @@ Widget cell(dynamic value, int flex) {
   );
 }
 
-String getFormatted(DispatchQuantity? q, QuantityType type) {
+String getFormatted(DispatchDetailsQuantity? q, QuantityType type) {
   final value = getQuantityValue(q, type);
   return NumberFormat.decimalPatternDigits(decimalDigits: 0).format(value);
 }

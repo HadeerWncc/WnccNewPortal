@@ -16,6 +16,9 @@ class ApiService {
     Object? data,
   }) async {
     final response = await _dio.post('$baseUrl$endPoint', data: data);
+    if (response.data == "") {
+      throw Exception(response.statusMessage);
+    }
     return response.data;
   }
 

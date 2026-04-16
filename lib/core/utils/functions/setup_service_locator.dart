@@ -19,6 +19,13 @@ import 'package:wncc_portal/features/payer/data/data_sources/payer_datasource.da
 import 'package:wncc_portal/features/payer/data/repos_impl/payer_repo_impl.dart';
 import 'package:wncc_portal/features/payer/domain/repos/payer_repo.dart';
 import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_delivery_summary_cubit/get_delivery_summary_cubit.dart';
+import 'package:wncc_portal/features/priority/pickup/data/datasources/pickup_data_source.dart';
+import 'package:wncc_portal/features/priority/pickup/data/repositories/pickup_repo_impl.dart';
+import 'package:wncc_portal/features/priority/pickup/domin/repositories/pickup_repo.dart';
+import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickup_summary_cubit/get_pickup_summary_cubit.dart';
+import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickupility_cubit/get_pickupility_cubit.dart';
+import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/set_pickup_priority_cubit/set_pickup_priority_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/repo_impl/dispatch_details_repo_impl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
@@ -49,15 +56,6 @@ import 'package:wncc_portal/features/priority/delivery/presentation/managers/cub
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_delivery_by_id_cubit/get_delivery_by_id_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/undispatch_delivery_order_cubit/undispatch_delivery_order_cubit.dart';
-import '../../../../assets/copy/pickup/data/datasources/pickup_data_source.dart';
-import '../../../../assets/copy/pickup/data/repositories/pickup_repo_impl.dart';
-import '../../../../assets/copy/pickup/domain/repositories/pickup_repo.dart';
-import '../../../../assets/copy/pickup/presentation/managers/cubits/add_pickup_priority_cubit/add_pickup_priority_cubit.dart';
-import '../../../../assets/copy/pickup/presentation/managers/cubits/delete_pickup_priority_cubit/delete_pickup_priority_cubit.dart';
-import '../../../../assets/copy/pickup/presentation/managers/cubits/dispatch_pickup_cubit/dispatch_pickup_order_cubit.dart';
-import '../../../../assets/copy/pickup/presentation/managers/cubits/get_all_pickup_cubit/getall_pickup_cubit.dart';
-import '../../../../assets/copy/pickup/presentation/managers/cubits/get_pickup_by_id_cubit/get_pickup_by_id_cubit.dart';
-import '../../../../assets/copy/pickup/presentation/managers/cubits/undispatch_pickup_cubit/undispatch_pickup_cubit.dart';
 import 'package:wncc_portal/features/customerService/requests/data/datasources/requests_data_source.dart';
 import 'package:wncc_portal/features/customerService/requests/data/repositories/requests_repo_impl.dart';
 import 'package:wncc_portal/features/customerService/requests/domain/repos/requests_repo.dart';
@@ -70,14 +68,12 @@ import 'package:wncc_portal/features/customerService/requests/presentation/manag
 import 'package:wncc_portal/features/customerService/requests/presentation/managers/requests_cubit/requests_cubit.dart';
 import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/morning_meeting_priority_cubit/morning_meeting_priority_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/data/data_sources/payment_data_source.dart';
-import 'package:wncc_portal/features/reports/payment/data/models/customer_balance.dart';
 import 'package:wncc_portal/features/reports/payment/data/repo_impl/payments_repo_impl.dart';
 import 'package:wncc_portal/features/reports/payment/domain/repos/payments_repo.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/customer_balance_cubit/customer_balance_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_percustomer_page.dart';
 import 'package:wncc_portal/features/reports/pending/data/data_sources/pending_data_source.dart';
 import 'package:wncc_portal/features/reports/pending/data/repo_impl/pending_repo_impl.dart';
 import 'package:wncc_portal/features/reports/pending/domain/repos/pending_repo.dart';
@@ -400,32 +396,24 @@ void setupLocator() {
   //getAgentsCubit
   getIt.registerFactory<GetAgentsCubit>(
       () => GetAgentsCubit(getIt<DeliveryRepo>()));
+      
+  //getDeliverySummary
+  getIt.registerFactory<GetDeliverySummaryCubit>(
+      () => GetDeliverySummaryCubit(getIt<DeliveryRepo>()));
 
   //Pickup Cubits
 
-  //AddPickupPriorityCubit
-  getIt.registerFactory<AddPickupPriorityCubit>(
-      () => AddPickupPriorityCubit(getIt<PickupRepo>()));
-
-  //UndispatchPickupCubit
-  getIt.registerFactory<UndispatchPickupCubit>(
-      () => UndispatchPickupCubit(getIt<PickupRepo>()));
-
-  //deletePickupCubit
-  getIt.registerFactory<DeletePickupPriorityCubit>(
-      () => DeletePickupPriorityCubit(getIt<PickupRepo>()));
-
-  //dispatchPickupCubit
-  getIt.registerFactory<DispatchPickupOrderCubit>(
-      () => DispatchPickupOrderCubit(getIt<PickupRepo>()));
+  //SetPickupPriorityCubit
+  getIt.registerFactory<SetPickupPriorityCubit>(
+      () => SetPickupPriorityCubit(getIt<PickupRepo>()));
 
   //getAllCubit
-  getIt.registerFactory<GetallPickupCubit>(
-      () => GetallPickupCubit(getIt<PickupRepo>()));
+  getIt.registerFactory<GetPickupilityCubit>(
+      () => GetPickupilityCubit(getIt<PickupRepo>()));
 
-  //getByIdCubit
-  getIt.registerFactory<GetPickupByIdCubit>(
-      () => GetPickupByIdCubit(getIt<PickupRepo>()));
+  //getPickupSummary
+  getIt.registerFactory<GetPickupSummaryCubit>(
+      () => GetPickupSummaryCubit(getIt<PickupRepo>()));
 
   //RequestsCubit
 

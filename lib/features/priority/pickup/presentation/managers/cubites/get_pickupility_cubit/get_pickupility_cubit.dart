@@ -10,7 +10,7 @@ class GetPickupilityCubit extends Cubit<GetPickupilityState> {
 
   final PickupRepo pickupRepo;
 
-  Future<void> getAllDeliveryPending(DateTime date) async {
+  Future<void> getAllPickup(DateTime date) async {
     emit(GetPickupilityLoading());
     var result = await pickupRepo.getPickUpPriority(date);
     result.fold((error) {

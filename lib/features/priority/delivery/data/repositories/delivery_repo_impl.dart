@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
+import 'package:wncc_portal/features/priority/comm/entities/get_summary_entity.dart';
+import 'package:wncc_portal/features/priority/comm/models/priority_summary_model.dart';
 import 'package:wncc_portal/features/priority/delivery/data/datasources/delivery_data_source.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
@@ -103,6 +105,20 @@ class DeliveryRepoImpl extends DeliveryRepo {
     try {
       List<String> agents = await deliveryDataSource.getDispatchAgents();
       return Right(agents);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, PrioritySummaryModel>> getDeliverySummary(GetSummaryEntity getpicSummaryEntity) async {
+    try {
+      PrioritySummaryModel deliverySummary =
+          await deliveryDataSource.getDeliverySummary(getpicSummaryEntity);
+      return Right(deliverySummary);
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));

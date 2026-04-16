@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_quantity.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_quantity.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/column_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/dispatch_row.dart';
@@ -65,21 +67,21 @@ List<DispatchColumn> buildColumns(
   return columns;
 }
 
-num getQuantityValue(DispatchQuantity? q, QuantityType type) {
+num getQuantityValue(DispatchDetailsQuantity? q, QuantityType type) {
   if (q == null) return 0;
 
   switch (type) {
     case QuantityType.delivery:
-      return q.deliveryQuantity ?? 0;
+      return q.deliveryQuantity?.total ?? 0;
     case QuantityType.pickup:
-      return q.pickupQuantity ?? 0;
+      return q.pickupQuantity?.total ?? 0;
     case QuantityType.total:
       return q.total ?? 0;
   }
 }
 
 List<DispatchRow> buildRowsFromMonths({
-  required List<DispatchDetailsModel> months,
+  required List<DispatchDetailsModel2> months,
   required List<DispatchColumn> columns,
   required QuantityType quantityType,
 }) {
@@ -88,7 +90,9 @@ List<DispatchRow> buildRowsFromMonths({
   final now = DateTime.now();
 
   for (final month in months) {
-    final isCurrentMonth = month.month == now.month && now.year == now.year;
+    final isCurrentMonth =
+        DateTime.parse(month.monthDate!).month == now.month &&
+            now.year == now.year;
 
     final days = month.monthDays ?? [];
 
@@ -101,25 +105,39 @@ List<DispatchRow> buildRowsFromMonths({
         num value = 0;
 
         if (column.type == ColumnType.region) {
-          final region = day.regions?.firstWhere(
-            (r) => r.regionId == column.region?.regionId,
-            orElse: () => column.region!,
-          );
+          // final region = day.regions?.firstWhere(
+          //   (r) => r.regionId == column.region?.regionId,
+          //   orElse: () => column.region!,
+          // );
 
-          value = getQuantityValue(region?.quantity, quantityType);
+          // value = getQuantityValue(region?.quantity, quantityType);
         } else {
           switch (column.area) {
             case 'Greater Cairo':
-              value = getQuantityValue(day.totalGCairo, quantityType);
+              value = getQuantityValue(
+                  day.dataValues
+                      ?.firstWhere((d) => d.name == 'Greater Cairo')
+                      .quantity,
+                  quantityType);
               break;
             case 'Delta':
-              value = getQuantityValue(day.totalDelta, quantityType);
+              value = getQuantityValue(
+                  day.dataValues?.firstWhere((d) => d.name == 'Delta').quantity,
+                  quantityType);
               break;
             case 'UEgypt':
-              value = getQuantityValue(day.totalUEgypt, quantityType);
+              value = getQuantityValue(
+                  day.dataValues
+                      ?.firstWhere((d) => d.name == 'Upper Egypt')
+                      .quantity,
+                  quantityType);
               break;
             case 'Coastal':
-              value = getQuantityValue(day.totalCoastal, quantityType);
+              value = getQuantityValue(
+                  day.dataValues
+                      ?.firstWhere((d) => d.name == 'Coastal')
+                      .quantity,
+                  quantityType);
               break;
           }
         }
@@ -129,8 +147,9 @@ List<DispatchRow> buildRowsFromMonths({
 
       rows.add(
         DispatchRow(
-          label:
-              isCurrentMonth ? (day.date ?? '') : '${month.monthLabel} Total',
+          label: isCurrentMonth
+              ? (day.date ?? '')
+              : '${DateFormat('MMM').format(DateTime.parse(month.monthDate!))} Total',
           values: values,
         ),
       );

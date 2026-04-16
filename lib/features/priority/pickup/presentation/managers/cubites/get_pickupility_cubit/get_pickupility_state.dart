@@ -8,12 +8,15 @@ sealed class GetPickupilityState extends Equatable {
 }
 
 final class GetPickupilityInitial extends GetPickupilityState {}
+
 final class GetPickupilityLoading extends GetPickupilityState {}
+
 final class GetPickupilitySuccess extends GetPickupilityState {
   final List<PickupModel> pickupList;
 
   const GetPickupilitySuccess({required this.pickupList});
 }
+
 final class GetPickupilityFailure extends GetPickupilityState {
   final String errorMsg;
 

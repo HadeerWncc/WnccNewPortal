@@ -33,7 +33,7 @@ class DispatchDetailsHeader extends StatelessWidget {
               title: 'Select Year',
               onChange: (value) {
                 BlocProvider.of<DispatchDetailsCubit>(context)
-                    .getDispatchDetails(value);
+                    .getDispatchDetailsPerRegion(value);
               },
             ),
             SizedBox(

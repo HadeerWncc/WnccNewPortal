@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
@@ -18,7 +19,7 @@ import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/
 class DispatchTablesBody extends StatefulWidget {
   const DispatchTablesBody(
       {super.key, required this.dispatchDetailsResponse, required this.year});
-  final List<DispatchDetailsModel> dispatchDetailsResponse;
+  final List<DispatchDetailsModel2> dispatchDetailsResponse;
   final int year;
 
   @override
@@ -49,16 +50,16 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
       _expandedMonths[i] = false;
     }
 
-    allRegions = widget.dispatchDetailsResponse.isNotEmpty
-        ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
-            .toList()
-        : <DispatchRegion>[];
-    regions = widget.dispatchDetailsResponse.isNotEmpty
-        ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
-            .where((r) => r.enableDispatchReporting == true)
-            .map((d) => d.regionName!)
-            .toList()
-        : <String>[];
+    // allRegions = widget.dispatchDetailsResponse.isNotEmpty
+    //     ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
+    //         .toList()
+    //     : <DispatchRegion>[];
+    // regions = widget.dispatchDetailsResponse.isNotEmpty
+    //     ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
+    //         .where((r) => r.enableDispatchReporting == true)
+    //         .map((d) => d.regionName!)
+    //         .toList()
+    //     : <String>[];
   }
 
   @override
@@ -74,114 +75,112 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
 
   @override
   Widget build(BuildContext context) {
-    List<DispatchRegion> visibleRegions = widget
-            .dispatchDetailsResponse.isNotEmpty
-        ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
-            .where((r) => regions.contains(r.regionName))
-            .cast<DispatchRegion>()
-            .toList()
-        : <DispatchRegion>[];
+    // List<DispatchRegion> visibleRegions = widget
+    //         .dispatchDetailsResponse.isNotEmpty
+    //     ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
+    //         .where((r) => regions.contains(r.regionName))
+    //         .cast<DispatchRegion>()
+    //         .toList()
+    //     : <DispatchRegion>[];
 
-    final double scrollableWidth =
-        (7 * cellWidth) + (visibleRegions.length * cellWidth);
-
-    return BlocBuilder<ShipmentDetailsCubit, ShipmentDetailsState>(
-      builder: (context, state) {
-        if (state is ShipmentDetailsSuccess) {
-          return Expanded(
-            child: Column(
-              children: [
-                DispatchDetailsHeader(
-                  allCities: allRegions,
-                  selectedCities: regions,
-                  onChanged: (values) {
-                    regions = values;
-                    setState(() {});
-                  },
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomChckButtons(
-                      buttons: const ["Delivery", "Pickup", "Both"],
-                      activeTab: activeTab,
-                      onTap: (value) {
-                        if (value == "Delivery") {
-                          activeTab = 0;
-                          quantityType = QuantityType.delivery;
-                        } else if (value == "Pickup") {
-                          activeTab = 1;
-                          quantityType = QuantityType.pickup;
-                        } else {
-                          activeTab = 2;
-                          quantityType = QuantityType.total;
-                        }
-                        setState(() {});
-                      },
-                    ),
-                    CustomToggleButton(onToggle: (value) {}),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                sectionTitle('Dispatch Details'),
-                const SizedBox(height: 5),
-                buildTopHeader(visibleRegions, _headerController),
-                Expanded(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        buildFixedSideColumn(
-                            visibleRegions, widget.dispatchDetailsResponse),
-                        Expanded(
-                          child: SingleChildScrollView(
-                            controller: _bodyController,
-                            scrollDirection: Axis.horizontal,
-                            child: SizedBox(
-                              width: scrollableWidth,
-                              child: Column(children: [
-                                ...List.generate(
-                                    widget.dispatchDetailsResponse.length,
-                                    (index) {
-                                  return buildMonthData(
-                                    widget.dispatchDetailsResponse[index],
-                                    index,
-                                    visibleRegions,
-                                    totalBorder,
-                                    _expandedMonths,
-                                    quantityType,
-                                  );
-                                }),
-                                ...List.generate(state.shipmentDetails.length,
-                                    (index) {
-                                  return buildShipmentData(
-                                      state.shipmentDetails[index],
-                                      visibleRegions,
-                                      totalBorder,
-                                      quantityType);
-                                })
-                              ]),
-                            ),
-                          ),
-                        ),
-                      ],
+    final double scrollableWidth = (5 * cellWidth) + (0 * cellWidth);
+    return Expanded(
+      child: Column(
+        children: [
+          DispatchDetailsHeader(
+            allCities: allRegions,
+            selectedCities: regions,
+            onChanged: (values) {
+              regions = values;
+              setState(() {});
+            },
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomChckButtons(
+                buttons: const ["Delivery", "Pickup", "Both"],
+                activeTab: activeTab,
+                onTap: (value) {
+                  if (value == "Delivery") {
+                    activeTab = 0;
+                    quantityType = QuantityType.delivery;
+                  } else if (value == "Pickup") {
+                    activeTab = 1;
+                    quantityType = QuantityType.pickup;
+                  } else {
+                    activeTab = 2;
+                    quantityType = QuantityType.total;
+                  }
+                  setState(() {});
+                },
+              ),
+              CustomToggleButton(onToggle: (value) {}),
+            ],
+          ),
+          const SizedBox(height: 8),
+          sectionTitle('Dispatch Details'),
+          const SizedBox(height: 5),
+          buildTopHeader([], _headerController),
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  buildFixedSideColumn([], widget.dispatchDetailsResponse),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      controller: _bodyController,
+                      scrollDirection: Axis.horizontal,
+                      child: SizedBox(
+                        width: scrollableWidth,
+                        child: Column(children: [
+                          ...List.generate(
+                              widget.dispatchDetailsResponse.length, (index) {
+                            return buildMonthData(
+                              widget.dispatchDetailsResponse[index],
+                              index,
+                              [],
+                              totalBorder,
+                              _expandedMonths,
+                              quantityType,
+                            );
+                          }),
+                          // ...List.generate(state.shipmentDetails.length,
+                          //     (index) {
+                          //   return buildShipmentData(
+                          //       state.shipmentDetails[index],
+                          //       visibleRegions,
+                          //       totalBorder,
+                          //       quantityType);
+                          // })
+                        ]),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          );
-        } else {
-          return const SizedBox();
-        }
-      },
+          ),
+        ],
+      ),
     );
+
+    // return BlocBuilder<ShipmentDetailsCubit, ShipmentDetailsState>(
+    //   builder: (context, state) {
+    //     if (state is ShipmentDetailsSuccess) {
+
+    //     } else {
+    //       return const SizedBox();
+    //     }
+    //   },
+    // );
   }
 
   Widget buildFixedSideColumn(List<DispatchRegion> regions,
-      List<DispatchDetailsModel> dispatchDetailsResponse) {
+      List<DispatchDetailsModel2> dispatchDetailsResponse) {
     return Column(children: [
       ...List.generate(dispatchDetailsResponse.length, (index) {
         final month = dispatchDetailsResponse[index];
@@ -192,7 +191,7 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
             GestureDetector(
               onTap: () => setState(() => _expandedMonths[index] = !isExpanded),
               child: buildCell(
-                "${isExpanded ? '▼' : '▶'} Total Dispatch (${month.monthLabel})",
+                "${isExpanded ? '▼' : '▶'} Total Dispatch (${DateFormat('MMM').format(DateTime.parse(month.monthDate!))})",
                 width: dateWidth,
                 isHeader: true,
                 color: const Color(0xFFf3f3f3),
@@ -211,20 +210,20 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
           ],
         );
       }),
-      buildCell(
-        "Checked-In",
-        width: dateWidth,
-        isHeader: true,
-        color: const Color(0xFFf3f3f3),
-        border: totalBorder,
-      ),
-      buildCell(
-        "Loading Start",
-        width: dateWidth,
-        isHeader: true,
-        color: const Color(0xFFf3f3f3),
-        border: totalBorder,
-      ),
+      // buildCell(
+      //   "Checked-In",
+      //   width: dateWidth,
+      //   isHeader: true,
+      //   color: const Color(0xFFf3f3f3),
+      //   border: totalBorder,
+      // ),
+      // buildCell(
+      //   "Loading Start",
+      //   width: dateWidth,
+      //   isHeader: true,
+      //   color: const Color(0xFFf3f3f3),
+      //   border: totalBorder,
+      // ),
     ]);
   }
 }

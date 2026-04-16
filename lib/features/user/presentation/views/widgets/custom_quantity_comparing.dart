@@ -5,9 +5,11 @@ class CustomQuantityComparing extends StatelessWidget {
     super.key,
     required this.mainTitle,
     this.subTitle,
+    this.mainDataFontSize,
   });
   final String mainTitle;
   final String? subTitle;
+  final double? mainDataFontSize;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -15,9 +17,10 @@ class CustomQuantityComparing extends StatelessWidget {
       children: [
         Text(
           mainTitle,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.w900,
-            fontSize: 17,
+            fontSize: mainDataFontSize ?? 17,
+            color: const Color(0xff2b6617),
           ),
         ),
         const SizedBox(width: 5),

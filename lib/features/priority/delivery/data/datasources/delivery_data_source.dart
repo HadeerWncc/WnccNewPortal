@@ -1,4 +1,6 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
+import 'package:wncc_portal/features/priority/comm/entities/get_summary_entity.dart';
+import 'package:wncc_portal/features/priority/comm/models/priority_summary_model.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 
@@ -16,6 +18,8 @@ abstract class DeliveryDataSource {
   Future<bool> dispatchDeliveryOrders(List<DispatchDeliveryEntity> orders);
   // Future<bool> undispatchDeliveryOrders(List<String> orders);
   Future<List<String>> getDispatchAgents();
+  Future<PrioritySummaryModel> getDeliverySummary(
+      GetSummaryEntity getpicSummaryEntity);
 }
 
 class DeliveryDataSourceImpl extends DeliveryDataSource {
@@ -86,7 +90,8 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
 
   @override
   Future<List<PriorityDeliveryModel>> getPendingDeliveryOrders() async {
-    var result = await apiService.get(endPoint: 'api/Delivery/Search?Status=0');
+    var result = await apiService.get(
+        endPoint: 'api/Delivery/Search?Status=0&PageNumber=1&PageSize=5000');
     List<PriorityDeliveryModel> pendingDeliveryOrders = [];
     for (var order in result["data"]["data"]) {
       pendingDeliveryOrders.add(PriorityDeliveryModel.fromJson(order));
@@ -115,5 +120,16 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
       agents.add(item["name"] as String);
     }
     return agents;
+  }
+  
+  @override
+  Future<PrioritySummaryModel> getDeliverySummary(GetSummaryEntity getpicSummaryEntity) async{
+     var result = await apiService.get(
+      endPoint:
+          'api/Quotas/GetSummary?Date=${getpicSummaryEntity.date.toIso8601String()}&SalesId=${getpicSummaryEntity.salesId}&RegionId=${getpicSummaryEntity.regionId}&MaterialId=${getpicSummaryEntity.matrialId}&DispatchChannel=Delivery',
+    );
+    PrioritySummaryModel summary =
+        PrioritySummaryModel.fromJson(result["data"]);
+    return summary;
   }
 }

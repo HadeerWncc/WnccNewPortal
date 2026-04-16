@@ -32,7 +32,7 @@ class DispatchPickupOrdersPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        const PrioritySummary(),
+        // const PrioritySummary(),
         const SizedBox(height: 10),
         const DividerLine(),
         const SizedBox(height: 10),

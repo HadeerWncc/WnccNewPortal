@@ -80,7 +80,7 @@ class DrawerMenuList extends StatelessWidget {
               title: 'PickUp',
               active: activeTab == 'PickUp',
               onTap: () {
-                // GoRouter.of(context).push(AppRouter.pickupPath);
+                GoRouter.of(context).push(AppRouter.pickupPath);
               },
             ),
           ],

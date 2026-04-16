@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/month_day.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/month_day_2.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_data_row.dart';
@@ -8,7 +9,7 @@ import 'package:wncc_portal/features/reports/dispatch_details/presentation/views
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_total_row.dart';
 
 Widget buildMonthData(
-    DispatchDetailsModel month,
+    DispatchDetailsModel2 month,
     int index,
     List<DispatchRegion> regions,
     BoxBorder totalBorder,
@@ -19,19 +20,35 @@ Widget buildMonthData(
   num totalDelta = 0;
   num totalGCairo = 0;
   num totalUEgypt = 0;
-  num totalBags = 0;
-  num totalBulk = 0;
+  num totalCoastal = 0;
+  // num totalBags = 0;
+  // num totalBulk = 0;
   num totalAll = 0;
   num totalExport = 0;
 
-  for (MonthDay day in month.monthDays ?? []) {
-    totalDelta += getQuantityValue(day.totalDelta, quantityType);
-    totalGCairo += getQuantityValue(day.totalGCairo, quantityType);
-    totalUEgypt += getQuantityValue(day.totalUEgypt, quantityType);
-    totalBags += getQuantityValue(day.totalBags, quantityType);
-    totalBulk += getQuantityValue(day.totalBulk, quantityType);
+  for (MonthDay2 day in month.monthDays ?? []) {
+    totalDelta += getQuantityValue(
+        day.dataValues?.where((d) => d.name == 'Delta').toList()[0].quantity,
+        quantityType);
+    totalGCairo += getQuantityValue(
+        day.dataValues
+            ?.where((d) => d.name == 'Greater Cairo')
+            .toList()[0]
+            .quantity,
+        quantityType);
+    totalUEgypt += getQuantityValue(
+        day.dataValues
+            ?.where((d) => d.name == 'Upper Egypt')
+            .toList()[0]
+            .quantity,
+        quantityType);
+    totalCoastal += getQuantityValue(
+        day.dataValues?.where((d) => d.name == 'Coastal').toList()[0].quantity,
+        quantityType);
+    // totalBags += getQuantityValue(day.totalBags, quantityType);
+    // totalBulk += getQuantityValue(day.totalBulk, quantityType);
     totalAll += getQuantityValue(day.total, quantityType);
-    totalExport += getQuantityValue(day.totalExport, quantityType);
+    totalExport += day.totalExport ?? 0;
   }
 
   return Column(
@@ -42,8 +59,8 @@ Widget buildMonthData(
         totalDelta: totalDelta,
         totalGCairo: totalGCairo,
         totalUEgypt: totalUEgypt,
-        totalBags: totalBags,
-        totalBulk: totalBulk,
+        // totalBags: totalBags,
+        // totalBulk: totalBulk,
         totalAll: totalAll,
         totalExport: totalExport,
         totalBorder: totalBorder,

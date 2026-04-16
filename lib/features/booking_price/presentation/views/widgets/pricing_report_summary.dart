@@ -15,48 +15,48 @@ class PricingReportSummary extends StatelessWidget {
       child: Row(
         spacing: 10,
         children: [
-          CustomDailyQuotaItem(
-            landingtitle: 'Highest and Lowest Pickup',
-            widthRatio: widthRatio,
-            icon: Symbols.attach_money,
-            child: const CustomQuantityComparing(
-              mainTitle: '2780 le',
-              subTitle: '2680 le',
-            ),
-          ),
-          CustomDailyQuotaItem(
-            landingtitle: 'Highest and Lowest Delivery',
-            widthRatio: widthRatio,
-            icon: Symbols.attach_money,
-            child: const CustomQuantityComparing(
-              mainTitle: '2780 le',
-              subTitle: '2680 le',
-            ),
-          ),
-          CustomDailyQuotaItem(
-            landingtitle: 'Most Expensive Region',
-            widthRatio: widthRatio,
-            icon: Symbols.location_on,
-            child: const CustomQuantityComparing(
-              mainTitle: 'Elfayoum',
-            ),
-          ),
-          CustomDailyQuotaItem(
-            landingtitle: 'Most Cheaper Region',
-            widthRatio: widthRatio,
-            icon: Symbols.location_on,
-            child: const CustomQuantityComparing(
-              mainTitle: 'Elminya',
-            ),
-          ),
-          CustomDailyQuotaItem(
-            landingtitle: 'Last Updated At',
-            widthRatio: widthRatio,
-            icon: Symbols.calendar_today,
-            child: const CustomQuantityComparing(
-              mainTitle: 'July 13, 2025',
-            ),
-          ),
+          // CustomDailyQuotaItem(
+          //   landingtitle: 'Highest and Lowest Pickup',
+          //   widthRatio: widthRatio,
+          //   icon: Symbols.attach_money,
+          //   child: const CustomQuantityComparing(
+          //     mainTitle: '2780 le',
+          //     subTitle: '2680 le',
+          //   ),
+          // ),
+          // CustomDailyQuotaItem(
+          //   landingtitle: 'Highest and Lowest Delivery',
+          //   widthRatio: widthRatio,
+          //   icon: Symbols.attach_money,
+          //   child: const CustomQuantityComparing(
+          //     mainTitle: '2780 le',
+          //     subTitle: '2680 le',
+          //   ),
+          // ),
+          // CustomDailyQuotaItem(
+          //   landingtitle: 'Most Expensive Region',
+          //   widthRatio: widthRatio,
+          //   icon: Symbols.location_on,
+          //   child: const CustomQuantityComparing(
+          //     mainTitle: 'Elfayoum',
+          //   ),
+          // ),
+          // CustomDailyQuotaItem(
+          //   landingtitle: 'Most Cheaper Region',
+          //   widthRatio: widthRatio,
+          //   icon: Symbols.location_on,
+          //   child: const CustomQuantityComparing(
+          //     mainTitle: 'Elminya',
+          //   ),
+          // ),
+          // CustomDailyQuotaItem(
+          //   landingtitle: 'Last Updated At',
+          //   widthRatio: widthRatio,
+          //   icon: Symbols.calendar_today,
+          //   child: const CustomQuantityComparing(
+          //     mainTitle: 'July 13, 2025',
+          //   ),
+          // ),
         ],
       ),
     );

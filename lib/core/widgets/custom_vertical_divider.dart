@@ -5,16 +5,18 @@ class CustomVerticalDivider extends StatelessWidget {
     super.key,
     this.height,
     this.margin,
+    this.color,
   });
   final double? height;
   final double? margin;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 1.5,
       height: height ?? 25,
       margin: EdgeInsets.only(left: margin ?? 20),
-      color: const Color.fromARGB(255, 207, 207, 207),
+      color: color ?? const Color.fromARGB(255, 207, 207, 207),
     );
   }
 }

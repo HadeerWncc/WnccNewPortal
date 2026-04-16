@@ -15,7 +15,7 @@ class DispatchDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<DispatchDetailsCubit>(context)
-        .getDispatchDetails(DateTime.now());
+        .getDispatchDetailsPerRegion(DateTime.now());
 
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => handelError(state, context),

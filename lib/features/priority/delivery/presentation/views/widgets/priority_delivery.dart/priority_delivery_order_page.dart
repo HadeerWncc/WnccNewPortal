@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/widgets/divider_line.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/priority_summary.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/get_delivery_summary_bloc_builder.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/priority_delivery_section.dart';
 
 class PriorityDeliveryOrderPage extends StatelessWidget {
@@ -17,7 +17,7 @@ class PriorityDeliveryOrderPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // const SizedBox(height: 10),
-        // const PrioritySummary(),
+        const GetDeliverySummaryBlocBuilder(),
         const SizedBox(height: 10),
         const DividerLine(),
         const SizedBox(height: 10),

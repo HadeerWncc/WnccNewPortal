@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 class PickupilityProduct extends Equatable {
+  final String? customerId;
+  final String? salesId;
   final String? materialId;
   final String? materialName;
   final String? materialDescription;
@@ -11,12 +13,14 @@ class PickupilityProduct extends Equatable {
   final num? remainingQnty;
   final num? actualDispatchedQnty;
   final num? actualRemainingQnty;
-  final dynamic lastPrioritedAt;
+  final DateTime? lastPrioritedAt;
   final dynamic lastDispatchedAt;
-  final dynamic lastPrioritedBy;
+  final String? lastPrioritedBy;
   final dynamic lastDispatchedBy;
 
   const PickupilityProduct({
+    this.customerId,
+    this.salesId,
     this.materialId,
     this.materialName,
     this.materialDescription,
@@ -35,6 +39,8 @@ class PickupilityProduct extends Equatable {
 
   factory PickupilityProduct.fromJson(Map<String, dynamic> json) {
     return PickupilityProduct(
+      customerId: json['customerId'] as String?,
+      salesId: json['salesId'] as String?,
       materialId: json['materialId'] as String?,
       materialName: json['materialName'] as String?,
       materialDescription: json['materialDescription'] as String?,
@@ -45,14 +51,18 @@ class PickupilityProduct extends Equatable {
       remainingQnty: json['remainingQnty'] as num?,
       actualDispatchedQnty: json['actualDispatchedQnty'] as num?,
       actualRemainingQnty: json['actualRemainingQnty'] as num?,
-      lastPrioritedAt: json['lastPrioritedAt'] as dynamic,
+      lastPrioritedAt: json['lastPrioritedAt'] == null
+          ? null
+          : DateTime.parse(json['lastPrioritedAt'] as String),
       lastDispatchedAt: json['lastDispatchedAt'] as dynamic,
-      lastPrioritedBy: json['lastPrioritedBy'] as dynamic,
+      lastPrioritedBy: json['lastPrioritedBy'] as String?,
       lastDispatchedBy: json['lastDispatchedBy'] as dynamic,
     );
   }
 
   Map<String, dynamic> toJson() => {
+        'customerId': customerId,
+        'salesId': salesId,
         'materialId': materialId,
         'materialName': materialName,
         'materialDescription': materialDescription,
@@ -63,7 +73,7 @@ class PickupilityProduct extends Equatable {
         'remainingQnty': remainingQnty,
         'actualDispatchedQnty': actualDispatchedQnty,
         'actualRemainingQnty': actualRemainingQnty,
-        'lastPrioritedAt': lastPrioritedAt,
+        'lastPrioritedAt': lastPrioritedAt?.toIso8601String(),
         'lastDispatchedAt': lastDispatchedAt,
         'lastPrioritedBy': lastPrioritedBy,
         'lastDispatchedBy': lastDispatchedBy,
@@ -72,6 +82,8 @@ class PickupilityProduct extends Equatable {
   @override
   List<Object?> get props {
     return [
+      customerId,
+      salesId,
       materialId,
       materialName,
       materialDescription,

@@ -8,7 +8,6 @@ import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/qu
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_month_data.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_shipment_data.dart';
 
 class DispatchDetailsPerRegionTable extends StatefulWidget {
   const DispatchDetailsPerRegionTable(
@@ -88,44 +87,44 @@ class _DispatchDetailsPerRegionTableState
           children: [
             buildFixedSideColumn(
                 visibleRegions, widget.dispatchDetailsResponse),
-            BlocBuilder<ShipmentDetailsCubit, ShipmentDetailsState>(
-              builder: (context, state) {
-                if (state is ShipmentDetailsSuccess) {
-                  return Expanded(
-                    child: SingleChildScrollView(
-                      controller: _bodyController,
-                      scrollDirection: Axis.horizontal,
-                      child: SizedBox(
-                        width: scrollableWidth,
-                        child: Column(children: [
-                          ...List.generate(
-                              widget.dispatchDetailsResponse.length, (index) {
-                            return buildMonthData(
-                              widget.dispatchDetailsResponse[index],
-                              index,
-                              visibleRegions,
-                              totalBorder,
-                              _expandedMonths,
-                              quantityType,
-                            );
-                          }),
-                          ...List.generate(state.shipmentDetails.length,
-                              (index) {
-                            return buildShipmentData(
-                                state.shipmentDetails[index],
-                                visibleRegions,
-                                totalBorder,
-                                quantityType);
-                          })
-                        ]),
-                      ),
-                    ),
-                  );
-                } else {
-                  return const SizedBox();
-                }
-              },
-            ),
+            // BlocBuilder<ShipmentDetailsCubit, ShipmentDetailsState>(
+            //   builder: (context, state) {
+            //     if (state is ShipmentDetailsSuccess) {
+            //       return Expanded(
+            //         child: SingleChildScrollView(
+            //           controller: _bodyController,
+            //           scrollDirection: Axis.horizontal,
+            //           child: SizedBox(
+            //             width: scrollableWidth,
+            //             child: Column(children: [
+            //               ...List.generate(
+            //                   widget.dispatchDetailsResponse.length, (index) {
+            //                 return buildMonthData(
+            //                   widget.dispatchDetailsResponse[index],
+            //                   index,
+            //                   visibleRegions,
+            //                   totalBorder,
+            //                   _expandedMonths,
+            //                   quantityType,
+            //                 );
+            //               }),
+            //               ...List.generate(state.shipmentDetails.length,
+            //                   (index) {
+            //                 return buildShipmentData(
+            //                     state.shipmentDetails[index],
+            //                     visibleRegions,
+            //                     totalBorder,
+            //                     quantityType);
+            //               })
+            //             ]),
+            //           ),
+            //         ),
+            //       );
+            //     } else {
+            //       return const SizedBox();
+            //     }
+            //   },
+            // ),
           ],
         ),
       ),

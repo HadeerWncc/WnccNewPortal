@@ -15,6 +15,10 @@ import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cu
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_delivery_summary_cubit/get_delivery_summary_cubit.dart';
+import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickup_summary_cubit/get_pickup_summary_cubit.dart';
+import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickupility_cubit/get_pickupility_cubit.dart';
+import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/set_pickup_priority_cubit/set_pickup_priority_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_customer_cubit/dispatch_details_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_sales_cubit/dispatch_details_per_sales_cubit.dart';
@@ -139,11 +143,23 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(create: (context) {
           return getIt<GetAgentsCubit>()..getAgents();
         }),
+        BlocProvider(create: (context) {
+          return getIt<GetDeliverySummaryCubit>();
+        }),
         BlocProvider(
           create: (context) {
             return getIt<PendingCubit>();
           },
         ),
+        BlocProvider(create: (context) {
+          return getIt<GetPickupilityCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<SetPickupPriorityCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<GetPickupSummaryCubit>();
+        }),
         BlocProvider(
           create: (context) {
             return getIt<LoadingDetailsCubit>();

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_customer_model/dispatch_per_customer_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_sales_model/dispatch_per_sales_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/shipment_details_model.dart';
@@ -13,11 +13,13 @@ class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
 
   DispatchDetailsRepoImpl({required this.dispatchDetailsDataSource});
   @override
-  Future<Either<Failure, List<DispatchDetailsModel>>> getDispatchDetails(
-      DateTime date) async {
+  Future<Either<Failure, List<DispatchDetailsModel2>>> getDispatchDetails(
+    DateTime date,
+    int group,
+  ) async {
     try {
-      List<DispatchDetailsModel> dispatchDetails =
-          await dispatchDetailsDataSource.getDispatchDetails(date);
+      List<DispatchDetailsModel2> dispatchDetails =
+          await dispatchDetailsDataSource.getDispatchDetails(date, group);
       return Right(dispatchDetails);
     } on Exception catch (e) {
       if (e is DioException) {
