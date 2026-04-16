@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/widgets/date_picker.dart';
-import 'package:wncc_portal/features/priority/comm/entities/get_summary_entity.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/loading/priority_loading.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_delivery_summary_cubit/get_delivery_summary_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/pending_delivey.dart/custom_submit_pending_buttons.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/pending_delivey.dart/pending_delivery_table.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/filter_data_input.dart';

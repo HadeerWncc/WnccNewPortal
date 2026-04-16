@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/widgets/divider_line.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/priority_summary.dart';
 import '../../../managers/cubits/get_all_pickup_cubit/getall_pickup_cubit.dart';
 import 'dispatch_pickup_section.dart';
 import 'package:wncc_portal/core/widgets/date_picker.dart';
