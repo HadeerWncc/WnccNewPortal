@@ -16,8 +16,7 @@ class GetDeliverySummaryBlocBuilder extends StatelessWidget {
           return PrioritySummary(
             prioritySummary: state.prioritySummaryModel,
           );
-        }
-        else{
+        } else {
           return Text("...loading");
         }
       },

@@ -8,12 +8,15 @@ sealed class GetPickupSummaryState extends Equatable {
 }
 
 final class GetPickupSummaryInitial extends GetPickupSummaryState {}
+
 final class GetPickupSummaryLoading extends GetPickupSummaryState {}
+
 final class GetPickupSummaryFailure extends GetPickupSummaryState {
   final String error;
 
   const GetPickupSummaryFailure({required this.error});
 }
+
 final class GetPickupSummarySuccess extends GetPickupSummaryState {
   final PrioritySummaryModel prioritySummaryModel;
 

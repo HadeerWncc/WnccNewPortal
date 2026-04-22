@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
 
 Widget buildTopHeader(
@@ -30,6 +30,8 @@ Widget buildTopHeader(
                   buildCell(r.regionName ?? "",
                       isHeader: true, color: const Color(0xFFB9E2A7))),
               buildCell("U.EGYPT",
+                  isHeader: true, color: const Color(0xFFB9E2A7)),
+              buildCell("Costal",
                   isHeader: true, color: const Color(0xFFB9E2A7)),
               // buildCell("BAGS", isHeader: true, color: const Color(0xFFB9E2A7)),
               // buildCell("BULK", isHeader: true, color: const Color(0xFFB9E2A7)),

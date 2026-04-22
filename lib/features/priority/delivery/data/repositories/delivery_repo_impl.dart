@@ -114,7 +114,8 @@ class DeliveryRepoImpl extends DeliveryRepo {
   }
 
   @override
-  Future<Either<Failure, PrioritySummaryModel>> getDeliverySummary(GetSummaryEntity getpicSummaryEntity) async {
+  Future<Either<Failure, PrioritySummaryModel>> getDeliverySummary(
+      GetSummaryEntity getpicSummaryEntity) async {
     try {
       PrioritySummaryModel deliverySummary =
           await deliveryDataSource.getDeliverySummary(getpicSummaryEntity);

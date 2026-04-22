@@ -1,42 +1,41 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/region_with_area.dart';
 
-class MultiSelectDropDown extends StatefulWidget {
-  const MultiSelectDropDown({
+class CustomMultiSelectDropDown2 extends StatefulWidget {
+  const CustomMultiSelectDropDown2({
     super.key,
-    required this.cities,
-    required this.selectedCities,
+    required this.products,
+    required this.selectedProducts,
     this.onChanged,
   });
 
-  final List<RegionWithArea> cities;
-  final List<String> selectedCities;
+  final List<String> products;
+  final List<String> selectedProducts;
   final Function(List<String>)? onChanged;
 
   @override
-  State<MultiSelectDropDown> createState() => _MultiSelectDropDownState();
+  State<CustomMultiSelectDropDown2> createState() => _CustomMultiSelectDropDown2State();
 }
 
-class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
+class _CustomMultiSelectDropDown2State extends State<CustomMultiSelectDropDown2> {
   final GlobalKey<DropdownSearchState<String>> _dropdownKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
-    final List<String> regionNames = widget.cities
-        .map((r) => r.regionName)
-        .where((name) => name.isNotEmpty)
-        .toList();
+    // final List<String> productsName = widget.products
+    //     .map((r) => r.materialName)
+    //     .where((name) => name.isNotEmpty)
+    //     .toList();
 
     return DropdownSearch<String>.multiSelection(
       key: _dropdownKey,
-      items: regionNames,
-      selectedItems: widget.selectedCities,
+      items: widget.products,
+      selectedItems: widget.selectedProducts,
       dropdownBuilder: (context, selectedItems) {
         return Text(
-          widget.selectedCities.isEmpty
+          widget.selectedProducts.isEmpty
               ? "Select items"
-              : "${widget.selectedCities.length} items selected",
+              : "${widget.selectedProducts.length} items selected",
           style: const TextStyle(color: Colors.black),
         );
       },
@@ -63,7 +62,7 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
           );
         },
       ),
-      onChanged: widget.onChanged,
+      onChanged:widget.onChanged,
     );
   }
 }

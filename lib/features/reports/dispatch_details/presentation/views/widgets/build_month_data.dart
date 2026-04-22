@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/month_day.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/month_day_2.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/dispatch_region.dart';
+
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_data_row.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_dispatch_details_table.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_total_row.dart';
 
 Widget buildMonthData(
-    DispatchDetailsModel2 month,
+    DispatchDetailsModel month,
     int index,
     List<DispatchRegion> regions,
     BoxBorder totalBorder,
@@ -21,12 +21,10 @@ Widget buildMonthData(
   num totalGCairo = 0;
   num totalUEgypt = 0;
   num totalCoastal = 0;
-  // num totalBags = 0;
-  // num totalBulk = 0;
   num totalAll = 0;
   num totalExport = 0;
 
-  for (MonthDay2 day in month.monthDays ?? []) {
+  for (MonthDay day in month.monthDays ?? []) {
     totalDelta += getQuantityValue(
         day.dataValues?.where((d) => d.name == 'Delta').toList()[0].quantity,
         quantityType);
@@ -45,8 +43,6 @@ Widget buildMonthData(
     totalCoastal += getQuantityValue(
         day.dataValues?.where((d) => d.name == 'Coastal').toList()[0].quantity,
         quantityType);
-    // totalBags += getQuantityValue(day.totalBags, quantityType);
-    // totalBulk += getQuantityValue(day.totalBulk, quantityType);
     totalAll += getQuantityValue(day.total, quantityType);
     totalExport += day.totalExport ?? 0;
   }
@@ -59,8 +55,7 @@ Widget buildMonthData(
         totalDelta: totalDelta,
         totalGCairo: totalGCairo,
         totalUEgypt: totalUEgypt,
-        // totalBags: totalBags,
-        // totalBulk: totalBulk,
+        totalCostal: totalCoastal,
         totalAll: totalAll,
         totalExport: totalExport,
         totalBorder: totalBorder,

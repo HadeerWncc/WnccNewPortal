@@ -1,17 +1,17 @@
 import 'package:equatable/equatable.dart';
 
-class PickupQuantity extends Equatable {
+class TypeQuantity extends Equatable {
   final num? bags;
   final num? bulk;
   final num? total;
 
-  const PickupQuantity({this.bags, this.bulk, this.total});
+  const TypeQuantity({this.bags, this.bulk, this.total});
 
-  factory PickupQuantity.fromJson(Map<String, dynamic> json) {
-    return PickupQuantity(
+  factory TypeQuantity.fromJson(Map<String, dynamic> json) {
+    return TypeQuantity(
       bags: json['bags'] as num?,
-      bulk: (json['bulk'] as num?)?.toDouble(),
-      total: (json['total'] as num?)?.toDouble(),
+      bulk: json['bulk'] as num?,
+      total: json['total'] as num?,
     );
   }
 

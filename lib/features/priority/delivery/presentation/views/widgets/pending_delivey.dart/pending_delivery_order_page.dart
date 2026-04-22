@@ -26,5 +26,3 @@ class PendingDeliveryOrdersPage extends StatelessWidget {
     );
   }
 }
-
-

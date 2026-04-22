@@ -121,10 +121,11 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
     }
     return agents;
   }
-  
+
   @override
-  Future<PrioritySummaryModel> getDeliverySummary(GetSummaryEntity getpicSummaryEntity) async{
-     var result = await apiService.get(
+  Future<PrioritySummaryModel> getDeliverySummary(
+      GetSummaryEntity getpicSummaryEntity) async {
+    var result = await apiService.get(
       endPoint:
           'api/Quotas/GetSummary?Date=${getpicSummaryEntity.date.toIso8601String()}&SalesId=${getpicSummaryEntity.salesId}&RegionId=${getpicSummaryEntity.regionId}&MaterialId=${getpicSummaryEntity.matrialId}&DispatchChannel=Delivery',
     );

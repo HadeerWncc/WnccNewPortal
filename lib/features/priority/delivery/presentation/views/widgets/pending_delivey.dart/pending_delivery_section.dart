@@ -64,7 +64,6 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
             pendingData = pendingData
                 .where((p) => p.branchRegionDescription == region)
                 .toList();
-           
           }
           if (product != "All") {
             pendingData = pendingData

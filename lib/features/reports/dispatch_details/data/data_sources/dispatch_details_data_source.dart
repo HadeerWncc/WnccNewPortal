@@ -1,16 +1,14 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_customer_model/dispatch_per_customer_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_sales_model/dispatch_per_sales_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/shipment_details_model.dart';
 
 abstract class DispatchDetailsDataSource {
-  Future<List<DispatchDetailsModel2>> getDispatchDetails(
+  Future<List<DispatchDetailsModel>> getDispatchDetails(
       DateTime date, int group);
   Future<List<ShipmentDetailsModel>> getShipmentDetails();
-  Future<List<DispatchPerSalesModel>> getDispatchDetailsPerSales(
+  Future<List<DispatchDetailsModel>> getDispatchDetailsPerSales(
       DateTime from, DateTime to);
-  Future<List<DispatchPerCustomerModel>> getDispatchDetailsPerCustomer(
+  Future<List<DispatchDetailsModel>> getDispatchDetailsPerCustomer(
       DateTime from, DateTime to);
 }
 
@@ -19,15 +17,15 @@ class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource {
 
   DispatchDetailsDataSourceImpl({required this.apiService});
   @override
-  Future<List<DispatchDetailsModel2>> getDispatchDetails(
+  Future<List<DispatchDetailsModel>> getDispatchDetails(
       DateTime date, int group) async {
     var result = await apiService.get(
         endPoint:
             'api/Reports/GetDispatchDetails?fromDate=${DateTime(date.year, 1)}&toDate=${DateTime(date.year + 1, 1)}&group=$group');
-    List<DispatchDetailsModel2> dispatchDetailsList = [];
+    List<DispatchDetailsModel> dispatchDetailsList = [];
     for (var dispach in result["data"]) {
-      DispatchDetailsModel2 dispatchDetailsModel =
-          DispatchDetailsModel2.fromJson(dispach);
+      DispatchDetailsModel dispatchDetailsModel =
+          DispatchDetailsModel.fromJson(dispach);
       dispatchDetailsList.add(dispatchDetailsModel);
     }
     return dispatchDetailsList;
@@ -47,30 +45,30 @@ class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource {
   }
 
   @override
-  Future<List<DispatchPerCustomerModel>> getDispatchDetailsPerCustomer(
+  Future<List<DispatchDetailsModel>> getDispatchDetailsPerCustomer(
       DateTime from, DateTime to) async {
     var result = await apiService.get(
         endPoint:
             'api/Reports/GetCustomerDispatchDetails?fromDate=$from&toDate=$to');
-    List<DispatchPerCustomerModel> dispatchDetailsList = [];
+    List<DispatchDetailsModel> dispatchDetailsList = [];
     for (var dispach in result["data"]) {
-      DispatchPerCustomerModel dispatchDetailsModel =
-          DispatchPerCustomerModel.fromJson(dispach);
+      DispatchDetailsModel dispatchDetailsModel =
+          DispatchDetailsModel.fromJson(dispach);
       dispatchDetailsList.add(dispatchDetailsModel);
     }
     return dispatchDetailsList;
   }
 
   @override
-  Future<List<DispatchPerSalesModel>> getDispatchDetailsPerSales(
+  Future<List<DispatchDetailsModel>> getDispatchDetailsPerSales(
       DateTime from, DateTime to) async {
     var result = await apiService.get(
         endPoint:
             'api/Reports/GetSalesDispatchDetails?fromDate=$from&toDate=$to');
-    List<DispatchPerSalesModel> dispatchDetailsList = [];
+    List<DispatchDetailsModel> dispatchDetailsList = [];
     for (var dispach in result["data"]) {
-      DispatchPerSalesModel dispatchDetailsModel =
-          DispatchPerSalesModel.fromJson(dispach);
+      DispatchDetailsModel dispatchDetailsModel =
+          DispatchDetailsModel.fromJson(dispach);
       dispatchDetailsList.add(dispatchDetailsModel);
     }
     return dispatchDetailsList;

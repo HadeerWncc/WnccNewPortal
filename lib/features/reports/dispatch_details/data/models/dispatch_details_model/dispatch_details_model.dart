@@ -3,16 +3,14 @@ import 'package:equatable/equatable.dart';
 import 'month_day.dart';
 
 class DispatchDetailsModel extends Equatable {
-  final int? month;
-  final dynamic monthLabel;
+  final String? monthDate;
   final List<MonthDay>? monthDays;
 
-  const DispatchDetailsModel({this.month, this.monthLabel, this.monthDays});
+  const DispatchDetailsModel({this.monthDate, this.monthDays});
 
   factory DispatchDetailsModel.fromJson(Map<String, dynamic> json) {
     return DispatchDetailsModel(
-      month: json['month'] as int?,
-      monthLabel: json['monthLabel'] as dynamic,
+      monthDate: json['monthDate'] as String?,
       monthDays: (json['monthDays'] as List<dynamic>?)
           ?.map((e) => MonthDay.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -20,11 +18,10 @@ class DispatchDetailsModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() => {
-        'month': month,
-        'monthLabel': monthLabel,
+        'monthDate': monthDate,
         'monthDays': monthDays?.map((e) => e.toJson()).toList(),
       };
 
   @override
-  List<Object?> get props => [month, monthLabel, monthDays];
+  List<Object?> get props => [monthDate, monthDays];
 }

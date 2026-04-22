@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-import 'dispatch_details_quantity.dart';
+import 'dispatch_quantity.dart';
 import 'relation_value.dart';
 
 class DataValue extends Equatable {
   final dynamic id;
   final String? name;
-  final DispatchDetailsQuantity? quantity;
+  final DispatchQuantity? quantity;
   final List<RelationValue>? relationValues;
 
   const DataValue({this.id, this.name, this.quantity, this.relationValues});
@@ -16,7 +16,7 @@ class DataValue extends Equatable {
         name: json['name'] as String?,
         quantity: json['quantity'] == null
             ? null
-            : DispatchDetailsQuantity.fromJson(
+            : DispatchQuantity.fromJson(
                 json['quantity'] as Map<String, dynamic>),
         relationValues: (json['relationValues'] as List<dynamic>?)
             ?.map((e) => RelationValue.fromJson(e as Map<String, dynamic>))

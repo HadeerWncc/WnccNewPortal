@@ -18,7 +18,7 @@ final class DispatchDetailsFailure extends DispatchDetailsState {
 final class DispatchDetailsLoading extends DispatchDetailsState {}
 
 final class DispatchDetailsSuccess extends DispatchDetailsState {
-  final List<DispatchDetailsModel2> dispatchDetailsList;
+  final List<DispatchDetailsModel> dispatchDetailsList;
 
   const DispatchDetailsSuccess({required this.dispatchDetailsList});
 }

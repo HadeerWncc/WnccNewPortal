@@ -1,25 +1,24 @@
 import 'package:equatable/equatable.dart';
 
-import 'delivery_quantity.dart';
-import 'pickup_quantity.dart';
+import 'type_quantity.dart';
 
-class DispatchDetailsQuantity extends Equatable {
-  final DeliveryQuantity? deliveryQuantity;
-  final PickupQuantity? pickupQuantity;
+class DispatchQuantity extends Equatable {
+  final TypeQuantity? deliveryQuantity;
+  final TypeQuantity? pickupQuantity;
   final num? total;
 
-  const DispatchDetailsQuantity(
+  const DispatchQuantity(
       {this.deliveryQuantity, this.pickupQuantity, this.total});
 
-  factory DispatchDetailsQuantity.fromJson(Map<String, dynamic> json) =>
-      DispatchDetailsQuantity(
+  factory DispatchQuantity.fromJson(Map<String, dynamic> json) =>
+      DispatchQuantity(
         deliveryQuantity: json['deliveryQuantity'] == null
             ? null
-            : DeliveryQuantity.fromJson(
+            : TypeQuantity.fromJson(
                 json['deliveryQuantity'] as Map<String, dynamic>),
         pickupQuantity: json['pickupQuantity'] == null
             ? null
-            : PickupQuantity.fromJson(
+            : TypeQuantity.fromJson(
                 json['pickupQuantity'] as Map<String, dynamic>),
         total: json['total'] as num?,
       );

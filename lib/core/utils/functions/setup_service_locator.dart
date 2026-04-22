@@ -396,7 +396,7 @@ void setupLocator() {
   //getAgentsCubit
   getIt.registerFactory<GetAgentsCubit>(
       () => GetAgentsCubit(getIt<DeliveryRepo>()));
-      
+
   //getDeliverySummary
   getIt.registerFactory<GetDeliverySummaryCubit>(
       () => GetDeliverySummaryCubit(getIt<DeliveryRepo>()));

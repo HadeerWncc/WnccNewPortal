@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_customer_model/dispatch_per_customer_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_dispatch_grouped_by_sales.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_per_header.dart';
@@ -9,7 +9,7 @@ import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/
 
 class DispatchPerCustomerTableBody extends StatefulWidget {
   const DispatchPerCustomerTableBody({super.key, required this.data});
-  final List<DispatchPerCustomerModel> data;
+  final List<DispatchDetailsModel> data;
   @override
   State<DispatchPerCustomerTableBody> createState() =>
       _DispatchPerCustomerTableBodyState();
@@ -64,8 +64,9 @@ class _DispatchPerCustomerTableBodyState
                     buildDispatchPerCustomerHeader(),
                     Expanded(
                       child: ListView(
-                        children: buildDispatchPerCustomerGroups(
-                            widget.data, quantityType),
+                        children: []
+                        // buildDispatchPerCustomerGroups(
+                        //     widget.data, quantityType),
                       ),
                     ),
                   ],

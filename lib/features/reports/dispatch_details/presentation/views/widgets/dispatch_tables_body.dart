@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/region_with_area.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_month_data.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_shipment_data.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_top_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_details_header.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
@@ -19,7 +16,7 @@ import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/
 class DispatchTablesBody extends StatefulWidget {
   const DispatchTablesBody(
       {super.key, required this.dispatchDetailsResponse, required this.year});
-  final List<DispatchDetailsModel2> dispatchDetailsResponse;
+  final List<DispatchDetailsModel> dispatchDetailsResponse;
   final int year;
 
   @override
@@ -35,7 +32,7 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
 
   static const double dateWidth = 150.0;
   static const double cellWidth = 100.0;
-  List<DispatchRegion> allRegions = [];
+  List<RegionWithArea> allRegions = [];
   List<String> regions = [];
   QuantityType quantityType = QuantityType.total;
   int activeTab = 2;
@@ -50,10 +47,14 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
       _expandedMonths[i] = false;
     }
 
-    // allRegions = widget.dispatchDetailsResponse.isNotEmpty
-    //     ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
-    //         .toList()
-    //     : <DispatchRegion>[];
+    allRegions = widget
+            .dispatchDetailsResponse.first.monthDays?.first.dataValues
+            ?.expand((d) => (d.relationValues ?? []).map((r) => RegionWithArea(
+                  regionName: r.name ?? "",
+                  areaName: d.name ?? "Others",
+                )))
+            .toList() ??
+        [];
     // regions = widget.dispatchDetailsResponse.isNotEmpty
     //     ? (widget.dispatchDetailsResponse.first.monthDays?.first.regions ?? [])
     //         .where((r) => r.enableDispatchReporting == true)
@@ -83,7 +84,7 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
     //         .toList()
     //     : <DispatchRegion>[];
 
-    final double scrollableWidth = (5 * cellWidth) + (0 * cellWidth);
+    const double scrollableWidth = (6 * cellWidth) + (0 * cellWidth);
     return Expanded(
       child: Column(
         children: [
@@ -96,7 +97,7 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
             },
           ),
           const SizedBox(height: 8),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomChckButtons(
@@ -116,7 +117,24 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
                   setState(() {});
                 },
               ),
-              CustomToggleButton(onToggle: (value) {}),
+              const SizedBox(height: 5),
+              CustomChckButtons(
+                buttons: const ["Bags", "Bulk", "Both"],
+                activeTab: activeTab,
+                onTap: (value) {
+                  if (value == "Bags") {
+                    // activeTab = 0;
+                    // quantityType = QuantityType.delivery;
+                  } else if (value == "Bulk") {
+                    // activeTab = 1;
+                    // quantityType = QuantityType.pickup;
+                  } else {
+                    // activeTab = 2;
+                    // quantityType = QuantityType.total;
+                  }
+                  setState(() {});
+                },
+              ),
             ],
           ),
           const SizedBox(height: 8),
@@ -180,7 +198,7 @@ class _DispatchTablesBodyState extends State<DispatchTablesBody> {
   }
 
   Widget buildFixedSideColumn(List<DispatchRegion> regions,
-      List<DispatchDetailsModel2> dispatchDetailsResponse) {
+      List<DispatchDetailsModel> dispatchDetailsResponse) {
     return Column(children: [
       ...List.generate(dispatchDetailsResponse.length, (index) {
         final month = dispatchDetailsResponse[index];

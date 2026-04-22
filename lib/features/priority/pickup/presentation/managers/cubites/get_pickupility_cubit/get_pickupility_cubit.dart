@@ -16,7 +16,22 @@ class GetPickupilityCubit extends Cubit<GetPickupilityState> {
     result.fold((error) {
       emit(GetPickupilityFailure(errorMsg: error.msg));
     }, (order) {
+    
+
+      order.sort((a, b) {
+        final aIndex = statusOrder[a.status] ?? 999;
+        final bIndex = statusOrder[b.status] ?? 999;
+
+        return aIndex.compareTo(bIndex);
+      });
       emit(GetPickupilitySuccess(pickupList: order));
     });
   }
 }
+
+final statusOrder = {
+        "pending": 0,
+        "in-process": 1,
+        "completed": 2,
+        "no-quantity": 3,
+      };

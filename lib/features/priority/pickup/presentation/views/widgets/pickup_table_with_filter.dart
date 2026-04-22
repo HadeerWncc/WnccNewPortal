@@ -13,6 +13,7 @@ import 'package:wncc_portal/features/priority/pickup/domin/entities/pickuplity_i
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickup_summary_cubit/get_pickup_summary_cubit.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickupility_cubit/get_pickupility_cubit.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/set_pickup_priority_cubit/set_pickup_priority_cubit.dart';
+import 'package:wncc_portal/features/priority/pickup/presentation/managers/helper/get_status.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/filter_pickup_data_inputs.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/widgets/pickup_priority_table.dart';
 
@@ -29,6 +30,8 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
   final TextEditingController payerController = TextEditingController();
   String sales = "All";
   String region = "All";
+  List<String> product = [];
+  String status = "All";
   List<PickuplityItemEntity> selectedOrders = [];
   String errorMsg = '';
 
@@ -42,16 +45,72 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
           if (sales != "All") {
             pickupDate = pickupDate.where((p) => p.salesName == sales).toList();
             BlocProvider.of<GetPickupSummaryCubit>(context).getPickupSummary(
-                GetSummaryEntity(
-                    date: widget.date,
-                    salesId: pickupDate[0].salesId,
-                    regionId: "",
-                    matrialId: ""));
+              GetSummaryEntity(
+                  date: widget.date,
+                  salesId: pickupDate[0].salesId,
+                  regionId: "",
+                  matrialId: ""),
+            );
+          }
+          if (product.isNotEmpty) {
+            pickupDate = pickupDate
+                .map((item) {
+                  // var selectedIds = product.map((e) => e.matrialId).toSet();
+
+                  var filteredProducts = item.pickupilityProducts!
+                      .where((prod) => product.contains(prod.materialName))
+                      .toList();
+                  if (filteredProducts.isEmpty) return null;
+
+                  return PickupModel(
+                    date: item.date,
+                    customerId: item.customerId,
+                    customerName: item.customerName,
+                    salesId: item.salesId,
+                    salesName: item.salesName,
+                    totalQuantity: filteredProducts.fold(
+                      0,
+                      (sum, item) => sum ?? 0 + (item.quantity ?? 0),
+                    ),
+                    totalPriorited: filteredProducts.fold(
+                      0,
+                      (sum, item) => sum ?? 0 + (item.prioritedQnty ?? 0),
+                    ),
+                    totalDispatched: filteredProducts.fold(
+                      0,
+                      (sum, item) => sum ?? 0 + (item.dispatchedQnty ?? 0),
+                    ),
+                    totalRemaining: filteredProducts.fold(
+                      0,
+                      (sum, item) => sum ?? 0 + (item.remainingQnty ?? 0),
+                    ),
+                    status: getStatus(filteredProducts),
+                    pickupilityProducts: filteredProducts,
+                  );
+                })
+                .where((item) => item != null)
+                .cast<PickupModel>()
+                .toList();
+            pickupDate.sort((a, b) {
+              final aIndex = statusOrder[a.status] ?? 999;
+              final bIndex = statusOrder[b.status] ?? 999;
+
+              return aIndex.compareTo(bIndex);
+            });
+            // BlocProvider.of<GetPickupSummaryCubit>(context).getPickupSummary(
+            //     GetSummaryEntity(
+            //         date: widget.date,
+            //         salesId: pickupDate[0].salesId,
+            //         regionId: "",
+            //         matrialId: ""));
           }
           if (payerController.text != "") {
             pickupDate = pickupDate
                 .where((p) => p.customerId!.contains(payerController.text))
                 .toList();
+          }
+          if (status != "All") {
+            pickupDate = pickupDate.where((p) => p.status == status).toList();
           }
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +122,7 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
                       prioritySummary: state.prioritySummaryModel,
                     );
                   } else {
-                    return Text("...Loading");
+                    return const Text("...Loading");
                   }
                 },
               ),
@@ -71,15 +130,30 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
               FilterPickupDataInputs(
                 payerController: payerController,
                 selectedSales: sales,
-                onFilter: (payer, selectedsales) {
+                selectedProduct: product,
+                selectedStatus: status,
+                onFilter:
+                    (payer, selectedsales, selectedProduct, selectedStatus) {
                   setState(() {
                     payerController.text = payer;
                     sales = selectedsales;
+                    product = selectedProduct;
+                    status = selectedStatus;
                   });
                 },
                 salesNames: [
                   "All",
                   ...state.pickupList.map((p) => p.salesName ?? "").toSet()
+                ],
+                products: [
+                  ...state.pickupList
+                      .expand((p) => p.pickupilityProducts ?? [])
+                      .map((m) => m.materialName)
+                      .toSet(),
+                ],
+                status: [
+                  "All",
+                  ...state.pickupList.map((e) => e.status ?? "").toSet()
                 ],
               ),
               const SizedBox(height: 20),

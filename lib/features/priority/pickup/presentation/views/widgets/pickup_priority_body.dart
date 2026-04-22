@@ -12,7 +12,9 @@ class PickupPriorityBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<GetPickupilityCubit>(context).getAllPickup(DateTime.now());
-    BlocProvider.of<GetPickupSummaryCubit>(context).getPickupSummary(GetSummaryEntity(date: DateTime.now(), salesId: "", regionId: "", matrialId: ""));
+    BlocProvider.of<GetPickupSummaryCubit>(context).getPickupSummary(
+        GetSummaryEntity(
+            date: DateTime.now(), salesId: "", regionId: "", matrialId: ""));
 
     return ListView(
       children: [

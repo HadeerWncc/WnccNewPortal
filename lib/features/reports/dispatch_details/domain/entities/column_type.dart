@@ -1,4 +1,4 @@
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/dispatch_region.dart';
 
 enum ColumnType {
   region,

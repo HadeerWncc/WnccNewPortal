@@ -2,9 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_customer_model/dispatch_per_customer_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_per_sales_model/dispatch_per_sales_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/shipment_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
 
@@ -13,12 +11,12 @@ class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
 
   DispatchDetailsRepoImpl({required this.dispatchDetailsDataSource});
   @override
-  Future<Either<Failure, List<DispatchDetailsModel2>>> getDispatchDetails(
+  Future<Either<Failure, List<DispatchDetailsModel>>> getDispatchDetails(
     DateTime date,
     int group,
   ) async {
     try {
-      List<DispatchDetailsModel2> dispatchDetails =
+      List<DispatchDetailsModel> dispatchDetails =
           await dispatchDetailsDataSource.getDispatchDetails(date, group);
       return Right(dispatchDetails);
     } on Exception catch (e) {
@@ -45,10 +43,10 @@ class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
   }
 
   @override
-  Future<Either<Failure, List<DispatchPerCustomerModel>>>
+  Future<Either<Failure, List<DispatchDetailsModel>>>
       getDispatchDetailsPerCustomer(DateTime from, DateTime to) async {
     try {
-      List<DispatchPerCustomerModel> dispatchDetails =
+      List<DispatchDetailsModel> dispatchDetails =
           await dispatchDetailsDataSource.getDispatchDetailsPerCustomer(
               from, to);
       return Right(dispatchDetails);
@@ -61,10 +59,10 @@ class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
   }
 
   @override
-  Future<Either<Failure, List<DispatchPerSalesModel>>>
+  Future<Either<Failure, List<DispatchDetailsModel>>>
       getDispatchDetailsPerSales(DateTime from, DateTime to) async {
     try {
-      List<DispatchPerSalesModel> dispatchDetails =
+      List<DispatchDetailsModel> dispatchDetails =
           await dispatchDetailsDataSource.getDispatchDetailsPerSales(from, to);
       return Right(dispatchDetails);
     } on Exception catch (e) {

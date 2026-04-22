@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/month_day_2.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/month_day.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
 
 Widget buildTotalRow({
   required List<DispatchRegion> regions,
-  required List<MonthDay2> monthDays,
+  required List<MonthDay> monthDays,
   required num totalDelta,
   required num totalGCairo,
   required num totalUEgypt,
-  // required num totalBags,
-  // required num totalBulk,
+  required num totalCostal,
   required num totalAll,
   required num totalExport,
   required BoxBorder totalBorder,
@@ -84,6 +83,12 @@ Widget buildTotalRow({
       //     NumberFormat.decimalPatternDigits(decimalDigits: 0).format(totalBulk),
       //     border: totalBorder,
       //     isHeader: true),
+      buildCell(
+          NumberFormat.decimalPatternDigits(decimalDigits: 0)
+              .format(totalCostal),
+          color: const Color(0xfffff1df),
+          border: totalBorder,
+          isHeader: true),
       buildCell(
           NumberFormat.decimalPatternDigits(decimalDigits: 0).format(totalAll),
           color: const Color(0xffe9e9e7),

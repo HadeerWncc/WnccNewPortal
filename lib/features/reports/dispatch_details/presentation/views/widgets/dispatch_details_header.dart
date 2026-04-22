@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/widgets/multi_select_drop_down.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/region_with_area.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/custom_year_picker.dart';
 
@@ -11,7 +11,7 @@ class DispatchDetailsHeader extends StatelessWidget {
       required this.allCities,
       required this.selectedCities,
       this.onChanged});
-  final List<DispatchRegion> allCities;
+  final List<RegionWithArea> allCities;
   final List<String> selectedCities;
   final Function(List<String>)? onChanged;
   @override

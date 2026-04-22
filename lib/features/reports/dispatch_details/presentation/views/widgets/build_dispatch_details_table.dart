@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_model2.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model2/dispatch_details_quantity.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_quantity.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/relation_value.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/column_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/dispatch_row.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 
-Map<String, List<DispatchRegion>> groupRegionsByArea(
+Map<String, List<RelationValue>> groupRegionsByArea(
   List<DispatchDetailsModel> months,
 ) {
-  final Map<String, List<DispatchRegion>> result = {};
+  final Map<String, List<RelationValue>> result = {};
 
   if (months.isEmpty) return result;
 
   final firstDay = months.last.monthDays?.last;
 
-  final regions = firstDay?.regions ?? [];
+  final dataValues = firstDay?.dataValues ?? [];
 
-  for (final region in regions) {
-    if (region.enableDispatchReporting != true) continue;
+  for (final areaItem in dataValues) {
+    final areaName = areaItem.name ?? 'Unknown';
 
-    final area = region.areaName ?? 'Unknown';
+    final regions = areaItem.relationValues ?? [];
 
-    result.putIfAbsent(area, () => []);
-    result[area]!.add(region);
+    for (final region in regions) {
+      result.putIfAbsent(areaName, () => []);
+      result[areaName]!.add(region);
+    }
   }
 
   return result;
@@ -67,7 +69,7 @@ List<DispatchColumn> buildColumns(
   return columns;
 }
 
-num getQuantityValue(DispatchDetailsQuantity? q, QuantityType type) {
+num getQuantityValue(DispatchQuantity? q, QuantityType type) {
   if (q == null) return 0;
 
   switch (type) {
@@ -81,7 +83,7 @@ num getQuantityValue(DispatchDetailsQuantity? q, QuantityType type) {
 }
 
 List<DispatchRow> buildRowsFromMonths({
-  required List<DispatchDetailsModel2> months,
+  required List<DispatchDetailsModel> months,
   required List<DispatchColumn> columns,
   required QuantityType quantityType,
 }) {

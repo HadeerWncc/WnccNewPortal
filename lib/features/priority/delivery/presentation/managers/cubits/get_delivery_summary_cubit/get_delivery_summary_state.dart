@@ -8,12 +8,15 @@ sealed class GetDeliverySummaryState extends Equatable {
 }
 
 final class GetDeliverySummaryInitial extends GetDeliverySummaryState {}
+
 final class GetDeliverySummaryLoading extends GetDeliverySummaryState {}
+
 final class GetDeliverySummaryFailure extends GetDeliverySummaryState {
   final String error;
 
   const GetDeliverySummaryFailure({required this.error});
 }
+
 final class GetDeliverySummarySuccess extends GetDeliverySummaryState {
   final PrioritySummaryModel prioritySummaryModel;
 

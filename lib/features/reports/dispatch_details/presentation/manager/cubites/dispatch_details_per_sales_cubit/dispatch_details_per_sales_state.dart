@@ -22,7 +22,7 @@ final class DispatchDetailsPerSalesLoading
 
 final class DispatchDetailsPerSalesSuccess
     extends DispatchDetailsPerSalesState {
-  final List<DispatchPerSalesModel> dispatchDetails;
+  final List<DispatchDetailsModel> dispatchDetails;
 
   const DispatchDetailsPerSalesSuccess({required this.dispatchDetails});
 }

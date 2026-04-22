@@ -22,7 +22,7 @@ final class DispatchDetailsPerCustomerFailure
 
 final class DispatchDetailsPerCustomerSuccess
     extends DispatchDetailsPerCustomerState {
-  final List<DispatchPerCustomerModel> dispatchDetails;
+  final List<DispatchDetailsModel> dispatchDetails;
 
   const DispatchDetailsPerCustomerSuccess({required this.dispatchDetails});
 }

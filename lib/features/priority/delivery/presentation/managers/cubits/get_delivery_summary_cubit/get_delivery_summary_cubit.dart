@@ -7,9 +7,10 @@ import 'package:wncc_portal/features/priority/delivery/domain/repositories/deliv
 part 'get_delivery_summary_state.dart';
 
 class GetDeliverySummaryCubit extends Cubit<GetDeliverySummaryState> {
-  GetDeliverySummaryCubit(this.deliveryRepo) : super(GetDeliverySummaryInitial());
+  GetDeliverySummaryCubit(this.deliveryRepo)
+      : super(GetDeliverySummaryInitial());
 
-   final DeliveryRepo deliveryRepo;
+  final DeliveryRepo deliveryRepo;
 
   Future<void> getDeliverySummary(GetSummaryEntity getpicSummaryEntity) async {
     emit(GetDeliverySummaryLoading());

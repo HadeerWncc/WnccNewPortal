@@ -117,12 +117,21 @@ class _PickupPriorityTableState extends State<PickupPriorityTable> {
                                 ),
                               ),
                               Expanded(
-                                  flex: 3,
-                                  child: Center(
-                                      child: MarkedText(
-                                          child: order.status.toString(),
-                                          color: const Color.fromARGB(
-                                              255, 212, 211, 211)))),
+                                flex: 3,
+                                child: Center(
+                                  child: MarkedText(
+                                    child: order.status.toString(),
+                                    color: order.status == "in-process"
+                                        ? const Color(0xffdbeafe)
+                                        : order.status == "completed"
+                                            ? const Color(0xffd1fae5)
+                                            : order.status == "pending"
+                                                ? const Color(0xfffff7ed)
+                                                : const Color.fromARGB(
+                                                    255, 212, 211, 211),
+                                  ),
+                                ),
+                              ),
                               Expanded(
                                   flex: 3,
                                   child: Center(
@@ -358,6 +367,7 @@ class _PickupPriorityTableState extends State<PickupPriorityTable> {
                   : CustomInputTable(
                       controller: priorityController,
                       onChanged: (_) {
+                        
                         _notifyParent();
                       },
                     ),

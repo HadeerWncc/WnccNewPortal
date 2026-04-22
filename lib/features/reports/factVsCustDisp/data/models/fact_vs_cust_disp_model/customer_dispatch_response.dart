@@ -52,8 +52,8 @@ class CustomerDispatchResponse extends Equatable {
         'total': total,
         'exp_Bags': expBags,
         'exp_Bulk': expBulk,
-        'jumbo': jumbo,
-        'exp_Trading': expTrading,
+        // 'jumbo': jumbo,
+        // 'exp_Trading': expTrading,
         't_Export': tExport,
         'clinker': clincker,
       };
