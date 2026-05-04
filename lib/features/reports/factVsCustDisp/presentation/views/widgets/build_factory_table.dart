@@ -20,7 +20,9 @@ Widget buildFactoryTable({
   ];
   int bagsIndex = columns.indexOf('bags');
   // int totalBulkIndex = columns.indexOf('t.Bulk');
+  int ltotalIndex = columns.indexOf('l_total');
   int totalIndex = columns.indexOf('Total');
+  int totalExportIndex = columns.indexOf('t_export');
 
   List<List<dynamic>> data = factoryDispatchResponse.map((model) {
     final factoryData = model.factoryDispatchResponse.toJson();
@@ -126,7 +128,7 @@ Widget buildFactoryTable({
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),
                   columns: columns
-                      .sublist(bagsIndex + 1, totalIndex)
+                      .sublist(bagsIndex + 1, ltotalIndex)
                       .map((c) => DataColumn(
                               label: Center(
                             child: Text(c.capitalize(),
@@ -145,7 +147,7 @@ Widget buildFactoryTable({
                               },
                             ),
                             cells: row
-                                .sublist(bagsIndex + 1, totalIndex)
+                                .sublist(bagsIndex + 1, ltotalIndex)
                                 .map(
                                   (cell) => DataCell(
                                     Center(
@@ -164,6 +166,66 @@ Widget buildFactoryTable({
                                 .toList(),
                           ))
                       .toList(),
+                ),
+                totalColumn(
+                  values: data
+                      .map((row) => NumberFormat.decimalPattern()
+                          .format(row[ltotalIndex] ?? 0))
+                      .toList(),
+                  lableName: 'Total',
+                ),
+                DataTable(
+                  headingRowHeight: 45,
+                  dataRowMinHeight: 38,
+                  dataRowMaxHeight: 42,
+                  headingRowColor: WidgetStateProperty.all(tableHeaderColor),
+                  border: TableBorder.all(color: Colors.grey.shade300),
+                  columns: columns
+                      .sublist(ltotalIndex + 1, totalExportIndex)
+                      .map((c) => DataColumn(
+                              label: Center(
+                            child: Text(c.capitalize(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
+                          )))
+                      .toList(),
+                  rows: data
+                      .map((row) => DataRow(
+                            color: WidgetStateProperty.resolveWith<Color?>(
+                              (Set<WidgetState> states) {
+                                if (data.indexOf(row) == data.length - 1) {
+                                  return fixedColumnsColor;
+                                }
+                                return null;
+                              },
+                            ),
+                            cells: row
+                                .sublist(ltotalIndex + 1, totalExportIndex)
+                                .map(
+                                  (cell) => DataCell(
+                                    Center(
+                                      child: Text(
+                                        NumberFormat.decimalPattern()
+                                            .format(cell ?? 0),
+                                        style: TextStyle(
+                                            fontWeight: (data.indexOf(row) ==
+                                                    data.length - 1)
+                                                ? FontWeight.bold
+                                                : FontWeight.normal),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                          ))
+                      .toList(),
+                ),
+                totalColumn(
+                  values: data
+                      .map((row) => NumberFormat.decimalPattern()
+                          .format(row[totalExportIndex] ?? 0))
+                      .toList(),
+                  lableName: 'T_Export',
                 ),
                 totalColumn(
                   values: data

@@ -12,14 +12,14 @@ class DispatchDetailsPerCustomerCubit
 
   final DispatchDetailsRepo dispatchDetailsRepo;
 
-  Future getDispatchDetailsPerCustomer(
-      DateTime fromDate, DateTime toDate) async {
+  Future getDispatchDetailsPerCustomer(DateTime date) async {
     emit(DispatchDetailsPerCustomerLoading());
-    var result = await dispatchDetailsRepo.getDispatchDetailsPerCustomer(
-        fromDate, toDate);
+    var result = await dispatchDetailsRepo.getDispatchDetails(date, 2);
     result.fold((error) {
       emit(DispatchDetailsPerCustomerFailure(error: error.msg));
     }, (dispatchDetailsList) {
+      dispatchDetailsList =
+          dispatchDetailsList.where((d) => d.monthDays!.isNotEmpty).toList();
       emit(DispatchDetailsPerCustomerSuccess(
           dispatchDetails: dispatchDetailsList));
     });

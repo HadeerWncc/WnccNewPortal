@@ -19,9 +19,9 @@ Widget buildCell(String text,
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 11,
-            fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
+            fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
         ),

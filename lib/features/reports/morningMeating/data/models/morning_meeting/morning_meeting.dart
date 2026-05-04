@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
-
-import 'customer_dispatch_response.dart';
-import 'factory_dispatch_response.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/data/models/fact_vs_cust_disp_model/customer_dispatch_response.dart';
+import 'package:wncc_portal/features/reports/factVsCustDisp/data/models/fact_vs_cust_disp_model/factory_dispatch_response.dart';
 
 class MorningMeeting extends Equatable {
   final DateTime? date;

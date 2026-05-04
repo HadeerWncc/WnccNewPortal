@@ -11,13 +11,13 @@ class DispatchDetailsPerSalesCubit extends Cubit<DispatchDetailsPerSalesState> {
 
   final DispatchDetailsRepo dispatchDetailsRepo;
 
-  Future getDispatchDetailsPerSales(DateTime fromDate, DateTime toDate) async {
+  Future getDispatchDetailsPerSales(DateTime date) async {
     emit(DispatchDetailsPerSalesLoading());
-    var result =
-        await dispatchDetailsRepo.getDispatchDetailsPerSales(fromDate, toDate);
+    var result = await dispatchDetailsRepo.getDispatchDetails(date, 1);
     result.fold((error) {
       emit(DispatchDetailsPerSalesFailure(error: error.msg));
     }, (dispatchDetailsList) {
+      dispatchDetailsList = dispatchDetailsList.where((d)=>d.monthDays!.isNotEmpty).toList();
       emit(
           DispatchDetailsPerSalesSuccess(dispatchDetails: dispatchDetailsList));
     });

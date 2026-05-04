@@ -15,7 +15,7 @@ Widget buildCustomerTable({
       customerDispatchResponse.first.customerDispatchResponse.toJson();
   List<String> allKeys = firstRow.keys.toList();
 
-  int totalIndex = allKeys.indexOf('total');
+  int ltotalIndex = allKeys.indexOf('l_total');
   int bagsIndex = allKeys.indexOf('bags');
   int totalExportIndex = allKeys.indexOf('t_Export');
   final bool showTotalRow = lableName != 'Time';
@@ -114,7 +114,7 @@ Widget buildCustomerTable({
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),
                   columns: allKeys
-                      .sublist(bagsIndex + 1, totalIndex)
+                      .sublist(bagsIndex + 1, ltotalIndex)
                       .map(
                         (key) => DataColumn(
                           label: Center(
@@ -138,7 +138,7 @@ Widget buildCustomerTable({
                         },
                       ),
                       cells: row
-                          .sublist(bagsIndex + 1, totalIndex)
+                          .sublist(bagsIndex + 1, ltotalIndex)
                           .map((cell) => DataCell(
                                 Center(
                                   child: Text(
@@ -158,7 +158,7 @@ Widget buildCustomerTable({
                 totalColumn(
                   values: data
                       .map((row) => NumberFormat.decimalPattern()
-                          .format(row[totalIndex] ?? 0))
+                          .format(row[ltotalIndex] ?? 0))
                       .toList(),
                   lableName: 'Total',
                 ),
@@ -169,7 +169,7 @@ Widget buildCustomerTable({
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),
                   columns: allKeys
-                      .sublist(totalIndex + 1, totalExportIndex)
+                      .sublist(ltotalIndex + 1, totalExportIndex)
                       .map(
                         (key) => DataColumn(
                           label: Center(
@@ -193,7 +193,7 @@ Widget buildCustomerTable({
                         },
                       ),
                       cells: row
-                          .sublist(totalIndex + 1, totalExportIndex)
+                          .sublist(ltotalIndex + 1, totalExportIndex)
                           .map((cell) => DataCell(
                                 Center(
                                   child: Text(
@@ -221,7 +221,7 @@ Widget buildCustomerTable({
                   values: data
                       .map((row) => NumberFormat.decimalPattern().format(
                           (row[totalExportIndex] ?? 0) +
-                              (row[totalIndex] ?? 0)))
+                              (row[ltotalIndex] ?? 0)))
                       .toList(),
                   lableName: 'Total',
                 ),

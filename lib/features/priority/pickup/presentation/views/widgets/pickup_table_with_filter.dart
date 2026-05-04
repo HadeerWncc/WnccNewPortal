@@ -70,19 +70,19 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
                     salesName: item.salesName,
                     totalQuantity: filteredProducts.fold(
                       0,
-                      (sum, item) => sum ?? 0 + (item.quantity ?? 0),
+                      (sum, item) => (sum ?? 0) + (item.quantity ?? 0),
                     ),
                     totalPriorited: filteredProducts.fold(
                       0,
-                      (sum, item) => sum ?? 0 + (item.prioritedQnty ?? 0),
+                      (sum, item) => (sum ?? 0) + (item.prioritedQnty ?? 0),
                     ),
                     totalDispatched: filteredProducts.fold(
                       0,
-                      (sum, item) => sum ?? 0 + (item.dispatchedQnty ?? 0),
+                      (sum, item) => (sum ?? 0) + (item.dispatchedQnty ?? 0),
                     ),
                     totalRemaining: filteredProducts.fold(
                       0,
-                      (sum, item) => sum ?? 0 + (item.remainingQnty ?? 0),
+                      (sum, item) => (sum ?? 0) + (item.remainingQnty ?? 0),
                     ),
                     status: getStatus(filteredProducts),
                     pickupilityProducts: filteredProducts,
@@ -94,7 +94,6 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
             pickupDate.sort((a, b) {
               final aIndex = statusOrder[a.status] ?? 999;
               final bIndex = statusOrder[b.status] ?? 999;
-
               return aIndex.compareTo(bIndex);
             });
             // BlocProvider.of<GetPickupSummaryCubit>(context).getPickupSummary(

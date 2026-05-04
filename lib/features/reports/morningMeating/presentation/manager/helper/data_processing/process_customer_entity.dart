@@ -29,8 +29,8 @@ List<CustomerDispatchEntity> processCustomerEntities(
     final resp = meeting.customerDispatchResponse;
     return CustomerDispatchEntity(
       date: DateFormat('MMM d, yyyy').format(meeting.date!),
-      bags: resp?.totalBags?.toDouble(),
-      bulk: resp?.bulk?.toDouble(),
+      bags: resp?.localBags?.toDouble(),
+      bulk: resp?.localBulk?.toDouble(),
       export: (resp?.exportBags?.toDouble() ?? 0) +
           (resp?.exportBulk?.toDouble() ?? 0),
       total: resp?.total?.toDouble(),
@@ -50,11 +50,11 @@ List<CustomerDispatchEntity> processCustomerEntities(
     date: 'MTD',
     bags: double.parse(sumationList
         .fold<double>(
-            0, (prev, e) => prev + (e.customerDispatchResponse?.totalBags ?? 0))
+            0, (prev, e) => prev + (e.customerDispatchResponse?.localBags ?? 0))
         .toStringAsFixed(2)),
     bulk: double.parse(sumationList
         .fold<double>(
-            0, (prev, e) => prev + (e.customerDispatchResponse?.bulk ?? 0))
+            0, (prev, e) => prev + (e.customerDispatchResponse?.localBulk ?? 0))
         .toStringAsFixed(2)),
     export: double.parse(sumationList
         .fold<double>(

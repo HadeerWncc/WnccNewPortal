@@ -69,16 +69,40 @@ List<DispatchColumn> buildColumns(
   return columns;
 }
 
-num getQuantityValue(DispatchQuantity? q, QuantityType type) {
+num getQuantityValue(
+    DispatchQuantity? q, QuantityType type, QuantityMatrial materialType) {
   if (q == null) return 0;
 
   switch (type) {
     case QuantityType.delivery:
-      return q.deliveryQuantity?.total ?? 0;
+      switch (materialType) {
+        case QuantityMatrial.bags:
+          return q.deliveryQuantity?.bags ?? 0;
+        case QuantityMatrial.bulk:
+          return q.deliveryQuantity?.bulk ?? 0;
+        case QuantityMatrial.total:
+          return q.deliveryQuantity?.total ?? 0;
+      }
     case QuantityType.pickup:
-      return q.pickupQuantity?.total ?? 0;
+      switch (materialType) {
+        case QuantityMatrial.bags:
+          return q.pickupQuantity?.bags ?? 0;
+        case QuantityMatrial.bulk:
+          return q.pickupQuantity?.bulk ?? 0;
+        case QuantityMatrial.total:
+          return q.pickupQuantity?.total ?? 0;
+      }
     case QuantityType.total:
-      return q.total ?? 0;
+      switch (materialType) {
+        case QuantityMatrial.bags:
+          return ((q.pickupQuantity?.bags ?? 0) +
+              (q.deliveryQuantity?.bags ?? 0));
+        case QuantityMatrial.bulk:
+          return ((q.pickupQuantity?.bulk ?? 0) +
+              (q.deliveryQuantity?.bulk ?? 0));
+        case QuantityMatrial.total:
+          return q.total ?? 0;
+      }
   }
 }
 
@@ -86,6 +110,7 @@ List<DispatchRow> buildRowsFromMonths({
   required List<DispatchDetailsModel> months,
   required List<DispatchColumn> columns,
   required QuantityType quantityType,
+  required QuantityMatrial quantityMatrial,
 }) {
   final rows = <DispatchRow>[];
 
@@ -117,29 +142,35 @@ List<DispatchRow> buildRowsFromMonths({
           switch (column.area) {
             case 'Greater Cairo':
               value = getQuantityValue(
-                  day.dataValues
-                      ?.firstWhere((d) => d.name == 'Greater Cairo')
-                      .quantity,
-                  quantityType);
+                day.dataValues
+                    ?.firstWhere((d) => d.name == 'Greater Cairo')
+                    .quantity,
+                quantityType,
+                quantityMatrial,
+              );
               break;
             case 'Delta':
               value = getQuantityValue(
-                  day.dataValues?.firstWhere((d) => d.name == 'Delta').quantity,
-                  quantityType);
+                day.dataValues?.firstWhere((d) => d.name == 'Delta').quantity,
+                quantityType,
+                quantityMatrial,
+              );
               break;
             case 'UEgypt':
               value = getQuantityValue(
-                  day.dataValues
-                      ?.firstWhere((d) => d.name == 'Upper Egypt')
-                      .quantity,
-                  quantityType);
+                day.dataValues
+                    ?.firstWhere((d) => d.name == 'Upper Egypt')
+                    .quantity,
+                quantityType,
+                quantityMatrial,
+              );
               break;
             case 'Coastal':
               value = getQuantityValue(
-                  day.dataValues
-                      ?.firstWhere((d) => d.name == 'Coastal')
-                      .quantity,
-                  quantityType);
+                day.dataValues?.firstWhere((d) => d.name == 'Coastal').quantity,
+                quantityType,
+                quantityMatrial,
+              );
               break;
           }
         }

@@ -5,24 +5,24 @@ import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/data_value.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_customer_cubit/dispatch_details_per_customer_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/region_with_area.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_month_data_per_sales.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_sales_top_header.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_month_data_per_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_region_top_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_details_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/loading_widgets/loading_dispatch_table.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
 
-class DispatchPerCustomerTableBody extends StatefulWidget {
-  const DispatchPerCustomerTableBody({super.key});
+class DispatchPerRegionTablesBody extends StatefulWidget {
+  const DispatchPerRegionTablesBody({super.key});
+
   @override
-  State<DispatchPerCustomerTableBody> createState() =>
-      _DispatchPerCustomerTableBodyState();
+  State<DispatchPerRegionTablesBody> createState() => _DispatchPerRegionTablesBodyState();
 }
 
-class _DispatchPerCustomerTableBodyState
-    extends State<DispatchPerCustomerTableBody> {
+class _DispatchPerRegionTablesBodyState extends State<DispatchPerRegionTablesBody> {
   late LinkedScrollControllerGroup _horizontalControllers;
   late ScrollController _headerController;
   late ScrollController _bodyController;
@@ -30,8 +30,9 @@ class _DispatchPerCustomerTableBodyState
   final Map<int, bool> _expandedMonths = {};
 
   static const double dateWidth = 150.0;
-  static const double cellWidth = 150.0;
-  List<String> customers = [];
+  static const double cellWidth = 100.0;
+  List<RegionWithArea> allRegions = [];
+  List<String> regions = [];
   List<DataValue> dataValue = [];
   QuantityType quantityType = QuantityType.total;
   QuantityMatrial quantityMatrial = QuantityMatrial.total;
@@ -58,14 +59,15 @@ class _DispatchPerCustomerTableBodyState
 
   @override
   Widget build(BuildContext context) {
+    double scrollableWidth = (6 * cellWidth) + (regions.length * cellWidth);
     return Expanded(
       child: Column(
         children: [
           DispatchDetailsHeader(
-            group: 2,
-            selectedItems: customers,
+            group: 0,
+            selectedItems: regions,
             onChanged: (values, dataValues) {
-              customers = values;
+              regions = values;
               dataValue = dataValues;
               setState(() {});
             },
@@ -112,40 +114,30 @@ class _DispatchPerCustomerTableBodyState
             ],
           ),
           const SizedBox(height: 8),
-          sectionTitle('Dispatch Details (Per Customer)'),
+          sectionTitle('Dispatch Details (Per Region)'),
           const SizedBox(height: 5),
-          BlocBuilder<DispatchDetailsPerCustomerCubit,
-              DispatchDetailsPerCustomerState>(
+          BlocBuilder<DispatchDetailsCubit, DispatchDetailsState>(
             builder: (context, state) {
-              if (state is DispatchDetailsPerCustomerSuccess) {
-                customers = state
-                        .dispatchDetails.first.monthDays?.first.dataValues!
-                        .map((v) => v.name ?? '')
-                        .toList() ??
-                    [];
-                return buildSalesTopHeader(
-                    state.dispatchDetails[0].monthDays?[0].dataValues ?? [],
-                    customers,
-                    _headerController,
-                    width: 150);
+              if (state is DispatchDetailsSuccess) {
+                return buildRegionTopHeader(
+                    state.dispatchDetailsList[0].monthDays?[0].dataValues ?? [],
+                    regions,
+                    _headerController);
               } else {
-                return buildSalesTopHeader([], [], _headerController);
+                return buildRegionTopHeader([], [], _headerController);
               }
             },
           ),
           Expanded(
             child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              child: BlocBuilder<DispatchDetailsPerCustomerCubit,
-                  DispatchDetailsPerCustomerState>(
+              child: BlocBuilder<DispatchDetailsCubit, DispatchDetailsState>(
                 builder: (context, state) {
-                  if (state is DispatchDetailsPerCustomerSuccess) {
-                    double scrollableWidth =
-                        (2 * cellWidth) + (customers.length * cellWidth);
+                  if (state is DispatchDetailsSuccess) {
                     return Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        buildFixedSideColumn(state.dispatchDetails),
+                        buildFixedSideColumn(state.dispatchDetailsList),
                         Expanded(
                           child: SingleChildScrollView(
                             controller: _bodyController,
@@ -153,17 +145,17 @@ class _DispatchPerCustomerTableBodyState
                             child: SizedBox(
                               width: scrollableWidth,
                               child: Column(children: [
-                                ...List.generate(state.dispatchDetails.length,
-                                    (index) {
-                                  return buildMonthDataPerSales(
-                                      state.dispatchDetails[index],
-                                      index,
-                                      customers,
-                                      totalBorder,
-                                      _expandedMonths,
-                                      quantityType,
-                                      quantityMatrial,
-                                      width: cellWidth);
+                                ...List.generate(
+                                    state.dispatchDetailsList.length, (index) {
+                                  return buildMonthDataPerRegion(
+                                    state.dispatchDetailsList[index],
+                                    index,
+                                    regions,
+                                    totalBorder,
+                                    _expandedMonths,
+                                    quantityType,
+                                    quantityMatrial,
+                                  );
                                 }),
                               ]),
                             ),
@@ -171,7 +163,7 @@ class _DispatchPerCustomerTableBodyState
                         ),
                       ],
                     );
-                  } else if (state is DispatchDetailsPerCustomerFailure) {
+                  } else if (state is DispatchDetailsFailure) {
                     return Center(
                       child: Text(
                         state.error,
@@ -222,4 +214,6 @@ class _DispatchPerCustomerTableBodyState
       }),
     ]);
   }
+
+
 }

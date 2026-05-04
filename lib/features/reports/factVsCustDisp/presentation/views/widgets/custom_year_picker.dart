@@ -34,7 +34,7 @@ class _CustomYearPicker extends State<CustomYearPicker> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Select Year"),
+          title: Text(formattedDate),
           content: SizedBox(
             width: 300,
             height: 300,
@@ -50,7 +50,7 @@ class _CustomYearPicker extends State<CustomYearPicker> {
                     widget.onChange!(dateTime);
                   }
                 });
-
+                
                 Navigator.pop(context);
               },
             ),

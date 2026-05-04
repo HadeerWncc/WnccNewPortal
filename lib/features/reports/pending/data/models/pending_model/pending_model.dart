@@ -185,10 +185,12 @@ class PendingModel extends Equatable {
         'Quantity': deliveryQuantity,
         'Region': branchName,
         'City': country,
+        'Reciever': receiver,
+        'Zone': addressTransZoneDesc,
         'Sales': salesName,
         'Date': registerDate == null
             ? ""
-            : DateFormat("d/m/yyyy").format(DateTime.parse(registerDate!)),
+            : DateFormat("d/M/yyyy").format(DateTime.parse(registerDate!)),
       };
 
   @override

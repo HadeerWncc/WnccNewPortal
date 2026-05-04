@@ -6,7 +6,7 @@ class RelationValue extends Equatable {
   final String? id;
   final String? name;
   final DispatchQuantity? quantity;
-  final List<dynamic>? relationValues;
+  final List<RelationValue>? relationValues;
 
   const RelationValue({
     this.id,
@@ -22,7 +22,9 @@ class RelationValue extends Equatable {
             ? null
             : DispatchQuantity.fromJson(
                 json['quantity'] as Map<String, dynamic>),
-        relationValues: json['relationValues'] as List<dynamic>?,
+        relationValues: (json['relationValues'] as List<dynamic>?)
+            ?.map((e) => RelationValue.fromJson(e))
+            .toList(),
       );
 
   Map<String, dynamic> toJson() => {

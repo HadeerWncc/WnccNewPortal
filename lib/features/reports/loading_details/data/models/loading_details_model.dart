@@ -243,10 +243,10 @@ class LoadingDetailsModel extends Equatable {
         'Product': materialName,
         'Quantity': deliveryQuantity,
         'CheckIn Date':
-            '${DateFormat('d/m/yyyy').format(DateTime.parse(checkInDate!))} ${DateFormat('hh:mm:ss').format(DateTime.parse(checkInTime!))}',
+            '${DateFormat('d/M/yyyy').format(DateTime.parse(checkInDate!))} ${DateFormat('hh:mm:ss').format(DateTime.parse(checkInTime!))}',
         'loading Date': loadStartDate == null
             ? ''
-            : '${DateFormat('d/m/yyyy').format(DateTime.parse(loadStartDate))} ${DateFormat('hh:mm:ss').format(DateTime.parse(loadStartTime!))}',
+            : '${DateFormat('d/M/yyyy').format(DateTime.parse(loadStartDate))} ${DateFormat('hh:mm:ss').format(DateTime.parse(loadStartTime!))}',
         'Shipment No': shipmentNo ?? '-',
         'Sales Name': salesName ?? '-',
       };

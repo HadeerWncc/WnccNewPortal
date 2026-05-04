@@ -11,13 +11,15 @@ class LoadingBtn extends StatelessWidget {
     return Shimmer.fromColors(
       baseColor: Colors.grey.shade300,
       highlightColor: Colors.grey.shade100,
-      child: CustomButtonWithIcon(
-        child: title,
-        textColor: Colors.white,
-        bgColor: const Color(0xff13C855),
-        icon: Symbols.task_alt,
-        onHoverColor: const Color.fromARGB(255, 12, 132, 56),
-        onTap: null,
+      child: SizedBox(
+        child: CustomButtonWithIcon(
+          child: title,
+          textColor: Colors.white,
+          bgColor: const Color(0xff13C855),
+          icon: Symbols.task_alt,
+          onHoverColor: const Color.fromARGB(255, 12, 132, 56),
+          onTap: null,
+        ),
       ),
     );
   }

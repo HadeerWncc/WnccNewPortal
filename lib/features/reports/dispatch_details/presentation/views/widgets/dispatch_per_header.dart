@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/widgets/custom_range_date_picker.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_customer_cubit/dispatch_details_per_customer_cubit.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_sales_cubit/dispatch_details_per_sales_cubit.dart';
 
 class DispatchPerHeader extends StatelessWidget {
   const DispatchPerHeader({super.key, required this.per});
@@ -25,12 +24,12 @@ class DispatchPerHeader extends StatelessWidget {
           onChange: (value) {
             if (per == 0) {
               //0 => Per Sales
-              BlocProvider.of<DispatchDetailsPerSalesCubit>(context)
-                  .getDispatchDetailsPerSales(value.start, value.end);
+              // BlocProvider.of<DispatchDetailsPerSalesCubit>(context)
+              //     .getDispatchDetailsPerSales(value.start, value.end);
             } else {
               //1=> Per Customer
               BlocProvider.of<DispatchDetailsPerCustomerCubit>(context)
-                  .getDispatchDetailsPerCustomer(value.start, value.end);
+                  .getDispatchDetailsPerCustomer(value.start);
             }
           },
         ),

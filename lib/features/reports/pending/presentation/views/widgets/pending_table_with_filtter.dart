@@ -53,6 +53,8 @@ class _PendingTableWithFulterState extends State<PendingTableWithFulter> {
       ),
       'Region': '',
       'City': '',
+      'Reciever': '',
+      'Zone': '',
       'Sales': '',
       'Date': '',
     };

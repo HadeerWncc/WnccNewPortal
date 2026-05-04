@@ -34,8 +34,8 @@ class _CustomMultiSelectDropDown2State extends State<CustomMultiSelectDropDown2>
       dropdownBuilder: (context, selectedItems) {
         return Text(
           widget.selectedProducts.isEmpty
-              ? "Select items"
-              : "${widget.selectedProducts.length} items selected",
+              ? "Select Materials"
+              : "${widget.selectedProducts.length} Materials selected",
           style: const TextStyle(color: Colors.black),
         );
       },

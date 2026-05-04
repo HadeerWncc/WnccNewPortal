@@ -5,13 +5,13 @@ import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/re
 class MultiSelectDropDown extends StatefulWidget {
   const MultiSelectDropDown({
     super.key,
-    required this.cities,
-    required this.selectedCities,
+    required this.items,
+    required this.selectedItems,
     this.onChanged,
   });
 
-  final List<RegionWithArea> cities;
-  final List<String> selectedCities;
+  final List<RegionWithArea> items;
+  final List<String> selectedItems;
   final Function(List<String>)? onChanged;
 
   @override
@@ -23,7 +23,7 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> regionNames = widget.cities
+    final List<String> regionNames = widget.items
         .map((r) => r.regionName)
         .where((name) => name.isNotEmpty)
         .toList();
@@ -31,12 +31,12 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
     return DropdownSearch<String>.multiSelection(
       key: _dropdownKey,
       items: regionNames,
-      selectedItems: widget.selectedCities,
+      selectedItems: widget.selectedItems,
       dropdownBuilder: (context, selectedItems) {
         return Text(
-          widget.selectedCities.isEmpty
+          widget.selectedItems.isEmpty
               ? "Select items"
-              : "${widget.selectedCities.length} items selected",
+              : "${widget.selectedItems.length} items selected",
           style: const TextStyle(color: Colors.black),
         );
       },

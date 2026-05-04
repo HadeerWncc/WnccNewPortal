@@ -3,3 +3,10 @@ enum QuantityType {
   delivery,
   pickup,
 }
+
+
+enum QuantityMatrial{
+  total,
+  bags,
+  bulk,
+}

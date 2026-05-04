@@ -3,37 +3,49 @@ import 'package:equatable/equatable.dart';
 class FactoryDispatchResponse extends Equatable {
   final num? masry;
   final num? wadie;
-  final num? bags;
-  final num? bulk;
-  final num? export;
+  final num? localBags;
+  final num? localBulk;
+  final num? exportBags;
+  final num? exportBulk;
+  final num? totalExport;
+  final num? localTotal;
   final num? total;
 
   const FactoryDispatchResponse({
     this.masry,
     this.wadie,
-    this.bags,
-    this.bulk,
-    this.export,
+    this.localBags,
+    this.localBulk,
+    this.localTotal,
     this.total,
+    this.exportBags,
+    this.exportBulk,
+    this.totalExport,
   });
 
   factory FactoryDispatchResponse.fromJson(Map<String, dynamic> json) {
     return FactoryDispatchResponse(
       masry: json['masry'] as num?,
       wadie: json['wadie'] as num?,
-      bags: json['localBags'] as num?,
-      bulk: json['bulk'] as num?,
-      export: json['exports'] as num?,
+      localBags: json['localBags'] as num?,
+      localBulk: json['localBulk'] as num?,
+      localTotal: json['localTotal'] as num,
       total: json['total'] as num?,
+      exportBags: json['exportBags'],
+      exportBulk: json['exportBulk'],
+      totalExport: json['totalExport'] as num?,
     );
   }
 
   Map<String, dynamic> toJson() => {
         'masry': masry,
         'wadie': wadie,
-        'bags': bags,
-        'bulk': bulk,
-        'export': export,
+        'bags': localBags,
+        'bulk': localBulk,
+        'l_total': localTotal,
+        'exp_bags': exportBags,
+        'exp_bulk': exportBulk,
+        't_export': totalExport,
         'total': total,
       };
 
@@ -42,10 +54,13 @@ class FactoryDispatchResponse extends Equatable {
     return [
       masry,
       wadie,
-      bags,
-      bulk,
-      export,
+      localBags,
+      localBulk,
+      localTotal,
       total,
+      exportBags,
+      exportBulk,
+      totalExport,
     ];
   }
 }
