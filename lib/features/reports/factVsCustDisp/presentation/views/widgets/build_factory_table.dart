@@ -19,9 +19,7 @@ Widget buildFactoryTable({
     'Total',
   ];
   int bagsIndex = columns.indexOf('bags');
-  // int totalBulkIndex = columns.indexOf('t.Bulk');
   int ltotalIndex = columns.indexOf('l_total');
-  int totalIndex = columns.indexOf('Total');
   int totalExportIndex = columns.indexOf('t_export');
 
   List<List<dynamic>> data = factoryDispatchResponse.map((model) {

@@ -1,7 +1,5 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/core/widgets/custom_vertical_divider.dart';
-import 'package:wncc_portal/features/user/presentation/views/widgets/custom_quantity_comparing.dart';
 
 class CustomSummary extends StatelessWidget {
   const CustomSummary({

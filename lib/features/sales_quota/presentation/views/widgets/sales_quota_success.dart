@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/features/sales_quota/data/models/daily_quota_model/daily_quota_model.dart';
 import 'package:wncc_portal/features/sales_quota/domain/entities/chart_data_entity.dart';
-import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/card_charts.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/widgets/card_data.dart';
 
 class SelesQuotaSuccess extends StatefulWidget {

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
-import 'package:wncc_portal/features/user/presentation/views/widgets/custom_daily_quota_item.dart';
-import 'package:wncc_portal/features/user/presentation/views/widgets/custom_quantity_comparing.dart';
 
 class PricingReportSummary extends StatelessWidget {
   const PricingReportSummary({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double widthRatio = .5;
+    // double widthRatio = .5;
 
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
         spacing: 10,

@@ -5,7 +5,6 @@ import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/data_value.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/region_with_area.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_sales_cubit/dispatch_details_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_month_data_per_sales.dart';

@@ -1,11 +1,8 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/features/reports/payment/domain/entities/customer_deposit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/loading/payment_loaing.dart';
 
 class CustomerPaymentTable extends StatelessWidget {
   const CustomerPaymentTable({

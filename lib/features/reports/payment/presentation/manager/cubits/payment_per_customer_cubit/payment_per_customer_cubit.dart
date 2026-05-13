@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/utils/methods/parse_to_int.dart';
-import 'package:wncc_portal/features/payer/data/models/payer_model.dart';
 import 'package:wncc_portal/features/payer/domain/repos/payer_repo.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment_details_model.dart';
 import 'package:wncc_portal/features/reports/payment/domain/entities/customer_deposit.dart';

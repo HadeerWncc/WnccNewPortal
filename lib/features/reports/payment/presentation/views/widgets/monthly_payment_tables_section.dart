@@ -21,7 +21,7 @@ class _MonthlyPaymentTablesSectionState
   bool openCharts = false;
   @override
   Widget build(BuildContext context) {
-    var orientation = MediaQuery.of(context).orientation;
+    // var orientation = MediaQuery.of(context).orientation;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

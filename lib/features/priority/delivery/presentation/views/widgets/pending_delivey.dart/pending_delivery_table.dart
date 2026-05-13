@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/methods/format_num.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/pending_delivey.dart/custom_pending_delivery_actions.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
