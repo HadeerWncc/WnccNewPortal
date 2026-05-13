@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/data_value.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
 
-Widget buildSalesTopHeader(
-  List<DataValue> areas,
-  List<String> selectedCities,
-  ScrollController? headerController,
-  {double? width = 100}
-) {
+Widget buildSalesTopHeader(List<DataValue> areas, List<String> selectedCities,
+    ScrollController? headerController,
+    {double? width = 100}) {
   final sales = areas;
 
   /// 👇 المدن المختارة بس
@@ -33,9 +30,8 @@ Widget buildSalesTopHeader(
                     area.name ?? "",
                     isHeader: true,
                     color: const Color(0xFFB9E2A7),
-                     width: width??100,
+                    width: width ?? 100,
                   ),
-
                 ];
               }),
 

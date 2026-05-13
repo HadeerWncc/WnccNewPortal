@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
+import 'package:wncc_portal/core/utils/methods/format_num.dart';
+import 'package:wncc_portal/core/widgets/custom_marked_color_container.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/dispatch_delivery.dart/custom_dispatch_delivery_actions.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
@@ -36,7 +37,7 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
         child: DataTable2(
           columnSpacing: 0,
           horizontalMargin: 0,
-          minWidth: 1700,
+          minWidth: 1900,
           showCheckboxColumn: true,
           dataRowHeight: 60,
           border: const TableBorder.symmetric(
@@ -61,10 +62,12 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
             DataColumn2(label: DataColumnText(text: 'No'), fixedWidth: 100),
             DataColumn(label: DataColumnText(text: 'Matrial')),
             DataColumn2(label: DataColumnText(text: 'Qty'), fixedWidth: 120),
-            DataColumn2(label: DataColumnText(text: 'Truck'), fixedWidth: 60),
             DataColumn2(label: DataColumnText(text: 'Zone'), fixedWidth: 120),
             DataColumn2(
                 label: DataColumnText(text: 'Receiver'), fixedWidth: 140),
+            DataColumn2(label: DataColumnText(text: 'Truck'), fixedWidth: 60),
+            DataColumn2(
+                label: DataColumnText(text: 'Ship.Status'), fixedWidth: 150),
             DataColumn2(label: DataColumnText(text: 'Sales'), fixedWidth: 150),
             DataColumn2(label: DataColumnText(text: 'Actions'), fixedWidth: 80),
           ],
@@ -154,15 +157,7 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                 DataCell(
                   Center(
                     child: Text(
-                      item.deliveryQuantity.toString(),
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-                DataCell(
-                  Center(
-                    child: Text(
-                      item.truckNo.toString(),
+                      formatNum(item.deliveryQuantity ?? 0),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -182,6 +177,22 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.truckNo.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                      child: CustomMarkedColorContainer(
+                    bgColor: item.shipmentStatus == 'No Shipment'?  const Color.fromARGB(255, 225, 225, 225) : const Color.fromARGB(255, 211, 252, 212),
+                    color: const Color.fromARGB(255, 63, 63, 63),
+                    title: item.shipmentStatus.toString(),
+                  )),
                 ),
                 DataCell(
                   Center(

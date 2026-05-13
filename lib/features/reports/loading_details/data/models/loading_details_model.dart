@@ -119,7 +119,7 @@ class LoadingDetailsModel extends Equatable {
   factory LoadingDetailsModel.fromJson(Map<String, dynamic> json) {
     return LoadingDetailsModel(
       shipmentNo: json['shipmentNo'] as String?,
-      shipmentType: json['shipmentType'] as String?,
+      shipmentType:  json['distributionChannel'] == 'Export'? 'Export': json['shipmentType'] as String?,
       customerId: json['customerId'] as String?,
       customerName: json['customerName'] as String?,
       branch: json['branch'] as dynamic,
@@ -163,7 +163,7 @@ class LoadingDetailsModel extends Equatable {
       shippingPoint: json['shippingPoint'] as dynamic,
       shippingPointDescription: json['shippingPointDescription'] as dynamic,
       salesId: json['salesId'] as String?,
-      salesName: json['salesName'] as String?,
+      salesName: json['distributionChannel'] == 'Export'? 'Export': json['salesName'] as String?,
       unitPrice: json['unitPrice'] as dynamic,
       currency: json['currency'] as dynamic,
       bagType: json['bagType'] as dynamic,
@@ -238,7 +238,7 @@ class LoadingDetailsModel extends Equatable {
         'Customer': customerId,
         'Customer Name': customerName,
         'Branch': branchName,
-        'Shipment Type': shipmentType,
+        'Shipment Type': distributionChannel == 'Export'? 'Export' : shipmentType,
         'Status': loadStartDate == null ? 'Check In' : 'Loading',
         'Product': materialName,
         'Quantity': deliveryQuantity,
@@ -248,7 +248,7 @@ class LoadingDetailsModel extends Equatable {
             ? ''
             : '${DateFormat('d/M/yyyy').format(DateTime.parse(loadStartDate))} ${DateFormat('hh:mm:ss').format(DateTime.parse(loadStartTime!))}',
         'Shipment No': shipmentNo ?? '-',
-        'Sales Name': salesName ?? '-',
+        'Sales Name': distributionChannel == 'Export' ? 'Export' : salesName ?? '-',
       };
 
   @override

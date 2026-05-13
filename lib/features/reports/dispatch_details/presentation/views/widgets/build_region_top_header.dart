@@ -15,7 +15,6 @@ Widget buildRegionTopHeader(
         isHeader: true,
         color: const Color(0xFFB9E2A7),
       ),
-
       Expanded(
         child: SingleChildScrollView(
           controller: headerController,
@@ -46,7 +45,6 @@ Widget buildRegionTopHeader(
                       color: const Color(0xFFB9E2A7),
                     ),
                   ),
-
                 ];
               }),
 

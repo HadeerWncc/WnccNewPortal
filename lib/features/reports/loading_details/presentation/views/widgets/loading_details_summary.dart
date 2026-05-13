@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:wncc_portal/features/reports/loading_details/domain/entities/loading_details_summary_entity.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/views/widgets/custom_summary.dart';
-import 'package:wncc_portal/features/user/presentation/views/widgets/custom_daily_quota_item.dart';
 import 'package:wncc_portal/features/user/presentation/views/widgets/custom_quantity_comparing.dart';
 
 class LoadingDetailsSummary extends StatelessWidget {
@@ -45,12 +44,12 @@ class LoadingDetailsSummary extends StatelessWidget {
             ),
           ),
           CustomSummary(
-            landingtitle: 'Other',
+            landingtitle: 'Export',
             widthRatio: 0.3,
             icon: Symbols.weight,
             child: CustomQuantityComparing(
               mainTitle: NumberFormat.decimalPattern()
-                  .format(loadingDetailsSummaryEntity.others),
+                  .format(loadingDetailsSummaryEntity.export),
             ),
           ),
           CustomSummary(

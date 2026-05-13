@@ -69,7 +69,7 @@ class _CustomMultiSelectDropDownState extends State<CustomMultiSelectDropDown> {
                 color: Color.fromARGB(255, 83, 83, 83),
               ),
             ),
-            value: widget.selectedValue?[0] ,
+            value: widget.selectedValue?[0],
             items: widget.items
                 .map((item) => DropdownMenuItem(
                       value: item,

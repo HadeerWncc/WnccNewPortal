@@ -57,10 +57,10 @@ class DeliveryRepoImpl extends DeliveryRepo {
 
   @override
   Future<Either<Failure, List<PriorityDeliveryModel>>>
-      getDispatchDeliveryOrdersByDate(String fromDate, String toDate) async {
+      getDispatchDeliveryOrdersByDate(String date) async {
     try {
       List<PriorityDeliveryModel> orders = await deliveryDataSource
-          .getDispatchDeliveryOrdersByDate(fromDate, toDate);
+          .getDispatchDeliveryOrdersByDate(date);
       return Right(orders);
     } on Exception catch (e) {
       if (e is DioException) {

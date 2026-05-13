@@ -16,7 +16,7 @@ abstract class DeliveryRepo {
   // Future<Either<Failure, OrderResponse>>
   //     getDispatchDeliveryOrdersById(String id);
   Future<Either<Failure, List<PriorityDeliveryModel>>>
-      getDispatchDeliveryOrdersByDate(String fromDate, String toDate);
+      getDispatchDeliveryOrdersByDate(String date);
   Future<Either<Failure, bool>> makeDeliveryPriority(List<String> orderIds,
       bool asTruck, int prioritySource, DateTime? priorityDate);
   Future<Either<Failure, bool>> makeDeliveryPending(List<String> orderIds);

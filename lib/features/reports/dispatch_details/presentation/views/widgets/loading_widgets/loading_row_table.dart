@@ -15,6 +15,7 @@ class LoadingRowTable extends StatelessWidget {
         loadingDataCell(150),
         //Total
         loadingDataCell(100),
+
         /// ✅ Export
         loadingDataCell(100),
       ],

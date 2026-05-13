@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/month_day.dart';
@@ -17,18 +16,16 @@ Widget buildTotalRowPerSales({
   double? width,
 }) {
   final sales = monthDays.first.dataValues ?? [];
-   final filteredSales = sales
-            .where((c) => selecteditems.contains(c.name))
-            .toList();
+  final filteredSales =
+      sales.where((c) => selecteditems.contains(c.name)).toList();
   return Row(
     children: [
       ...filteredSales.expand((area) {
         List<Widget> cells = [];
 
         num areaTotal = monthDays.fold(0, (prev, day) {
-          final areaItem = day.dataValues
-              ?.where((d) => d.name == area.name)
-              .toList();
+          final areaItem =
+              day.dataValues?.where((d) => d.name == area.name).toList();
 
           final current =
               (areaItem != null && areaItem.isNotEmpty) ? areaItem.first : null;
@@ -40,19 +37,16 @@ Widget buildTotalRowPerSales({
 
         cells.add(
           buildCell(
-            NumberFormat.decimalPatternDigits(decimalDigits: 0)
-                .format(areaTotal),
-            color: const Color(0xfffff1df),
-            border: totalBorder,
-            isHeader: true,
-            width: width??100
-          ),
+              NumberFormat.decimalPatternDigits(decimalDigits: 0)
+                  .format(areaTotal),
+              color: const Color(0xfffff1df),
+              border: totalBorder,
+              isHeader: true,
+              width: width ?? 100),
         );
 
         /// ✅ 2. حط المدن المختارة اللي تبع الـ area
         // final sales = monthDays.first.dataValues ?? [];
-
-     
 
         // for (var city in filteredSales) {
         //   final sum = monthDays.fold(0, (prev, day) {
@@ -75,14 +69,14 @@ Widget buildTotalRowPerSales({
         //             cityData?.quantity, quantityType, quantityMatrial).toInt();
         //   });
 
-          // cells.add(
-          //   buildCell(
-          //     NumberFormat.decimalPatternDigits(decimalDigits: 0)
-          //         .format(sum),
-          //     border: totalBorder,
-          //     isHeader: true,
-          //   ),
-          // );
+        // cells.add(
+        //   buildCell(
+        //     NumberFormat.decimalPatternDigits(decimalDigits: 0)
+        //         .format(sum),
+        //     border: totalBorder,
+        //     isHeader: true,
+        //   ),
+        // );
         // }
 
         return cells;
@@ -90,8 +84,7 @@ Widget buildTotalRowPerSales({
 
       /// ✅ Total All
       buildCell(
-        NumberFormat.decimalPatternDigits(decimalDigits: 0)
-            .format(totalAll),
+        NumberFormat.decimalPatternDigits(decimalDigits: 0).format(totalAll),
         color: const Color(0xffe9e9e7),
         border: totalBorder,
         isHeader: true,
@@ -99,8 +92,7 @@ Widget buildTotalRowPerSales({
 
       /// ✅ Export
       buildCell(
-        NumberFormat.decimalPatternDigits(decimalDigits: 0)
-            .format(totalExport),
+        NumberFormat.decimalPatternDigits(decimalDigits: 0).format(totalExport),
         border: totalBorder,
         isHeader: true,
       ),

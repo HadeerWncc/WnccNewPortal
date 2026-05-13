@@ -14,10 +14,12 @@ class CustomMultiSelectDropDown2 extends StatefulWidget {
   final Function(List<String>)? onChanged;
 
   @override
-  State<CustomMultiSelectDropDown2> createState() => _CustomMultiSelectDropDown2State();
+  State<CustomMultiSelectDropDown2> createState() =>
+      _CustomMultiSelectDropDown2State();
 }
 
-class _CustomMultiSelectDropDown2State extends State<CustomMultiSelectDropDown2> {
+class _CustomMultiSelectDropDown2State
+    extends State<CustomMultiSelectDropDown2> {
   final GlobalKey<DropdownSearchState<String>> _dropdownKey = GlobalKey();
 
   @override
@@ -62,7 +64,7 @@ class _CustomMultiSelectDropDown2State extends State<CustomMultiSelectDropDown2>
           );
         },
       ),
-      onChanged:widget.onChanged,
+      onChanged: widget.onChanged,
     );
   }
 }

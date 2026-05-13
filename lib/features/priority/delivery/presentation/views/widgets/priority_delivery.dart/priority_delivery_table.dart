@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
+import 'package:wncc_portal/core/utils/methods/format_num.dart';
 import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
@@ -64,11 +65,11 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
             DataColumn2(label: DataColumnText(text: 'No'), fixedWidth: 120),
             DataColumn(label: DataColumnText(text: 'Matrial')),
             DataColumn2(label: DataColumnText(text: 'Qty'), fixedWidth: 100),
-            DataColumn2(label: DataColumnText(text: 'Truck'), fixedWidth: 60),
             DataColumn2(label: DataColumnText(text: 'Zone'), fixedWidth: 120),
             DataColumn2(
                 label: DataColumnText(text: 'Receiver'), fixedWidth: 130),
             DataColumn2(label: DataColumnText(text: 'Sales'), fixedWidth: 150),
+            DataColumn2(label: DataColumnText(text: 'Truck'), fixedWidth: 60),
             DataColumn2(label: DataColumnText(text: 'Actions'), fixedWidth: 80),
           ],
           rows: List<DataRow>.generate(
@@ -162,19 +163,12 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                 DataCell(
                   Center(
                     child: Text(
-                      item.deliveryQuantity.toString(),
+                      formatNum(item.deliveryQuantity??0),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                DataCell(
-                  Center(
-                    child: Text(
-                      item.truckNo.toString(),
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
+                
                 DataCell(
                   Center(
                     child: Text(
@@ -195,6 +189,14 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                   Center(
                     child: Text(
                       item.salesName.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                DataCell(
+                  Center(
+                    child: Text(
+                      item.truckNo.toString(),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

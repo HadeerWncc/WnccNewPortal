@@ -2,6 +2,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
+import 'package:wncc_portal/core/utils/methods/format_num.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
@@ -129,7 +130,7 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
                 DataCell(
                   Center(
                     child: Text(
-                      item.deliveryQuantity.toString(),
+                     formatNum(item.deliveryQuantity??0),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

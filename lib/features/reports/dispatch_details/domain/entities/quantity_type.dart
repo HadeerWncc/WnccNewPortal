@@ -4,8 +4,7 @@ enum QuantityType {
   pickup,
 }
 
-
-enum QuantityMatrial{
+enum QuantityMatrial {
   total,
   bags,
   bulk,

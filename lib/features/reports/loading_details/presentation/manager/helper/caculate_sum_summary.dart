@@ -6,7 +6,7 @@ LoadingDetailsSummaryEntity calculateSumSummary(
   num wadi = 0;
   num masry = 0;
   num bulk = 0;
-  num others = 0;
+  num export = 0;
   num total = 0;
   if (status == 0) {
     loadingDetails =
@@ -22,11 +22,12 @@ LoadingDetailsSummaryEntity calculateSumSummary(
       masry += l.deliveryQuantity ?? 0;
     } else if (l.materialId == 'F-BA02') {
       wadi += l.deliveryQuantity ?? 0;
-    } else {
-      others += l.deliveryQuantity ?? 0;
+    } 
+    if(l.distributionChannel == 'Export'){
+      export += l.deliveryQuantity??0;
     }
   }
-  total = wadi + masry + bulk + others;
+  total = wadi + masry + bulk + export;
   return LoadingDetailsSummaryEntity(
-      bulk: bulk, masry: masry, others: others, total: total, wadie: wadi);
+      bulk: bulk, masry: masry, export: export, total: total, wadie: wadi);
 }

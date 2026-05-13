@@ -27,9 +27,8 @@ Widget buildTotalRowPerRegion({
 
         /// ✅ 1. حط total الـ area الأول
         num areaTotal = monthDays.fold(0, (prev, day) {
-          final areaItem = day.dataValues
-              ?.where((d) => d.name == area.name)
-              .toList();
+          final areaItem =
+              day.dataValues?.where((d) => d.name == area.name).toList();
 
           final current =
               (areaItem != null && areaItem.isNotEmpty) ? areaItem.first : null;
@@ -52,15 +51,13 @@ Widget buildTotalRowPerRegion({
         /// ✅ 2. حط المدن المختارة اللي تبع الـ area
         final cities = area.relationValues ?? [];
 
-        final filteredCities = cities
-            .where((c) => selectedCities.contains(c.name))
-            .toList();
+        final filteredCities =
+            cities.where((c) => selectedCities.contains(c.name)).toList();
 
         for (var city in filteredCities) {
           final sum = monthDays.fold(0, (prev, day) {
-            final dayArea = day.dataValues
-                ?.where((d) => d.name == area.name)
-                .toList();
+            final dayArea =
+                day.dataValues?.where((d) => d.name == area.name).toList();
 
             final areaItem =
                 (dayArea != null && dayArea.isNotEmpty) ? dayArea.first : null;
@@ -69,18 +66,19 @@ Widget buildTotalRowPerRegion({
                 ?.where((c) => c.id == city.id)
                 .toList();
 
-            final cityData =
-                (cityItem != null && cityItem.isNotEmpty) ? cityItem.first : null;
+            final cityData = (cityItem != null && cityItem.isNotEmpty)
+                ? cityItem.first
+                : null;
 
             return prev +
                 getQuantityValue(
-                    cityData?.quantity, quantityType, quantityMatrial).toInt();
+                        cityData?.quantity, quantityType, quantityMatrial)
+                    .toInt();
           });
 
           cells.add(
             buildCell(
-              NumberFormat.decimalPatternDigits(decimalDigits: 0)
-                  .format(sum),
+              NumberFormat.decimalPatternDigits(decimalDigits: 0).format(sum),
               border: totalBorder,
               isHeader: true,
             ),
@@ -92,8 +90,7 @@ Widget buildTotalRowPerRegion({
 
       /// ✅ Total All
       buildCell(
-        NumberFormat.decimalPatternDigits(decimalDigits: 0)
-            .format(totalAll),
+        NumberFormat.decimalPatternDigits(decimalDigits: 0).format(totalAll),
         color: const Color(0xffe9e9e7),
         border: totalBorder,
         isHeader: true,
@@ -101,8 +98,7 @@ Widget buildTotalRowPerRegion({
 
       /// ✅ Export
       buildCell(
-        NumberFormat.decimalPatternDigits(decimalDigits: 0)
-            .format(totalExport),
+        NumberFormat.decimalPatternDigits(decimalDigits: 0).format(totalExport),
         border: totalBorder,
         isHeader: true,
       ),

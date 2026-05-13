@@ -44,8 +44,8 @@ List<FactoryEntity> processFactoryEntities(
             0, (prev, e) => prev + (e.factoryDispatchResponse?.localBulk ?? 0))
         .toStringAsFixed(2)),
     export: double.parse(sumationList
-        .fold<double>(
-            0, (prev, e) => prev + (e.factoryDispatchResponse?.totalExport ?? 0))
+        .fold<double>(0,
+            (prev, e) => prev + (e.factoryDispatchResponse?.totalExport ?? 0))
         .toStringAsFixed(2)),
     total: double.parse(sumationList
         .fold<double>(

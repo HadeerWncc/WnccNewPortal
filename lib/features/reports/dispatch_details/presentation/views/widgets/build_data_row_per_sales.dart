@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/month_day.dart';
@@ -18,7 +17,7 @@ Widget buildDataRowPerSales(
 
   final sales = (day.dataValues ?? []).toList();
   final filteredSales =
-            sales.where((c) => selectedItems.contains(c.name)).toList();
+      sales.where((c) => selectedItems.contains(c.name)).toList();
   return Row(
     children: [
       ...filteredSales.expand((area) {
@@ -32,15 +31,12 @@ Widget buildDataRowPerSales(
 
         cells.add(
           buildCell(
-            width: width??100,
+            width: width ?? 100,
             NumberFormat.decimalPatternDigits(decimalDigits: 0)
                 .format(areaValue),
             color: const Color(0xfffff1df),
           ),
         );
-
-
-        
 
         return cells;
       }),

@@ -42,6 +42,7 @@ class PriorityDeliveryModel extends Equatable {
   final int? truckNo;
   final bool? isDeleted;
   final bool? isDeactivated;
+  final String? shipmentStatus;
 
   const PriorityDeliveryModel({
     this.customerId,
@@ -85,6 +86,7 @@ class PriorityDeliveryModel extends Equatable {
     this.truckNo,
     this.isDeleted,
     this.isDeactivated,
+    this.shipmentStatus
   });
 
   factory PriorityDeliveryModel.fromJson(Map<String, dynamic> json) {
@@ -131,6 +133,7 @@ class PriorityDeliveryModel extends Equatable {
       truckNo: json['truckNo'] as int?,
       isDeleted: json['isDeleted'] as bool?,
       isDeactivated: json['isDeactivated'] as bool?,
+      shipmentStatus : json['shipmentStatus'] ==null? 'No Shipment':json['shipmentStatus'] as String?
     );
   }
 
@@ -176,6 +179,7 @@ class PriorityDeliveryModel extends Equatable {
         'truckNo': truckNo,
         'isDeleted': isDeleted,
         'isDeactivated': isDeactivated,
+        'shipmentStatus':shipmentStatus
       };
 
   @override
@@ -222,6 +226,7 @@ class PriorityDeliveryModel extends Equatable {
       truckNo,
       isDeleted,
       isDeactivated,
+      shipmentStatus
     ];
   }
 }

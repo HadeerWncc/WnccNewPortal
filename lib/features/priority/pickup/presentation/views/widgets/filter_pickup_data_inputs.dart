@@ -57,9 +57,7 @@ class FilterPickupDataInputs extends StatelessWidget {
             ),
           ],
         ),
-
         const SizedBox(height: 5),
-
         Row(
           children: [
             SizedBox(

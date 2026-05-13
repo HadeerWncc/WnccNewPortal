@@ -26,6 +26,10 @@ import 'package:wncc_portal/features/priority/pickup/domin/repositories/pickup_r
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickup_summary_cubit/get_pickup_summary_cubit.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickupility_cubit/get_pickupility_cubit.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/set_pickup_priority_cubit/set_pickup_priority_cubit.dart';
+import 'package:wncc_portal/features/priority/summary/data/data_sources/priority_summary_data_source.dart';
+import 'package:wncc_portal/features/priority/summary/data/repositories/priority_summary_repo_impl.dart';
+import 'package:wncc_portal/features/priority/summary/domain/repositories/priority_summary_repo.dart';
+import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/cubit/summary_priority_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/repo_impl/dispatch_details_repo_impl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
@@ -144,6 +148,10 @@ void setupLocator() {
   getIt.registerLazySingleton<SalesQuotaRemoteDatasource>(
       () => SalesQuotaRemoteDatasourceImpl(apiService: getIt<ApiService>()));
 
+  //PrioritySummaryDataSource
+  getIt.registerLazySingleton<PrioritySummaryDataSource>(
+      () => PrioritySummaryDataSourceImpl(apiService: getIt<ApiService>()));
+
   //DeliveryDataSource
   getIt.registerLazySingleton<DeliveryDataSource>(
       () => DeliveryDataSourceImpl(apiService: getIt<ApiService>()));
@@ -214,6 +222,11 @@ void setupLocator() {
   //SalesQuotaRepo
   getIt.registerLazySingleton<DailyQuotaRepo>(() => DailyQuotaRepoImpl(
       salesQuotaRemoteDatasource: getIt<SalesQuotaRemoteDatasource>()));
+
+  //PrioritySummaryRepo
+  getIt.registerLazySingleton<PrioritySummaryRepo>(() =>
+      PrioritySummaryRepoImpl(
+          prioritySummaryDataSource: getIt<PrioritySummaryDataSource>()));
 
   //DeliveryRepo
   getIt.registerLazySingleton<DeliveryRepo>(
@@ -366,6 +379,10 @@ void setupLocator() {
         getIt<SetQuotaUsecase>(),
         getIt<CopyQuotaUsecase>(),
       ));
+
+  //Prioriry Summary Cubit
+  getIt.registerFactory<SummaryPriorityCubit>(
+      () => SummaryPriorityCubit(getIt<PrioritySummaryRepo>()));
 
   //DeliveryCubits:
 

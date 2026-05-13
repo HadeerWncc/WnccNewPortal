@@ -9,7 +9,7 @@ class DispatchPerSalesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(8.0),
-      child:  Column(
+      child: Column(
         children: [
           DispatchDetailsButtonsList(activeTab: 1),
           SizedBox(height: 8),

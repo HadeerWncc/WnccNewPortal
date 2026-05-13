@@ -33,28 +33,35 @@ class ShipmentDetailsModel extends Equatable {
       status: json['status'] as String?,
       totalBulk: json['totalBulk'] == null
           ? null
-          : DispatchQuantity.fromJson(json['totalBulk'] as Map<String, dynamic>),
+          : DispatchQuantity.fromJson(
+              json['totalBulk'] as Map<String, dynamic>),
       totalBags: json['totalBags'] == null
           ? null
-          : DispatchQuantity.fromJson(json['totalBags'] as Map<String, dynamic>),
+          : DispatchQuantity.fromJson(
+              json['totalBags'] as Map<String, dynamic>),
       totalDelta: json['totalDelta'] == null
           ? null
-          : DispatchQuantity.fromJson(json['totalDelta'] as Map<String, dynamic>),
+          : DispatchQuantity.fromJson(
+              json['totalDelta'] as Map<String, dynamic>),
       totalGCairo: json['totalGCairo'] == null
           ? null
-          : DispatchQuantity.fromJson(json['totalGCairo'] as Map<String, dynamic>),
+          : DispatchQuantity.fromJson(
+              json['totalGCairo'] as Map<String, dynamic>),
       totalUEgypt: json['totalUEgypt'] == null
           ? null
-          : DispatchQuantity.fromJson(json['totalUEgypt'] as Map<String, dynamic>),
+          : DispatchQuantity.fromJson(
+              json['totalUEgypt'] as Map<String, dynamic>),
       totalCostal: json['totalCostal'] == null
           ? null
-          : DispatchQuantity.fromJson(json['totalCostal'] as Map<String, dynamic>),
+          : DispatchQuantity.fromJson(
+              json['totalCostal'] as Map<String, dynamic>),
       total: json['total'] == null
           ? null
           : DispatchQuantity.fromJson(json['total'] as Map<String, dynamic>),
       totalExport: json['totalExport'] == null
           ? null
-          : DispatchQuantity.fromJson(json['totalExport'] as Map<String, dynamic>),
+          : DispatchQuantity.fromJson(
+              json['totalExport'] as Map<String, dynamic>),
       regions: (json['regions'] as List<dynamic>?)
           ?.map((e) => DispatchRegion.fromJson(e as Map<String, dynamic>))
           .toList(),

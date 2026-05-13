@@ -62,26 +62,23 @@ Widget buildMonthDataPerRegion(
   return Column(
     children: [
       buildTotalRowPerRegion(
-        // regions: regions,
-        selectedCities: regions,
-        monthDays: month.monthDays ?? [],
-        totalDelta: totalDelta,
-        totalGCairo: totalGCairo,
-        totalUEgypt: totalUEgypt,
-        totalCostal: totalCoastal,
-        totalAll: totalAll,
-        totalExport: totalExport,
-        totalBorder: totalBorder,
-        quantityType: quantityType,
-        quantityMatrial: quantityMatrial
-      ),
+          // regions: regions,
+          selectedCities: regions,
+          monthDays: month.monthDays ?? [],
+          totalDelta: totalDelta,
+          totalGCairo: totalGCairo,
+          totalUEgypt: totalUEgypt,
+          totalCostal: totalCoastal,
+          totalAll: totalAll,
+          totalExport: totalExport,
+          totalBorder: totalBorder,
+          quantityType: quantityType,
+          quantityMatrial: quantityMatrial),
       if (isExpanded)
-        ...(month.monthDays?.map((day) => buildDataRowPerRegion(
-                  day,
-                  quantityType: quantityType,
-                  quantityMatrial: quantityMatrial,
-                  selectedCities: regions
-                )) ??
+        ...(month.monthDays?.map((day) => buildDataRowPerRegion(day,
+                quantityType: quantityType,
+                quantityMatrial: quantityMatrial,
+                selectedCities: regions)) ??
             []),
     ],
   );

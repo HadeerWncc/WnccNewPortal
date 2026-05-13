@@ -11,7 +11,7 @@ abstract class DeliveryDataSource {
   // Future<List<DispatchedDeliveryOrder>> getDispatchDeliveryOrders(Order order);
   // Future<DispatchedDeliveryOrder> getDispatchDeliveryOrdersById(String id);
   Future<List<PriorityDeliveryModel>> getDispatchDeliveryOrdersByDate(
-      String fromDate, String toDate);
+      String date);
   Future<bool> makeDeliveryPriority(List<String> orderIds, bool asTruck,
       int prioritySource, DateTime? priorityDate);
   Future<bool> makeDeliveryPending(List<String> orderIds);
@@ -77,10 +77,10 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
 
   @override
   Future<List<PriorityDeliveryModel>> getDispatchDeliveryOrdersByDate(
-      String fromDate, String toDate) async {
+      String date) async {
     var result = await apiService.get(
         endPoint:
-            'api/Delivery/Search?FromDate=$fromDate&ToDate=$toDate&Status=2');
+            'api/Delivery/Search?FromDate=$date&ToDate=$date&Status=2');
     List<PriorityDeliveryModel> dispatchDeliveryOrders = [];
     for (var order in result["data"]["data"]) {
       dispatchDeliveryOrders.add(PriorityDeliveryModel.fromJson(order));

@@ -11,6 +11,7 @@ import 'package:wncc_portal/features/customerService/complains/presentation/view
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_view.dart';
 import 'package:wncc_portal/features/error/presentaion/view/page/error_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
+import 'package:wncc_portal/features/priority/summary/presentation/views/pages/priority_summary_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_details_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_customer_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_sales_page.dart';
@@ -93,6 +94,7 @@ abstract class AppRouter {
   static const dispatchDetailsPerCustomerPath = '/dispatchDetailsPerCustomer';
   static const dispatchDetailsPerSalesPath = '/dispatchDetailsPerSales';
   static const errorPagePath = '/errorPage';
+  static const prioritySummaryPath = '/summaryPath';
 
   static final router = GoRouter(
     routes: [
@@ -304,6 +306,10 @@ abstract class AppRouter {
       GoRoute(
         path: errorPagePath,
         builder: (context, state) => ErrorPage(error: state.extra as String),
+      ),
+      GoRoute(
+        path: prioritySummaryPath,
+        builder: (context, state) => const PrioritySummaryPage(),
       ),
     ],
   );

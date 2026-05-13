@@ -19,10 +19,12 @@ class DispatchPerRegionTablesBody extends StatefulWidget {
   const DispatchPerRegionTablesBody({super.key});
 
   @override
-  State<DispatchPerRegionTablesBody> createState() => _DispatchPerRegionTablesBodyState();
+  State<DispatchPerRegionTablesBody> createState() =>
+      _DispatchPerRegionTablesBodyState();
 }
 
-class _DispatchPerRegionTablesBodyState extends State<DispatchPerRegionTablesBody> {
+class _DispatchPerRegionTablesBodyState
+    extends State<DispatchPerRegionTablesBody> {
   late LinkedScrollControllerGroup _horizontalControllers;
   late ScrollController _headerController;
   late ScrollController _bodyController;
@@ -214,6 +216,4 @@ class _DispatchPerRegionTablesBodyState extends State<DispatchPerRegionTablesBod
       }),
     ]);
   }
-
-
 }

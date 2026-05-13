@@ -367,7 +367,6 @@ class _PickupPriorityTableState extends State<PickupPriorityTable> {
                   : CustomInputTable(
                       controller: priorityController,
                       onChanged: (_) {
-                        
                         _notifyParent();
                       },
                     ),

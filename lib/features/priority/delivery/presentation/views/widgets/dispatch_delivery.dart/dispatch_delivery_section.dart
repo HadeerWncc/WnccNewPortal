@@ -12,11 +12,9 @@ import 'package:wncc_portal/features/priority/comm/widgets/select_product_radio_
 class DispatchDeliverySection extends StatefulWidget {
   const DispatchDeliverySection(
       {super.key,
-      required this.fromDate,
-      required this.toDate,
+      required this.date,
       required this.user});
-  final String fromDate;
-  final String toDate;
+  final String date;
   final UserModel user;
   @override
   State<DispatchDeliverySection> createState() =>
@@ -95,8 +93,7 @@ class _DispatchDeliverySectionState extends State<DispatchDeliverySection> {
                 padding: const EdgeInsets.only(left: 10),
                 child: CustomSubmitDispatchButton(
                   selectedOrders: selectedOrders,
-                  fromdate: widget.fromDate,
-                  todate: widget.toDate,
+                  date: widget.date,
                   user: widget.user,
                 ),
               ),

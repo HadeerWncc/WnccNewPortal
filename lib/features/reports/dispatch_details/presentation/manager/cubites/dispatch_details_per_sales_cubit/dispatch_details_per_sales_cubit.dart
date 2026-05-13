@@ -17,7 +17,8 @@ class DispatchDetailsPerSalesCubit extends Cubit<DispatchDetailsPerSalesState> {
     result.fold((error) {
       emit(DispatchDetailsPerSalesFailure(error: error.msg));
     }, (dispatchDetailsList) {
-      dispatchDetailsList = dispatchDetailsList.where((d)=>d.monthDays!.isNotEmpty).toList();
+      dispatchDetailsList =
+          dispatchDetailsList.where((d) => d.monthDays!.isNotEmpty).toList();
       emit(
           DispatchDetailsPerSalesSuccess(dispatchDetails: dispatchDetailsList));
     });

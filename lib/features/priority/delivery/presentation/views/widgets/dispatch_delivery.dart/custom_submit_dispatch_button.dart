@@ -12,12 +12,10 @@ class CustomSubmitDispatchButton extends StatelessWidget {
   const CustomSubmitDispatchButton(
       {super.key,
       required this.selectedOrders,
-      required this.fromdate,
-      required this.todate,
+      required this.date,
       required this.user});
   final List<String> selectedOrders;
-  final String fromdate;
-  final String todate;
+  final String date;
   final UserModel user;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class CustomSubmitDispatchButton extends StatelessWidget {
               if (state is UndispatchDeliveryOrderSuccess) {
                 ShowSnackbar.showSnackBar(context, state.msg, 'S');
                 BlocProvider.of<GetAllDeliveryCubit>(context)
-                    .getDeliveryDispatchByDate(fromdate, todate);
+                    .getDeliveryDispatchByDate(date);
               } else if (state is UndispatchDeliveryOrderFailure) {
                 ShowSnackbar.showSnackBar(context, state.error, 'F');
               }
