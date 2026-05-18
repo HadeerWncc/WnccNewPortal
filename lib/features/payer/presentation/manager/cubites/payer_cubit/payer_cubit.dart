@@ -10,12 +10,14 @@ class PayerCubit extends Cubit<PayerState> {
   final PayerRepo payerRepo;
 
   Future<void> getAllPayers() async {
+    if (state is PayerSuccess) return;
+
     emit(PayerLoading());
     var result = await payerRepo.getAllPayer();
     result.fold((error) {
       emit(PayerFailure(error: error.msg));
     }, (payers) {
-      emit(PayerSuccess(payerModel: payers));
+      emit(PayerSuccess(payers));
     });
   }
 }

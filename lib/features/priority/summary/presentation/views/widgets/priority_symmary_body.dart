@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/features/priority/summary/domain/entities/priority_summary_entity.dart';
-import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/cubit/summary_priority_cubit.dart';
+import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/summary_priority_cubit/summary_priority_cubit.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/views/widgets/priority_summary_header.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';

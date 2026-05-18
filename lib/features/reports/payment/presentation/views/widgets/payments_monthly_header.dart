@@ -69,10 +69,7 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
           builder: (context, state) {
             if (state is PayerSuccess) {
               return CustomDropDownInput(
-                items: [
-                  "All",
-                  ...state.payerModel.map((p) => "${p.fullName}|${p.id}")
-                ],
+                items: state.dropdownItems,
                 selectedValue: "All",
                 hintText: "payer",
                 title: "Payer",

@@ -13,8 +13,13 @@ final class PayerLoading extends PayerState {}
 
 final class PayerSuccess extends PayerState {
   final List<PayerModel> payerModel;
+  final List<String> dropdownItems;
 
-  const PayerSuccess({required this.payerModel});
+  PayerSuccess(this.payerModel)
+      : dropdownItems = [
+          "All",
+          ...payerModel.map((p) => "${p.fullName}|${p.id}")
+        ];
 }
 
 final class PayerFailure extends PayerState {

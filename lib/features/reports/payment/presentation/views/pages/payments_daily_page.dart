@@ -9,12 +9,23 @@ import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cu
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/daily_payments_body.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
-class PaymentsDailyPage extends StatelessWidget {
+class PaymentsDailyPage extends StatefulWidget {
   const PaymentsDailyPage({super.key});
 
   @override
+  State<PaymentsDailyPage> createState() => _PaymentsDailyPageState();
+}
+
+class _PaymentsDailyPageState extends State<PaymentsDailyPage> {
+   @override
+  void initState() {
+    super.initState();
+
+    context.read<PayerCubit>().getAllPayers();
+  }
+  @override
   Widget build(BuildContext context) {
-    BlocProvider.of<PayerCubit>(context).getAllPayers();
+    // BlocProvider.of<PayerCubit>(context).getAllPayers();
 
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => handelError(state, context),

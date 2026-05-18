@@ -29,7 +29,7 @@ import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubit
 import 'package:wncc_portal/features/priority/summary/data/data_sources/priority_summary_data_source.dart';
 import 'package:wncc_portal/features/priority/summary/data/repositories/priority_summary_repo_impl.dart';
 import 'package:wncc_portal/features/priority/summary/domain/repositories/priority_summary_repo.dart';
-import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/cubit/summary_priority_cubit.dart';
+import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/summary_priority_cubit/summary_priority_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/repo_impl/dispatch_details_repo_impl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
