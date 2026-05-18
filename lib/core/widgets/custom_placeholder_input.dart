@@ -18,6 +18,7 @@ class CustomPlaceholderInput extends StatelessWidget {
     this.linesNum,
     this.xAxis,
     this.icon,
+    this.fontSize
   });
   final TextEditingController? controller;
   final String labelText;
@@ -31,6 +32,7 @@ class CustomPlaceholderInput extends StatelessWidget {
   final int? linesNum;
   final MainAxisAlignment? xAxis;
   final Widget? icon;
+  final double? fontSize;
   @override
   Widget build(BuildContext context) {
     double defaultWidth =
@@ -57,10 +59,12 @@ class CustomPlaceholderInput extends StatelessWidget {
             maxLines: linesNum ?? 1,
             keyboardType: keyboardType,
             controller: controller,
+            
             obscureText: secure,
             cursorColor: Colors.black,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.bold,
+              fontSize: fontSize,
             ),
             decoration: InputDecoration(
               prefixIcon: icon,

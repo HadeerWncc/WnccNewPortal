@@ -7,19 +7,16 @@ import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_
 abstract class DeliveryDataSource {
   Future<List<PriorityDeliveryModel>> getPendingDeliveryOrders();
   Future<List<PriorityDeliveryModel>> getPriorityDeliveryOrders();
-  // Future<PriorityDeliveryOrder> getPriorityDeliveryOrdersById(String id);
-  // Future<List<DispatchedDeliveryOrder>> getDispatchDeliveryOrders(Order order);
-  // Future<DispatchedDeliveryOrder> getDispatchDeliveryOrdersById(String id);
   Future<List<PriorityDeliveryModel>> getDispatchDeliveryOrdersByDate(
       String date);
   Future<bool> makeDeliveryPriority(List<String> orderIds, bool asTruck,
       int prioritySource, DateTime? priorityDate);
   Future<bool> makeDeliveryPending(List<String> orderIds);
   Future<bool> dispatchDeliveryOrders(List<DispatchDeliveryEntity> orders);
-  // Future<bool> undispatchDeliveryOrders(List<String> orders);
-  Future<List<String>> getDispatchAgents();
+  Future<List<DispatchDeliveryEntity>> getDispatchAgents();
   Future<PrioritySummaryModel> getDeliverySummary(
       GetSummaryEntity getpicSummaryEntity);
+  Future<bool> addNewDispatcher(String dispatcher);
 }
 
 class DeliveryDataSourceImpl extends DeliveryDataSource {
@@ -112,12 +109,13 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
   }
 
   @override
-  Future<List<String>> getDispatchAgents() async {
+  Future<List<DispatchDeliveryEntity>> getDispatchAgents() async {
     var result =
         await apiService.get(endPoint: 'api/Selectors/GetAllDispatchAgents');
-    List<String> agents = [];
+    List<DispatchDeliveryEntity> agents = [];
     for (var item in result["data"]) {
-      agents.add(item["name"] as String);
+      agents.add(
+        DispatchDeliveryEntity(id: item["id"] as String, agentName: item["name"] as String,isSelected: false));
     }
     return agents;
   }
@@ -132,5 +130,17 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
     PrioritySummaryModel summary =
         PrioritySummaryModel.fromJson(result["data"]);
     return summary;
+  }
+  
+  @override
+  Future<bool> addNewDispatcher(String dispatcher) async{
+     var result = await apiService.post(
+      endPoint: 'api/Delivery/CreateDispatcher',
+      data: {
+        "name": dispatcher
+      },
+    );
+    bool successed = result["data"] as bool;
+    return successed;
   }
 }

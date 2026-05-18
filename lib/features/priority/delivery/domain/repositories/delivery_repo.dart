@@ -8,13 +8,8 @@ import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_
 abstract class DeliveryRepo {
   Future<Either<Failure, List<PriorityDeliveryModel>>>
       getPendingDeliveryOrders();
-  // Future<Either<Failure, PendingOrder>> getPendingDeliveryOrdersById(String id);
   Future<Either<Failure, List<PriorityDeliveryModel>>>
       getPriorityDeliveryOrders();
-  // Future<Either<Failure, PriorityDeliveryOrder>> getPriorityDeliveryOrdersById(
-  //     String id);
-  // Future<Either<Failure, OrderResponse>>
-  //     getDispatchDeliveryOrdersById(String id);
   Future<Either<Failure, List<PriorityDeliveryModel>>>
       getDispatchDeliveryOrdersByDate(String date);
   Future<Either<Failure, bool>> makeDeliveryPriority(List<String> orderIds,
@@ -22,8 +17,8 @@ abstract class DeliveryRepo {
   Future<Either<Failure, bool>> makeDeliveryPending(List<String> orderIds);
   Future<Either<Failure, bool>> dispatchDeliveryOrders(
       List<DispatchDeliveryEntity> orders);
-  // Future<Either<Failure, bool>> undispatchDeliveryOrders(List<String> orders);
-  Future<Either<Failure, List<String>>> getDispatchAgents();
+  Future<Either<Failure, List<DispatchDeliveryEntity>>> getDispatchAgents();
   Future<Either<Failure, PrioritySummaryModel>> getDeliverySummary(
       GetSummaryEntity getpicSummaryEntity);
+  Future<Either<Failure, bool>> addNewDispatcher(String dispatcher);
 }

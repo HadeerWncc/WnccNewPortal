@@ -18,7 +18,7 @@ final class GetAgentsFailure extends GetAgentsState {
 }
 
 final class GetAgentsSuccess extends GetAgentsState {
-  final List<String> agents;
+  final List<DispatchDeliveryEntity> agents;
 
   const GetAgentsSuccess({required this.agents});
 }

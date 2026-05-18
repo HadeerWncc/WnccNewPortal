@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
+import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 
 class GetAgentBlocBuilder extends StatelessWidget {
@@ -9,17 +10,17 @@ class GetAgentBlocBuilder extends StatelessWidget {
     super.key,
     required this.onChange,
   });
-  final Function(String? agent) onChange;
+  final Function(DispatchDeliveryEntity? agent) onChange;
   @override
   Widget build(BuildContext context) {
-    String selectedValue = "";
+    // DispatchDeliveryEntity? selectedValue;
     return BlocBuilder<GetAgentsCubit, GetAgentsState>(
       builder: (context, state) {
         if (state is GetAgentsSuccess) {
-          state.agents.removeWhere((a) => a == "");
-          state.agents.insert(0, "");
-          selectedValue = state.agents[0];
-          return DropdownButtonFormField<String>(
+          // state.agents.removeWhere((a) => a == "");
+          // state.agents.insert(0, "");
+          // selectedValue = state.agents[0];
+          return DropdownButtonFormField<DispatchDeliveryEntity>(
             isExpanded: true,
             style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black),
@@ -29,48 +30,48 @@ class GetAgentBlocBuilder extends StatelessWidget {
               fillColor: const Color(0xffF9F9F9),
               filled: true,
             ),
-            value: selectedValue,
-            items: state.agents.map((item) {
-              if (item == "") {
-                return const DropdownMenuItem(
-                  value: "",
-                  enabled: false,
-                  alignment: AlignmentDirectional.center,
-                  child: SizedBox(
-                      child: Text(
-                    "Dispatcher",
-                    style: TextStyle(
-                      overflow: TextOverflow.ellipsis,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )),
-                );
-              }
-              return DropdownMenuItem(
-                alignment: AlignmentDirectional.centerEnd,
-                value: item,
+            // value: selectedValue??,
+            hint: const Text(
+              'Dispatcher',
+              style: TextStyle(fontSize: 14),
+            ),
+
+            items: [
+              const DropdownMenuItem<DispatchDeliveryEntity>(
+                enabled: false,
+                alignment: AlignmentDirectional.center,
                 child: SizedBox(
                     child: Text(
-                  item,
-                  style: const TextStyle(
-                      overflow: TextOverflow.ellipsis, fontSize: 12),
+                  "Dispatcher",
+                  style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
                 )),
-              );
-            }).toList(),
+              ),
+              ...state.agents.map((item) {
+                return DropdownMenuItem<DispatchDeliveryEntity>(
+                  alignment: AlignmentDirectional.centerEnd,
+                  value: item,
+                  child: SizedBox(
+                      child: Text(
+                    item.agentName,
+                    style: const TextStyle(
+                        overflow: TextOverflow.ellipsis, fontSize: 12),
+                  )),
+                );
+              }),
+            ],
             onChanged: (agent) {
               onChange(agent);
             },
           );
         }
-        return CustomDropDownInput(
+        return const CustomDropDownInput(
           selectedValue: null,
-          // hintText: 'Dispatcher',
-          items: const [],
+          items: [],
           title: "Dispatcher",
-          onChanged: (agent) {
-            onChange(agent);
-          },
         );
       },
     );

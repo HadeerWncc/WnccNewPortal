@@ -101,9 +101,9 @@ class DeliveryRepoImpl extends DeliveryRepo {
   }
 
   @override
-  Future<Either<Failure, List<String>>> getDispatchAgents() async {
+  Future<Either<Failure, List<DispatchDeliveryEntity>>> getDispatchAgents() async {
     try {
-      List<String> agents = await deliveryDataSource.getDispatchAgents();
+      List<DispatchDeliveryEntity> agents = await deliveryDataSource.getDispatchAgents();
       return Right(agents);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -120,6 +120,19 @@ class DeliveryRepoImpl extends DeliveryRepo {
       PrioritySummaryModel deliverySummary =
           await deliveryDataSource.getDeliverySummary(getpicSummaryEntity);
       return Right(deliverySummary);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, bool>> addNewDispatcher(String dispatcher) async{
+    try {
+      bool successed = await deliveryDataSource.addNewDispatcher(dispatcher);
+      return Right(successed);
     } on Exception catch (e) {
       if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));
