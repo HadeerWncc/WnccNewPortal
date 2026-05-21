@@ -140,4 +140,30 @@ class DeliveryRepoImpl extends DeliveryRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
+  
+  @override
+  Future<Either<Failure, bool>> editDispatcher(String dispatcherId, String dispatcherName) async{
+   try {
+      bool successed = await deliveryDataSource.editDispatcherName(dispatcherId,dispatcherName);
+      return Right(successed);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
+  
+  @override
+  Future<Either<Failure, bool>> deleteDispatchers(List<String> dispatchers) async{
+    try {
+      bool successed = await deliveryDataSource.deleteDispatchers(dispatchers);
+      return Right(successed);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
 }

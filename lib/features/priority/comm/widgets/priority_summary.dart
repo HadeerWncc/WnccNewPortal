@@ -9,10 +9,10 @@ class PrioritySummary extends StatelessWidget {
   final PrioritySummaryModel prioritySummary;
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
+    return Center(
+      child: Wrap(
         spacing: 10,
+        runSpacing: 10,
         children: [
           CustomDailyQuotaItem(
               landingtitle: 'Pending',

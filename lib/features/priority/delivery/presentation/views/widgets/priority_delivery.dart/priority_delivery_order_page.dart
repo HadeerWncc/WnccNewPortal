@@ -2,17 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/widgets/divider_line.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/get_delivery_summary_bloc_builder.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/priority_delivery_section.dart';
 
-class PriorityDeliveryOrderPage extends StatelessWidget {
+class PriorityDeliveryOrderPage extends StatefulWidget {
   const PriorityDeliveryOrderPage({super.key, required this.user});
   final UserModel user;
+
+  @override
+  State<PriorityDeliveryOrderPage> createState() =>
+      _PriorityDeliveryOrderPageState();
+}
+
+class _PriorityDeliveryOrderPageState extends State<PriorityDeliveryOrderPage> {
+  @override
+  void initState() {
+    BlocProvider.of<GetAllDeliveryCubit>(context).getAllDeliveryPriorty();
+    BlocProvider.of<GetAgentsCubit>(context).getAgents();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<GetAllDeliveryCubit>(context).getAllDeliveryPriorty();
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,7 +35,7 @@ class PriorityDeliveryOrderPage extends StatelessWidget {
         const DividerLine(),
         const SizedBox(height: 10),
         PriorityDeliverySection(
-          user: user,
+          user: widget.user,
         ),
       ],
     );

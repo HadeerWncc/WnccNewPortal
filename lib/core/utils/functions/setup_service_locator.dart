@@ -19,7 +19,11 @@ import 'package:wncc_portal/features/payer/data/data_sources/payer_datasource.da
 import 'package:wncc_portal/features/payer/data/repos_impl/payer_repo_impl.dart';
 import 'package:wncc_portal/features/payer/domain/repos/payer_repo.dart';
 import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/add_new_dispatcher_cubit/add_new_dispatcher_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/delete_agent_cubit/delete_agent_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/edit_dispatcher_name_cubit/edit_dispatcher_name_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_delivery_summary_cubit/get_delivery_summary_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/priority_delivery_table.dart';
 import 'package:wncc_portal/features/priority/pickup/data/datasources/pickup_data_source.dart';
 import 'package:wncc_portal/features/priority/pickup/data/repositories/pickup_repo_impl.dart';
 import 'package:wncc_portal/features/priority/pickup/domin/repositories/pickup_repo.dart';
@@ -413,6 +417,18 @@ void setupLocator() {
   //getAgentsCubit
   getIt.registerFactory<GetAgentsCubit>(
       () => GetAgentsCubit(getIt<DeliveryRepo>()));
+
+  //AddNewAgentCubit
+  getIt.registerFactory<AddNewDispatcherCubit>(
+      () => AddNewDispatcherCubit(getIt<DeliveryRepo>()));
+
+  //EditAgentCubit
+  getIt.registerFactory<EditDispatcherNameCubit>(
+      () => EditDispatcherNameCubit(getIt<DeliveryRepo>()));
+  
+  //DeleteAgentsCubit
+  getIt.registerFactory<DeleteAgentCubit>(
+      () => DeleteAgentCubit(getIt<DeliveryRepo>()));
 
   //getDeliverySummary
   getIt.registerFactory<GetDeliverySummaryCubit>(

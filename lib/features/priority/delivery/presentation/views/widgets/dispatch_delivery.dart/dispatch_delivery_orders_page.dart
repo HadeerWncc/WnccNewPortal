@@ -22,35 +22,28 @@ class DispatchDeliveryOrdersPage extends StatelessWidget {
     // String selectedtoDateString =
     //     DateFormat('yyyy-MM-dd').format(selectedtoDate).toString();
     BlocProvider.of<GetAllDeliveryCubit>(context).getDeliveryDispatchByDate(
-        selectedDateString,);
- 
+      selectedDateString,
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: DatePicker(title: 'Selecte Delivery Date', onChange: (currentDate) {
-            selectedDate = currentDate;
-              selectedDateString =
-                  DateFormat('yyyy-MM-dd').format(selectedDate).toString();
-              // selectedtoDateString =
-              //     DateFormat('yyyy-MM-dd').format(selectedtoDate).toString();
-              BlocProvider.of<GetAllDeliveryCubit>(context)
-                  .getDeliveryDispatchByDate(
-                      selectedDateString);
-          },)
-          //  CustomRangeDatePicker(
-          //   width: MediaQuery.of(context).size.width * .6,
-          //   title: 'Selected Delivery Date',
-          //   ititialFromDate: selectedfromDate,
-          //   ititialToDate: selectedtoDate,
-          //   onChange: (value) {
-              
-          //   },
-          // ),
-        ),
         // const SizedBox(height: 10),
         const GetDeliverySummaryBlocBuilder(),
+        Padding(
+            padding: const EdgeInsets.all(10),
+            child: DatePicker(
+              title: 'Selecte Delivery Date',
+              onChange: (currentDate) {
+                selectedDate = currentDate;
+                selectedDateString =
+                    DateFormat('yyyy-MM-dd').format(selectedDate).toString();
+                // selectedtoDateString =
+                //     DateFormat('yyyy-MM-dd').format(selectedtoDate).toString();
+                BlocProvider.of<GetAllDeliveryCubit>(context)
+                    .getDeliveryDispatchByDate(selectedDateString);
+              },
+            )),
         const SizedBox(height: 10),
         const DividerLine(),
         const SizedBox(height: 10),

@@ -17,6 +17,8 @@ abstract class DeliveryDataSource {
   Future<PrioritySummaryModel> getDeliverySummary(
       GetSummaryEntity getpicSummaryEntity);
   Future<bool> addNewDispatcher(String dispatcher);
+  Future<bool> editDispatcherName(String dispatcherId, String dispatcherName);
+  Future<bool> deleteDispatchers(List<String> dispatchers);
 }
 
 class DeliveryDataSourceImpl extends DeliveryDataSource {
@@ -76,8 +78,7 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
   Future<List<PriorityDeliveryModel>> getDispatchDeliveryOrdersByDate(
       String date) async {
     var result = await apiService.get(
-        endPoint:
-            'api/Delivery/Search?FromDate=$date&ToDate=$date&Status=2');
+        endPoint: 'api/Delivery/Search?FromDate=$date&ToDate=$date&Status=2');
     List<PriorityDeliveryModel> dispatchDeliveryOrders = [];
     for (var order in result["data"]["data"]) {
       dispatchDeliveryOrders.add(PriorityDeliveryModel.fromJson(order));
@@ -114,8 +115,10 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
         await apiService.get(endPoint: 'api/Selectors/GetAllDispatchAgents');
     List<DispatchDeliveryEntity> agents = [];
     for (var item in result["data"]) {
-      agents.add(
-        DispatchDeliveryEntity(id: item["id"] as String, agentName: item["name"] as String,isSelected: false));
+      agents.add(DispatchDeliveryEntity(
+          id: item["id"] as String,
+          agentName: item["name"] as String,
+          isSelected: false));
     }
     return agents;
   }
@@ -131,13 +134,37 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
         PrioritySummaryModel.fromJson(result["data"]);
     return summary;
   }
+
+  @override
+  Future<bool> addNewDispatcher(String dispatcher) async {
+    var result = await apiService.post(
+      endPoint: 'api/Delivery/CreateDispatcher',
+      data: {"name": dispatcher},
+    );
+    bool successed = result["data"] as bool;
+    return successed;
+  }
+
+  @override
+  Future<bool> editDispatcherName(
+      String dispatcherId, String dispatcherName) async {
+    var result = await apiService.put(
+      endPoint: 'api/Delivery/UpdateDispatcher',
+      data: {
+        "id": dispatcherId,
+        "name": dispatcherName,
+      },
+    );
+    bool successed = result["data"] as bool;
+    return successed;
+  }
   
   @override
-  Future<bool> addNewDispatcher(String dispatcher) async{
-     var result = await apiService.post(
-      endPoint: 'api/Delivery/CreateDispatcher',
+  Future<bool> deleteDispatchers(List<String> dispatchers) async{
+    var result = await apiService.put(
+      endPoint: 'api/Delivery/DeleteDispatcher',
       data: {
-        "name": dispatcher
+        "dispatchers": dispatchers,
       },
     );
     bool successed = result["data"] as bool;

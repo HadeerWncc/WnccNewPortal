@@ -8,14 +8,15 @@ import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/methods/format_num.dart';
 import 'package:wncc_portal/core/utils/methods/make_sure_dialog.dart';
 import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
-import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
-import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_checkbox.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/custom_data_cell_widget.dart';
 import 'package:wncc_portal/features/priority/delivery/data/models/priority_delivery_model/priority_delivery_model.dart';
 import 'package:wncc_portal/features/priority/delivery/domain/entities/dispatch_delivery_entity.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/delete_agent_cubit/delete_agent_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/add_new_dispatcher.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/agent_table.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/custom_priority_delivery_action.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/data_column_text.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/get_agent_bloc_builder.dart';
@@ -132,72 +133,7 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                           },
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                content: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        CustomPlaceholderInput(
-                                          labelText: 'Dispatcher',
-                                          width: 150,
-                                          controller: TextEditingController(),
-                                        ),
-                                        const SizedBox(width: 10),
-                                        CustomButtonWithIcon(
-                                          child: 'Create',
-                                          textColor: Colors.white,
-                                          bgColor: kBtnColor,
-                                          onHoverColor: const Color.fromARGB(
-                                              255, 147, 214, 124),
-                                          icon: Symbols.check,
-                                          onTap: () {},
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    const AgentTable(),
-                                  ],
-                                ),
-                                actions: [
-                                  // TextButton(
-                                  //   onPressed: () {
-                                  //     Navigator.pop(context);
-                                  //   },
-                                  //   child: Text("Cancel"),
-                                  // ),
-                                  ElevatedButton(
-                                    style: const ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(
-                                          Colors.redAccent),
-                                      foregroundColor:
-                                          WidgetStatePropertyAll(Colors.white),
-                                    ),
-                                    onPressed: () {
-                                      // delete logic
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text(
-                                      "Delete Selected",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        },
-                        icon: const Icon(
-                          Symbols.add_box,
-                          color: kBtnColor,
-                        ),
-                      )
+                      const AgentActions()
                     ],
                   ),
                 ),
@@ -320,118 +256,92 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
   }
 }
 
-class AgentTable extends StatefulWidget {
-  const AgentTable({
+class AgentActions extends StatefulWidget {
+  const AgentActions({
     super.key,
   });
 
   @override
-  State<AgentTable> createState() => _AgentTableState();
+  State<AgentActions> createState() => _AgentActionsState();
 }
 
-class _AgentTableState extends State<AgentTable> {
-  List<String> agentsArray = [];
-
+class _AgentActionsState extends State<AgentActions> {
+  List<String> deletedDispatchers = [];
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetAgentsCubit, GetAgentsState>(
-      builder: (context, state) {
-        if (state is GetAgentsSuccess) {
-          return DataTable(
-            showBottomBorder: true,
-            showCheckboxColumn: true,
-            horizontalMargin: 20,
-            columnSpacing: 5,
-            border: const TableBorder.symmetric(
-              inside: BorderSide(
-                color: Color.fromARGB(255, 186, 186, 186),
-              ),
-              outside: BorderSide(
-                color: Color.fromARGB(255, 186, 186, 186),
-              ),
-            ),
-            onSelectAll: (value) {
-              setState(() {
-                for (var agent in state.agents) {
-                  agent.isSelected = value ?? false;
-                }
-              });
-            },
-            columns: const [
-              DataColumn(
-                label: Text(
-                  'Dispatcher',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Update',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              )
-            ],
-            rows: state.agents.map((agent) {
-              return DataRow(
-                selected: agent.isSelected ?? false,
-                onSelectChanged: (value) {
-                  setState(() {
-                    agent.isSelected = value;
-                  });
-                },
-                cells: [
-                  DataCell(agent.enableEdit
-                      ? CustomPlaceholderInput(
-                          width: 100,
-                          labelText: '',
-                          fontSize: 12,
-                          controller:
-                              TextEditingController(text: agent.agentName),
-                          onChanged: (value) {},
-                        )
-                      : Text(agent.agentName)),
-                  DataCell(agent.enableEdit
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              icon: const Icon(
-                                Symbols.check,
-                                color: Colors.green,
-                              ),
-                              onPressed: () {},
-                            ),
-                            IconButton(
-                              icon: const Icon(
-                                Symbols.close,
-                                color: Colors.red,
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  agent.enableEdit = !agent.enableEdit;
-                                });
-                              },
-                            ),
-                          ],
-                        )
-                      : IconButton(
-                          icon: const Icon(
-                            Symbols.edit,
-                            color: Color.fromARGB(255, 133, 104, 16),
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              agent.enableEdit = !agent.enableEdit;
-                            });
-                          },
-                        )),
+    return IconButton(
+      padding: const EdgeInsets.all(0),
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              content: Column(
+                children: [
+                  const AddNewDispatcher(),
+                  const SizedBox(height: 10),
+                  Expanded(child: AgentTable(onSelector: (dispatchers) {
+                    deletedDispatchers = dispatchers;
+                    setState(() {});
+                  })),
                 ],
-              );
-            }).toList(),
-          );
-        }
-        return const SizedBox();
+              ),
+              actions: [
+                BlocConsumer<DeleteAgentCubit, DeleteAgentState>(
+                  listener: (context, state) {
+                    if (state is DeleteAgentSuccess) {
+                      ShowSnackbar.showSnackBar(context, state.msg, 'S');
+                      BlocProvider.of<GetAgentsCubit>(context).getAgents();
+                    }
+                    if (state is DeleteAgentFailure) {
+                      ShowSnackbar.showSnackBar(context, state.errorMsg, 'F');
+                    }
+                  },
+                  builder: (context, state) {
+                    if (state is DeleteAgentLoading) {
+                      return const ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                              Color.fromARGB(255, 241, 129, 129)),
+                          foregroundColor: WidgetStatePropertyAll(Colors.white),
+                        ),
+                        onPressed: null,
+                        child: Text(
+                          "Loading...",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    }
+                    return ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor:
+                            WidgetStatePropertyAll(Colors.redAccent),
+                        foregroundColor: WidgetStatePropertyAll(Colors.white),
+                      ),
+                      onPressed: () {
+                        BlocProvider.of<DeleteAgentCubit>(context)
+                            .deleteDispatchers(deletedDispatchers);
+                      },
+                      child: const Text(
+                        "Delete Selected",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            );
+          },
+        );
       },
+      icon: const Icon(
+        Symbols.add_box,
+        color: kBtnColor,
+      ),
     );
   }
 }

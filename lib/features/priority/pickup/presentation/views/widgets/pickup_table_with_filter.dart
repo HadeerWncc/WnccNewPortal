@@ -6,6 +6,7 @@ import 'package:wncc_portal/core/utils/methods/show_snakbar.dart';
 import 'package:wncc_portal/core/widgets/custom_button_with_icon.dart';
 import 'package:wncc_portal/features/priority/comm/entities/get_summary_entity.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/loading/priority_loading.dart';
+import 'package:wncc_portal/features/priority/comm/widgets/loading/priority_summary_loading.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/priority_summary.dart';
 import 'package:wncc_portal/features/priority/pickup/data/models/pickup_model/pickup_model.dart';
 import 'package:wncc_portal/features/priority/pickup/domin/entities/make_pickupility_entity.dart';
@@ -121,7 +122,7 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
                       prioritySummary: state.prioritySummaryModel,
                     );
                   } else {
-                    return const Text("...Loading");
+                    return const PrioritySummaryLoading();
                   }
                 },
               ),
@@ -259,7 +260,15 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
             ),
           );
         } else {
-          return const PriorityLoading();
+          return Column(
+            children: [
+              PrioritySummaryLoading(),
+              SizedBox(
+                height: 10,
+              ),
+              const PriorityLoading(),
+            ],
+          );
         }
       },
     );

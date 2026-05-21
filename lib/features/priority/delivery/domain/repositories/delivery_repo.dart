@@ -21,4 +21,6 @@ abstract class DeliveryRepo {
   Future<Either<Failure, PrioritySummaryModel>> getDeliverySummary(
       GetSummaryEntity getpicSummaryEntity);
   Future<Either<Failure, bool>> addNewDispatcher(String dispatcher);
+  Future<Either<Failure, bool>> editDispatcher(String dispatcherId,String dispatcherName);
+  Future<Either<Failure, bool>> deleteDispatchers(List<String> dispatchers);
 }

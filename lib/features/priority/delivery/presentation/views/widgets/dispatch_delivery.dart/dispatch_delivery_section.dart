@@ -26,7 +26,7 @@ class _DispatchDeliverySectionState extends State<DispatchDeliverySection> {
   String sales = "All";
   String product = "All";
   String region = "All";
-  int? categoryType;
+  // int? categoryType;
   List<String> selectedOrders = [];
 
   @override
@@ -34,16 +34,16 @@ class _DispatchDeliverySectionState extends State<DispatchDeliverySection> {
     return BlocBuilder<GetAllDeliveryCubit, GetAllDeliveryState>(
       builder: (context, state) {
         if (state is GetAllDispatchDeliverySuccess) {
-          List<PriorityDeliveryModel> dispatchData = categoryType == 0
-              ? state.dispatchedOrders
-                  .where(
-                      (p) => p.materialDescription?.contains("معبأ") ?? false)
-                  .toList()
-              : categoryType == 1
-                  ? state.dispatchedOrders
-                      .where((p) => !p.materialDescription!.contains("معبأ"))
-                      .toList()
-                  : state.dispatchedOrders;
+          List<PriorityDeliveryModel> dispatchData = state.dispatchedOrders;
+              // ? state.dispatchedOrders
+              //     .where(
+              //         (p) => p.materialDescription?.contains("معبأ") ?? false)
+              //     .toList()
+              // : categoryType == 1
+              //     ? state.dispatchedOrders
+              //         .where((p) => !p.materialDescription!.contains("معبأ"))
+              //         .toList()
+              //     : state.dispatchedOrders;
           if (payerController.text != "") {
             dispatchData = dispatchData
                 .where((p) => p.customerId!.contains(payerController.text))
@@ -98,17 +98,17 @@ class _DispatchDeliverySectionState extends State<DispatchDeliverySection> {
                 ),
               ),
               const SizedBox(height: 30),
-              SelectProductRadioButtonItem(
-                onChange: (value) {
-                  categoryType = value == "Bags"
-                      ? 0
-                      : value == "Bulk"
-                          ? 1
-                          : null;
-                  setState(() {});
-                },
-              ),
-              const SizedBox(height: 20),
+              // SelectProductRadioButtonItem(
+              //   onChange: (value) {
+              //     categoryType = value == "Bags"
+              //         ? 0
+              //         : value == "Bulk"
+              //             ? 1
+              //             : null;
+              //     setState(() {});
+              //   },
+              // ),
+              // const SizedBox(height: 20),
               DispatchDeliveryTable(
                 onSelectOrders: (ordersId) {
                   selectedOrders = ordersId;

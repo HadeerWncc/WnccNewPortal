@@ -22,7 +22,6 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
   String sales = "All";
   String product = "All";
   String region = "All";
-  int? categoryType;
   List<String> selectedOrders = [];
   DateTime priorityDate = DateTime.now();
   @override
@@ -30,16 +29,16 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
     return BlocBuilder<GetAllDeliveryCubit, GetAllDeliveryState>(
       builder: (context, state) {
         if (state is GetAllPendingDeliverySuccess) {
-          List<PriorityDeliveryModel> pendingData = categoryType == 0
-              ? state.pendingOrders
-                  .where(
-                      (p) => p.materialDescription?.contains("معبأ") ?? false)
-                  .toList()
-              : categoryType == 1
-                  ? state.pendingOrders
-                      .where((p) => !p.materialDescription!.contains("معبأ"))
-                      .toList()
-                  : state.pendingOrders;
+          List<PriorityDeliveryModel> pendingData = state.pendingOrders;
+              // ? state.pendingOrders
+              //     .where(
+              //         (p) => p.materialDescription?.contains("معبأ") ?? false)
+              //     .toList()
+              // : categoryType == 1
+              //     ? state.pendingOrders
+              //         .where((p) => !p.materialDescription!.contains("معبأ"))
+              //         .toList()
+              //     : state.pendingOrders;
           if (payerController.text != "") {
             pendingData = pendingData
                 .where((p) => p.customerId!.contains(payerController.text))
@@ -126,17 +125,17 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
                 ),
               ),
               const SizedBox(height: 30),
-              SelectProductRadioButtonItem(
-                onChange: (value) {
-                  categoryType = value == "Bags"
-                      ? 0
-                      : value == "Bulk"
-                          ? 1
-                          : null;
-                  setState(() {});
-                },
-              ),
-              const SizedBox(height: 20),
+              // SelectProductRadioButtonItem(
+              //   onChange: (value) {
+              //     categoryType = value == "Bags"
+              //         ? 0
+              //         : value == "Bulk"
+              //             ? 1
+              //             : null;
+              //     setState(() {});
+              //   },
+              // ),
+              // const SizedBox(height: 20),
               PendingDeliveryTable(
                 onSelectOrders: (ordersId) {
                   selectedOrders = ordersId;

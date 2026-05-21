@@ -12,7 +12,10 @@ import 'package:wncc_portal/features/authentication/presentation/manager/forget_
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
 import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/add_new_dispatcher_cubit/add_new_dispatcher_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/delete_agent_cubit/delete_agent_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/dispatch_delivery_orders_cubit/dispatch_delivery_order_cubit.dart';
+import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/edit_dispatcher_name_cubit/edit_dispatcher_name_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_agents_cubit/get_agents_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_all_delivery_cubit/get_all_delivery_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_delivery_summary_cubit/get_delivery_summary_cubit.dart';
@@ -145,7 +148,16 @@ class WnccPortal extends StatelessWidget {
           return getIt<DispatchDeliveryOrderCubit>();
         }),
         BlocProvider(create: (context) {
-          return getIt<GetAgentsCubit>()..getAgents();
+          return getIt<GetAgentsCubit>();
+        }),
+        BlocProvider(create: (context){
+          return getIt<AddNewDispatcherCubit>();
+        }),
+        BlocProvider(create: (context){
+          return getIt<EditDispatcherNameCubit>();
+        }),
+        BlocProvider(create: (context){
+          return getIt<DeleteAgentCubit>();
         }),
         BlocProvider(create: (context) {
           return getIt<GetDeliverySummaryCubit>();

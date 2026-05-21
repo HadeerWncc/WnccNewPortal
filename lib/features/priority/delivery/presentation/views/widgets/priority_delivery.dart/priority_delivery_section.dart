@@ -23,23 +23,23 @@ class _PriorityDeliverySectionState extends State<PriorityDeliverySection> {
   String sales = "All";
   String product = "All";
   String region = "All";
-  int? categoryType;
+  // int? categoryType;
   List<DispatchDeliveryEntity> selectedOrders = [];
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetAllDeliveryCubit, GetAllDeliveryState>(
       builder: (context, state) {
         if (state is GetAllPriorityDeliverySuccess) {
-          List<PriorityDeliveryModel> priorityData = categoryType == 0
-              ? state.priorityOrders
-                  .where(
-                      (p) => p.materialDescription?.contains("معبأ") ?? false)
-                  .toList()
-              : categoryType == 1
-                  ? state.priorityOrders
-                      .where((p) => !p.materialDescription!.contains("معبأ"))
-                      .toList()
-                  : state.priorityOrders;
+          List<PriorityDeliveryModel> priorityData = state.priorityOrders;
+          //     ? state.priorityOrders
+          //         .where(
+          //             (p) => p.materialDescription?.contains("معبأ") ?? false)
+          //         .toList()
+          //     : categoryType == 1
+          //         ? state.priorityOrders
+          //             .where((p) => !p.materialDescription!.contains("معبأ"))
+          //             .toList()
+          //         : state.priorityOrders;
           if (payerController.text != "") {
             priorityData = priorityData
                 .where((p) => p.customerId!.contains(payerController.text))
@@ -91,17 +91,17 @@ class _PriorityDeliverySectionState extends State<PriorityDeliverySection> {
                 ),
               ),
               const SizedBox(height: 30),
-              SelectProductRadioButtonItem(
-                onChange: (value) {
-                  categoryType = value == "Bags"
-                      ? 0
-                      : value == "Bulk"
-                          ? 1
-                          : null;
-                  setState(() {});
-                },
-              ),
-              const SizedBox(height: 20),
+              // SelectProductRadioButtonItem(
+              //   onChange: (value) {
+              //     categoryType = value == "Bags"
+              //         ? 0
+              //         : value == "Bulk"
+              //             ? 1
+              //             : null;
+              //     setState(() {});
+              //   },
+              // ),
+              // const SizedBox(height: 20),
               // Show bulk orders
               PriorityDeliveryTable(
                 user: widget.user,
