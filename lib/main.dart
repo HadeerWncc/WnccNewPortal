@@ -27,6 +27,8 @@ import 'package:wncc_portal/features/reports/dispatch_details/presentation/manag
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_customer_cubit/dispatch_details_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_sales_cubit/dispatch_details_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_customer_cubit/dispatch_details_v2_per_customer_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_sales_cubit/dispatch_details_v2_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/manager/loading_details_cubit/loading_details_cubit.dart';
@@ -150,13 +152,13 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(create: (context) {
           return getIt<GetAgentsCubit>();
         }),
-        BlocProvider(create: (context){
+        BlocProvider(create: (context) {
           return getIt<AddNewDispatcherCubit>();
         }),
-        BlocProvider(create: (context){
+        BlocProvider(create: (context) {
           return getIt<EditDispatcherNameCubit>();
         }),
-        BlocProvider(create: (context){
+        BlocProvider(create: (context) {
           return getIt<DeleteAgentCubit>();
         }),
         BlocProvider(create: (context) {
@@ -188,12 +190,12 @@ class WnccPortal extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) {
-            return getIt<DispatchDetailsPerCustomerCubit>();
+            return getIt<DispatchDetailsV2PerCustomerCubit>();
           },
         ),
         BlocProvider(
           create: (context) {
-            return getIt<DispatchDetailsPerSalesCubit>();
+            return getIt<DispatchDetailsV2PerSalesCubit>();
           },
         ),
         BlocProvider(

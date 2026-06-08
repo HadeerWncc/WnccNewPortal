@@ -22,7 +22,7 @@ class DeliveryPageBody extends StatelessWidget {
       regionId: "",
       matrialId: "",
     ));
-    
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) {

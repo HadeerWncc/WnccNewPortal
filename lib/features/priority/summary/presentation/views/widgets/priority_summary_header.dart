@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/widgets/custom_range_date_picker.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/summary_priority_cubit/summary_priority_cubit.dart';
+
 class PrioritySummaryHeader extends StatefulWidget {
   const PrioritySummaryHeader({super.key});
 
@@ -26,7 +27,7 @@ class _PaymentsDetailsHeaderState extends State<PrioritySummaryHeader> {
           title: 'Select Date Range',
           onChange: (value) {
             BlocProvider.of<SummaryPriorityCubit>(context)
-                .getPickupSummary(value.start, value.end);
+                .getPrioritySummary(value.start, value.end);
           },
         ),
       ),

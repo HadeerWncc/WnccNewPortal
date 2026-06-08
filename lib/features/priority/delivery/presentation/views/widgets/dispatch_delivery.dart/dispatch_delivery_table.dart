@@ -189,7 +189,9 @@ class _DispatchDeliveryTableState extends State<DispatchDeliveryTable> {
                 DataCell(
                   Center(
                       child: CustomMarkedColorContainer(
-                    bgColor: item.shipmentStatus == 'No Shipment'?  const Color.fromARGB(255, 225, 225, 225) : const Color.fromARGB(255, 211, 252, 212),
+                    bgColor: item.shipmentStatus == 'No Shipment'
+                        ? const Color.fromARGB(255, 225, 225, 225)
+                        : const Color.fromARGB(255, 211, 252, 212),
                     color: const Color.fromARGB(255, 63, 63, 63),
                     title: item.shipmentStatus.toString(),
                   )),

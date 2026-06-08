@@ -59,8 +59,8 @@ class DeliveryRepoImpl extends DeliveryRepo {
   Future<Either<Failure, List<PriorityDeliveryModel>>>
       getDispatchDeliveryOrdersByDate(String date) async {
     try {
-      List<PriorityDeliveryModel> orders = await deliveryDataSource
-          .getDispatchDeliveryOrdersByDate(date);
+      List<PriorityDeliveryModel> orders =
+          await deliveryDataSource.getDispatchDeliveryOrdersByDate(date);
       return Right(orders);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -101,9 +101,11 @@ class DeliveryRepoImpl extends DeliveryRepo {
   }
 
   @override
-  Future<Either<Failure, List<DispatchDeliveryEntity>>> getDispatchAgents() async {
+  Future<Either<Failure, List<DispatchDeliveryEntity>>>
+      getDispatchAgents() async {
     try {
-      List<DispatchDeliveryEntity> agents = await deliveryDataSource.getDispatchAgents();
+      List<DispatchDeliveryEntity> agents =
+          await deliveryDataSource.getDispatchAgents();
       return Right(agents);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -127,9 +129,9 @@ class DeliveryRepoImpl extends DeliveryRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, bool>> addNewDispatcher(String dispatcher) async{
+  Future<Either<Failure, bool>> addNewDispatcher(String dispatcher) async {
     try {
       bool successed = await deliveryDataSource.addNewDispatcher(dispatcher);
       return Right(successed);
@@ -140,11 +142,13 @@ class DeliveryRepoImpl extends DeliveryRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, bool>> editDispatcher(String dispatcherId, String dispatcherName) async{
-   try {
-      bool successed = await deliveryDataSource.editDispatcherName(dispatcherId,dispatcherName);
+  Future<Either<Failure, bool>> editDispatcher(
+      String dispatcherId, String dispatcherName) async {
+    try {
+      bool successed = await deliveryDataSource.editDispatcherName(
+          dispatcherId, dispatcherName);
       return Right(successed);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -153,9 +157,10 @@ class DeliveryRepoImpl extends DeliveryRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
-  
+
   @override
-  Future<Either<Failure, bool>> deleteDispatchers(List<String> dispatchers) async{
+  Future<Either<Failure, bool>> deleteDispatchers(
+      List<String> dispatchers) async {
     try {
       bool successed = await deliveryDataSource.deleteDispatchers(dispatchers);
       return Right(successed);

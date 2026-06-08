@@ -129,7 +129,7 @@ class _PendingDeliveryTableState extends State<PendingDeliveryTable> {
                 DataCell(
                   Center(
                     child: Text(
-                     formatNum(item.deliveryQuantity??0),
+                      formatNum(item.deliveryQuantity ?? 0),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

@@ -23,7 +23,6 @@ import 'package:wncc_portal/features/priority/delivery/presentation/managers/cub
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/delete_agent_cubit/delete_agent_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/edit_dispatcher_name_cubit/edit_dispatcher_name_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/get_delivery_summary_cubit/get_delivery_summary_cubit.dart';
-import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/priority_delivery_table.dart';
 import 'package:wncc_portal/features/priority/pickup/data/datasources/pickup_data_source.dart';
 import 'package:wncc_portal/features/priority/pickup/data/repositories/pickup_repo_impl.dart';
 import 'package:wncc_portal/features/priority/pickup/domin/repositories/pickup_repo.dart';
@@ -41,6 +40,11 @@ import 'package:wncc_portal/features/reports/dispatch_details/presentation/manag
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_customer_cubit/dispatch_details_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_sales_cubit/dispatch_details_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/data_sources/dispatch_details_v2_data_source.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/repo_impl/dispatch_details_vs_repo_impl.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/domain/repo/dispatch_details_vs_repo.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_customer_cubit/dispatch_details_v2_per_customer_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_sales_cubit/dispatch_details_v2_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/data_sources/fact_vs_cust_data_source.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/repos/fact_vs_cust_repo_imp.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/domain/repos/fact_vs_cust_repo.dart';
@@ -193,8 +197,8 @@ void setupLocator() {
       () => LoadingDetailsDataSourseImpl(apiService: getIt<ApiService>()));
 
   //DispatchDetailsDataSource
-  getIt.registerLazySingleton<DispatchDetailsDataSource>(
-      () => DispatchDetailsDataSourceImpl(apiService: getIt<ApiService>()));
+  getIt.registerLazySingleton<DispatchDetailsV2DataSource>(
+      () => DispatchDetailsV2DataSourceImpl(apiService: getIt<ApiService>()));
 
   //payerDataSource
   getIt.registerLazySingleton<PayerDatasource>(
@@ -269,9 +273,9 @@ void setupLocator() {
       loadingDetailsDataSourse: getIt<LoadingDetailsDataSourse>()));
 
   //DispatchDetailsRepo
-  getIt.registerLazySingleton<DispatchDetailsRepo>(() =>
-      DispatchDetailsRepoImpl(
-          dispatchDetailsDataSource: getIt<DispatchDetailsDataSource>()));
+  getIt.registerLazySingleton<DispatchDetailsVsRepo>(() =>
+      DispatchDetailsVsRepoImpl(
+          dispatchDetailsDataSource: getIt<DispatchDetailsV2DataSource>()));
 
   //PayerRepo
   getIt.registerLazySingleton<PayerRepo>(
@@ -425,7 +429,7 @@ void setupLocator() {
   //EditAgentCubit
   getIt.registerFactory<EditDispatcherNameCubit>(
       () => EditDispatcherNameCubit(getIt<DeliveryRepo>()));
-  
+
   //DeleteAgentsCubit
   getIt.registerFactory<DeleteAgentCubit>(
       () => DeleteAgentCubit(getIt<DeliveryRepo>()));
@@ -551,12 +555,12 @@ void setupLocator() {
       () => DispatchDetailsCubit(getIt<DispatchDetailsRepo>()));
 
   //DispatchDetailsPerCustomerCubit
-  getIt.registerFactory<DispatchDetailsPerCustomerCubit>(
-      () => DispatchDetailsPerCustomerCubit(getIt<DispatchDetailsRepo>()));
+  getIt.registerFactory<DispatchDetailsV2PerCustomerCubit>(
+      () => DispatchDetailsV2PerCustomerCubit(getIt<DispatchDetailsVsRepo>()));
 
   //DispatchDetailsPerSalesCubit
-  getIt.registerFactory<DispatchDetailsPerSalesCubit>(
-      () => DispatchDetailsPerSalesCubit(getIt<DispatchDetailsRepo>()));
+  getIt.registerFactory<DispatchDetailsV2PerSalesCubit>(
+      () => DispatchDetailsV2PerSalesCubit(getIt<DispatchDetailsVsRepo>()));
 
   //ShipmentDetailsCubit
   getIt.registerFactory<ShipmentDetailsCubit>(

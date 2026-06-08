@@ -42,8 +42,7 @@ class GetAllDeliveryCubit extends Cubit<GetAllDeliveryState> {
 
   Future<void> getDeliveryDispatchByDate(String date) async {
     emit(GetAllDeliveryLoading());
-    var result =
-        await deliveryRepo.getDispatchDeliveryOrdersByDate(date);
+    var result = await deliveryRepo.getDispatchDeliveryOrdersByDate(date);
     result.fold((error) {
       emit(GetAllDeliveryFailure(error: error.msg));
     }, (order) {

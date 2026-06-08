@@ -39,8 +39,7 @@ List<CustomerDispatchEntity> processCustomerEntities(
       clincker: resp?.clinker?.toDouble(),
       expTrading: resp?.exportTrading?.toDouble(),
       totalExport: resp?.totalExport?.toDouble(),
-      alltotal:
-          (resp?.total?.toDouble() ?? 0),
+      alltotal: (resp?.total?.toDouble() ?? 0),
       extra: resp?.extra?.toDouble(),
     );
   }).toList();
@@ -65,8 +64,8 @@ List<CustomerDispatchEntity> processCustomerEntities(
                     (e.customerDispatchResponse?.exportBulk ?? 0)))
         .toStringAsFixed(2)),
     total: double.parse(sumationList
-        .fold<double>(
-            0, (prev, e) => prev + (e.customerDispatchResponse?.localTotal ?? 0))
+        .fold<double>(0,
+            (prev, e) => prev + (e.customerDispatchResponse?.localTotal ?? 0))
         .toStringAsFixed(2)),
     masry: double.parse(sumationList
         .fold<double>(
@@ -92,10 +91,7 @@ List<CustomerDispatchEntity> processCustomerEntities(
         .toStringAsFixed(2)),
     alltotal: double.parse(sumationList
         .fold<double>(
-            0,
-            (prev, e) =>
-                prev +
-                ((e.customerDispatchResponse?.total ?? 0)))
+            0, (prev, e) => prev + ((e.customerDispatchResponse?.total ?? 0)))
         .toStringAsFixed(2)),
     extra: double.parse(sumationList
         .fold<double>(

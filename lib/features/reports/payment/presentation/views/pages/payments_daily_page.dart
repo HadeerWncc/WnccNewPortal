@@ -17,12 +17,13 @@ class PaymentsDailyPage extends StatefulWidget {
 }
 
 class _PaymentsDailyPageState extends State<PaymentsDailyPage> {
-   @override
+  @override
   void initState() {
     super.initState();
 
     context.read<PayerCubit>().getAllPayers();
   }
+
   @override
   Widget build(BuildContext context) {
     // BlocProvider.of<PayerCubit>(context).getAllPayers();

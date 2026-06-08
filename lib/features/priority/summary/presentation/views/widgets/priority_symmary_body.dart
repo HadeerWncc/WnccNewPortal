@@ -19,7 +19,7 @@ class _PrioritySymmaryBodyState extends State<PrioritySymmaryBody> {
   void initState() {
     super.initState();
     BlocProvider.of<SummaryPriorityCubit>(context)
-        .getPickupSummary(DateTime.now(), DateTime.now());
+        .getPrioritySummary(DateTime.now(), DateTime.now());
   }
 
   @override

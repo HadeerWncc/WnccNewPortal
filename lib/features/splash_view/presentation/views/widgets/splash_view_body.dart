@@ -113,11 +113,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
     await Future.delayed(const Duration(seconds: 3));
 
     final token = await getToken();
-    
+
     if (!mounted) return;
 
     if (token != null && token.isNotEmpty) {
-      BlocProvider.of<UserCubit>(context).getCurrentUser(); 
+      BlocProvider.of<UserCubit>(context).getCurrentUser();
       GoRouter.of(context).go(AppRouter.homePath);
     } else {
       GoRouter.of(context).go(AppRouter.loginPath);

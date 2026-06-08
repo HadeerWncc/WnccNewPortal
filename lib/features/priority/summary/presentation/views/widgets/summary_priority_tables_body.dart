@@ -22,11 +22,11 @@ class SummaryPriorityTablesBody extends StatelessWidget {
             final data = activeTab == 0
                 ? state.bagsPrioritySummary
                 : state.bulkPrioritySummary;
-    
+
             if (data.isEmpty) {
               return const Center(child: Text("No Data"));
             }
-    
+
             return ListView(
               physics: const BouncingScrollPhysics(),
               children: [
@@ -42,6 +42,13 @@ class SummaryPriorityTablesBody extends StatelessWidget {
                 SummaryPriorityTable(
                   data: data,
                   mappingType: 'priority',
+                ),
+                const SizedBox(height: 20),
+                sectionTitle('Dispatch'),
+                const SizedBox(height: 5),
+                SummaryPriorityTable(
+                  data: data,
+                  mappingType: 'Dispatch',
                 ),
               ],
             );

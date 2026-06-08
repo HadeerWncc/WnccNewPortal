@@ -8,12 +8,15 @@ sealed class AddNewDispatcherState extends Equatable {
 }
 
 final class AddNewDispatcherInitial extends AddNewDispatcherState {}
+
 final class AddNewDispatcherLoading extends AddNewDispatcherState {}
+
 final class AddNewDispatcherFailure extends AddNewDispatcherState {
   final String error;
 
   const AddNewDispatcherFailure({required this.error});
 }
+
 final class AddNewDispatcherSuccess extends AddNewDispatcherState {
   final String msg;
 

@@ -11,9 +11,7 @@ import 'package:wncc_portal/features/priority/comm/widgets/select_product_radio_
 
 class DispatchDeliverySection extends StatefulWidget {
   const DispatchDeliverySection(
-      {super.key,
-      required this.date,
-      required this.user});
+      {super.key, required this.date, required this.user});
   final String date;
   final UserModel user;
   @override
@@ -35,15 +33,15 @@ class _DispatchDeliverySectionState extends State<DispatchDeliverySection> {
       builder: (context, state) {
         if (state is GetAllDispatchDeliverySuccess) {
           List<PriorityDeliveryModel> dispatchData = state.dispatchedOrders;
-              // ? state.dispatchedOrders
-              //     .where(
-              //         (p) => p.materialDescription?.contains("معبأ") ?? false)
-              //     .toList()
-              // : categoryType == 1
-              //     ? state.dispatchedOrders
-              //         .where((p) => !p.materialDescription!.contains("معبأ"))
-              //         .toList()
-              //     : state.dispatchedOrders;
+          // ? state.dispatchedOrders
+          //     .where(
+          //         (p) => p.materialDescription?.contains("معبأ") ?? false)
+          //     .toList()
+          // : categoryType == 1
+          //     ? state.dispatchedOrders
+          //         .where((p) => !p.materialDescription!.contains("معبأ"))
+          //         .toList()
+          //     : state.dispatchedOrders;
           if (payerController.text != "") {
             dispatchData = dispatchData
                 .where((p) => p.customerId!.contains(payerController.text))

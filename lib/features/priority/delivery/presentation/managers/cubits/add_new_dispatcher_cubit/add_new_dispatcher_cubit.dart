@@ -16,7 +16,8 @@ class AddNewDispatcherCubit extends Cubit<AddNewDispatcherState> {
       emit(AddNewDispatcherFailure(error: error.msg));
     }, (success) {
       if (success == true) {
-        emit(const AddNewDispatcherSuccess(msg: 'Dispatcher Added successfully'));
+        emit(const AddNewDispatcherSuccess(
+            msg: 'Dispatcher Added successfully'));
       } else {
         emit(const AddNewDispatcherFailure(
             error: 'An error occurred, please try again!'));

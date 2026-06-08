@@ -4,22 +4,21 @@ import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/utils/methods/validate_password_with_regex.dart';
 
 class CustomPlaceholderInput extends StatelessWidget {
-  const CustomPlaceholderInput({
-    super.key,
-    this.controller,
-    required this.labelText,
-    this.width,
-    this.actions,
-    this.secure = false,
-    this.passwordRgex = false,
-    this.enable = true,
-    this.onChanged,
-    this.keyboardType,
-    this.linesNum,
-    this.xAxis,
-    this.icon,
-    this.fontSize
-  });
+  const CustomPlaceholderInput(
+      {super.key,
+      this.controller,
+      required this.labelText,
+      this.width,
+      this.actions,
+      this.secure = false,
+      this.passwordRgex = false,
+      this.enable = true,
+      this.onChanged,
+      this.keyboardType,
+      this.linesNum,
+      this.xAxis,
+      this.icon,
+      this.fontSize});
   final TextEditingController? controller;
   final String labelText;
   final double? width;
@@ -59,7 +58,6 @@ class CustomPlaceholderInput extends StatelessWidget {
             maxLines: linesNum ?? 1,
             keyboardType: keyboardType,
             controller: controller,
-            
             obscureText: secure,
             cursorColor: Colors.black,
             style: TextStyle(

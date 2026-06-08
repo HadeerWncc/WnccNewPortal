@@ -158,9 +158,9 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
     bool successed = result["data"] as bool;
     return successed;
   }
-  
+
   @override
-  Future<bool> deleteDispatchers(List<String> dispatchers) async{
+  Future<bool> deleteDispatchers(List<String> dispatchers) async {
     var result = await apiService.put(
       endPoint: 'api/Delivery/DeleteDispatcher',
       data: {

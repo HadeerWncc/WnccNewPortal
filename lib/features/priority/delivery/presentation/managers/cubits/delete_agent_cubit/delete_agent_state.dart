@@ -8,12 +8,15 @@ sealed class DeleteAgentState extends Equatable {
 }
 
 final class DeleteAgentInitial extends DeleteAgentState {}
+
 final class DeleteAgentLoading extends DeleteAgentState {}
+
 final class DeleteAgentFailure extends DeleteAgentState {
   final String errorMsg;
 
   const DeleteAgentFailure({required this.errorMsg});
 }
+
 final class DeleteAgentSuccess extends DeleteAgentState {
   final String msg;
 

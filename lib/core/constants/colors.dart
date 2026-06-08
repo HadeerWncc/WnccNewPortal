@@ -15,3 +15,4 @@ const Color toDoListColor = Color.fromARGB(255, 104, 109, 106);
 const Color tableHeaderColor = Color(0xffbedea5);
 const Color tableHeadeDeeperColor = Color(0xff2b6617);
 const fixedColumnsColor = Color.fromARGB(255, 239, 238, 238);
+const homeColor = Color.fromARGB(255, 6, 59, 29);

@@ -7,6 +7,7 @@ import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_button_navbar.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_menus_list.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/home_view_body.dart';
+import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/summary_priority_cubit/summary_priority_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
 class HomeView extends StatelessWidget {
@@ -16,6 +17,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<SummaryPriorityCubit>(context)
+        .getPrioritySummary(DateTime.now(), DateTime.now());
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => handelError(state, context),
       builder: (context, state) {
@@ -40,7 +43,9 @@ class HomeView extends StatelessWidget {
                   user: state.user,
                 ),
               ),
-              body: const HomeViewBody(),
+              body: HomeViewBody(
+                user: state.user,
+              ),
             ),
           );
         }

@@ -83,7 +83,7 @@ class DrawerMenuList extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.pickupPath);
               },
             ),
-             CustomMenuItem(
+            CustomMenuItem(
               title: 'Summary',
               active: activeTab == 'Summary',
               onTap: () {
@@ -139,7 +139,7 @@ class DrawerMenuList extends StatelessWidget {
                     title: 'Dispatch Details',
                     active: activeTab == 'Dispatch Details',
                     onTap: () {
-                      GoRouter.of(context).push(AppRouter.dispatchDetailsPath);
+                      GoRouter.of(context).push(AppRouter.dispatchDetailsPerSalesPath);
                     },
                   )
                 : const SizedBox(),

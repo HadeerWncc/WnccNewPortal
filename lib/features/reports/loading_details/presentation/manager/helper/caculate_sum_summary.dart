@@ -22,9 +22,9 @@ LoadingDetailsSummaryEntity calculateSumSummary(
       masry += l.deliveryQuantity ?? 0;
     } else if (l.materialId == 'F-BA02') {
       wadi += l.deliveryQuantity ?? 0;
-    } 
-    if(l.distributionChannel == 'Export'){
-      export += l.deliveryQuantity??0;
+    }
+    if (l.distributionChannel == 'Export') {
+      export += l.deliveryQuantity ?? 0;
     }
   }
   total = wadi + masry + bulk + export;

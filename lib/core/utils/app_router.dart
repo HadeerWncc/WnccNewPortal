@@ -15,6 +15,7 @@ import 'package:wncc_portal/features/priority/summary/presentation/views/pages/p
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_details_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_customer_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_sales_page.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_sales_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_compare_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
@@ -301,7 +302,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: dispatchDetailsPerSalesPath,
-        builder: (context, state) => const DispatchPerSalesPage(),
+        builder: (context, state) => const DispatchDetailsV2PerSalesPage(),
       ),
       GoRoute(
         path: errorPagePath,

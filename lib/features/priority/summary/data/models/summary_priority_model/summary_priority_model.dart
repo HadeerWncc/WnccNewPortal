@@ -15,6 +15,12 @@ class SummaryPriorityModel extends Equatable {
   final num? deliveryBagsPriority;
   final num? totalBagsPriority;
   final num? totalBulkPriority;
+  final num? pickupBulkDispatch;
+  final num? deliveryBulkDispatch;
+  final num? pickupBagsDispatch;
+  final num? deliveryBagsDispatch;
+  final num? totalBagsDispatch;
+  final num? totalBulkDispatch;
   final num? extraDeliveryBulkQuota;
   final num? extraPickupBulkQuota;
   final num? extraDeliveryBagsQuota;
@@ -35,6 +41,12 @@ class SummaryPriorityModel extends Equatable {
     this.deliveryBagsPriority,
     this.totalBagsPriority,
     this.totalBulkPriority,
+    this.pickupBulkDispatch,
+    this.deliveryBulkDispatch,
+    this.pickupBagsDispatch,
+    this.deliveryBagsDispatch,
+    this.totalBagsDispatch,
+    this.totalBulkDispatch,
     this.extraDeliveryBulkQuota,
     this.extraPickupBulkQuota,
     this.extraDeliveryBagsQuota,
@@ -57,6 +69,12 @@ class SummaryPriorityModel extends Equatable {
       deliveryBagsPriority: json['deliveryBagsPriority'] as num?,
       totalBagsPriority: json['totalBagsPriority'] as num?,
       totalBulkPriority: json['totalBulkPriority'] as num?,
+      pickupBulkDispatch: json['pickupBulkDispatch'] as num?,
+      deliveryBulkDispatch: json['deliveryBulkDispatch'] as num?,
+      pickupBagsDispatch: json['pickupBagsDispatch'] as num?,
+      deliveryBagsDispatch: json['deliveryBagsDispatch'] as num?,
+      totalBagsDispatch: json['totalBagsDispatch'] as num?,
+      totalBulkDispatch: json['totalBulkDispatch'] as num?,
       extraDeliveryBulkQuota: json['extraDeliveryBulkQuota'] as num?,
       extraPickupBulkQuota: json['extraPickupBulkQuota'] as num?,
       extraDeliveryBagsQuota: json['extraDeliveryBagsQuota'] as num?,
@@ -79,6 +97,12 @@ class SummaryPriorityModel extends Equatable {
         'deliveryBagsPriority': deliveryBagsPriority,
         'totalBagsPriority': totalBagsPriority,
         'totalBulkPriority': totalBulkPriority,
+        'pickupBulkDispatch': pickupBulkDispatch,
+        'deliveryBulkDispatch': deliveryBulkDispatch,
+        'pickupBagsDispatch': pickupBagsDispatch,
+        'deliveryBagsDispatch': deliveryBagsDispatch,
+        'totalBagsDispatch': totalBagsDispatch,
+        'totalBulkDispatch': totalBulkDispatch,
         'extraDeliveryBulkQuota': extraDeliveryBulkQuota,
         'extraPickupBulkQuota': extraPickupBulkQuota,
         'extraDeliveryBagsQuota': extraDeliveryBagsQuota,
@@ -102,6 +126,12 @@ class SummaryPriorityModel extends Equatable {
       deliveryBagsPriority,
       totalBagsPriority,
       totalBulkPriority,
+      pickupBulkDispatch,
+      deliveryBulkDispatch,
+      pickupBagsDispatch,
+      deliveryBagsDispatch,
+      totalBagsDispatch,
+      totalBulkDispatch,
       extraDeliveryBulkQuota,
       extraPickupBulkQuota,
       extraDeliveryBagsQuota,

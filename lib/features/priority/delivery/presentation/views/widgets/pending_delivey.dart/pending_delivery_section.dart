@@ -30,15 +30,15 @@ class _PendingDeliverySectionState extends State<PendingDeliverySection> {
       builder: (context, state) {
         if (state is GetAllPendingDeliverySuccess) {
           List<PriorityDeliveryModel> pendingData = state.pendingOrders;
-              // ? state.pendingOrders
-              //     .where(
-              //         (p) => p.materialDescription?.contains("معبأ") ?? false)
-              //     .toList()
-              // : categoryType == 1
-              //     ? state.pendingOrders
-              //         .where((p) => !p.materialDescription!.contains("معبأ"))
-              //         .toList()
-              //     : state.pendingOrders;
+          // ? state.pendingOrders
+          //     .where(
+          //         (p) => p.materialDescription?.contains("معبأ") ?? false)
+          //     .toList()
+          // : categoryType == 1
+          //     ? state.pendingOrders
+          //         .where((p) => !p.materialDescription!.contains("معبأ"))
+          //         .toList()
+          //     : state.pendingOrders;
           if (payerController.text != "") {
             pendingData = pendingData
                 .where((p) => p.customerId!.contains(payerController.text))
