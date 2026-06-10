@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_sales_cubit/dispatch_details_v2_per_sales_cubit.dart';
 
+import 'dispatch_details_per_sales_success.dart';
+
 class DispatchDetailsV2PerSalesBody extends StatelessWidget {
   const DispatchDetailsV2PerSalesBody({super.key});
 
@@ -11,11 +13,13 @@ class DispatchDetailsV2PerSalesBody extends StatelessWidget {
         DispatchDetailsV2PerSalesState>(
       builder: (context, state) {
         if (state is DispatchDetailsV2PerSalesSuccess) {
-          print(state.dispatchDetails);
+          // print(state.dispatchDetails);
+          return DispatchDetailsPerSalesSuccessV2(dispatchList: state.dispatchDetails);
+          
         } else if (state is DispatchDetailsV2PerSalesFailure) {
           print(state.error);
         }
-        return SizedBox();
+        return const SizedBox();
       },
     );
   }

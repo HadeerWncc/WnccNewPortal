@@ -16,7 +16,7 @@ class PickupPriorityBody extends StatelessWidget {
         GetSummaryEntity(
             date: DateTime.now(), salesId: "", regionId: "", matrialId: ""));
 
-    return ListView(
+    return Column(
       children: [
         Card(
           color: Colors.white,

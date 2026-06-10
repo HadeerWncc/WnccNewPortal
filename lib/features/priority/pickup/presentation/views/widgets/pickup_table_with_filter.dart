@@ -42,7 +42,6 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
       builder: (context, state) {
         if (state is GetPickupilitySuccess) {
           List<PickupModel> pickupDate = state.pickupList;
-
           if (sales != "All") {
             pickupDate = pickupDate.where((p) => p.salesName == sales).toList();
             BlocProvider.of<GetPickupSummaryCubit>(context).getPickupSummary(
@@ -260,13 +259,13 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
             ),
           );
         } else {
-          return Column(
+          return const Column(
             children: [
               PrioritySummaryLoading(),
               SizedBox(
                 height: 10,
               ),
-              const PriorityLoading(),
+              PriorityLoading(),
             ],
           );
         }
