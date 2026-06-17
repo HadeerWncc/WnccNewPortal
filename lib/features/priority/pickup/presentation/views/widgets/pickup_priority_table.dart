@@ -59,7 +59,7 @@ class _PickupPriorityTableState extends State<PickupPriorityTable> {
                   // final payerTotal = entry.value
                   //     .fold<num>(0, (sum, order) => sum + (order.));
                   final isExpanded = _expandedPayers[payer] ?? false;
-      
+
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -85,7 +85,8 @@ class _PickupPriorityTableState extends State<PickupPriorityTable> {
                               Expanded(
                                   flex: 2,
                                   child: Center(
-                                      child: Text(order.customerId.toString()))),
+                                      child:
+                                          Text(order.customerId.toString()))),
                               Expanded(
                                   flex: 5,
                                   child: Center(
@@ -101,18 +102,18 @@ class _PickupPriorityTableState extends State<PickupPriorityTable> {
                                   flex: 3,
                                   child: Center(
                                       child: Text(NumberFormat.decimalPattern()
-                                          .format(order.totalPriorited)))),
+                                          .format(order.totalPriorited!.total)))),
                               Expanded(
                                   flex: 3,
                                   child: Center(
                                       child: Text(NumberFormat.decimalPattern()
-                                          .format(order.totalDispatched)))),
+                                          .format(order.totalDispatched!.total)))),
                               Expanded(
                                 flex: 3,
                                 child: Center(
                                   child: Text(
                                     NumberFormat.decimalPattern()
-                                        .format(order.totalRemaining),
+                                        .format(order.totalRemaining!.total),
                                   ),
                                 ),
                               ),
@@ -147,7 +148,7 @@ class _PickupPriorityTableState extends State<PickupPriorityTable> {
                             .map((entry) {
                           var o = entry.value;
                           final id = getKey(o);
-      
+
                           prioritiesController.putIfAbsent(
                             id,
                             () => TextEditingController(
@@ -155,7 +156,7 @@ class _PickupPriorityTableState extends State<PickupPriorityTable> {
                                   .format(o.prioritedQnty),
                             ),
                           );
-      
+
                           dispatchesController.putIfAbsent(
                             id,
                             () => TextEditingController(

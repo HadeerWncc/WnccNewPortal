@@ -24,10 +24,10 @@ class PrioritySummary extends StatelessWidget {
                   "Total": parseToInt((prioritySummary.totalBulkPending! +
                           prioritySummary.totalBagsPending!)
                       .toString()),
-                  "Bags":
-                      parseToInt((prioritySummary.totalBagsPending!).toString()),
-                  "Bulk":
-                      parseToInt((prioritySummary.totalBulkPending!).toString()),
+                  "Bags": parseToInt(
+                      (prioritySummary.totalBagsPending!).toString()),
+                  "Bulk": parseToInt(
+                      (prioritySummary.totalBulkPending!).toString()),
                 }),
             CustomDailyQuotaItem(
                 landingtitle: 'Quota',
@@ -63,10 +63,10 @@ class PrioritySummary extends StatelessWidget {
                   "Total": parseToInt((prioritySummary.totalBulkPriority! +
                           prioritySummary.totalBagsPriority!)
                       .toString()),
-                  "Bags":
-                      parseToInt((prioritySummary.totalBagsPriority!).toString()),
-                  "Bulk":
-                      parseToInt((prioritySummary.totalBulkPriority!).toString()),
+                  "Bags": parseToInt(
+                      (prioritySummary.totalBagsPriority!).toString()),
+                  "Bulk": parseToInt(
+                      (prioritySummary.totalBulkPriority!).toString()),
                 }),
             CustomDailyQuotaItem(
                 landingtitle: 'Dispatched',
@@ -76,10 +76,10 @@ class PrioritySummary extends StatelessWidget {
                   "Total": parseToInt((prioritySummary.totalBagsDispatch! +
                           prioritySummary.totalBulkDispatch!)
                       .toString()),
-                  "Bags":
-                      parseToInt((prioritySummary.totalBagsDispatch!).toString()),
-                  "Bulk":
-                      parseToInt((prioritySummary.totalBulkDispatch!).toString()),
+                  "Bags": parseToInt(
+                      (prioritySummary.totalBagsDispatch!).toString()),
+                  "Bulk": parseToInt(
+                      (prioritySummary.totalBulkDispatch!).toString()),
                 }),
             CustomDailyQuotaItem(
                 landingtitle: 'Remaining',

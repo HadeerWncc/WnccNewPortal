@@ -59,7 +59,7 @@ class CustomChckButtons extends StatelessWidget {
                   child: Text(
                     buttons[index],
                     style: TextStyle(
-                      fontSize: 17,
+                      fontSize: 13,
                       fontWeight: FontWeight.bold,
                       color: index == activeTab
                           ? Colors.black

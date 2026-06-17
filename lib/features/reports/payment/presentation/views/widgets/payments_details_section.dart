@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
+import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/details_payment_table.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/loading/details_loading.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_details_header.dart';

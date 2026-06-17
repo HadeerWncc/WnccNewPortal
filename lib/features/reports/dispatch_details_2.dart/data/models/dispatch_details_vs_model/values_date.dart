@@ -10,8 +10,8 @@ class ValuesDate extends Equatable {
   factory ValuesDate.fromJson(Map<String, dynamic> json) => ValuesDate(
         date: (json['date'] as num?)?.toInt(),
         dispatches: (json['dispatches'] as List<dynamic>?)
-          ?.map((e) => DispatchValue.fromJson(e as Map<String, dynamic>))
-          .toList(),
+            ?.map((e) => DispatchValue.fromJson(e as Map<String, dynamic>))
+            .toList(),
       );
 
   Map<String, dynamic> toJson() => {

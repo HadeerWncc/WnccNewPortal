@@ -6,7 +6,7 @@ import 'package:wncc_portal/core/widgets/loading_widgets/fields/loading_input.da
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
 import 'package:wncc_portal/features/reports/payment/domain/entities/customer_deposit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
+import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/customer_payment_header.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/customer_payment_table.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/loading/payment_loaing.dart';

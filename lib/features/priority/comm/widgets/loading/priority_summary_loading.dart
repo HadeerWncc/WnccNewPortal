@@ -12,9 +12,9 @@ class PrioritySummaryLoading extends StatelessWidget {
       baseColor: Colors.grey.shade300,
       highlightColor: Colors.grey.shade100,
       child: const Center(
-        child: Wrap(
+        child: Row(
           spacing: 10,
-          runSpacing: 10,
+          // runSpacing: 10,
           children: [
             CustomDailyQuotaItem(
                 landingtitle: 'Pending',
@@ -34,42 +34,42 @@ class PrioritySummaryLoading extends StatelessWidget {
                   "Bags": 0,
                   "Bulk": 0,
                 }),
-            CustomDailyQuotaItem(
-                landingtitle: 'Extra',
-                widthRatio: .45,
-                icon: Symbols.priority,
-                data: {
-                  "Total": 0,
-                  "Bags": 0,
-                  "Bulk": 0,
-                }),
-            CustomDailyQuotaItem(
-                landingtitle: 'Priority',
-                widthRatio: .45,
-                icon: Symbols.hourglass_empty,
-                data: {
-                  "Total": 0,
-                  "Bags": 0,
-                  "Bulk": 0,
-                }),
-            CustomDailyQuotaItem(
-                landingtitle: 'Dispatched',
-                widthRatio: .45,
-                icon: Symbols.local_shipping,
-                data: {
-                  "Total": 0,
-                  "Bags": 0,
-                  "Bulk": 0,
-                }),
-            CustomDailyQuotaItem(
-                landingtitle: 'Remaining',
-                widthRatio: .45,
-                icon: Symbols.local_shipping,
-                data: {
-                  "Total": 0,
-                  "Bags": 0,
-                  "Bulk": 0,
-                }),
+            // CustomDailyQuotaItem(
+            //     landingtitle: 'Extra',
+            //     widthRatio: .45,
+            //     icon: Symbols.priority,
+            //     data: {
+            //       "Total": 0,
+            //       "Bags": 0,
+            //       "Bulk": 0,
+            //     }),
+            // CustomDailyQuotaItem(
+            //     landingtitle: 'Priority',
+            //     widthRatio: .45,
+            //     icon: Symbols.hourglass_empty,
+            //     data: {
+            //       "Total": 0,
+            //       "Bags": 0,
+            //       "Bulk": 0,
+            //     }),
+            // CustomDailyQuotaItem(
+            //     landingtitle: 'Dispatched',
+            //     widthRatio: .45,
+            //     icon: Symbols.local_shipping,
+            //     data: {
+            //       "Total": 0,
+            //       "Bags": 0,
+            //       "Bulk": 0,
+            //     }),
+            // CustomDailyQuotaItem(
+            //     landingtitle: 'Remaining',
+            //     widthRatio: .45,
+            //     icon: Symbols.local_shipping,
+            //     data: {
+            //       "Total": 0,
+            //       "Bags": 0,
+            //       "Bulk": 0,
+            //     }),
           ],
         ),
       ),

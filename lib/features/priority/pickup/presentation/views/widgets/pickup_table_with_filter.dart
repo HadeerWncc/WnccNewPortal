@@ -9,6 +9,7 @@ import 'package:wncc_portal/features/priority/comm/widgets/loading/priority_load
 import 'package:wncc_portal/features/priority/comm/widgets/loading/priority_summary_loading.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/priority_summary.dart';
 import 'package:wncc_portal/features/priority/pickup/data/models/pickup_model/pickup_model.dart';
+import 'package:wncc_portal/features/priority/pickup/data/models/pickup_model/totals_pickup.dart';
 import 'package:wncc_portal/features/priority/pickup/domin/entities/make_pickupility_entity.dart';
 import 'package:wncc_portal/features/priority/pickup/domin/entities/pickuplity_item_entity.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickup_summary_cubit/get_pickup_summary_cubit.dart';
@@ -68,21 +69,64 @@ class _PickupTableWithFilterState extends State<PickupTableWithFilter> {
                     customerName: item.customerName,
                     salesId: item.salesId,
                     salesName: item.salesName,
-                    totalQuantity: filteredProducts.fold(
+                    totalQuantity: TotalsPickup(
+                      bags:  filteredProducts.fold(
                       0,
                       (sum, item) => (sum ?? 0) + (item.quantity ?? 0),
                     ),
-                    totalPriorited: filteredProducts.fold(
+                    bulk:  filteredProducts.fold(
+                      0,
+                      (sum, item) => (sum ?? 0) + (item.quantity ?? 0),
+                    ),
+                    total:  filteredProducts.fold(
+                      0,
+                      (sum, item) => (sum ?? 0) + (item.quantity ?? 0),
+                    ),
+                    )
+                    ,
+                    totalPriorited: TotalsPickup(
+                      bags:  filteredProducts.fold(
                       0,
                       (sum, item) => (sum ?? 0) + (item.prioritedQnty ?? 0),
                     ),
-                    totalDispatched: filteredProducts.fold(
+                    bulk:  filteredProducts.fold(
+                      0,
+                      (sum, item) => (sum ?? 0) + (item.prioritedQnty ?? 0),
+                    ),
+                    total:  filteredProducts.fold(
+                      0,
+                      (sum, item) => (sum ?? 0) + (item.prioritedQnty ?? 0),
+                    ),
+                    ),
+                    totalDispatched: TotalsPickup(
+                      bags:  filteredProducts.fold(
                       0,
                       (sum, item) => (sum ?? 0) + (item.dispatchedQnty ?? 0),
                     ),
-                    totalRemaining: filteredProducts.fold(
+                    bulk:  filteredProducts.fold(
+                      0,
+                      (sum, item) => (sum ?? 0) + (item.dispatchedQnty ?? 0),
+                    ),
+                    total:  filteredProducts.fold(
+                      0,
+                      (sum, item) => (sum ?? 0) + (item.dispatchedQnty ?? 0),
+                    ),
+                    ),
+                    
+                    totalRemaining:
+                    TotalsPickup(
+                      bags:  filteredProducts.fold(
                       0,
                       (sum, item) => (sum ?? 0) + (item.remainingQnty ?? 0),
+                    ),
+                    bulk:  filteredProducts.fold(
+                      0,
+                      (sum, item) => (sum ?? 0) + (item.remainingQnty ?? 0),
+                    ),
+                    total:  filteredProducts.fold(
+                      0,
+                      (sum, item) => (sum ?? 0) + (item.remainingQnty ?? 0),
+                    ),
                     ),
                     status: getStatus(filteredProducts),
                     pickupilityProducts: filteredProducts,

@@ -53,7 +53,7 @@ class QuotaCardContant extends StatelessWidget {
         LinearPercentIndicator(
           padding: const EdgeInsets.symmetric(horizontal: 0),
           lineHeight: 3,
-          percent: priority / quota,
+          percent: (priority / quota) > 1 ? 1 : (priority / quota),
           barRadius: const Radius.circular(20),
           backgroundColor: homeColor,
           progressColor: const Color.fromARGB(255, 18, 177, 87),

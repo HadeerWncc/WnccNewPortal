@@ -37,14 +37,14 @@ class FilterPickupDataInputs extends StatelessWidget {
             CustomPlaceholderInput(
               controller: payerController,
               labelText: "Payer",
-              width: MediaQuery.of(context).size.width * .23,
+              width: MediaQuery.of(context).size.width * .35,
               onChanged: (value) {
                 onFilter(value, selectedSales, selectedProduct, selectedStatus);
               },
             ),
             const SizedBox(width: 5),
             SizedBox(
-              width: MediaQuery.of(context).size.width * .27,
+              width: MediaQuery.of(context).size.width * .4,
               child: CustomDropDownInput(
                 selectedValue: selectedSales,
                 items: salesNames,

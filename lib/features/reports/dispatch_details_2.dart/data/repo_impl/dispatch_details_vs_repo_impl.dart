@@ -10,27 +10,15 @@ class DispatchDetailsVsRepoImpl extends DispatchDetailsVsRepo {
 
   DispatchDetailsVsRepoImpl({required this.dispatchDetailsDataSource});
   @override
-  Future<Either<Failure, List<DispatchDetailsVsModel>>> getDispatchDetailsPerSales(
+  Future<Either<Failure, List<DispatchDetailsVsModel>>>
+      getDispatchDetailsPerSales(
     DateTime date,
     int zone,
   ) async {
     try {
       List<DispatchDetailsVsModel> dispatchDetails =
-          await dispatchDetailsDataSource.getDispatchDetailsPerSales(date, zone);
-      return Right(dispatchDetails);
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(msg: e.toString()));
-    }
-  }
-  
-  @override
-  Future<Either<Failure, List<DispatchDetailsVsModel>>> getDispatchDetailsPerCustomer(DateTime date, int zone) async {
-    try {
-      List<DispatchDetailsVsModel> dispatchDetails =
-          await dispatchDetailsDataSource.getDispatchDetailsPerCustomer(date, zone);
+          await dispatchDetailsDataSource.getDispatchDetailsPerSales(
+              date, zone);
       return Right(dispatchDetails);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -40,5 +28,19 @@ class DispatchDetailsVsRepoImpl extends DispatchDetailsVsRepo {
     }
   }
 
-  
+  @override
+  Future<Either<Failure, List<DispatchDetailsVsModel>>>
+      getDispatchDetailsPerCustomer(DateTime date, int zone) async {
+    try {
+      List<DispatchDetailsVsModel> dispatchDetails =
+          await dispatchDetailsDataSource.getDispatchDetailsPerCustomer(
+              date, zone);
+      return Right(dispatchDetails);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/summary_priority_cubit/summary_priority_cubit.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/views/widgets/priority_summary_header.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/views/widgets/summary_priority_tables_body.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
+import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 
 class PrioritySymmaryBody extends StatefulWidget {
   const PrioritySymmaryBody({super.key});

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/features/priority/pickup/data/models/pickup_model/totals_pickup.dart';
 
 import 'pickupility_product.dart';
 
@@ -8,10 +9,10 @@ class PickupModel extends Equatable {
   final String? customerName;
   final String? salesId;
   final String? salesName;
-  final num? totalQuantity;
-  final num? totalPriorited;
-  final num? totalDispatched;
-  final num? totalRemaining;
+  final TotalsPickup? totalQuantity;
+  final TotalsPickup? totalPriorited;
+  final TotalsPickup? totalDispatched;
+  final TotalsPickup? totalRemaining;
   final String? status;
   final List<PickupilityProduct>? pickupilityProducts;
 
@@ -35,10 +36,22 @@ class PickupModel extends Equatable {
         customerName: json['customerName'] as String?,
         salesId: json['salesId'] as String?,
         salesName: json['salesName'] as String?,
-        totalQuantity: json['totalQuantity'] as num?,
-        totalPriorited: json['totalPriorited'] as num?,
-        totalDispatched: json['totalDispatched'] as num?,
-        totalRemaining: json['totalRemaining'] as num?,
+        totalQuantity: json['totalQuantity'] == null
+            ? null
+            : TotalsPickup.fromJson(
+                json['totalQuantity'] as Map<String, dynamic>),
+        totalPriorited: json['totalPriorited'] == null
+            ? null
+            : TotalsPickup.fromJson(
+                json['totalPriorited'] as Map<String, dynamic>),
+        totalDispatched: json['totalDispatched'] == null
+            ? null
+            : TotalsPickup.fromJson(
+                json['totalDispatched'] as Map<String, dynamic>),
+        totalRemaining: json['totalRemaining'] == null
+            ? null
+            : TotalsPickup.fromJson(
+                json['totalRemaining'] as Map<String, dynamic>),
         status: json['status'] as String?,
         pickupilityProducts: (json['pickupilityProducts'] as List<dynamic>?)
             ?.map((e) => PickupilityProduct.fromJson(e as Map<String, dynamic>))

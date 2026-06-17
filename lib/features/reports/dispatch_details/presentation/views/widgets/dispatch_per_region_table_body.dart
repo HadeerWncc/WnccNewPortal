@@ -13,7 +13,7 @@ import 'package:wncc_portal/features/reports/dispatch_details/presentation/views
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_details_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/loading_widgets/loading_dispatch_table.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
+import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 
 class DispatchPerRegionTablesBody extends StatefulWidget {
   const DispatchPerRegionTablesBody({super.key});

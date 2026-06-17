@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/utils/methods/get_months_of_year.dart';
 
-Widget buildHeaderPerSalesRow() {
+Widget buildHeaderPerSalesRow(String viewType) {
   return Container(
     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
     decoration: const BoxDecoration(
@@ -30,6 +30,7 @@ Widget buildHeaderPerSalesRow() {
                   fontSize: 16,
                   color: Colors.white),
             )),
+            viewType =="Dates"?
         const Expanded(
             flex: 2,
             child: Center(
@@ -39,7 +40,18 @@ Widget buildHeaderPerSalesRow() {
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                   color: Colors.white),
-            ))),
+            )))
+            :const Expanded(
+            flex: 3,
+            child: Center(
+                child: Text(
+              'Regions',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: Colors.white),
+            )))
+            ,
         for (var month in getMonths(DateTime.now().year))
           Expanded(
               flex: 3,

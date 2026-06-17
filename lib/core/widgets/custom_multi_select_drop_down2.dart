@@ -7,11 +7,13 @@ class CustomMultiSelectDropDown2 extends StatefulWidget {
     required this.products,
     required this.selectedProducts,
     this.onChanged,
+    this.title,
   });
 
   final List<String> products;
   final List<String> selectedProducts;
   final Function(List<String>)? onChanged;
+  final String? title;
 
   @override
   State<CustomMultiSelectDropDown2> createState() =>
@@ -35,9 +37,11 @@ class _CustomMultiSelectDropDown2State
       selectedItems: widget.selectedProducts,
       dropdownBuilder: (context, selectedItems) {
         return Text(
-          widget.selectedProducts.isEmpty
-              ? "Select Materials"
-              : "${widget.selectedProducts.length} Materials selected",
+          widget.title == null
+              ? widget.selectedProducts.isEmpty
+                  ? "Select Materials"
+                  : "${widget.selectedProducts.length} Materials selected"
+              : widget.title!,
           style: const TextStyle(color: Colors.black),
         );
       },

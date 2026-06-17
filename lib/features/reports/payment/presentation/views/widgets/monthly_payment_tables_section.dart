@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
+import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/monthly_payment_table.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_monthly_header.dart';
 

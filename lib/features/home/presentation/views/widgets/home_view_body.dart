@@ -18,9 +18,11 @@ class HomeViewBody extends StatelessWidget {
   final UserModel user;
   @override
   Widget build(BuildContext context) {
-    return ((user.position == 'Sales Agent') ||
-            (user.position == 'Sales Area Manager'))
-        ? BlocBuilder<SummaryPriorityCubit, SummaryPriorityState>(
+    return 
+    // ((user.position == 'Sales Agent') ||
+    //         (user.position == 'Sales Area Manager'))
+    //     ?
+         BlocBuilder<SummaryPriorityCubit, SummaryPriorityState>(
             builder: (context, state) {
               if (state is SummaryPrioritySuccess) {
                 return Column(
@@ -125,15 +127,13 @@ class HomeViewBody extends StatelessWidget {
                                 color: homeColor,
                                 thickness: .5,
                               ),
+                              const TodayInfo(title: '' //Priotity Updated,
+                                  ),
                               const TodayInfo(
-                                title: '' //Priotity Updated,
-                              ),
-                              const TodayInfo(
-                                title: '' //Dispatch #204 completed,
-                              ),
-                              const TodayInfo(
-                                title: '' //Quota reached 75%,
-                              )
+                                  title: '' //Dispatch #204 completed,
+                                  ),
+                              const TodayInfo(title: '' //Quota reached 75%,
+                                  )
                             ],
                           ),
                         )
@@ -245,7 +245,7 @@ class HomeViewBody extends StatelessWidget {
               }
               return SizedBox();
             },
-          )
-        : const SizedBox();
+          );
+        // : const SizedBox();
   }
 }

@@ -6,7 +6,7 @@ import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/custom_placeholder_input.dart';
 import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_chck_buttons.dart';
+import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 
 class DetailsLoading extends StatelessWidget {
   const DetailsLoading({super.key});

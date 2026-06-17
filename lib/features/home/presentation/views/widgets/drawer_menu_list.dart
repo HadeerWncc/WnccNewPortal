@@ -135,14 +135,15 @@ class DrawerMenuList extends StatelessWidget {
               },
             ),
             // (userPos != "Sales Agent" && userPos != "Sales Area Manager")
-                 CustomMenuItem(
-                    title: 'Dispatch Details',
-                    active: activeTab == 'Dispatch Details',
-                    onTap: () {
-                      GoRouter.of(context).push(AppRouter.dispatchDetailsPerSalesPath);
-                    },
-                  )
-                // : const SizedBox(),
+            CustomMenuItem(
+              title: 'Dispatch Details',
+              active: activeTab == 'Dispatch Details',
+              onTap: () {
+                GoRouter.of(context)
+                    .push(AppRouter.dispatchDetailsPerSalesPath);
+              },
+            )
+            // : const SizedBox(),
           ],
         ),
       ],

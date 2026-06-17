@@ -46,8 +46,7 @@ class DispatchDetailsVsModel extends Equatable {
           : Total.fromJson(json['totalToday'] as Map<String, dynamic>),
       totalCheckedIn: json['totalCheckedIn'] == null
           ? null
-          : Value.fromJson(
-              json['totalCheckedIn'] as Map<String, dynamic>),
+          : Value.fromJson(json['totalCheckedIn'] as Map<String, dynamic>),
       totalLoading: json['totalLoading'] == null
           ? null
           : Value.fromJson(json['totalLoading'] as Map<String, dynamic>),

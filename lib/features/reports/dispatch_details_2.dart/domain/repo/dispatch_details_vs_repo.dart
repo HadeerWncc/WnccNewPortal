@@ -3,11 +3,13 @@ import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_vs_model/dispatch_details_vs_model.dart';
 
 abstract class DispatchDetailsVsRepo {
-  Future<Either<Failure, List<DispatchDetailsVsModel>>> getDispatchDetailsPerSales(
+  Future<Either<Failure, List<DispatchDetailsVsModel>>>
+      getDispatchDetailsPerSales(
     DateTime date,
     int zone,
   );
-  Future<Either<Failure, List<DispatchDetailsVsModel>>> getDispatchDetailsPerCustomer(
+  Future<Either<Failure, List<DispatchDetailsVsModel>>>
+      getDispatchDetailsPerCustomer(
     DateTime date,
     int zone,
   );
