@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/core_models/value.dart';
 
 import 'dispatch.dart';
-import 'value.dart';
 
 class Total extends Equatable {
   final Value? value;

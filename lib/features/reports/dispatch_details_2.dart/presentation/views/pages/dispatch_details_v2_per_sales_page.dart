@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/errors/handel_error.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
@@ -11,22 +12,20 @@ import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit
 
 class DispatchDetailsV2PerSalesPage extends StatelessWidget {
   const DispatchDetailsV2PerSalesPage({super.key});
-
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DispatchDetailsV2PerSalesCubit>(context)
-        .getDispatchDetailsV2PerSales(DateTime.now(), 0);
-
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => handelError(state, context),
       builder: (context, state) {
         if (state is UserSuccess) {
+          BlocProvider.of<DispatchDetailsV2PerSalesCubit>(context)
+              .getDispatchDetailsV2PerSales(DateTime.now(), 0, state.user);
           return SafeArea(
             child: Scaffold(
               appBar: AppBar(
                 actionsPadding: const EdgeInsets.all(5),
                 title: const Text(
-                  'Dispatch Details',
+                  'Per Sales',
                   style: TextStyle(fontSize: 20),
                 ),
                 titleSpacing: 0.0,
@@ -44,12 +43,14 @@ class DispatchDetailsV2PerSalesPage extends StatelessWidget {
                   user: state.user,
                 ),
               ),
-              body: const DispatchDetailsV2PerSalesBody(),
+              body: DispatchDetailsV2PerSalesBody(
+                user: state.user,
+              ),
             ),
           );
         }
         return const LoadingPage(
-          title: "Dispatch Details",
+          title: "Per Sales",
         );
       },
     );

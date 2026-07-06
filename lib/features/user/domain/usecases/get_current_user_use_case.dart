@@ -6,7 +6,6 @@ import 'package:wncc_portal/features/user/domain/repositories/user_repo.dart';
 
 class GetCurrentUserUseCase extends UseCase<UserModel, void> {
   final UserRepo userRepo;
-
   GetCurrentUserUseCase({required this.userRepo});
   @override
   Future<Either<Failure, UserModel>> call([void param]) async {

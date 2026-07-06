@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class UserModel extends Equatable {
+  final List<dynamic>? subordinates;
   final List<dynamic>? permissions;
   final String? id;
   final dynamic profileId;
@@ -33,6 +34,7 @@ class UserModel extends Equatable {
   final List<dynamic>? roles;
 
   const UserModel({
+    this.subordinates,
     this.permissions,
     this.id,
     this.profileId,
@@ -66,6 +68,7 @@ class UserModel extends Equatable {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        subordinates: json['subordinates'] as List<dynamic>?,
         permissions: json['permissions'] as List<dynamic>?,
         id: json['id'] as String?,
         profileId: json['profileId'] as dynamic,
@@ -101,6 +104,7 @@ class UserModel extends Equatable {
       );
 
   Map<String, dynamic> toJson() => {
+        'subordinates': subordinates,
         'permissions': permissions,
         'id': id,
         'profileId': profileId,
@@ -136,6 +140,7 @@ class UserModel extends Equatable {
   @override
   List<Object?> get props {
     return [
+      subordinates,
       permissions,
       id,
       profileId,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
+import 'package:wncc_portal/core/widgets/loading_widgets/tables/loading_table.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_sales_cubit/dispatch_details_v2_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/dispatch_details_per_sales_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/per_sales_header_tabs.dart';
@@ -7,7 +9,8 @@ import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentatio
 import 'dispatch_details_per_sales_success.dart';
 
 class DispatchDetailsV2PerSalesBody extends StatefulWidget {
-  const DispatchDetailsV2PerSalesBody({super.key});
+  const DispatchDetailsV2PerSalesBody({super.key, required this.user});
+  final UserModel user;
   @override
   State<DispatchDetailsV2PerSalesBody> createState() =>
       _DispatchDetailsV2PerSalesBodyState();
@@ -16,13 +19,9 @@ class DispatchDetailsV2PerSalesBody extends StatefulWidget {
 class _DispatchDetailsV2PerSalesBodyState
     extends State<DispatchDetailsV2PerSalesBody> {
   String viewActiveTab = "";
-  List<String> incoterm = [];
-  List<String> type = [];
   @override
   void initState() {
     viewActiveTab = "Dates";
-    incoterm = [];
-    type = [];
     super.initState();
   }
 
@@ -33,20 +32,11 @@ class _DispatchDetailsV2PerSalesBodyState
         const PerSalesHeaderTabs(),
         const SizedBox(height: 5),
         DispatchDetailsPerSalesHeader(
+          user: widget.user,
           date: DateTime.now(),
           viewActiveTab: viewActiveTab,
-          incotermTabs: incoterm,
-          typeTabs: type,
           onViewChange: (value) {
             viewActiveTab = value;
-            setState(() {});
-          },
-          onIncotermChange: (values) {
-            incoterm = values;
-            setState(() {});
-          },
-          onTypeChange: (values) {
-            type = values;
             setState(() {});
           },
         ),
@@ -59,10 +49,8 @@ class _DispatchDetailsV2PerSalesBodyState
                     child: DispatchDetailsPerSalesSuccessV2(
                         dispatchList: state.dispatchDetails,
                         viewType: viewActiveTab,
-                        incoterm: incoterm,
-                        type: type,
                         year: DateTime.parse(state
-                                .dispatchDetails[0].months![0].date
+                                .dispatchDetails[0].months[0].date
                                 .toString())
                             .year),
                   )
@@ -74,7 +62,7 @@ class _DispatchDetailsV2PerSalesBodyState
               style: const TextStyle(color: Colors.red),
             ));
           }
-          return const Text('Loading...');
+          return const LoadingTable();
         }),
       ],
     );

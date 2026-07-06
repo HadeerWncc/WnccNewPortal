@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:wncc_portal/core/utils/methods/format_num.dart';
 import 'package:wncc_portal/core/utils/methods/get_months_of_year.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_vs_model/dispatch_details_vs_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_vs_model/dispatches_region.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_vs_model/value.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_vs_model/values_date.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/domain/entities/dispatch_details_entity.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/domain/entities/dispatches_region_entity.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/domain/entities/value_data_entity.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/build_header_per_sales.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/table_data_item.dart';
 
 class DispatchDetailsPerSalesSuccessV2 extends StatefulWidget {
-  const DispatchDetailsPerSalesSuccessV2(
-      {super.key,
-      required this.dispatchList,
-      required this.year,
-      required this.viewType,
-      required this.incoterm,
-      required this.type});
-  final List<DispatchDetailsVsModel> dispatchList;
+  const DispatchDetailsPerSalesSuccessV2({
+    super.key,
+    required this.dispatchList,
+    required this.year,
+    required this.viewType,
+  });
+  final List<DispatchDetailsEntity> dispatchList;
   final int year;
   final String viewType;
-  final List<String> incoterm;
-  final List<String> type;
   @override
   State<DispatchDetailsPerSalesSuccessV2> createState() =>
       _DispatchDetailsPerSalesSuccessV2State();
@@ -32,11 +28,16 @@ class _DispatchDetailsPerSalesSuccessV2State
 
   @override
   Widget build(BuildContext context) {
+    final List<DispatchDetailsEntity> disList = List.from(widget.dispatchList);
+
+    final DispatchDetailsEntity totalDis = disList.last;
+
+    disList.removeLast();
     return SingleChildScrollView(
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: SizedBox(
-          width: 1400, // Set a fixed width for the table
+          width: 1500, // Set a fixed width for the table
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -45,11 +46,8 @@ class _DispatchDetailsPerSalesSuccessV2State
                 height: .5,
                 color: Color.fromARGB(255, 226, 226, 226),
               ),
-              ...widget.dispatchList.map((disPerSales) {
+              ...disList.map((disPerSales) {
                 final sales = disPerSales.name;
-                // final orders = entry.value;
-                // final payerTotal = entry.value
-                //     .fold<num>(0, (sum, order) => sum + (order.));
                 final isExpanded = _expandedSales[sales] ?? false;
 
                 return Column(
@@ -58,7 +56,7 @@ class _DispatchDetailsPerSalesSuccessV2State
                     InkWell(
                       onTap: () {
                         setState(() {
-                          _expandedSales[sales!] = !isExpanded;
+                          _expandedSales[sales] = !isExpanded;
                         });
                       },
                       child: Container(
@@ -89,60 +87,48 @@ class _DispatchDetailsPerSalesSuccessV2State
                             for (var month in getMonths(DateTime.now().year))
                               Expanded(
                                 flex: 3,
-                                child: Center(
-                                  child: Text(geyDisValue(
-                                    disPerSales.months!
-                                        .where((m) => m.name == month)
-                                        .firstOrNull!
-                                        .value!
-                                        .value!,
-                                    widget.incoterm,
-                                    widget.type,
-                                  )),
+                                child: TableDataItem(
+                                  value: disPerSales.months
+                                      .where((m) => m.name == month)
+                                      .firstOrNull!
+                                      .totalEntity
+                                      .value,
+                                  month: month,
+                                  regions: disPerSales.months
+                                      .where((m) => m.name == month)
+                                      .firstOrNull!
+                                      .totalEntity
+                                      .dispatches!,
                                 ),
                               ),
                             Expanded(
                               flex: 3,
-                              child: Center(
-                                child: Text(
-                                  formatNum(
-                                    (disPerSales.total!.value!.total ?? 0)
-                                        .round(),
-                                  ),
-                                ),
+                              child: TableDataItem(
+                                value: disPerSales.total.value,
+                                regions: disPerSales.total.dispatches!,
+                                month: "Total",
+                              ),
+                            ),
+                            Expanded(
+                              flex: 3,
+                              child: TableDataItem(
+                                value: disPerSales.totalToday.value,
+                                regions: disPerSales.totalToday.dispatches!,
+                                month: "Today",
                               ),
                             ),
                             Expanded(
                               flex: 3,
                               child: Center(
                                 child: Text(
-                                  formatNum(
-                                    (disPerSales.totalToday!.value!.total ?? 0)
-                                        .round(),
-                                  ),
+                                  disPerSales.totalCheckedIn,
                                 ),
                               ),
                             ),
                             Expanded(
                               flex: 3,
                               child: Center(
-                                child: Text(
-                                  formatNum(
-                                    (disPerSales.totalCheckedIn!.total ?? 0)
-                                        .round(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 3,
-                              child: Center(
-                                child: Text(
-                                  formatNum(
-                                    (disPerSales.totalLoading!.total ?? 0)
-                                        .round(),
-                                  ),
-                                ),
+                                child: Text(disPerSales.totalLoading),
                               ),
                             ),
                           ],
@@ -151,19 +137,15 @@ class _DispatchDetailsPerSalesSuccessV2State
                     ),
                     if (isExpanded)
                       ...(widget.viewType == "Dates"
-                          ? disPerSales.values!.map((entry) {
+                          ? disPerSales.values.map((entry) {
                               return _buildDateRow(
                                 entry,
                                 widget.year,
-                                widget.incoterm,
-                                widget.type,
                               );
                             })
                           : disPerSales.dispatches!.map((entry) {
                               return _buildRegionRow(
                                 entry,
-                                widget.incoterm,
-                                widget.type,
                               );
                             })),
                   ],
@@ -180,14 +162,13 @@ class _DispatchDetailsPerSalesSuccessV2State
                     children: [
                       const Expanded(
                         flex: 1,
-                        child: SizedBox(),
+                        child: Icon(Symbols.keyboard_arrow_right),
                       ),
-                      const Expanded(
+                      Expanded(
                           flex: 4,
                           child: Text(
-                            "Total Dispatch",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 14),
+                            totalDis.name.toString(),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           )),
                       widget.viewType == "Dates"
                           ? const Expanded(
@@ -197,96 +178,47 @@ class _DispatchDetailsPerSalesSuccessV2State
                       for (var month in getMonths(DateTime.now().year))
                         Expanded(
                           flex: 3,
-                          child: Center(
-                            child: Text(
-                              formatNum(
-                                widget.dispatchList
-                                    .fold<double>(
-                                      0,
-                                      (sum, item) =>
-                                          sum +
-                                          (item.months
-                                                  ?.where(
-                                                      (m) => m.name == month)
-                                                  .firstOrNull
-                                                  ?.value
-                                                  ?.value
-                                                  ?.total ??
-                                              0),
-                                    )
-                                    .round(),
-                              ),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
+                          child: TableDataItem(
+                            value: totalDis.months!
+                                .where((m) => m.name == month)
+                                .firstOrNull!
+                                .totalEntity
+                                .value,
+                            month: month,
+                            regions: totalDis.months
+                                .where((m) => m.name == month)
+                                .firstOrNull!
+                                .totalEntity
+                                .dispatches!,
                           ),
                         ),
                       Expanded(
                         flex: 3,
+                        child: TableDataItem(
+                          value: totalDis.total.value,
+                          regions: totalDis.total.dispatches!,
+                          month: "Total",
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: TableDataItem(
+                          value: totalDis.totalToday.value,
+                          regions: totalDis.totalToday.dispatches!,
+                          month: "Today",
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
                         child: Center(
-                          child: Text(
-                            formatNum(
-                              widget.dispatchList
-                                  .fold<double>(
-                                    0,
-                                    (sum, item) =>
-                                        sum + (item.total!.value!.total ?? 0),
-                                  )
-                                  .round(),
-                            ),
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                          child: Text(totalDis.totalCheckedIn),
                         ),
                       ),
                       Expanded(
                         flex: 3,
                         child: Center(
                           child: Text(
-                            formatNum(
-                              widget.dispatchList
-                                  .fold<double>(
-                                    0,
-                                    (sum, item) =>
-                                        sum +
-                                        (item.totalToday!.value!.total ?? 0),
-                                  )
-                                  .round(),
-                            ),
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Center(
-                          child: Text(
-                            formatNum(
-                              widget.dispatchList
-                                  .fold<double>(
-                                    0,
-                                    (sum, item) =>
-                                        sum + (item.totalCheckedIn!.total ?? 0),
-                                  )
-                                  .round(),
-                            ),
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Center(
-                          child: Text(
-                            formatNum(
-                              widget.dispatchList
-                                  .fold<double>(
-                                    0,
-                                    (sum, item) =>
-                                        sum + (item.totalLoading!.total ?? 0),
-                                  )
-                                  .round(),
-                            ),
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            totalDis.totalLoading,
                           ),
                         ),
                       ),
@@ -294,6 +226,7 @@ class _DispatchDetailsPerSalesSuccessV2State
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -302,10 +235,8 @@ class _DispatchDetailsPerSalesSuccessV2State
   }
 
   Widget _buildDateRow(
-    ValuesDate item,
+    ValueDataEntity item,
     int year,
-    List<String> incoterm,
-    List<String> type,
   ) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -323,18 +254,18 @@ class _DispatchDetailsPerSalesSuccessV2State
           for (var month in getMonths(DateTime.now().year))
             Expanded(
               flex: 3,
-              child: Center(
-                child: Text(
-                  geyDisValue(
-                    item.dispatches!
-                        .where((m) => m.name == month)
-                        .firstOrNull!
-                        .value!
-                        .value!,
-                    incoterm,
-                    type,
-                  ),
-                ),
+              child: TableDataItem(
+                value: item.dispatches
+                    .where((m) => m.name == month)
+                    .firstOrNull!
+                    .value
+                    .value,
+                regions: item.dispatches
+                    .where((m) => m.name == month)
+                    .firstOrNull!
+                    .value
+                    .dispatches!,
+                month: '${item.date}|$month',
               ),
             ),
           const Expanded(flex: 3, child: Center(child: Text(""))),
@@ -350,9 +281,7 @@ class _DispatchDetailsPerSalesSuccessV2State
   }
 
   Widget _buildRegionRow(
-    DispatchesRegion item,
-    List<String> incoterm,
-    List<String> type,
+    DispatchesRegionEntity item,
   ) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
@@ -366,22 +295,22 @@ class _DispatchDetailsPerSalesSuccessV2State
             child: SizedBox(),
           ),
           const Expanded(flex: 4, child: Center(child: Text(""))),
-          Expanded(flex: 3, child: Center(child: Text('${item.name}'))),
+          Expanded(flex: 3, child: Center(child: Text(item.name))),
           for (var month in getMonths(DateTime.now().year))
             Expanded(
               flex: 3,
-              child: Center(
-                child: Text(
-                  geyDisValue(
-                    item.dispatches!
-                        .where((m) => m.name == month)
-                        .firstOrNull!
-                        .value!
-                        .value!,
-                    incoterm,
-                    type,
-                  ),
-                ),
+              child: TableDataItem(
+                value: item.dispatches
+                    .where((m) => m.name == month)
+                    .firstOrNull!
+                    .value
+                    .value,
+                regions: item.dispatches
+                    .where((m) => m.name == month)
+                    .firstOrNull!
+                    .value
+                    .dispatches!,
+                month: month,
               ),
             ),
           const Expanded(flex: 3, child: Center(child: Text(""))),
@@ -394,47 +323,5 @@ class _DispatchDetailsPerSalesSuccessV2State
         ],
       ),
     );
-  }
-
-  String geyDisValue(Value value, List<String> incoterm, List<String> type) {
-    if ((incoterm.isEmpty || incoterm.length > 1) &&
-        (type.isEmpty || type.length > 1)) {
-      return formatNum((value.total ?? 0).round());
-    } else if ((incoterm.isEmpty || incoterm.length > 1)) {
-      // not empty and length = 1
-      if (type[0] == "Bags") {
-        return formatNum(((value.pickupQuantity!.bags ?? 0) +
-                (value.deliveryQuantity!.bags ?? 0))
-            .round());
-      } else {
-        return formatNum(((value.pickupQuantity!.bulk ?? 0) +
-                (value.deliveryQuantity!.bulk ?? 0))
-            .round());
-      }
-    } else if ((type.isEmpty || type.length > 1)) {
-      if (incoterm[0] == "Delivery") {
-        return formatNum((value.deliveryQuantity!.total ?? 0).round());
-      } else {
-        return formatNum((value.pickupQuantity!.total ?? 0).round());
-      }
-    } else {
-      if (incoterm[0] == "Delivery") {
-        if (type[0] == "Bags") {
-          return formatNum((value.deliveryQuantity!.bags ?? 0).round());
-        } else {
-          return formatNum((value.deliveryQuantity!.bulk ?? 0).round());
-        }
-      } else {
-        if (type[0] == "Bags") {
-          return formatNum((value.pickupQuantity!.bags ?? 0).round());
-        } else {
-          return formatNum((value.pickupQuantity!.bulk ?? 0).round());
-        }
-      }
-    }
-
-    // if(incoterm.length == 1){
-    //   if(type == )
-    // }
   }
 }

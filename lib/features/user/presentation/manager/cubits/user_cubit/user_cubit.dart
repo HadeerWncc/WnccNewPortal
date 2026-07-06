@@ -10,6 +10,7 @@ class UserCubit extends Cubit<UserState> {
   UserCubit(this.getCurrentUserUseCase, this.baseRepos) : super(UserInitial());
   final GetCurrentUserUseCase getCurrentUserUseCase;
   final BaseRepos baseRepos;
+
   Future<void> getCurrentUser() async {
     emit(UserLoading());
     var result = await getCurrentUserUseCase.call();
@@ -21,6 +22,7 @@ class UserCubit extends Cubit<UserState> {
         List<String> states = await baseRepos.getStates();
         String stateId = await baseRepos.getStatesId(user.government!);
         List<String> cities = await baseRepos.getCities(stateId);
+
         emit(
           UserSuccess(
             user: user,

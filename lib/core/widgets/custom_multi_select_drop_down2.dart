@@ -37,11 +37,11 @@ class _CustomMultiSelectDropDown2State
       selectedItems: widget.selectedProducts,
       dropdownBuilder: (context, selectedItems) {
         return Text(
-          widget.title == null
-              ? widget.selectedProducts.isEmpty
-                  ? "Select Materials"
-                  : "${widget.selectedProducts.length} Materials selected"
-              : widget.title!,
+          widget.selectedProducts.isEmpty
+              ? widget.title ?? 'Materials'
+              : widget.selectedProducts.length == 1
+                  ? widget.selectedProducts[0]
+                  : "${widget.selectedProducts.length} Items selected",
           style: const TextStyle(color: Colors.black),
         );
       },

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_quantity.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/relation_value.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/dispatch_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/column_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/dispatch_row.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/dispatch_details_per_region_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/relation_value.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/helper/get_dis_value.dart';
 
 Map<String, List<RelationValue>> groupRegionsByArea(
-  List<DispatchDetailsModel> months,
+  List<DispatchDetailsPerRegionModel> months,
 ) {
   final Map<String, List<RelationValue>> result = {};
 
@@ -33,217 +31,217 @@ Map<String, List<RelationValue>> groupRegionsByArea(
   return result;
 }
 
-List<DispatchColumn> buildColumns(
-  Map<String, List<DispatchRegion>> grouped,
-) {
-  final List<DispatchColumn> columns = [];
+// List<DispatchColumn> buildColumns(
+//   Map<String, List<DispatchRegion>> grouped,
+// ) {
+//   final List<DispatchColumn> columns = [];
 
-  for (final entry in grouped.entries) {
-    final area = entry.key;
-    final regions = entry.value;
+//   for (final entry in grouped.entries) {
+//     final area = entry.key;
+//     final regions = entry.value;
 
-    // ① region columns
-    for (final r in regions) {
-      columns.add(
-        DispatchColumn(
-          id: r.regionId ?? r.regionName ?? '',
-          title: r.regionName ?? '',
-          area: area,
-          type: ColumnType.region,
-          region: r,
-        ),
-      );
-    }
+//     // ① region columns
+//     for (final r in regions) {
+//       columns.add(
+//         DispatchColumn(
+//           id: r.regionId ?? r.regionName ?? '',
+//           title: r.regionName ?? '',
+//           area: area,
+//           type: ColumnType.region,
+//           region: r,
+//         ),
+//       );
+//     }
 
-    // ② area total column
-    columns.add(
-      DispatchColumn(
-        id: '${area}_total',
-        title: '$area Total',
-        area: area,
-        type: ColumnType.areaTotal,
-      ),
-    );
-  }
+//     // ② area total column
+//     columns.add(
+//       DispatchColumn(
+//         id: '${area}_total',
+//         title: '$area Total',
+//         area: area,
+//         type: ColumnType.areaTotal,
+//       ),
+//     );
+//   }
 
-  return columns;
-}
+//   return columns;
+// }
 
-num getQuantityValue(
-    DispatchQuantity? q, QuantityType type, QuantityMatrial materialType) {
-  if (q == null) return 0;
+// num getQuantityValue(
+//     DispatchDetailsQuantity? q, QuantityType type, QuantityMatrial materialType) {
+//   if (q == null) return 0;
 
-  switch (type) {
-    case QuantityType.delivery:
-      switch (materialType) {
-        case QuantityMatrial.bags:
-          return q.deliveryQuantity?.bags ?? 0;
-        case QuantityMatrial.bulk:
-          return q.deliveryQuantity?.bulk ?? 0;
-        case QuantityMatrial.total:
-          return q.deliveryQuantity?.total ?? 0;
-      }
-    case QuantityType.pickup:
-      switch (materialType) {
-        case QuantityMatrial.bags:
-          return q.pickupQuantity?.bags ?? 0;
-        case QuantityMatrial.bulk:
-          return q.pickupQuantity?.bulk ?? 0;
-        case QuantityMatrial.total:
-          return q.pickupQuantity?.total ?? 0;
-      }
-    case QuantityType.total:
-      switch (materialType) {
-        case QuantityMatrial.bags:
-          return ((q.pickupQuantity?.bags ?? 0) +
-              (q.deliveryQuantity?.bags ?? 0));
-        case QuantityMatrial.bulk:
-          return ((q.pickupQuantity?.bulk ?? 0) +
-              (q.deliveryQuantity?.bulk ?? 0));
-        case QuantityMatrial.total:
-          return q.total ?? 0;
-      }
-  }
-}
+//   switch (type) {
+//     case QuantityType.delivery:
+//       switch (materialType) {
+//         case QuantityMatrial.bags:
+//           return q.deliveryQuantity?.bags ?? 0;
+//         case QuantityMatrial.bulk:
+//           return q.deliveryQuantity?.bulk ?? 0;
+//         case QuantityMatrial.total:
+//           return q.deliveryQuantity?.total ?? 0;
+//       }
+//     case QuantityType.pickup:
+//       switch (materialType) {
+//         case QuantityMatrial.bags:
+//           return q.pickupQuantity?.bags ?? 0;
+//         case QuantityMatrial.bulk:
+//           return q.pickupQuantity?.bulk ?? 0;
+//         case QuantityMatrial.total:
+//           return q.pickupQuantity?.total ?? 0;
+//       }
+//     case QuantityType.total:
+//       switch (materialType) {
+//         case QuantityMatrial.bags:
+//           return ((q.pickupQuantity?.bags ?? 0) +
+//               (q.deliveryQuantity?.bags ?? 0));
+//         case QuantityMatrial.bulk:
+//           return ((q.pickupQuantity?.bulk ?? 0) +
+//               (q.deliveryQuantity?.bulk ?? 0));
+//         case QuantityMatrial.total:
+//           return q.total ?? 0;
+//       }
+//   }
+// }
 
-List<DispatchRow> buildRowsFromMonths({
-  required List<DispatchDetailsModel> months,
-  required List<DispatchColumn> columns,
-  required QuantityType quantityType,
-  required QuantityMatrial quantityMatrial,
-}) {
-  final rows = <DispatchRow>[];
+// List<DispatchRow> buildRowsFromMonths({
+//   required List<DispatchDetailsPerRegionModel> months,
+//   required List<DispatchColumn> columns,
+//   required List<String> incotermList,
+//   required List<String> typeList,
+// }) {
+//   final rows = <DispatchRow>[];
 
-  final now = DateTime.now();
+//   final now = DateTime.now();
 
-  for (final month in months) {
-    final isCurrentMonth =
-        DateTime.parse(month.monthDate!).month == now.month &&
-            now.year == now.year;
+//   for (final month in months) {
+//     final isCurrentMonth =
+//         DateTime.parse(month.monthDate!).month == now.month &&
+//             now.year == now.year;
 
-    final days = month.monthDays ?? [];
+//     final days = month.monthDays ?? [];
 
-    final iterableDays = isCurrentMonth ? days : [days.last];
+//     final iterableDays = isCurrentMonth ? days : [days.last];
 
-    for (final day in iterableDays) {
-      final values = <String, num>{};
+//     for (final day in iterableDays) {
+//       final values = <String, num>{};
 
-      for (final column in columns) {
-        num value = 0;
+//       for (final column in columns) {
+//         num value = 0;
 
-        if (column.type == ColumnType.region) {
-          // final region = day.regions?.firstWhere(
-          //   (r) => r.regionId == column.region?.regionId,
-          //   orElse: () => column.region!,
-          // );
+//         if (column.type == ColumnType.region) {
+//           // final region = day.regions?.firstWhere(
+//           //   (r) => r.regionId == column.region?.regionId,
+//           //   orElse: () => column.region!,
+//           // );
 
-          // value = getQuantityValue(region?.quantity, quantityType);
-        } else {
-          switch (column.area) {
-            case 'Greater Cairo':
-              value = getQuantityValue(
-                day.dataValues
-                    ?.firstWhere((d) => d.name == 'Greater Cairo')
-                    .quantity,
-                quantityType,
-                quantityMatrial,
-              );
-              break;
-            case 'Delta':
-              value = getQuantityValue(
-                day.dataValues?.firstWhere((d) => d.name == 'Delta').quantity,
-                quantityType,
-                quantityMatrial,
-              );
-              break;
-            case 'UEgypt':
-              value = getQuantityValue(
-                day.dataValues
-                    ?.firstWhere((d) => d.name == 'Upper Egypt')
-                    .quantity,
-                quantityType,
-                quantityMatrial,
-              );
-              break;
-            case 'Coastal':
-              value = getQuantityValue(
-                day.dataValues?.firstWhere((d) => d.name == 'Coastal').quantity,
-                quantityType,
-                quantityMatrial,
-              );
-              break;
-          }
-        }
+//           // value = getQuantityValue(region?.quantity, quantityType);
+//         } else {
+//           switch (column.area) {
+//             case 'Greater Cairo':
+//               value = getDisSortValue(
+//                 day.dataValues
+//                     !.firstWhere((d) => d.name == 'Greater Cairo')
+//                     .quantity!,
+//                 incotermList,
+//                 typeList,
+//               );
+//               break;
+//             case 'Delta':
+//               value = getDisSortValue(
+//                 day.dataValues!.firstWhere((d) => d.name == 'Delta').quantity!,
+//                 incotermList,
+//                 typeList,
+//               );
+//               break;
+//             case 'UEgypt':
+//               value = getDisSortValue(
+//                 day.dataValues
+//                     !.firstWhere((d) => d.name == 'Upper Egypt')
+//                     .quantity!,
+//                 incotermList,
+//                 typeList,
+//               );
+//               break;
+//             case 'Coastal':
+//               value = getDisSortValue(
+//                 day.dataValues!.firstWhere((d) => d.name == 'Coastal').quantity!,
+//                 incotermList,
+//                 typeList,
+//               );
+//               break;
+//           }
+//         }
 
-        values[column.id] = value;
-      }
+//         values[column.id] = value;
+//       }
 
-      rows.add(
-        DispatchRow(
-          label: isCurrentMonth
-              ? (day.date ?? '')
-              : '${DateFormat('MMM').format(DateTime.parse(month.monthDate!))} Total',
-          values: values,
-        ),
-      );
-    }
-  }
+//       rows.add(
+//         DispatchRow(
+//           label: isCurrentMonth
+//               ? (day.date ?? '')
+//               : '${DateFormat('MMM').format(DateTime.parse(month.monthDate!))} Total',
+//           values: values,
+//         ),
+//       );
+//     }
+//   }
 
-  return rows;
-}
+//   return rows;
+// }
 
-List<DataColumn> buildDataColumns(List<DispatchColumn> columns) {
-  return [
-    const DataColumn(label: Text('Date')), // أول عمود للتاريخ
+// List<DataColumn> buildDataColumns(List<DispatchColumn> columns) {
+//   return [
+//     const DataColumn(label: Text('Date')), // أول عمود للتاريخ
 
-    ...columns.map(
-      (c) => DataColumn(
-        label: Text(
-          c.title,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    ),
-  ];
-}
+//     ...columns.map(
+//       (c) => DataColumn(
+//         label: Text(
+//           c.title,
+//           textAlign: TextAlign.center,
+//         ),
+//       ),
+//     ),
+//   ];
+// }
 
-List<DataRow> buildDataRows(
-  List<DispatchRow> rows,
-  List<DispatchColumn> columns,
-) {
-  return rows.map((row) {
-    return DataRow(
-      cells: [
-        /// التاريخ
-        DataCell(Text(row.label)),
+// List<DataRow> buildDataRows(
+//   List<DispatchRow> rows,
+//   List<DispatchColumn> columns,
+// ) {
+//   return rows.map((row) {
+//     return DataRow(
+//       cells: [
+//         /// التاريخ
+//         DataCell(Text(row.label)),
 
-        /// باقي الأعمدة
-        ...columns.map(
-          (c) => DataCell(
-            Text(
-              row.values[c.id]?.toStringAsFixed(0) ?? '0',
-            ),
-          ),
-        ),
-      ],
-    );
-  }).toList();
-}
+//         /// باقي الأعمدة
+//         ...columns.map(
+//           (c) => DataCell(
+//             Text(
+//               row.values[c.id]?.toStringAsFixed(0) ?? '0',
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }).toList();
+// }
 
-Widget buildDispatchTable({
-  required List<DispatchColumn> columns,
-  required List<DispatchRow> rows,
-}) {
-  return SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    child: DataTable(
-      columnSpacing: 24,
-      dataRowMinHeight: 40,
-      columns: buildDataColumns(columns),
-      rows: buildDataRows(rows, columns),
-    ),
-  );
-}
+// Widget buildDispatchTable({
+//   required List<DispatchColumn> columns,
+//   required List<DispatchRow> rows,
+// }) {
+//   return SingleChildScrollView(
+//     scrollDirection: Axis.horizontal,
+//     child: DataTable(
+//       columnSpacing: 24,
+//       dataRowMinHeight: 40,
+//       columns: buildDataColumns(columns),
+//       rows: buildDataRows(rows, columns),
+//     ),
+//   );
+// }
 
 // Widget buildDispatchDetailsTable({
 //   required List<DispatchDetailsModel> dispatchDetailsResponse,

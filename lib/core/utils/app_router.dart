@@ -12,9 +12,8 @@ import 'package:wncc_portal/features/customerService/requests/presentation/views
 import 'package:wncc_portal/features/error/presentaion/view/page/error_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/views/pages/priority_summary_page.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_details_page.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_customer_page.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/dispatch_per_sales_page.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_cust_page.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_region_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_sales_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_compare_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
@@ -294,11 +293,11 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: dispatchDetailsPath,
-        builder: (context, state) => const DispatchDetailsPage(),
+        builder: (context, state) => const DispatchDetailsV2PerRegionPage(),
       ),
       GoRoute(
         path: dispatchDetailsPerCustomerPath,
-        builder: (context, state) => const DispatchPerCustomerPage(),
+        builder: (context, state) => const DispatchDetailsV2PerCustPage(),
       ),
       GoRoute(
         path: dispatchDetailsPerSalesPath,

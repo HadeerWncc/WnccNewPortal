@@ -15,7 +15,7 @@ final class DispatchDetailsV2PerCustomerLoading
 
 final class DispatchDetailsV2PerCustomerSuccess
     extends DispatchDetailsV2PerCustomerState {
-  final List<DispatchDetailsVsModel> dispatchDetails;
+  final List<DispatchDetailsEntity> dispatchDetails;
 
   const DispatchDetailsV2PerCustomerSuccess({required this.dispatchDetails});
 }

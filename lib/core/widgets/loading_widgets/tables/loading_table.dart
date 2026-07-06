@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 
 class LoadingTable extends StatelessWidget {
@@ -6,10 +7,90 @@ class LoadingTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 400,
-      width: double.infinity,
-      color: kloadingColor,
+    return Shimmer.fromColors(
+      baseColor: Colors.grey.shade300,
+      highlightColor: Colors.grey.shade100,
+      child: DataTable(
+          showBottomBorder: true,
+          horizontalMargin: 50,
+          columnSpacing: 100,
+          headingRowColor: const WidgetStatePropertyAll(kBtnColor),
+          columns: const [
+            DataColumn(
+              label: Text(
+                '',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                '',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                '',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ),
+            DataColumn(
+              label: Text(
+                '',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+          rows: const [
+            DataRow(
+              cells: [
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+              ],
+            ),
+            DataRow(
+              cells: [
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+                DataCell(Text('')),
+              ],
+            )
+          ]),
     );
   }
 }

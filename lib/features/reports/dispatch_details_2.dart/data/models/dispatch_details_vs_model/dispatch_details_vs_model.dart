@@ -1,15 +1,17 @@
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/core_models/value.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_vs_model/dispatches_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_vs_model/values_date.dart';
 
 import 'month.dart';
 import 'total.dart';
-import 'value.dart';
 
 class DispatchDetailsVsModel extends Equatable {
   final String? id;
   final String? name;
   final dynamic salesName;
+  final String? salesId;
+  final String? distributionChannelType;
   final Total? total;
   final Total? totalToday;
   final Value? totalCheckedIn;
@@ -23,6 +25,8 @@ class DispatchDetailsVsModel extends Equatable {
     this.id,
     this.name,
     this.salesName,
+    this.salesId,
+    this.distributionChannelType,
     this.total,
     this.totalToday,
     this.totalCheckedIn,
@@ -33,11 +37,21 @@ class DispatchDetailsVsModel extends Equatable {
     this.rank,
   });
 
+  DispatchDetailsVsModel copyWith({
+    int? rank,
+  }) {
+    return DispatchDetailsVsModel(
+      rank: rank ?? this.rank,
+    );
+  }
+
   factory DispatchDetailsVsModel.fromJson(Map<String, dynamic> json) {
     return DispatchDetailsVsModel(
       id: json['id'] as String?,
       name: json['name'] as String?,
       salesName: json['salesName'] as dynamic,
+      salesId: json['salesId'] as String?,
+      distributionChannelType: json['distributionChannelType'] as String?,
       total: json['total'] == null
           ? null
           : Total.fromJson(json['total'] as Map<String, dynamic>),
@@ -67,6 +81,8 @@ class DispatchDetailsVsModel extends Equatable {
         'id': id,
         'name': name,
         'salesName': salesName,
+        'salesId': salesId,
+        'distributionChannelType': distributionChannelType,
         'total': total?.toJson(),
         'totalToday': totalToday?.toJson(),
         'totalCheckedIn': totalCheckedIn?.toJson(),
@@ -83,6 +99,8 @@ class DispatchDetailsVsModel extends Equatable {
       id,
       name,
       salesName,
+      salesId,
+      distributionChannelType,
       total,
       totalToday,
       totalCheckedIn,

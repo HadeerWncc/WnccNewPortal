@@ -8,7 +8,6 @@ import 'package:wncc_portal/features/user/domain/repositories/user_repo.dart';
 
 class UserRepoImpl extends UserRepo {
   final UserRemoteDataSource userRemoteDataSource;
-
   UserRepoImpl({required this.userRemoteDataSource});
   @override
   Future<Either<Failure, UserModel>> completeProfile(

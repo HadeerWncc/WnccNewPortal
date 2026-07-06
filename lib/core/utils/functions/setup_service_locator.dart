@@ -36,15 +36,12 @@ import 'package:wncc_portal/features/priority/summary/presentation/managers/cubi
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/repo_impl/dispatch_details_repo_impl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_customer_cubit/dispatch_details_per_customer_cubit.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_per_sales_cubit/dispatch_details_per_sales_cubit.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/data_sources/dispatch_details_v2_data_source.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/repo_impl/dispatch_details_vs_repo_impl.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/domain/repo/dispatch_details_vs_repo.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_customer_cubit/dispatch_details_v2_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_sales_cubit/dispatch_details_v2_per_sales_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_detasils_v2_per_region_cubit/dispatch_detasils_v2_per_region_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/data_sources/fact_vs_cust_data_source.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/data/repos/fact_vs_cust_repo_imp.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/domain/repos/fact_vs_cust_repo.dart';
@@ -200,6 +197,9 @@ void setupLocator() {
   getIt.registerLazySingleton<DispatchDetailsV2DataSource>(
       () => DispatchDetailsV2DataSourceImpl(apiService: getIt<ApiService>()));
 
+  getIt.registerLazySingleton<DispatchDetailsDataSource>(
+      () => DispatchDetailsDataSourceImpl(apiService: getIt<ApiService>()));
+
   //payerDataSource
   getIt.registerLazySingleton<PayerDatasource>(
       () => PayerDatasourceImpl(apiService: getIt<ApiService>()));
@@ -276,6 +276,10 @@ void setupLocator() {
   getIt.registerLazySingleton<DispatchDetailsVsRepo>(() =>
       DispatchDetailsVsRepoImpl(
           dispatchDetailsDataSource: getIt<DispatchDetailsV2DataSource>()));
+
+  getIt.registerLazySingleton<DispatchDetailsRepo>(() =>
+      DispatchDetailsRepoImpl(
+          dispatchDetailsDataSource: getIt<DispatchDetailsDataSource>()));
 
   //PayerRepo
   getIt.registerLazySingleton<PayerRepo>(
@@ -551,8 +555,8 @@ void setupLocator() {
       () => LoadingDetailsCubit(getIt<LoadingRepo>()));
 
   //DispatchDetailsCubit
-  getIt.registerFactory<DispatchDetailsCubit>(
-      () => DispatchDetailsCubit(getIt<DispatchDetailsRepo>()));
+  getIt.registerFactory<DispatchDetasilsV2PerRegionCubit>(
+      () => DispatchDetasilsV2PerRegionCubit(getIt<DispatchDetailsVsRepo>()));
 
   //DispatchDetailsPerCustomerCubit
   getIt.registerFactory<DispatchDetailsV2PerCustomerCubit>(
@@ -563,8 +567,8 @@ void setupLocator() {
       () => DispatchDetailsV2PerSalesCubit(getIt<DispatchDetailsVsRepo>()));
 
   //ShipmentDetailsCubit
-  getIt.registerFactory<ShipmentDetailsCubit>(
-      () => ShipmentDetailsCubit(getIt<DispatchDetailsRepo>()));
+  // getIt.registerFactory<ShipmentDetailsCubit>(
+  //     () => ShipmentDetailsCubit(getIt<DispatchDetailsRepo>()));
 
   //PayerCubit
   getIt.registerFactory<PayerCubit>(() => PayerCubit(getIt<PayerRepo>()));

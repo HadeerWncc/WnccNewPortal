@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
+import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/custom_multi_select_drop_down2.dart';
@@ -11,17 +14,14 @@ class DispatchDetailsPerSalesHeader extends StatefulWidget {
     super.key,
     required this.date,
     this.onViewChange,
-    required this.viewActiveTab, this.onIncotermChange, required this.incotermTabs, required this.typeTabs, this.onTypeChange,
+    required this.viewActiveTab,
+    required this.user,
   });
+  final UserModel user;
   final DateTime date;
   final String viewActiveTab;
   final dynamic Function(String)? onViewChange;
 
-  final dynamic Function(List<String>)? onIncotermChange;
-  final List<String> incotermTabs;
-
-  final List<String> typeTabs;
-  final dynamic Function(List<String>)? onTypeChange;
   @override
   State<DispatchDetailsPerSalesHeader> createState() =>
       _DispatchDetailsPerSalesHeaderState();
@@ -29,10 +29,13 @@ class DispatchDetailsPerSalesHeader extends StatefulWidget {
 
 class _DispatchDetailsPerSalesHeaderState
     extends State<DispatchDetailsPerSalesHeader> {
-  // DateTime date = DateTime.now();
   int activeTab = 0;
+  List<String> incotermList = [];
+  List<String> typeList = [];
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<DispatchDetailsV2PerSalesCubit>();
+
     return Container(
       // width: double.infinity,
       padding: const EdgeInsets.all(8),
@@ -48,13 +51,14 @@ class _DispatchDetailsPerSalesHeaderState
           child: CustomDropDownInput(
             title: 'Select',
             items: const ["Per Region", "Per Sales", "Per Customer"],
-            selectedValue: 'Per Sales',
+            selectedValue: "Per Sales",
             onChanged: (value) {
               // Handle dropdown change
               if (value == 'Per Region') {
-                // GoRouter.of(context).push(AppRouter.paymentsDailyPath);
+                GoRouter.of(context).push(AppRouter.dispatchDetailsPath);
               } else if (value == "Per Customer") {
-                // GoRouter.of(context).push(AppRouter.paymentsPerCustomerPath);
+                GoRouter.of(context)
+                    .push(AppRouter.dispatchDetailsPerCustomerPath);
               }
             },
           ),
@@ -67,10 +71,7 @@ class _DispatchDetailsPerSalesHeaderState
             title: 'Select Year',
             initialDate: widget.date,
             onChange: (value) {
-              // date = value;
-              // setState(() {});
-              BlocProvider.of<DispatchDetailsV2PerSalesCubit>(context)
-                  .getDispatchDetailsV2PerSales(value, 0);
+              cubit.getDispatchDetailsV2PerSales(value, activeTab, widget.user);
             },
           ),
         ),
@@ -97,26 +98,38 @@ class _DispatchDetailsPerSalesHeaderState
                 activeTab = 1;
               }
               setState(() {});
-              BlocProvider.of<DispatchDetailsV2PerSalesCubit>(context)
-                  .getDispatchDetailsV2PerSales(widget.date, activeTab);
+              cubit.getDispatchDetailsV2PerSales(
+                widget.date,
+                activeTab,
+                widget.user,
+              );
             },
           ),
         ),
-        // CustomMultiSelectDropDown(items: const ["Delivery", "Pickup"],selectedValue: ["Delivery"],title: "Incoterm",onChanged: (values){},)
         SizedBox(
             width: MediaQuery.of(context).size.width * .4,
             child: CustomMultiSelectDropDown2(
               products: const ["Delivery", "Pickup"],
-              selectedProducts: widget.incotermTabs,
-              onChanged: widget.onIncotermChange,
+              selectedProducts: incotermList,
+              onChanged: (value) {
+                setState(() {
+                  incotermList = value;
+                });
+                cubit.changeincoterm(value);
+              },
               title: "Incoterm",
             )),
         SizedBox(
             width: MediaQuery.of(context).size.width * .4,
             child: CustomMultiSelectDropDown2(
               products: const ["Bags", "Bulk"],
-              selectedProducts: widget.typeTabs,
-              onChanged: widget.onTypeChange,
+              selectedProducts: typeList,
+              onChanged: (value) {
+                setState(() {
+                  typeList = value;
+                });
+                cubit.changeType(value);
+              },
               title: "Type",
             ))
       ]),

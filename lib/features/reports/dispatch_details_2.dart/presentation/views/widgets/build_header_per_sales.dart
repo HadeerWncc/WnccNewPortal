@@ -30,28 +30,27 @@ Widget buildHeaderPerSalesRow(String viewType) {
                   fontSize: 16,
                   color: Colors.white),
             )),
-            viewType =="Dates"?
-        const Expanded(
-            flex: 2,
-            child: Center(
-                child: Text(
-              'Date',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.white),
-            )))
-            :const Expanded(
-            flex: 3,
-            child: Center(
-                child: Text(
-              'Regions',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: Colors.white),
-            )))
-            ,
+        viewType == "Dates"
+            ? const Expanded(
+                flex: 2,
+                child: Center(
+                    child: Text(
+                  'Date',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.white),
+                )))
+            : const Expanded(
+                flex: 3,
+                child: Center(
+                    child: Text(
+                  'Regions',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.white),
+                ))),
         for (var month in getMonths(DateTime.now().year))
           Expanded(
               flex: 3,

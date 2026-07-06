@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/data_value.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/data_value.dart';
 
 Widget buildRegionTopHeader(
   List<DataValue> areas,
@@ -50,8 +50,6 @@ Widget buildRegionTopHeader(
 
               /// 🔽 totals العامة
               buildCell("Total",
-                  isHeader: true, color: const Color(0xFFB9E2A7)),
-              buildCell("Export",
                   isHeader: true, color: const Color(0xFFB9E2A7)),
             ],
           ),

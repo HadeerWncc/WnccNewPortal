@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/core_models/value.dart';
 
-import 'value.dart';
 
 class Dispatch extends Equatable {
   final String? id;

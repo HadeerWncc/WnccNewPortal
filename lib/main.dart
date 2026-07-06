@@ -24,9 +24,9 @@ import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubit
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/set_pickup_priority_cubit/set_pickup_priority_cubit.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/summary_priority_cubit/summary_priority_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/shipment_details_cubit/shipment_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_customer_cubit/dispatch_details_v2_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_sales_cubit/dispatch_details_v2_per_sales_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_detasils_v2_per_region_cubit/dispatch_detasils_v2_per_region_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/manager/loading_details_cubit/loading_details_cubit.dart';
@@ -183,7 +183,7 @@ class WnccPortal extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) {
-            return getIt<DispatchDetailsCubit>();
+            return getIt<DispatchDetasilsV2PerRegionCubit>();
           },
         ),
         BlocProvider(
@@ -196,11 +196,11 @@ class WnccPortal extends StatelessWidget {
             return getIt<DispatchDetailsV2PerSalesCubit>();
           },
         ),
-        BlocProvider(
-          create: (context) {
-            return getIt<ShipmentDetailsCubit>();
-          },
-        ),
+        // BlocProvider(
+        //   create: (context) {
+        //     return getIt<ShipmentDetailsCubit>();
+        //   },
+        // ),
         BlocProvider(
           create: (context) {
             return getIt<PayerCubit>();

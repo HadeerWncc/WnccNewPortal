@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/data_value.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
+import 'package:wncc_portal/core/widgets/custom_multi_select_drop_down2.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/region_with_area.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
@@ -12,8 +10,9 @@ import 'package:wncc_portal/features/reports/dispatch_details/presentation/views
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_region_top_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/dispatch_details_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/loading_widgets/loading_dispatch_table.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/data_value.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/dispatch_details_per_region_model.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
-import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 
 class DispatchPerRegionTablesBody extends StatefulWidget {
   const DispatchPerRegionTablesBody({super.key});
@@ -36,8 +35,8 @@ class _DispatchPerRegionTablesBodyState
   List<RegionWithArea> allRegions = [];
   List<String> regions = [];
   List<DataValue> dataValue = [];
-  QuantityType quantityType = QuantityType.total;
-  QuantityMatrial quantityMatrial = QuantityMatrial.total;
+  List<String> quantityType = [];
+  List<String> quantityMatrial = [];
   int activeTabType = 2;
   int activeTabMatrial = 2;
   @override
@@ -78,41 +77,33 @@ class _DispatchPerRegionTablesBodyState
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomChckButtons(
-                buttons: const ["Delivery", "Pickup", "Both"],
-                activeTab: activeTabType,
-                onTap: (value) {
-                  if (value == "Delivery") {
-                    activeTabType = 0;
-                    quantityType = QuantityType.delivery;
-                  } else if (value == "Pickup") {
-                    activeTabType = 1;
-                    quantityType = QuantityType.pickup;
-                  } else {
-                    activeTabType = 2;
-                    quantityType = QuantityType.total;
-                  }
-                  setState(() {});
-                },
-              ),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width * .4,
+                  child: CustomMultiSelectDropDown2(
+                    products: const ["Delivery", "Pickup"],
+                    selectedProducts: quantityType,
+                    onChanged: (value) {
+                      setState(() {
+                        quantityType = value;
+                      });
+                      // cubit.changeincoterm(value);
+                    },
+                    title: "Incoterm",
+                  )),
               const SizedBox(height: 5),
-              CustomChckButtons(
-                buttons: const ["Bags", "Bulk", "Both"],
-                activeTab: activeTabMatrial,
-                onTap: (value) {
-                  if (value == "Bags") {
-                    activeTabMatrial = 0;
-                    quantityMatrial = QuantityMatrial.bags;
-                  } else if (value == "Bulk") {
-                    activeTabMatrial = 1;
-                    quantityMatrial = QuantityMatrial.bulk;
-                  } else {
-                    activeTabMatrial = 2;
-                    quantityMatrial = QuantityMatrial.total;
-                  }
-                  setState(() {});
-                },
-              ),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width * .4,
+                  child: CustomMultiSelectDropDown2(
+                    products: const ["Bags", "Bulk"],
+                    selectedProducts: quantityMatrial,
+                    onChanged: (value) {
+                      setState(() {
+                        quantityMatrial = value;
+                      });
+                      // cubit.changeType(value);
+                    },
+                    title: "Type",
+                  ))
             ],
           ),
           const SizedBox(height: 8),
@@ -155,8 +146,8 @@ class _DispatchPerRegionTablesBodyState
                                     regions,
                                     totalBorder,
                                     _expandedMonths,
-                                    quantityType,
-                                    quantityMatrial,
+                                    ['Pickup'],
+                                    ['Bags'],
                                   );
                                 }),
                               ]),
@@ -184,7 +175,7 @@ class _DispatchPerRegionTablesBodyState
   }
 
   Widget buildFixedSideColumn(
-      List<DispatchDetailsModel> dispatchDetailsResponse) {
+      List<DispatchDetailsPerRegionModel> dispatchDetailsResponse) {
     return Column(children: [
       ...List.generate(dispatchDetailsResponse.length, (index) {
         final month = dispatchDetailsResponse[index];

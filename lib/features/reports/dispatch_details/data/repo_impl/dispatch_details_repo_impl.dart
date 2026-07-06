@@ -2,22 +2,21 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/shipment_details_model/shipment_details_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/dispatch_details_per_region_model.dart';
 
 class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
   final DispatchDetailsDataSource dispatchDetailsDataSource;
 
   DispatchDetailsRepoImpl({required this.dispatchDetailsDataSource});
   @override
-  Future<Either<Failure, List<DispatchDetailsModel>>> getDispatchDetails(
+  Future<Either<Failure, List<DispatchDetailsPerRegionModel>>> getDispatchDetails(
     DateTime date,
-    int group,
+    int zone,
   ) async {
     try {
-      List<DispatchDetailsModel> dispatchDetails =
-          await dispatchDetailsDataSource.getDispatchDetails(date, group);
+      List<DispatchDetailsPerRegionModel> dispatchDetails =
+          await dispatchDetailsDataSource.getDispatchDetails(date, zone);
       return Right(dispatchDetails);
     } on Exception catch (e) {
       if (e is DioException) {
@@ -27,49 +26,5 @@ class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
     }
   }
 
-  @override
-  Future<Either<Failure, List<ShipmentDetailsModel>>>
-      getShipmentDetails() async {
-    try {
-      List<ShipmentDetailsModel> shipmentDetails =
-          await dispatchDetailsDataSource.getShipmentDetails();
-      return Right(shipmentDetails);
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(msg: e.toString()));
-    }
-  }
 
-  @override
-  Future<Either<Failure, List<DispatchDetailsModel>>>
-      getDispatchDetailsPerCustomer(DateTime from, DateTime to) async {
-    try {
-      List<DispatchDetailsModel> dispatchDetails =
-          await dispatchDetailsDataSource.getDispatchDetailsPerCustomer(
-              from, to);
-      return Right(dispatchDetails);
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(msg: e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<DispatchDetailsModel>>>
-      getDispatchDetailsPerSales(DateTime from, DateTime to) async {
-    try {
-      List<DispatchDetailsModel> dispatchDetails =
-          await dispatchDetailsDataSource.getDispatchDetailsPerSales(from, to);
-      return Right(dispatchDetails);
-    } on Exception catch (e) {
-      if (e is DioException) {
-        return Left(ServerFailure.fromDioError(e));
-      }
-      return Left(ServerFailure(msg: e.toString()));
-    }
-  }
 }

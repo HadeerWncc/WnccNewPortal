@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/month_day.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_dispatch_details_table.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/month_day.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/helper/get_dis_value.dart';
 
 Widget buildDataRowPerRegion(
   MonthDay day, {
   bool isTotal = false,
-  required QuantityType quantityType,
-  required QuantityMatrial quantityMatrial,
+  required List<String> quantityType,
+  required List<String> quantityMatrial,
   required List<String> selectedCities,
 }) {
   final Color? rowColor = isTotal ? const Color(0xFFF1F8E9) : null;
@@ -22,8 +21,8 @@ Widget buildDataRowPerRegion(
       ...areas.expand((area) {
         List<Widget> cells = [];
 
-        final areaValue = getQuantityValue(
-          area.quantity,
+        final areaValue = getDisSortValue(
+          area.quantity!,
           quantityType,
           quantityMatrial,
         );
@@ -43,8 +42,8 @@ Widget buildDataRowPerRegion(
             cities.where((c) => selectedCities.contains(c.name)).toList();
 
         for (var city in filteredCities) {
-          final cityValue = getQuantityValue(
-            city.quantity,
+          final cityValue = getDisSortValue(
+            city.quantity!,
             quantityType,
             quantityMatrial,
           );
@@ -65,7 +64,7 @@ Widget buildDataRowPerRegion(
       /// ✅ Total
       buildCell(
         NumberFormat.decimalPatternDigits(decimalDigits: 0).format(
-          getQuantityValue(day.total, quantityType, quantityMatrial),
+          getDisSortValue(day.total!, quantityType, quantityMatrial),
         ),
         color: const Color(0xffe9e9e7),
         isHeader: true,

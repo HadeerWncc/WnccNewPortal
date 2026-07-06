@@ -10,7 +10,7 @@ class MultiSelectDropDown extends StatefulWidget {
     this.onChanged,
   });
 
-  final List<RegionWithArea> items;
+  final List<String> items;
   final List<String> selectedItems;
   final Function(List<String>)? onChanged;
 
@@ -23,14 +23,14 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> regionNames = widget.items
-        .map((r) => r.regionName)
-        .where((name) => name.isNotEmpty)
-        .toList();
+    // final List<String> regionNames = widget.items
+    //     .map((r) => r.regionName)
+    //     .where((name) => name.isNotEmpty)
+    //     .toList();
 
     return DropdownSearch<String>.multiSelection(
       key: _dropdownKey,
-      items: regionNames,
+      items: widget.items,
       selectedItems: widget.selectedItems,
       dropdownBuilder: (context, selectedItems) {
         return Text(

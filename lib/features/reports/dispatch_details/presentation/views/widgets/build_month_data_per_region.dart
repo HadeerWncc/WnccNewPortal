@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/dispatch_details_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_model/month_day.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_data_row_per_region.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_dispatch_details_table.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_total_row_per_region.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/core_models/dispatch_details_quantity.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/core_models/value.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/dispatch_details_per_region_model.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/month_day.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/helper/get_dis_value.dart';
 
 Widget buildMonthDataPerRegion(
-  DispatchDetailsModel month,
+  DispatchDetailsPerRegionModel month,
   int index,
   List<String> regions,
   BoxBorder totalBorder,
   Map<int, bool> expandedMonths,
-  QuantityType quantityType,
-  QuantityMatrial quantityMatrial,
+  List<String> quantityType,
+  List<String> quantityMatrial,
 ) {
   final isExpanded = expandedMonths[index] ?? false;
 
@@ -23,36 +26,66 @@ Widget buildMonthDataPerRegion(
   num totalCoastal = 0;
   num totalAll = 0;
   num totalExport = 0;
+  Value defaultQuantity = const Value(
+    deliveryQuantity: DispatchDetailsQuantity(
+      bags: 0,
+      bulk: 0,
+      total: 0,
+    ),
+    pickupQuantity: DispatchDetailsQuantity(
+      bags: 0,
+      bulk: 0,
+      total: 0,
+    ),
+    total: 0,
+  );
 
   for (MonthDay day in month.monthDays ?? []) {
-    totalDelta += getQuantityValue(
-      day.dataValues?.where((d) => d.name == 'Delta').toList()[0].quantity,
+    totalDelta += getDisSortValue(
+      day.dataValues!.where((d) => d.name == 'Delta').toList().isNotEmpty
+          ? day.dataValues!
+              .where((d) => d.name == 'Delta')
+              .toList()[0]
+              .quantity!
+          : defaultQuantity,
       quantityType,
       quantityMatrial,
     );
-    totalGCairo += getQuantityValue(
-      day.dataValues
-          ?.where((d) => d.name == 'Greater Cairo')
-          .toList()[0]
-          .quantity,
+    totalGCairo += getDisSortValue(
+      day.dataValues!
+              .where((d) => d.name == 'Greater Cairo')
+              .toList()
+              .isNotEmpty
+          ? day.dataValues!
+              .where((d) => d.name == 'Greater Cairo')
+              .toList()[0]
+              .quantity!
+          : defaultQuantity,
       quantityType,
       quantityMatrial,
     );
-    totalUEgypt += getQuantityValue(
-      day.dataValues
-          ?.where((d) => d.name == 'Upper Egypt')
-          .toList()[0]
-          .quantity,
+    totalUEgypt += getDisSortValue(
+      day.dataValues!.where((d) => d.name == 'Upper Egypt').toList().isNotEmpty
+          ? day.dataValues!
+              .where((d) => d.name == 'Upper Egypt')
+              .toList()[0]
+              .quantity!
+          : defaultQuantity,
       quantityType,
       quantityMatrial,
     );
-    totalCoastal += getQuantityValue(
-      day.dataValues?.where((d) => d.name == 'Coastal').toList()[0].quantity,
+    totalCoastal += getDisSortValue(
+      day.dataValues!.where((d) => d.name == 'Coastal').toList().isNotEmpty
+          ? day.dataValues!
+              .where((d) => d.name == 'Coastal')
+              .toList()[0]
+              .quantity!
+          : defaultQuantity,
       quantityType,
       quantityMatrial,
     );
-    totalAll += getQuantityValue(
-      day.total,
+    totalAll += getDisSortValue(
+      day.total!,
       quantityType,
       quantityMatrial,
     );

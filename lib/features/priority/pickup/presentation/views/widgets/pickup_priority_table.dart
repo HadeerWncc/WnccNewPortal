@@ -102,12 +102,14 @@ class _PickupPriorityTableState extends State<PickupPriorityTable> {
                                   flex: 3,
                                   child: Center(
                                       child: Text(NumberFormat.decimalPattern()
-                                          .format(order.totalPriorited!.total)))),
+                                          .format(
+                                              order.totalPriorited!.total)))),
                               Expanded(
                                   flex: 3,
                                   child: Center(
                                       child: Text(NumberFormat.decimalPattern()
-                                          .format(order.totalDispatched!.total)))),
+                                          .format(
+                                              order.totalDispatched!.total)))),
                               Expanded(
                                 flex: 3,
                                 child: Center(
