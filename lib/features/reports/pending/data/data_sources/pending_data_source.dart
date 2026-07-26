@@ -3,6 +3,7 @@ import 'package:wncc_portal/features/reports/pending/data/models/pending_model/p
 
 abstract class PendingDataSource {
   Future<List<PendingModel>> getPendingDelivery();
+  Future<List<PendingModel>> getPendingPickup();
 }
 
 class PendingDataSourceImpl extends PendingDataSource {
@@ -18,5 +19,16 @@ class PendingDataSourceImpl extends PendingDataSource {
       pendingDeliveryList.add(pendingDelivery);
     }
     return pendingDeliveryList;
+  }
+  
+  @override
+  Future<List<PendingModel>> getPendingPickup() async{
+    var result = await apiService.get(endPoint: 'api/Pickup/GetAll');
+    List<PendingModel> pendingPickupList = [];
+    for (var pending in result["data"]) {
+      PendingModel pendingPickup = PendingModel.fromJson(pending);
+      pendingPickupList.add(pendingPickup);
+    }
+    return pendingPickupList;
   }
 }

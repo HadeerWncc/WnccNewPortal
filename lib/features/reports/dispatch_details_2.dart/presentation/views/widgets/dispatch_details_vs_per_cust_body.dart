@@ -5,7 +5,7 @@ import 'package:wncc_portal/core/widgets/loading_widgets/tables/loading_table.da
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_customer_cubit/dispatch_details_v2_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/dispatch_details_per_customer_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/dispatch_details_per_customer_success_v2.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/per_sales_header_tabs.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/dispatch_details_header_tabs.dart';
 
 class DispatchDetailsVsPerCustBody extends StatefulWidget {
   const DispatchDetailsVsPerCustBody({super.key, required this.user});
@@ -34,7 +34,7 @@ class _DispatchDetailsVsPerCustBodyState
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const PerSalesHeaderTabs(),
+        const DispatchDetailsHeaderTabs(activeTab: 0),
         const SizedBox(height: 5),
         DispatchDetailsPerCustomerHeader(
           // disChnlTab: 'Both',

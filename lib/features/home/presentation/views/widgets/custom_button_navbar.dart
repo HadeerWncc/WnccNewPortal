@@ -53,11 +53,17 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
       initialActiveIndex: widget.pageIndex,
       onTap: (index) {
         if (index == 0) {
-          GoRouter.of(context).push(AppRouter.updatesPagePath);
+          (widget.pageIndex != 0)
+              ? GoRouter.of(context).push(AppRouter.updatesPagePath)
+              : null;
         } else if (index == 1) {
-          GoRouter.of(context).push(AppRouter.toDoList);
+          (widget.pageIndex != 1)
+              ? GoRouter.of(context).push(AppRouter.toDoList)
+              : null;
         } else if (index == 2) {
-          GoRouter.of(context).push(AppRouter.homePath);
+          (widget.pageIndex != 2)
+              ? GoRouter.of(context).push(AppRouter.homePath)
+              : null;
         }
         // else if (index == 2) {
         //   Navigator.pushReplacementNamed(context, '/addTask');

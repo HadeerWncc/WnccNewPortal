@@ -4,7 +4,7 @@ import 'package:wncc_portal/core/widgets/loading_widgets/tables/loading_table.da
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_detasils_v2_per_region_cubit/dispatch_detasils_v2_per_region_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/dispatch_details_per_region_header.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/dispatch_details_per_region_success_v2.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/per_sales_header_tabs.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/dispatch_details_header_tabs.dart';
 
 class DispatchDetailsV2PerRegionBody extends StatefulWidget {
   const DispatchDetailsV2PerRegionBody({super.key});
@@ -23,7 +23,7 @@ class _DispatchDetailsV2PerRegionBodyState
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const PerSalesHeaderTabs(),
+        const DispatchDetailsHeaderTabs(activeTab: 0),
         const SizedBox(height: 5),
         DispatchDetailsPerRegionHeader(
           date: DateTime.now(),
@@ -46,20 +46,17 @@ class _DispatchDetailsV2PerRegionBodyState
         const SizedBox(height: 10),
         BlocBuilder<DispatchDetasilsV2PerRegionCubit,
             DispatchDetasilsV2PerRegionState>(builder: (context, state) {
-              
           if (state is DispatchDetasilsV2PerRegionSuccess) {
-            
             return state.dispatchDetails.isNotEmpty
                 ? Expanded(
                     child: DispatchDetailsPerRegionSuccessV2(
                       dispatchList: state.dispatchDetails,
                       incotrem: incotermList,
-                      types:typeList,
+                      types: typeList,
                       regions: regionsList,
-                      year: DateTime.parse(state
-                                .dispatchDetails[0].monthDate
-                                .toString())
-                            .year,
+                      year: DateTime.parse(
+                              state.dispatchDetails[0].monthDate.toString())
+                          .year,
                     ),
                   )
                 : const Center(child: Text("No Data Avilable"));

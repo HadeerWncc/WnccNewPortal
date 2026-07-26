@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/helper/get_areas_value.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/dispatch_details_per_region_model.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/relation_value.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/data_value.dart';
 
 Widget buildHeaderPerRegionRow(
-    List<DispatchDetailsPerRegionModel> areas, List<String> selectedRegions) {
+    List<DataValue> totalAreas, List<String> selectedRegions) {
   return Container(
     padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 12),
     decoration: const BoxDecoration(
@@ -35,46 +33,44 @@ Widget buildHeaderPerRegionRow(
                     color: Colors.white),
               ),
             )),
-        for (var area in getTotalAreas(areas))
+        for (var area in totalAreas)
           // Row(
-          //   children: 
-            ...[
-              Expanded(
-                flex: 3,
-                child: Center(
-                  child: Text(
-                    area.name ?? "",
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Colors.white),
+          //   children:
+          ...[
+          Expanded(
+            flex: 3,
+            child: Center(
+              child: Text(
+                area.name ?? "",
+                style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white),
+              ),
+            ),
+          ),
+          ...selectedRegions
+              .where(
+                  (s) => area.relationValues?.any((r) => r.name == s) ?? false)
+              .map((s) {
+            final region = area.relationValues!.firstWhere((r) => r.name == s);
+
+            return Expanded(
+              flex: 3,
+              child: Center(
+                child: Text(
+                  region.name ?? '',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Colors.white,
                   ),
                 ),
               ),
-              ...selectedRegions.map((s) {
-                RelationValue? region;
-
-                for (final item in area.relationValues ?? <RelationValue>[]) {
-                  if (item.name == s) {
-                    region = item;
-                    break;
-                  }
-                }
-                return Expanded(
-                  flex: 3,
-                  child: Center(
-                    child: Text(
-                      region?.name ?? '',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                          color: Colors.white),
-                    ),
-                  ),
-                );
-              })
-            ],
-          // ),
+            );
+          }),
+        ],
+        // ),
         const Expanded(
             flex: 3,
             child: Center(

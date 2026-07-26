@@ -55,7 +55,8 @@ class _DispatchDetailsPerSalesHeaderState
             onChanged: (value) {
               // Handle dropdown change
               if (value == 'Per Region') {
-                GoRouter.of(context).push(AppRouter.dispatchDetailsPath);
+                GoRouter.of(context)
+                    .push(AppRouter.dispatchDetailsPerRegionPath);
               } else if (value == "Per Customer") {
                 GoRouter.of(context)
                     .push(AppRouter.dispatchDetailsPerCustomerPath);

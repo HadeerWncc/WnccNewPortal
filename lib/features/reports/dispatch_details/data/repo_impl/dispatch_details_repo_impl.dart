@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/data/data_sources/dispatch_details_data_source.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_flat_data_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/domain/repo/dispatch_details_repo.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/dispatch_details_per_region_model.dart';
 
@@ -10,7 +11,8 @@ class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
 
   DispatchDetailsRepoImpl({required this.dispatchDetailsDataSource});
   @override
-  Future<Either<Failure, List<DispatchDetailsPerRegionModel>>> getDispatchDetails(
+  Future<Either<Failure, List<DispatchDetailsPerRegionModel>>>
+      getDispatchDetails(
     DateTime date,
     int zone,
   ) async {
@@ -26,5 +28,18 @@ class DispatchDetailsRepoImpl extends DispatchDetailsRepo {
     }
   }
 
-
+  @override
+  Future<Either<Failure, List<DispatchDetailsFlatDataModel>>>
+      getDispatchDetailsFlatData(DateTime date) async {
+    try {
+      List<DispatchDetailsFlatDataModel> dispatchDetails =
+          await dispatchDetailsDataSource.getDispatchDetailsFlatData(date);
+      return Right(dispatchDetails);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
 }

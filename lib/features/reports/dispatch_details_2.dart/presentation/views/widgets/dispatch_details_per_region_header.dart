@@ -20,7 +20,7 @@ class DispatchDetailsPerRegionHeader extends StatefulWidget {
       required this.onSelectRegions});
   final DateTime date;
   final Function(List<String> incotermValues) onChangeincoterm;
-  final Function(List<String> incotermValues) onChangeType;
+  final Function(List<String> typeValues) onChangeType;
   final Function(List<String> regions) onSelectRegions;
   @override
   State<DispatchDetailsPerRegionHeader> createState() =>

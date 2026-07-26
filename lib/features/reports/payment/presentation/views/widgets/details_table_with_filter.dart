@@ -42,6 +42,20 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
   @override
   Widget build(BuildContext context) {
     final data = filteredData;
+    Map<String, dynamic> paymentTotal = {
+      'Customer': 'Total',
+      'Customer Name': "",
+      "Doc No": '',
+      "Region": '',
+      'Amount': data.fold(
+        0.0,
+        (sum, item) => sum + (item.amount ?? 0.0),
+      ),
+      'Bank': '',
+      'Posting Date': '',
+      'Document Date': '',
+      'Sales Rep': '',
+    };
     return Column(
       children: [
         Row(
@@ -96,48 +110,62 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
               )
             : Expanded(
                 child: DataTable2(
-                  minWidth: data.first.toMap().length * 150,
-                  isVerticalScrollBarVisible: false,
-                  horizontalMargin: 0,
-                  columnSpacing: 0,
-                  fixedTopRows: 1,
-                  fixedLeftColumns: 1,
-                  fixedColumnsColor: tableHeaderColor,
-                  headingRowHeight: 45,
-                  headingRowColor: WidgetStateProperty.all(tableHeaderColor),
-                  border: TableBorder.all(color: Colors.grey.shade300),
-                  columns: data.first
-                      .toMap()
-                      .keys
-                      .toList()
-                      .map(
-                        (e) => (e == "Customer Name")
-                            ? DataColumn2(
-                                fixedWidth: 230,
-                                label: Center(
-                                  child: Text(
-                                    e,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
+                    minWidth: data.first.toMap().length * 150,
+                    isVerticalScrollBarVisible: false,
+                    horizontalMargin: 0,
+                    columnSpacing: 0,
+                    fixedTopRows: 1,
+                    fixedLeftColumns: 1,
+                    fixedColumnsColor: tableHeaderColor,
+                    headingRowHeight: 45,
+                    headingRowColor: WidgetStateProperty.all(tableHeaderColor),
+                    border: TableBorder.all(color: Colors.grey.shade300),
+                    columns: data.first
+                        .toMap()
+                        .keys
+                        .toList()
+                        .map(
+                          (e) => (e == "Customer Name")
+                              ? DataColumn2(
+                                  fixedWidth: 230,
+                                  label: Center(
+                                    child: Text(
+                                      e,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                )
+                              : DataColumn(
+                                  label: Center(
+                                    child: Text(
+                                      e,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
-                              )
-                            : DataColumn(
-                                label: Center(
-                                  child: Text(
-                                    e,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold),
+                        )
+                        .toList(),
+                    rows: [
+                      ...data.map(
+                        (payment) {
+                          final paymentMap = payment.toMap();
+                          return DataRow(
+                            cells: paymentMap.values.map(
+                              (value) {
+                                return DataCell(
+                                  Center(
+                                    child: Text(value.toString()),
                                   ),
-                                ),
-                              ),
-                      )
-                      .toList(),
-                  rows: data.map(
-                    (payment) {
-                      final paymentMap = payment.toMap();
-                      return DataRow(
-                        cells: paymentMap.values.map(
+                                );
+                              },
+                            ).toList(),
+                          );
+                        },
+                      ),
+                      DataRow(
+                        cells: paymentTotal.values.map(
                           (value) {
                             return DataCell(
                               Center(
@@ -146,10 +174,8 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
                             );
                           },
                         ).toList(),
-                      );
-                    },
-                  ).toList(),
-                ),
+                      )
+                    ]),
               ),
       ],
     );

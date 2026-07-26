@@ -11,6 +11,7 @@ import 'package:wncc_portal/features/authentication/presentation/manager/auth_cu
 import 'package:wncc_portal/features/authentication/presentation/manager/forget_password_cubit/forget_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
+import 'package:wncc_portal/features/home/presentation/manager/cubites/home_cubit/home_cubit.dart';
 import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/add_new_dispatcher_cubit/add_new_dispatcher_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/delete_agent_cubit/delete_agent_cubit.dart';
@@ -23,10 +24,13 @@ import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubit
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/get_pickupility_cubit/get_pickupility_cubit.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/managers/cubites/set_pickup_priority_cubit/set_pickup_priority_cubit.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/summary_priority_cubit/summary_priority_cubit.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/dispatch_details_cubit/dispatch_details_cubit.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/flat_dispatch_details_cubit/flat_dispatch_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_customer_cubit/dispatch_details_v2_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_sales_cubit/dispatch_details_v2_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_detasils_v2_per_region_cubit/dispatch_detasils_v2_per_region_cubit.dart';
+import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/manager/cubits/export_dispatch_per_brand_cubit/export_dispatch_per_brand_cubit.dart';
+import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/manager/cubits/export_dispatch_per_customer_cubit/export_dispatch_per_customer_cubit.dart';
+import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/manager/cubits/export_dispatch_per_region_cubit/export_dispatch_per_region_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_compare_cubit/fact_vs_cust_compare_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/manager/cubits/fact_vs_cust_cubit/fact_vs_cust_cubit.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/manager/loading_details_cubit/loading_details_cubit.dart';
@@ -34,12 +38,13 @@ import 'package:wncc_portal/features/reports/morningMeating/presentation/manager
 import 'package:wncc_portal/features/reports/morningMeating/presentation/manager/cubites/morning_meeting_priority_cubit/morning_meeting_priority_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/customer_balance_cubit/customer_balance_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
-import 'package:wncc_portal/features/home/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
 import 'package:wncc_portal/features/reports/pending/presentation/manager/pending_cubit/pending_cubit.dart';
+import 'package:wncc_portal/features/reports/pending/presentation/manager/pickup_pending_cubit/pickup_pending_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/sales_quota_cubit/sales_quota_cubit.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/managers/cubit/set_quota_cubit/set_quota_cubit.dart';
+import 'package:wncc_portal/features/updates/presentation/manager/cubits/updates_cubit/updates_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/first_login_change_password_cubit/first_login_change_password_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/complete_profile_cubit/complete_profile_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/get_all_users_cubit/get_all_users_cubit.dart';
@@ -167,6 +172,11 @@ class WnccPortal extends StatelessWidget {
             return getIt<PendingCubit>();
           },
         ),
+        BlocProvider(
+          create: (context) {
+            return getIt<PickupPendingCubit>();
+          },
+        ),
         BlocProvider(create: (context) {
           return getIt<GetPickupilityCubit>();
         }),
@@ -179,6 +189,11 @@ class WnccPortal extends StatelessWidget {
         BlocProvider(
           create: (context) {
             return getIt<LoadingDetailsCubit>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return getIt<FlatDispatchDetailsCubit>();
           },
         ),
         BlocProvider(
@@ -196,14 +211,29 @@ class WnccPortal extends StatelessWidget {
             return getIt<DispatchDetailsV2PerSalesCubit>();
           },
         ),
-        // BlocProvider(
-        //   create: (context) {
-        //     return getIt<ShipmentDetailsCubit>();
-        //   },
-        // ),
+        BlocProvider(
+          create: (context) {
+            return getIt<ExportDispatchPerCustomerCubit>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return getIt<ExportDispatchPerRegionCubit>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return getIt<ExportDispatchPerBrandCubit>();
+          },
+        ),
         BlocProvider(
           create: (context) {
             return getIt<PayerCubit>();
+          },
+        ),
+        BlocProvider(
+          create: (context) {
+            return getIt<HomeCubit>();
           },
         ),
       ],

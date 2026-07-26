@@ -243,9 +243,7 @@ List<String> getAllRegions(List<DispatchDetailsPerRegionModel> data) {
   return regions;
 }
 
-
-Map<String, RelationValue> buildRegionMap(
-    List<RelationValue>? regions) {
+Map<String, RelationValue> buildRegionMap(List<RelationValue>? regions) {
   return {
     for (final region in regions ?? <RelationValue>[])
       if (region.name != null) region.name!: region,

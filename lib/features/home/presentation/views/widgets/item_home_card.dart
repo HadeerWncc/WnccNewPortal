@@ -13,6 +13,10 @@ class ItemHomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return HomeUserCard(
+      gradient: const [
+        Color.fromARGB(255, 246, 246, 246),
+        Color.fromARGB(255, 220, 220, 220),
+      ],
       width: MediaQuery.of(context).size.width * .44,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

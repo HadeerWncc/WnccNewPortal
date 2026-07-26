@@ -111,6 +111,22 @@ class DrawerMenuList extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.factVsCustDispatchHourly);
               },
             ),
+            CustomMenuItem(
+              title: 'Dispatch Details',
+              active: activeTab == 'Dispatch Details',
+              onTap: () {
+                GoRouter.of(context)
+                    .push(AppRouter.dispatchDetailsPerRegionPath);
+              },
+            ),
+            CustomMenuItem(
+              title: 'Export Dispatch Details',
+              active: activeTab == 'Export Dispatch Details',
+              onTap: () {
+                GoRouter.of(context)
+                    .push(AppRouter.exportDispatchPerCustomerPath);
+              },
+            ),
             (userPos != "Sales Agent")
                 ? CustomMenuItem(
                     title: 'Morning Meeting',
@@ -135,14 +151,7 @@ class DrawerMenuList extends StatelessWidget {
               },
             ),
             // (userPos != "Sales Agent" && userPos != "Sales Area Manager")
-            CustomMenuItem(
-              title: 'Dispatch Details',
-              active: activeTab == 'Dispatch Details',
-              onTap: () {
-                GoRouter.of(context)
-                    .push(AppRouter.dispatchDetailsPerSalesPath);
-              },
-            )
+
             // : const SizedBox(),
           ],
         ),

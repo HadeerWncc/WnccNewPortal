@@ -12,9 +12,13 @@ import 'package:wncc_portal/features/customerService/requests/presentation/views
 import 'package:wncc_portal/features/error/presentaion/view/page/error_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/views/pages/priority_summary_page.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/flat_dispatch_details_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_cust_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_region_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_sales_page.dart';
+import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/views/pages/export_dispatch_per_brand_page.dart';
+import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/views/pages/export_dispatch_per_customer_page.dart';
+import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/views/pages/export_dispatch_per_region_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_compare_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_daily_page.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/pages/fact_vs_cust_hourly_page.dart';
@@ -33,9 +37,10 @@ import 'package:wncc_portal/features/reports/payment/presentation/views/pages/pa
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_monthly_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_percustomer_page.dart';
 import 'package:wncc_portal/features/reports/pending/presentation/views/pages/pending_page.dart';
+import 'package:wncc_portal/features/reports/pending/presentation/views/pages/pickup_pending_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
-import 'package:wncc_portal/features/home/to_do_list/presentation/views/pages/to_do_screen.dart';
-import 'package:wncc_portal/features/home/updates/presentation/views/pages/updates_page.dart';
+import 'package:wncc_portal/features/to_do_list/presentation/views/pages/to_do_screen.dart';
+import 'package:wncc_portal/features/updates/presentation/views/pages/updates_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/change_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/forget_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/login_page.dart';
@@ -88,11 +93,16 @@ abstract class AppRouter {
   static const paymentsPerCustomerPath = '/customerPayment';
   static const paymentsDetailsPath = '/paymentsDetails';
   static const paymentsBalancePath = '/paymentBalance';
-  static const pendingPath = '/pending';
+  static const pendingPath = '/pendingDelivery';
+  static const pendingPickupPath = '/pendingPickup';
   static const loadingDetailsPath = '/loadingDetails';
   static const dispatchDetailsPath = '/dispatchDetails';
+  static const dispatchDetailsPerRegionPath = '/dispatchDetailsPerRegion';
   static const dispatchDetailsPerCustomerPath = '/dispatchDetailsPerCustomer';
   static const dispatchDetailsPerSalesPath = '/dispatchDetailsPerSales';
+  static const exportDispatchPerCustomerPath = '/exportDispatchPerCustomer';
+  static const exportDispatchPerBrandPath = '/exportDispatchPerBrand';
+  static const exportDispatchPerRegionPath = '/exportDispatchPerRegion';
   static const errorPagePath = '/errorPage';
   static const prioritySummaryPath = '/summaryPath';
 
@@ -288,11 +298,15 @@ abstract class AppRouter {
         builder: (context, state) => const PendingPage(),
       ),
       GoRoute(
+        path: pendingPickupPath,
+        builder: (context, state) => const PickupPendingPage(),
+      ),
+      GoRoute(
         path: loadingDetailsPath,
         builder: (context, state) => const LoadingDetailspage(),
       ),
       GoRoute(
-        path: dispatchDetailsPath,
+        path: dispatchDetailsPerRegionPath,
         builder: (context, state) => const DispatchDetailsV2PerRegionPage(),
       ),
       GoRoute(
@@ -302,6 +316,18 @@ abstract class AppRouter {
       GoRoute(
         path: dispatchDetailsPerSalesPath,
         builder: (context, state) => const DispatchDetailsV2PerSalesPage(),
+      ),
+      GoRoute(
+        path: exportDispatchPerCustomerPath,
+        builder: (context, state) => const ExportDispatchPerCustomerPage(),
+      ),
+      GoRoute(
+        path: exportDispatchPerRegionPath,
+        builder: (context, state) => const ExportDispatchPerRegionPage(),
+      ),
+      GoRoute(
+        path: exportDispatchPerBrandPath,
+        builder: (context, state) => const ExportDispatchPerBrandPage(),
       ),
       GoRoute(
         path: errorPagePath,

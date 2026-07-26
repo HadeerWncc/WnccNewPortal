@@ -4,4 +4,5 @@ import 'package:wncc_portal/features/reports/pending/data/models/pending_model/p
 
 abstract class PendingRepo {
   Future<Either<Failure, List<PendingModel>>> getPendingDelivery();
+  Future<Either<Failure, List<PendingModel>>> getPendingPickup();
 }

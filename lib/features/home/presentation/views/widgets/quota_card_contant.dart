@@ -4,7 +4,7 @@ import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/methods/format_num.dart';
 import 'package:wncc_portal/core/utils/methods/parse_to_int.dart';
-import 'package:wncc_portal/features/home/helper/methods.dart';
+import 'package:wncc_portal/features/home/presentation/manager/helper/methods.dart';
 
 class QuotaCardContant extends StatelessWidget {
   const QuotaCardContant({
@@ -12,11 +12,13 @@ class QuotaCardContant extends StatelessWidget {
     required this.user,
     required this.quota,
     required this.priority,
+    required this.mode,
   });
 
   final UserModel user;
   final num quota;
   final num priority;
+  final int mode;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +29,10 @@ class QuotaCardContant extends StatelessWidget {
           children: [
             Text(
               '${getGreeting().keys.toList()[0]}, ${user.fullName}',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
-                color: homeColor,
+                color: mode == 0 ? Colors.white : homeColor,
               ),
             ),
             const SizedBox(width: 5),
@@ -44,9 +46,9 @@ class QuotaCardContant extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           'Your quota today is ${formatNum(quota)}',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16,
-            color: homeColor,
+            color: mode == 0 ? Colors.white : homeColor,
           ),
         ),
         const SizedBox(height: 12),
@@ -55,15 +57,15 @@ class QuotaCardContant extends StatelessWidget {
           lineHeight: 3,
           percent: (priority / quota) > 1 ? 1 : (priority / quota),
           barRadius: const Radius.circular(20),
-          backgroundColor: homeColor,
+          backgroundColor: mode == 0 ? Colors.white : homeColor,
           progressColor: const Color.fromARGB(255, 18, 177, 87),
           animation: true,
         ),
         const SizedBox(height: 10),
         Text(
           '${formatNum(priority)}/${formatNum(quota)} completed . ${parseToInt(formatNum((priority / quota) * 100))}%',
-          style: const TextStyle(
-            color: homeColor,
+          style: TextStyle(
+            color: mode == 0 ? Colors.white : homeColor,
             fontSize: 13,
             fontWeight: FontWeight.bold,
           ),

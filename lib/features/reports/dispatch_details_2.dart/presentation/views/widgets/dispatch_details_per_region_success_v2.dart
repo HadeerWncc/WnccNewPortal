@@ -6,7 +6,6 @@ import 'package:wncc_portal/features/reports/dispatch_details/presentation/manag
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/data_value.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/dispatch_details_per_region_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/month_day.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/relation_value.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/helper/get_dis_value.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/build_header_per_region_row.dart';
 
@@ -38,7 +37,20 @@ class _DispatchDetailsPerRegionSuccessV2State
     final List<DispatchDetailsPerRegionModel> disList =
         List.from(widget.dispatchList);
     final totalAreas = getTotalAreas(disList);
+    final totalColumns = 2 + // icon + date
+        totalAreas.fold(
+          0,
+          (sum, area) =>
+              sum +
+              1 +
+              (area.relationValues
+                      ?.where((r) => widget.regions.contains(r.name))
+                      .length ??
+                  0),
+        ) +
+        1; // total
 
+    final tableWidth = totalColumns * 130.0 + 30;
     // final DispatchDetailsPerRegionModel totalDis = disList.last;
 
     // disList.removeLast();
@@ -46,11 +58,11 @@ class _DispatchDetailsPerRegionSuccessV2State
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: SizedBox(
-          width: 1500, // Set a fixed width for the table
+          width: tableWidth, // Set a fixed width for the table
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildHeaderPerRegionRow(disList, widget.regions),
+              buildHeaderPerRegionRow(totalAreas, widget.regions),
               const Divider(
                 height: .5,
                 color: Color.fromARGB(255, 226, 226, 226),
@@ -107,27 +119,28 @@ class _DispatchDetailsPerRegionSuccessV2State
                                   ),
                                 ),
                               ),
-                              ...widget.regions.map((r) {
-                                RelationValue? region;
+                              ...widget.regions
+                                  .where((s) =>
+                                      area.relationValues
+                                          ?.any((r) => r.name == s) ??
+                                      false)
+                                  .map((r) {
+                                final region = area.relationValues!
+                                    .firstWhere((item) => item.name == r);
 
-                                for (final item in area.relationValues ??
-                                    <RelationValue>[]) {
-                                  if (item.name == r) {
-                                    region = item;
-                                    break;
-                                  }
-                                }
                                 return Expanded(
                                   flex: 3,
                                   child: Center(
-                                    child: Text(getDisValue(
-                                      region?.quantity ?? defaultQuantity,
-                                      widget.incotrem,
-                                      widget.types,
-                                    )),
+                                    child: Text(
+                                      getDisValue(
+                                        region.quantity ?? defaultQuantity,
+                                        widget.incotrem,
+                                        widget.types,
+                                      ),
+                                    ),
                                   ),
                                 );
-                              })
+                              }),
                             ],
                             // ),
                             Expanded(
@@ -187,29 +200,27 @@ class _DispatchDetailsPerRegionSuccessV2State
                             ),
                           ),
                         ),
-                        ...widget.regions.map((r) {
-                          RelationValue? region;
+                        ...widget.regions
+                            .where((s) =>
+                                area.relationValues?.any((r) => r.name == s) ??
+                                false)
+                            .map((r) {
+                          final region = area.relationValues!
+                              .firstWhere((item) => item.name == r);
 
-                          for (final item
-                              in area.relationValues ?? <RelationValue>[]) {
-                            if (item.name == r) {
-                              region = item;
-                              break;
-                            }
-                          }
                           return Expanded(
                             flex: 3,
                             child: Center(
                               child: Text(
                                 getDisValue(
-                                  region?.quantity ?? defaultQuantity,
+                                  region.quantity ?? defaultQuantity,
                                   widget.incotrem,
                                   widget.types,
                                 ),
                               ),
                             ),
                           );
-                        })
+                        }),
                       ],
                       // ),
                       Expanded(
@@ -281,16 +292,13 @@ class _DispatchDetailsPerRegionSuccessV2State
                     ),
                   ),
                 ),
-                ...widget.regions.map((r) {
-                  RelationValue? region;
-
-                  for (final item
-                      in dayDataValue?.relationValues ?? <RelationValue>[]) {
-                    if (item.name == r) {
-                      region = item;
-                      break;
-                    }
-                  }
+                ...widget.regions
+                    .where((s) =>
+                        dayDataValue?.relationValues?.any((r) => r.name == s) ??
+                        false)
+                    .map((r) {
+                  final region = dayDataValue?.relationValues!
+                      .firstWhere((item) => item.name == r);
 
                   return Expanded(
                     flex: 3,

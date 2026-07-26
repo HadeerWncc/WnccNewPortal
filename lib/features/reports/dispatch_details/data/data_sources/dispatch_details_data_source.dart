@@ -1,4 +1,5 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/data/models/dispatch_details_flat_data_model.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/dispatch_details_per_region_model.dart';
 
 abstract class DispatchDetailsDataSource {
@@ -9,6 +10,9 @@ abstract class DispatchDetailsDataSource {
   //     DateTime from, DateTime to);
   // Future<List<DispatchDetailsModel>> getDispatchDetailsPerCustomer(
   //     DateTime from, DateTime to);
+
+  Future<List<DispatchDetailsFlatDataModel>> getDispatchDetailsFlatData(
+      DateTime date);
 }
 
 class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource {
@@ -35,4 +39,18 @@ class DispatchDetailsDataSourceImpl extends DispatchDetailsDataSource {
     return dispatchDetailsList;
   }
 
+  @override
+  Future<List<DispatchDetailsFlatDataModel>> getDispatchDetailsFlatData(
+      DateTime date) async {
+    var result = await apiService.get(
+        endPoint:
+            'api/Reports/GetFlatDispatchV2Details?fromDate=${DateTime(date.year, date.month, 1)}&toDate=$date');
+    List<DispatchDetailsFlatDataModel> dispatchDetailsList = [];
+    for (var dispach in result["data"]) {
+      DispatchDetailsFlatDataModel dispatchDetailsModel =
+          DispatchDetailsFlatDataModel.fromJson(dispach);
+      dispatchDetailsList.add(dispatchDetailsModel);
+    }
+    return dispatchDetailsList;
+  }
 }

@@ -32,7 +32,7 @@ class DispatchDetailsHeader extends StatelessWidget {
               title: 'Select Year',
               onChange: (value) {
                 BlocProvider.of<DispatchDetailsCubit>(context)
-                      .getDispatchDetailsPerRegion(value);
+                    .getDispatchDetailsPerRegion(value);
                 // if (group == 0) {
                 //   BlocProvider.of<DispatchDetailsCubit>(context)
                 //       .getDispatchDetailsPerRegion(value);
@@ -41,7 +41,7 @@ class DispatchDetailsHeader extends StatelessWidget {
                 //       .getDispatchDetailsV2PerSales(value,0,);
                 // } else {}
               },
-            ), 
+            ),
             // BlocBuilder<DispatchDetailsCubit, DispatchDetailsState>(
             //         builder: (context, state) {
             //           if (state is DispatchDetailsSuccess) {
@@ -75,8 +75,6 @@ class DispatchDetailsHeader extends StatelessWidget {
             //           );
             //         },
             //       )
-                
-                   
           ]),
     );
   }

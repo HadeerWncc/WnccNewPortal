@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/objects.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/quantity_type.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_cell.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/widgets/build_dispatch_details_table.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/dispatch_details_per_region_model/month_day.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/helper/get_dis_value.dart';
 
@@ -37,7 +35,9 @@ Widget buildTotalRowPerRegion({
 
           return prev +
               getDisSortValue(
-                  current != null ?current.quantity! :defaultQuantity , quantityType, quantityMatrial);
+                  current != null ? current.quantity! : defaultQuantity,
+                  quantityType,
+                  quantityMatrial);
         });
 
         cells.add(

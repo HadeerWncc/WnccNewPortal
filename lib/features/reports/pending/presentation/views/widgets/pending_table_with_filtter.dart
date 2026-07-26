@@ -118,7 +118,7 @@ class _PendingTableWithFulterState extends State<PendingTableWithFulter> {
               )
             : Expanded(
                 child: DataTable2(
-                    minWidth: data.first.toMap().length * 150,
+                    minWidth: data.first.toDeliveryMap().length * 150,
                     isVerticalScrollBarVisible: false,
                     horizontalMargin: 0,
                     columnSpacing: 0,
@@ -129,7 +129,7 @@ class _PendingTableWithFulterState extends State<PendingTableWithFulter> {
                     headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                     border: TableBorder.all(color: Colors.grey.shade300),
                     columns: data.first
-                        .toMap()
+                        .toDeliveryMap()
                         .keys
                         .toList()
                         .map(
@@ -158,7 +158,7 @@ class _PendingTableWithFulterState extends State<PendingTableWithFulter> {
                     rows: [
                       ...data.map(
                         (payment) {
-                          final pendingMap = payment.toMap();
+                          final pendingMap = payment.toDeliveryMap();
 
                           return DataRow(
                             cells: pendingMap.values.map(
@@ -188,5 +188,6 @@ class _PendingTableWithFulterState extends State<PendingTableWithFulter> {
               ),
       ],
     );
+  
   }
 }

@@ -22,4 +22,18 @@ class PendingRepoImpl extends PendingRepo {
       return Left(ServerFailure(msg: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<PendingModel>>> getPendingPickup() async {
+    try {
+      List<PendingModel> pendingPickupList =
+          await pendingDataSource.getPendingPickup();
+      return Right(pendingPickupList);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return Left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(msg: e.toString()));
+    }
+  }
 }

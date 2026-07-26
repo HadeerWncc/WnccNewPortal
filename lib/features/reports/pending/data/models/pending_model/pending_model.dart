@@ -16,6 +16,8 @@ class PendingModel extends Equatable {
   final String? salesDocument;
   final String? delivery;
   final num? deliveryQuantity;
+  final num? orderQuantity;
+  final num? remainingQuantity;
   final num? unitPrice;
   final String? currency;
   final String? materialId;
@@ -59,6 +61,8 @@ class PendingModel extends Equatable {
     this.salesDocument,
     this.delivery,
     this.deliveryQuantity,
+    this.orderQuantity,
+    this.remainingQuantity,
     this.unitPrice,
     this.currency,
     this.materialId,
@@ -103,6 +107,8 @@ class PendingModel extends Equatable {
         salesDocument: json['salesDocument'] as String?,
         delivery: json['delivery'] as String?,
         deliveryQuantity: json['deliveryQuantity'] as num?,
+        orderQuantity: json['orderQuantity'] as num?,
+        remainingQuantity: json['remainingQuantity'] as num?,
         unitPrice: json['unitPrice'] as num?,
         currency: json['currency'] as String?,
         materialId: json['materialId'] as String?,
@@ -148,6 +154,8 @@ class PendingModel extends Equatable {
         'salesDocument': salesDocument,
         'delivery': delivery,
         'deliveryQuantity': deliveryQuantity,
+        'orderQuantity': orderQuantity,
+        'remainingQuantity': remainingQuantity,
         'unitPrice': unitPrice,
         'currency': currency,
         'materialId': materialId,
@@ -177,7 +185,7 @@ class PendingModel extends Equatable {
         'isDeactivated': isDeactivated,
       };
 
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toDeliveryMap() => {
         'Customer': customerId,
         'Customer Name': customerName,
         'Order No': delivery,
@@ -192,6 +200,24 @@ class PendingModel extends Equatable {
             ? ""
             : DateFormat("d/M/yyyy").format(DateTime.parse(registerDate!)),
       };
+
+        Map<String, dynamic> toPickupMap() => {
+        'Customer': customerId,
+        'Customer Name': customerName,
+        'Product': materialName,
+        'Quantity': deliveryQuantity,
+        'Region': branchName,
+        'City': country,
+        'Reciever': receiver,
+        'Zone': addressTransZoneDesc,
+        'Sales': salesName,
+        'Date': registerDate == null
+            ? ""
+            : DateFormat("d/M/yyyy").format(DateTime.parse(registerDate!)),
+      };
+
+
+
 
   @override
   List<Object?> get props {
@@ -210,6 +236,8 @@ class PendingModel extends Equatable {
       salesDocument,
       delivery,
       deliveryQuantity,
+      orderQuantity,
+      remainingQuantity,
       unitPrice,
       currency,
       materialId,

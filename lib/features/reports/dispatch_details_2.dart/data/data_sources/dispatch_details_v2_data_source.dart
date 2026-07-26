@@ -53,10 +53,11 @@ class DispatchDetailsV2DataSourceImpl extends DispatchDetailsV2DataSource {
     }
     return dispatchDetailsList;
   }
-  
+
   @override
-  Future<List<DispatchDetailsPerRegionModel>> getDispatchDetailsPerRegion(DateTime date, int zone) async{
-     DateTime toDate = DateTime.now();
+  Future<List<DispatchDetailsPerRegionModel>> getDispatchDetailsPerRegion(
+      DateTime date, int zone) async {
+    DateTime toDate = DateTime.now();
 
     if (date.year != DateTime.now().year) {
       toDate = DateTime(date.year + 1, 1);

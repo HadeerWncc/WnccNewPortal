@@ -4,7 +4,7 @@ import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/tables/loading_table.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_details_v2_per_sales_cubit/dispatch_details_v2_per_sales_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/dispatch_details_per_sales_header.dart';
-import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/per_sales_header_tabs.dart';
+import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/widgets/dispatch_details_header_tabs.dart';
 
 import 'dispatch_details_per_sales_success.dart';
 
@@ -29,7 +29,7 @@ class _DispatchDetailsV2PerSalesBodyState
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const PerSalesHeaderTabs(),
+        const DispatchDetailsHeaderTabs(activeTab: 0),
         const SizedBox(height: 5),
         DispatchDetailsPerSalesHeader(
           user: widget.user,

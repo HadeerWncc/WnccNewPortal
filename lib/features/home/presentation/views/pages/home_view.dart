@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/errors/handel_error.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
+import 'package:wncc_portal/features/home/presentation/manager/cubites/home_cubit/home_cubit.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_button_navbar.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_menus_list.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/home_view_body.dart';
-import 'package:wncc_portal/features/priority/summary/presentation/managers/cubites/summary_priority_cubit/summary_priority_cubit.dart';
 import 'package:wncc_portal/features/user/presentation/manager/cubits/user_cubit/user_cubit.dart';
 
 class HomeView extends StatelessWidget {
@@ -17,8 +17,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<SummaryPriorityCubit>(context)
-        .getPrioritySummary(DateTime.now(), DateTime.now());
+    BlocProvider.of<HomeCubit>(context)
+        .getHomeSummary(DateTime.now(), DateTime.now(),'1000049');
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => handelError(state, context),
       builder: (context, state) {

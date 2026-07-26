@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/data/models/core_models/value.dart';
 
-
 class RelationValue extends Equatable {
   final String? id;
   final String? name;
