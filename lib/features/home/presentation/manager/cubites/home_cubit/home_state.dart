@@ -12,9 +12,9 @@ final class HomeInitial extends HomeState {}
 final class HomeLoading extends HomeState {}
 
 final class HomeSuccess extends HomeState {
-  final Home homeSummary;
-
-  const HomeSuccess({required this.homeSummary});
+  final List<SalesDatum> homeSummary;
+  final List<String> sales;
+  const HomeSuccess(this.sales, {required this.homeSummary});
 
   @override
   List<Object> get props => [homeSummary];

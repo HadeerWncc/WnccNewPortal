@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class HomeChartItem extends StatelessWidget {
@@ -16,7 +15,7 @@ class HomeChartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: 110,
       padding: const EdgeInsets.symmetric(
         horizontal: 7,
         vertical: 3,

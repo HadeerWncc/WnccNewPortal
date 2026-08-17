@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/home/data/models/home/quota.summary.model.dart';
+import 'package:wncc_portal/features/home/data/models/home_summary/quota.dart';
+import 'package:wncc_portal/features/home/presentation/manager/helper/methods.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/bags_bulk_section.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/user_quota_card.dart';
 
 class PrioritySummarySection extends StatelessWidget {
   const PrioritySummarySection({
     super.key,
-    required this.dispatchDate, required this.pendingDate,
+    required this.dispatchDate,
+    required this.pendingDate, required this.incoterm,
   });
   final Quota dispatchDate;
   final Quota pendingDate;
+  final List<String> incoterm;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,13 +32,11 @@ class PrioritySummarySection extends StatelessWidget {
               child: BagsBulkSection(
                 mode: 0,
                 title: 'Dispatch Quantity',
-                value: (dispatchDate.pickup!.total ?? 0) +
-                      (dispatchDate.delivery!.total ?? 0),
+                value: getQuotaValue(dispatchDate, incoterm).total??0,
+                
                 doughnutChartValues: {
-                  'Bags': (dispatchDate.pickup!.bags ?? 0) +
-                      (dispatchDate.delivery!.bags ?? 0),
-                  'Bulk': (dispatchDate.pickup!.bulk ?? 0) +
-                      (dispatchDate.delivery!.bulk ?? 0),
+                  'Bags': getQuotaValue(dispatchDate, incoterm).bags??0,
+                  'Bulk': getQuotaValue(dispatchDate, incoterm).bulk??0,
                 },
               ),
             ),
@@ -51,13 +52,10 @@ class PrioritySummarySection extends StatelessWidget {
               child: BagsBulkSection(
                 mode: 0,
                 title: 'Pending Quantity',
-                value: (pendingDate.pickup!.total ?? 0) +
-                      (pendingDate.delivery!.total ?? 0),
+                value: getQuotaValue(pendingDate, incoterm).total??0,
                 doughnutChartValues: {
-                  'Bags': (pendingDate.pickup!.bags ?? 0) +
-                      (pendingDate.delivery!.bags ?? 0),
-                  'Bulk': (pendingDate.pickup!.bulk ?? 0) +
-                      (pendingDate.delivery!.bulk ?? 0),
+                  'Bags': getQuotaValue(pendingDate, incoterm).bags??0,
+                  'Bulk': getQuotaValue(pendingDate, incoterm).bulk??0,
                 },
               ),
             ),

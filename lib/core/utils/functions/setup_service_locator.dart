@@ -16,7 +16,6 @@ import 'package:wncc_portal/features/customerService/complains/presentation/mana
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/create_new_complain/create_new_complain_cubit.dart';
 import 'package:wncc_portal/features/customerService/complains/presentation/managers/cubits/forwarded_complain_cubit/forwarded_complain_cubit.dart';
 import 'package:wncc_portal/features/home/data/data_sources/home_data_sources.dart';
-import 'package:wncc_portal/features/home/data/models/home/home.summary.model.dart';
 import 'package:wncc_portal/features/home/data/repos_Impl/home_repo_impl.dart';
 import 'package:wncc_portal/features/home/domain/repos/home_repo.dart';
 import 'package:wncc_portal/features/home/presentation/manager/cubites/home_cubit/home_cubit.dart';
@@ -578,7 +577,8 @@ void setupLocator() {
   getIt.registerFactory<PendingCubit>(() => PendingCubit(getIt<PendingRepo>()));
 
   //PendingPickupCubit
-  getIt.registerFactory<PickupPendingCubit>(() => PickupPendingCubit(getIt<PendingRepo>()));
+  getIt.registerFactory<PickupPendingCubit>(
+      () => PickupPendingCubit(getIt<PendingRepo>()));
 
   //LoadingDetailsCubit
   getIt.registerFactory<LoadingDetailsCubit>(

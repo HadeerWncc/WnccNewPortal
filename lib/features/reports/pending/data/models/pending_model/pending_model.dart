@@ -201,7 +201,7 @@ class PendingModel extends Equatable {
             : DateFormat("d/M/yyyy").format(DateTime.parse(registerDate!)),
       };
 
-        Map<String, dynamic> toPickupMap() => {
+  Map<String, dynamic> toPickupMap() => {
         'Customer': customerId,
         'Customer Name': customerName,
         'Product': materialName,
@@ -215,9 +215,6 @@ class PendingModel extends Equatable {
             ? ""
             : DateFormat("d/M/yyyy").format(DateTime.parse(registerDate!)),
       };
-
-
-
 
   @override
   List<Object?> get props {

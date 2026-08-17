@@ -6,7 +6,11 @@ import 'package:wncc_portal/features/reports/pending/presentation/manager/build_
 import 'package:wncc_portal/features/reports/pending/presentation/views/widgets/pickup_pending_table_with_filter.dart';
 
 class PickupPendingTable extends StatelessWidget {
-  const PickupPendingTable({super.key, required this.showCharts, required this.pendingData, required this.searchString});
+  const PickupPendingTable(
+      {super.key,
+      required this.showCharts,
+      required this.pendingData,
+      required this.searchString});
   final bool showCharts;
   final List<PendingModel> pendingData;
   final String searchString;

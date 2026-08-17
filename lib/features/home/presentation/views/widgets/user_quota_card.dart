@@ -27,7 +27,7 @@ class HomeUserCard extends StatelessWidget {
             margin ?? const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         decoration: BoxDecoration(
           border: (shadow == false)
-              ? Border.all(color: Color.fromARGB(255, 1, 38, 138))
+              ? Border.all(color: const Color.fromARGB(255, 1, 38, 138))
               : null,
           borderRadius: BorderRadius.circular(8),
           gradient: LinearGradient(

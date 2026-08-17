@@ -5,7 +5,7 @@ int parseToInt(String? value) {
   if (intVal != null) return intVal;
 
   final doubleVal = double.tryParse(value);
-  if (doubleVal != null) return doubleVal.toInt();
+  if (doubleVal != null && !doubleVal.isNaN) return doubleVal.toInt();
 
   return 0;
 }

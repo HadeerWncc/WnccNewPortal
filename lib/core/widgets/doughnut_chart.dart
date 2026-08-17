@@ -3,16 +3,16 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DoughnutChart extends StatelessWidget {
   const DoughnutChart({super.key, required this.chartValues});
-  final Map<String,num> chartValues;
+  final Map<String, num> chartValues;
   @override
   Widget build(BuildContext context) {
     final List<ChartData> chartData = [
-      ChartData(chartValues.keys.first, chartValues.values.first.toDouble(), const Color(0xff029ff8)),
-      ChartData(chartValues.keys.last, chartValues.values.last.toDouble(), const Color(0xff55ca8e)),
+      ChartData(chartValues.keys.first, chartValues.values.first.toDouble(),
+          const Color(0xff029ff8)),
+      ChartData(chartValues.keys.last, chartValues.values.last.toDouble(),
+          const Color(0xff55ca8e)),
     ];
-    return SfCircularChart(
-      margin: EdgeInsets.all(0),
-      series: <CircularSeries>[
+    return SfCircularChart(margin: EdgeInsets.all(0), series: <CircularSeries>[
       // Renders doughnut chart
       DoughnutSeries<ChartData, String>(
           dataSource: chartData,

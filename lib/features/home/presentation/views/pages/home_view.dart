@@ -18,7 +18,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<HomeCubit>(context)
-        .getHomeSummary(DateTime.now(), DateTime.now(),'1000049');
+        .getHomeSummary(DateTime.now(), DateTime.now(), null);
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => handelError(state, context),
       builder: (context, state) {

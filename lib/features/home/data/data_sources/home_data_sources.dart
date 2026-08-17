@@ -1,8 +1,8 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
-import 'package:wncc_portal/features/home/data/models/home/home.summary.model.dart';
+import 'package:wncc_portal/features/home/data/models/home_summary/home_summary.dart';
 
 abstract class HomeDataSources {
-  Future<Home> getHomeSummary(DateTime fromDate, DateTime toDate, String code);
+  Future<HomeSummary> getHomeSummary(DateTime fromDate, DateTime toDate, String? code);
 }
 
 class HomeDataSourcesImpl extends HomeDataSources {
@@ -10,12 +10,13 @@ class HomeDataSourcesImpl extends HomeDataSources {
 
   HomeDataSourcesImpl({required this.apiService});
   @override
-  Future<Home> getHomeSummary(
-      DateTime fromDate, DateTime toDate, String code) async {
+  Future<HomeSummary> getHomeSummary(
+      DateTime fromDate, DateTime toDate, String? code) async {
+        String endPoint = code == null?'api/Home/GetHome?fromDate=$fromDate&toDate=$toDate' : 'api/Home/GetHome?fromDate=$fromDate&toDate=$toDate&code=$code';
     var result = await apiService.get(
-      endPoint: 'api/Home/GetHome?fromDate=$fromDate&toDate=$toDate&code=$code',
+      endPoint: endPoint,
     );
-    Home homeData = Home.fromJson(result["data"]);
+    HomeSummary homeData = HomeSummary.fromJson(result["data"]);
     return homeData;
   }
 }

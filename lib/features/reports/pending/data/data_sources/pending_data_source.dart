@@ -20,9 +20,9 @@ class PendingDataSourceImpl extends PendingDataSource {
     }
     return pendingDeliveryList;
   }
-  
+
   @override
-  Future<List<PendingModel>> getPendingPickup() async{
+  Future<List<PendingModel>> getPendingPickup() async {
     var result = await apiService.get(endPoint: 'api/Pickup/GetAll');
     List<PendingModel> pendingPickupList = [];
     for (var pending in result["data"]) {

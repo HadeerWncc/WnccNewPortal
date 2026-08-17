@@ -4,15 +4,23 @@ import 'package:wncc_portal/features/home/presentation/views/widgets/custom_box_
 
 class BoxSummarySection extends StatelessWidget {
   const BoxSummarySection({
-    super.key, required this.title, required this.subTitle, required this.value1, required this.title1, required this.value2, required this.title2, required this.value3, required this.title3,
+    super.key,
+    required this.title,
+    required this.subTitle,
+    required this.value1,
+    required this.title1,
+    this.value2,
+    this.title2,
+    required this.value3,
+    required this.title3,
   });
   final String title;
   final String subTitle;
   final String value1;
   final String title1;
-   final String value2;
-  final String title2;
-   final String value3;
+  final String? value2;
+  final String? title2;
+  final String value3;
   final String title3;
 
   @override
@@ -20,13 +28,12 @@ class BoxSummarySection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-         Text(
+        Text(
           title,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold, fontSize: 16),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
         const SizedBox(height: 5),
-         Opacity(
+        Opacity(
           opacity: .5,
           child: Text(
             subTitle,
@@ -47,17 +54,21 @@ class BoxSummarySection extends StatelessWidget {
             const CustomVerticalDivider(
               color: Colors.grey,
               height: 50,
-              margin: 5,
+              margin: 0,
             ),
-            CustomBoxItem(
-              title: title2,
-              value: value2,
-            ),
-            const CustomVerticalDivider(
-              color: Colors.grey,
-              height: 50,
-              margin: 5,
-            ),
+            value2 != null
+                ? CustomBoxItem(
+                    title: title2!,
+                    value: value2!,
+                  )
+                : const SizedBox(),
+            value2 != null
+                ? const CustomVerticalDivider(
+                    color: Colors.grey,
+                    height: 50,
+                    margin: 5,
+                  )
+                : const SizedBox(),
             CustomBoxItem(
               title: title3,
               value: value3,

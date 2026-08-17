@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-import 'sales_datum.summary.model.dart';
+import 'sales_datum.dart';
 
-class Home extends Equatable {
+class HomeSummary extends Equatable {
   final List<SalesDatum>? salesData;
 
-  const Home({this.salesData});
+  const HomeSummary({this.salesData});
 
-  factory Home.fromJson(Map<String, dynamic> json) => Home(
+  factory HomeSummary.fromJson(Map<String, dynamic> json) => HomeSummary(
         salesData: (json['salesData'] as List<dynamic>?)
             ?.map((e) => SalesDatum.fromJson(e as Map<String, dynamic>))
             .toList(),

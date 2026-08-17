@@ -1,7 +1,5 @@
 part of 'pickup_pending_cubit.dart';
 
-
-
 sealed class PickupPendingState extends Equatable {
   const PickupPendingState();
 

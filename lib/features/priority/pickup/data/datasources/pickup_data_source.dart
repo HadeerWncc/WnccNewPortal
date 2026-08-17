@@ -17,8 +17,8 @@ class PickupDataSourceImpl extends PickupDataSource {
   PickupDataSourceImpl({required this.apiService});
   @override
   Future<List<PickupModel>> getPickupPriority(DateTime date) async {
-    var result =
-        await apiService.get(endPoint: 'api/Pickup/GetPickupility?date=$date');
+    var result = await apiService.get(
+        endPoint: 'api/Pickup/GetPickupility?date=$date&PageSize=1000');
     List<PickupModel> pickupPriorityList = [];
     for (var order in result["data"]) {
       pickupPriorityList.add(PickupModel.fromJson(order));

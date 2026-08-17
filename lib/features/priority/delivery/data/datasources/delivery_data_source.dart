@@ -78,7 +78,7 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
   Future<List<PriorityDeliveryModel>> getDispatchDeliveryOrdersByDate(
       String date) async {
     var result = await apiService.get(
-        endPoint: 'api/Delivery/Search?FromDate=$date&ToDate=$date&Status=2');
+        endPoint: 'api/Delivery/Search?FromDate=$date&ToDate=$date&Status=2&PageSize=1000');
     List<PriorityDeliveryModel> dispatchDeliveryOrders = [];
     for (var order in result["data"]["data"]) {
       dispatchDeliveryOrders.add(PriorityDeliveryModel.fromJson(order));
@@ -100,7 +100,7 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
   @override
   Future<List<PriorityDeliveryModel>> getPriorityDeliveryOrders() async {
     var result = await apiService.get(
-      endPoint: 'api/Delivery/Search?Status=1',
+      endPoint: 'api/Delivery/Search?Status=1&PageSize=1000',
     );
     List<PriorityDeliveryModel> priorityDeliveryOrders = [];
     for (var order in result["data"]["data"]) {

@@ -14,7 +14,7 @@ class PickupPendingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     BlocProvider.of<PickupPendingCubit>(context).getPendingPickup();
+    BlocProvider.of<PickupPendingCubit>(context).getPendingPickup();
     return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => handelError(state, context),
       builder: (context, state) {

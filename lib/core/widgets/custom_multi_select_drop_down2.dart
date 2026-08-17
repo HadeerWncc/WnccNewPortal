@@ -8,12 +8,14 @@ class CustomMultiSelectDropDown2 extends StatefulWidget {
     required this.selectedProducts,
     this.onChanged,
     this.title,
+    this.bgColor,
   });
 
   final List<String> products;
   final List<String> selectedProducts;
   final Function(List<String>)? onChanged;
   final String? title;
+  final Color? bgColor;
 
   @override
   State<CustomMultiSelectDropDown2> createState() =>
@@ -42,7 +44,7 @@ class _CustomMultiSelectDropDown2State
               : widget.selectedProducts.length == 1
                   ? widget.selectedProducts[0]
                   : "${widget.selectedProducts.length} Items selected",
-          style: const TextStyle(color: Colors.black),
+          style: TextStyle(color: widget.bgColor ?? Colors.black),
         );
       },
       popupProps: PopupPropsMultiSelection.menu(

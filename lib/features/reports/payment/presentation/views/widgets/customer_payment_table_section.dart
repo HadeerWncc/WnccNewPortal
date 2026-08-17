@@ -4,13 +4,10 @@ import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/fields/loading_input.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
-import 'package:wncc_portal/features/reports/payment/domain/entities/customer_deposit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
 import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_payment_with_filter.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/customer_payment_header.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/customer_payment_table.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/loading/payment_loaing.dart';
 
 class CustomerPaymentTablesSection extends StatefulWidget {
   const CustomerPaymentTablesSection({

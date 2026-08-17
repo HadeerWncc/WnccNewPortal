@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-import 'quota.summary.model.dart';
+import 'month_dispatch.dart';
+import 'payment.dart';
+import 'quota.dart';
 
 class SalesDatum extends Equatable {
   final String? id;
@@ -9,11 +11,11 @@ class SalesDatum extends Equatable {
   final Quota? priority;
   final Quota? dispatch;
   final Quota? pending;
-  final num? dailyPayment;
-  final num? monthlyPayment;
-  final int? dailyPaymentCount;
-  final Quota? loading;
-  final Quota? checked;
+  final List<Payment>? payments;
+  final num? loading;
+  final num? checked;
+  final num? shipmentTruck;
+  final List<MonthDispatch>? monthDispatches;
 
   const SalesDatum({
     this.id,
@@ -22,11 +24,11 @@ class SalesDatum extends Equatable {
     this.priority,
     this.dispatch,
     this.pending,
-    this.dailyPayment,
-    this.monthlyPayment,
-    this.dailyPaymentCount,
+    this.payments,
     this.loading,
     this.checked,
+    this.shipmentTruck,
+    this.monthDispatches,
   });
 
   factory SalesDatum.fromJson(Map<String, dynamic> json) => SalesDatum(
@@ -44,15 +46,15 @@ class SalesDatum extends Equatable {
         pending: json['pending'] == null
             ? null
             : Quota.fromJson(json['pending'] as Map<String, dynamic>),
-        dailyPayment: json['dailyPayment'] as num?,
-        monthlyPayment: json['monthlyPayment'] as num?,
-        dailyPaymentCount: json['dailyPaymentCount'] as int?,
-        loading: json['loading'] == null
-            ? null
-            : Quota.fromJson(json['loading'] as Map<String, dynamic>),
-        checked: json['checked'] == null
-            ? null
-            : Quota.fromJson(json['checked'] as Map<String, dynamic>),
+        payments: (json['payments'] as List<dynamic>?)
+            ?.map((e) => Payment.fromJson(e as Map<String, dynamic>))
+            .toList(),
+        loading: json['loading'] as num?,
+        checked: json['checked'] as num?,
+        shipmentTruck: json['shipmentTruck'] as num?,
+        monthDispatches: (json['monthDispatches'] as List<dynamic>?)
+            ?.map((e) => MonthDispatch.fromJson(e as Map<String, dynamic>))
+            .toList(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,11 +64,11 @@ class SalesDatum extends Equatable {
         'priority': priority?.toJson(),
         'dispatch': dispatch?.toJson(),
         'pending': pending?.toJson(),
-        'dailyPayment': dailyPayment,
-        'monthlyPayment': monthlyPayment,
-        'dailyPaymentCount': dailyPaymentCount,
-        'loading': loading?.toJson(),
-        'checked': checked?.toJson(),
+        'payments': payments?.map((e) => e.toJson()).toList(),
+        'loading': loading,
+        'checked': checked,
+        'shipmentTruck': shipmentTruck,
+        'monthDispatches': monthDispatches?.map((e) => e.toJson()).toList(),
       };
 
   @override
@@ -78,11 +80,11 @@ class SalesDatum extends Equatable {
       priority,
       dispatch,
       pending,
-      dailyPayment,
-      monthlyPayment,
-      dailyPaymentCount,
+      payments,
       loading,
       checked,
+      shipmentTruck,
+      monthDispatches,
     ];
   }
 }
