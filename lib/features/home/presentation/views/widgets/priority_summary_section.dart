@@ -8,7 +8,8 @@ class PrioritySummarySection extends StatelessWidget {
   const PrioritySummarySection({
     super.key,
     required this.dispatchDate,
-    required this.pendingDate, required this.incoterm,
+    required this.pendingDate,
+    required this.incoterm,
   });
   final Quota dispatchDate;
   final Quota pendingDate;
@@ -32,11 +33,10 @@ class PrioritySummarySection extends StatelessWidget {
               child: BagsBulkSection(
                 mode: 0,
                 title: 'Dispatch Quantity',
-                value: getQuotaValue(dispatchDate, incoterm).total??0,
-                
+                value: getQuotaValue(dispatchDate, incoterm).total ?? 0,
                 doughnutChartValues: {
-                  'Bags': getQuotaValue(dispatchDate, incoterm).bags??0,
-                  'Bulk': getQuotaValue(dispatchDate, incoterm).bulk??0,
+                  'Bags': getQuotaValue(dispatchDate, incoterm).bags ?? 0,
+                  'Bulk': getQuotaValue(dispatchDate, incoterm).bulk ?? 0,
                 },
               ),
             ),
@@ -52,10 +52,10 @@ class PrioritySummarySection extends StatelessWidget {
               child: BagsBulkSection(
                 mode: 0,
                 title: 'Pending Quantity',
-                value: getQuotaValue(pendingDate, incoterm).total??0,
+                value: getQuotaValue(pendingDate, incoterm).total ?? 0,
                 doughnutChartValues: {
-                  'Bags': getQuotaValue(pendingDate, incoterm).bags??0,
-                  'Bulk': getQuotaValue(pendingDate, incoterm).bulk??0,
+                  'Bags': getQuotaValue(pendingDate, incoterm).bags ?? 0,
+                  'Bulk': getQuotaValue(pendingDate, incoterm).bulk ?? 0,
                 },
               ),
             ),

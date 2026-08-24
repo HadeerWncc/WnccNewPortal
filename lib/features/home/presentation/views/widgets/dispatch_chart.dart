@@ -25,7 +25,6 @@ class _DispatchChartState extends State<DispatchChart> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     List<MonthDispatch> data = widget.data;
@@ -33,8 +32,9 @@ class _DispatchChartState extends State<DispatchChart> {
       data = widget.data.sublist(widget.data.length - 5, widget.data.length);
     }
 
-    final num maxValue =  data.isNotEmpty?
-        data.map((e) => e.total).reduce((a, b) => a > b ? a : b): 0;
+    final num maxValue = data.isNotEmpty
+        ? data.map((e) => e.total).reduce((a, b) => a > b ? a : b)
+        : 0;
 
     return SizedBox(
       height: 150,
@@ -54,7 +54,12 @@ class _DispatchChartState extends State<DispatchChart> {
           ColumnSeries<MonthDispatch, String>(
             dataSource: data,
             xValueMapper: (e, _) => e.month,
-            yValueMapper: (e, _) =>(widget.incoterm.isEmpty||widget.incoterm.length == 2)? e.total: widget.incoterm[0] == 'Pickup'?e.pickup:e.delivery,
+            yValueMapper: (e, _) =>
+                (widget.incoterm.isEmpty || widget.incoterm.length == 2)
+                    ? e.total
+                    : widget.incoterm[0] == 'Pickup'
+                        ? e.pickup
+                        : e.delivery,
 
             isTrackVisible: true,
             trackColor: Colors.grey.shade200,

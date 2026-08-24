@@ -54,8 +54,8 @@ List<MonthDispatch> getTotalMonthDispatches(List<SalesDatum> sales) {
 
         result[month.month] = MonthDispatch(
           month: month.month,
-          delivery: (current.delivery??0) + month.delivery,
-          pickup: (current.pickup??0) + month.pickup,
+          delivery: (current.delivery ?? 0) + month.delivery,
+          pickup: (current.pickup ?? 0) + month.pickup,
         );
       } else {
         result[month.month] = MonthDispatch(
@@ -70,8 +70,6 @@ List<MonthDispatch> getTotalMonthDispatches(List<SalesDatum> sales) {
   return result.values.toList();
 }
 
-
-
 List<Payment> getPaymentTotal(List<SalesDatum> sales) {
   final Map<String, Payment> result = {};
 
@@ -82,8 +80,8 @@ List<Payment> getPaymentTotal(List<SalesDatum> sales) {
 
         result[pay.currency] = Payment(
           currency: pay.currency,
-          amount: (current.amount??0) + pay.amount,
-          count: (current.count??0) + pay.count,
+          amount: (current.amount ?? 0) + pay.amount,
+          count: (current.count ?? 0) + pay.count,
         );
       } else {
         result[pay.currency] = Payment(

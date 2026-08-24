@@ -90,6 +90,7 @@ import 'package:wncc_portal/features/reports/morningMeating/presentation/manager
 import 'package:wncc_portal/features/reports/payment/data/data_sources/payment_data_source.dart';
 import 'package:wncc_portal/features/reports/payment/data/repo_impl/payments_repo_impl.dart';
 import 'package:wncc_portal/features/reports/payment/domain/repos/payments_repo.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/credit_limit_cubit/credit_limit_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/customer_balance_cubit/customer_balance_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
@@ -572,6 +573,10 @@ void setupLocator() {
   //PayementPerCustomerCubit
   getIt.registerFactory<PaymentPerCustomerCubit>(
       () => PaymentPerCustomerCubit(getIt<PaymentsRepo>(), getIt<PayerRepo>()));
+
+  //CreditLimitCubit
+  getIt.registerFactory<CreditLimitCubit>(
+      () => CreditLimitCubit(getIt<PaymentsRepo>()));
 
   //PendingDeliveryCubit
   getIt.registerFactory<PendingCubit>(() => PendingCubit(getIt<PendingRepo>()));

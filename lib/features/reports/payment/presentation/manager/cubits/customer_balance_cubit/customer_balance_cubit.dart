@@ -11,10 +11,7 @@ class CustomerBalanceCubit extends Cubit<CustomerBalanceState> {
 
   Future<void> getPaymentBalance() async {
     emit(CustomerBalanceLoading());
-    print('before${DateTime.now().millisecond}');
     final result = await paymentsRepo.fetchPaymentBalanceData();
-    print('after${DateTime.now().millisecond}');
-
     result.fold(
       (failure) => emit(CustomerBalanceFailure(error: failure.msg)),
       (paymentBalance) =>

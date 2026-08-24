@@ -12,7 +12,7 @@ class BalancePaymentsBody extends StatelessWidget {
       child: Column(
         children: [
           PaymentReportButtonsList(
-            activeTab: 2,
+            activeTab: 1,
           ),
           SizedBox(height: 16),
           Expanded(child: PaymentsBalanceSection()),

@@ -6,6 +6,7 @@ import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/fields/loading_input.dart';
 import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
 
 class CustomerPaymentHeader extends StatefulWidget {
   const CustomerPaymentHeader({super.key, this.onChangePayer});
@@ -33,7 +34,7 @@ class _CustomerPaymentHeaderState extends State<CustomerPaymentHeader> {
               : MediaQuery.of(context).size.width * .35,
           child: CustomDropDownInput(
             title: 'Select',
-            items: [...reportOptionsList, "Per Customer"],
+            items: [...reportOptionsList, "Per Customer","Details"],
             selectedValue: 'Per Customer',
             onChanged: (value) {
               // Handle dropdown change
@@ -41,6 +42,10 @@ class _CustomerPaymentHeaderState extends State<CustomerPaymentHeader> {
                 GoRouter.of(context).push(AppRouter.paymentsDailyPath);
               } else if (value == "Monthly") {
                 GoRouter.of(context).push(AppRouter.paymentsMonthlyPath);
+              }
+              else if (value == "Details") {
+                BlocProvider.of<PaymentsDetailsCubit>(context).getPaymentDetails(DateTime.now(), DateTime.now());
+                GoRouter.of(context).push(AppRouter.paymentsDetailsPath);
               }
             },
           ),

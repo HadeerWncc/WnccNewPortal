@@ -62,18 +62,8 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     state.homeSummary.map((e) => e.checked!).toList());
                 num loading = mergeNums(
                     state.homeSummary.map((e) => e.loading!).toList());
-                // num dailyAmount = mergeNums(state.homeSummary.salesData!
-                //     .map((e) => e.payments!
-                //         .firstWhere((p) => p.currency == "EGP")
-                //         .amount!)
-                //     .toList());
                 num loadingCount = mergeNums(
                     state.homeSummary.map((e) => e.shipmentTruck!).toList());
-                // num paymentCount = mergeNums(state.homeSummary.salesData!
-                //     .map((e) => e.payments!
-                //         .firstWhere((p) => p.currency == "EGP")
-                //         .count!)
-                //     .toList());
                 List<MonthDispatch> monthDispatchData =
                     getTotalMonthDispatches(state.homeSummary);
                 return Column(
@@ -140,10 +130,12 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                     const SizedBox(height: 20),
                   ],
                 );
-              }
-              else if(state is HomeFailure){
+              } else if (state is HomeFailure) {
                 return Center(
-                  child: Text(state.errorMessage,style: const TextStyle(color: Colors.red),),
+                  child: Text(
+                    state.errorMessage,
+                    style: const TextStyle(color: Colors.red),
+                  ),
                 );
               }
               return const HomeLoadingWidget();

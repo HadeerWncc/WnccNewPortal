@@ -10,15 +10,16 @@ class BoxPaymentSummarySection extends StatefulWidget {
   const BoxPaymentSummarySection({
     super.key,
     required this.title,
-    required this.subTitle, required this.payments,
-   
+    required this.subTitle,
+    required this.payments,
   });
   final String title;
   final String subTitle;
   final List<Payment>? payments;
 
   @override
-  State<BoxPaymentSummarySection> createState() => _BoxPaymentSummarySectionState();
+  State<BoxPaymentSummarySection> createState() =>
+      _BoxPaymentSummarySectionState();
 }
 
 class _BoxPaymentSummarySectionState extends State<BoxPaymentSummarySection> {
@@ -36,7 +37,8 @@ class _BoxPaymentSummarySectionState extends State<BoxPaymentSummarySection> {
               children: [
                 Text(
                   widget.title,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 const SizedBox(height: 5),
                 Opacity(
@@ -51,10 +53,10 @@ class _BoxPaymentSummarySectionState extends State<BoxPaymentSummarySection> {
                 ),
               ],
             ),
-         CustomChckButtons(
-          containerColor: kBtnColor,
+            CustomChckButtons(
+                containerColor: kBtnColor,
                 buttons: const ["EGP", "USD"],
-                activeTab: activeCurrancy == "EGP"?0:1,
+                activeTab: activeCurrancy == "EGP" ? 0 : 1,
                 onTap: (value) {
                   activeCurrancy = value;
                   setState(() {});
@@ -66,7 +68,12 @@ class _BoxPaymentSummarySectionState extends State<BoxPaymentSummarySection> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CustomBoxItem(
-              value: widget.payments!.isNotEmpty? formatNum(widget.payments!.firstWhere((p)=>p.currency == activeCurrancy).amount??0):'0',
+              value: widget.payments!.isNotEmpty
+                  ? formatNum(widget.payments!
+                          .firstWhere((p) => p.currency == activeCurrancy)
+                          .amount ??
+                      0)
+                  : '0',
               title: 'Daily Amount',
             ),
             const CustomVerticalDivider(
@@ -75,8 +82,13 @@ class _BoxPaymentSummarySectionState extends State<BoxPaymentSummarySection> {
               margin: 0,
             ),
             CustomBoxItem(
-              title:'Daily Payment Count',
-              value: widget.payments!.isNotEmpty? formatNum(widget.payments!.firstWhere((p)=>p.currency == activeCurrancy).count??0):'0',
+              title: 'Daily Payment Count',
+              value: widget.payments!.isNotEmpty
+                  ? formatNum(widget.payments!
+                          .firstWhere((p) => p.currency == activeCurrancy)
+                          .count ??
+                      0)
+                  : '0',
             ),
           ],
         )

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:wncc_portal/core/errors/failure.dart';
+import 'package:wncc_portal/features/reports/payment/data/models/credit_limit/credit_limit/credit_limit.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/customer_balance.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment/payment.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment_details_model.dart';
@@ -10,4 +11,5 @@ abstract class PaymentsRepo {
   Future<Either<Failure, List<PaymentDetailsModel>>> fetchPaymentDetailsData(
       DateTime fromDate, DateTime toDate);
   Future<Either<Failure, List<CustomerBalance>>> fetchPaymentBalanceData();
+  Future<Either<Failure, List<CreditLimit>>> getCreditLimitData();
 }

@@ -36,7 +36,7 @@ class PaymentsBalancePage extends StatelessWidget {
               drawer: Drawer(
                 shape: drawerBorde(),
                 child: CustomMenusList(
-                  activeTab: "Balance",
+                  activeTab: "Payments",
                   user: state.user,
                 ),
               ),

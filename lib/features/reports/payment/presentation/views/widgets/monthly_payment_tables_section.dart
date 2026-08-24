@@ -31,15 +31,20 @@ class _MonthlyPaymentTablesSectionState
           children: [
             const PaymentsMonthlyHeader(),
             const SizedBox(width: 7),
-            CustomChckButtons(
-              buttons: const ["EGP", "USD"],
-              activeTab: activeTab,
-              onTap: (value) =>
-                  setState(() => activeTab = (value == "EGP") ? 0 : 1),
+            Row(
+              children: [
+              
+                CustomChckButtons(
+                  buttons: const ["EGP", "USD"],
+                  activeTab: activeTab,
+                  onTap: (value) =>
+                      setState(() => activeTab = (value == "EGP") ? 0 : 1),
+                ),
+                const SizedBox(width: 7),
+                CustomToggleButton(
+                    onToggle: (value) => setState(() => openCharts = value)),
+              ],
             ),
-            const SizedBox(width: 7),
-            CustomToggleButton(
-                onToggle: (value) => setState(() => openCharts = value)),
           ],
         ),
         const SizedBox(height: 10),

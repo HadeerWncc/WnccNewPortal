@@ -22,5 +22,5 @@ class MonthDispatch extends Equatable {
   @override
   List<Object?> get props => [month, delivery, pickup];
 
-   num get total => (delivery??0) + (pickup??0);
+  num get total => (delivery ?? 0) + (pickup ?? 0);
 }

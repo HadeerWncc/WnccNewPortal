@@ -1,5 +1,4 @@
-const String baseUrl = 'http://10.0.2.2:5232/';
-
+const String baseUrl = 'http://wncc-portal.com:551/';
 //  'https://localhost:7051/';  for web
 //  'https://10.0.2.2:7051/';   for mobile  https
 //  'http://10.0.2.2:5232/';   for mobile  http

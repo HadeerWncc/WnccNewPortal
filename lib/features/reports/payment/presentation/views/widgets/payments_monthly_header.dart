@@ -11,6 +11,7 @@ import 'package:wncc_portal/core/widgets/loading_widgets/fields/loading_input.da
 import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/custom_year_picker.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_cubit/payments_cubit.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
 
 class PaymentsMonthlyHeader extends StatefulWidget {
   const PaymentsMonthlyHeader({super.key});
@@ -38,7 +39,7 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
               : MediaQuery.of(context).size.width * .35,
           child: CustomDropDownInput(
             title: 'Select',
-            items: [...reportOptionsList, "Per Customer"],
+            items: [...reportOptionsList, "Per Customer", "Details"],
             selectedValue: 'Monthly',
             onChanged: (value) {
               // Handle dropdown change
@@ -46,6 +47,10 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
                 GoRouter.of(context).push(AppRouter.paymentsDailyPath);
               } else if (value == "Per Customer") {
                 GoRouter.of(context).push(AppRouter.paymentsPerCustomerPath);
+              } else if (value == "Details") {
+                BlocProvider.of<PaymentsDetailsCubit>(context)
+                    .getPaymentDetails(DateTime.now(), DateTime.now());
+                GoRouter.of(context).push(AppRouter.paymentsDetailsPath);
               }
             },
           ),

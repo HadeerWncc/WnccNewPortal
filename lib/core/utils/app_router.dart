@@ -12,7 +12,6 @@ import 'package:wncc_portal/features/customerService/requests/presentation/views
 import 'package:wncc_portal/features/error/presentaion/view/page/error_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/views/pages/priority_summary_page.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/flat_dispatch_details_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_cust_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_region_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_sales_page.dart';
@@ -31,6 +30,7 @@ import 'package:wncc_portal/features/priority/delivery/presentation/views/widget
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/request_details_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/pages/requests_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/add_request_page.dart';
+import 'package:wncc_portal/features/reports/payment/presentation/views/pages/credit_limit_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_balance_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_daily_page.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/pages/payments_details_page.dart';
@@ -93,6 +93,7 @@ abstract class AppRouter {
   static const paymentsPerCustomerPath = '/customerPayment';
   static const paymentsDetailsPath = '/paymentsDetails';
   static const paymentsBalancePath = '/paymentBalance';
+  static const creditLimitPath = '/creditLimit';
   static const pendingPath = '/pendingDelivery';
   static const pendingPickupPath = '/pendingPickup';
   static const loadingDetailsPath = '/loadingDetails';
@@ -292,6 +293,10 @@ abstract class AppRouter {
       GoRoute(
         path: paymentsBalancePath,
         builder: (context, state) => const PaymentsBalancePage(),
+      ),
+       GoRoute(
+        path: creditLimitPath,
+        builder: (context, state) => const CreditLimitPage(),
       ),
       GoRoute(
         path: pendingPath,

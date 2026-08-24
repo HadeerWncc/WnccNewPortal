@@ -1,4 +1,5 @@
 import 'package:wncc_portal/core/utils/api_service.dart';
+import 'package:wncc_portal/features/reports/payment/data/models/credit_limit/credit_limit/credit_limit.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/customer_balance.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment/payment.dart';
 import 'package:wncc_portal/features/reports/payment/data/models/payment_details_model.dart';
@@ -9,6 +10,7 @@ abstract class PaymentDataSource {
   Future<List<PaymentDetailsModel>> fetchPaymentDetailsData(
       DateTime fromDate, DateTime toDate);
   Future<List<CustomerBalance>> fetchPaymentBalanceData();
+  Future<List<CreditLimit>> getCreditLimitData();
 }
 
 class PaymentDataSourceImpl implements PaymentDataSource {
@@ -54,5 +56,16 @@ class PaymentDataSourceImpl implements PaymentDataSource {
       paymentBalanceList.add(paymentBalanceModel);
     }
     return paymentBalanceList;
+  }
+
+  @override
+  Future<List<CreditLimit>> getCreditLimitData() async {
+    var result = await apiService.get(endPoint: 'api/Payments/GetCreditLimits');
+    List<CreditLimit> creditLimitList = [];
+    for (var credit in result["data"]) {
+      CreditLimit creditLimitModel = CreditLimit.fromJson(credit);
+      creditLimitList.add(creditLimitModel);
+    }
+    return creditLimitList;
   }
 }

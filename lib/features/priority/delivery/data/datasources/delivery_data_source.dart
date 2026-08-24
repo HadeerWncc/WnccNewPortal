@@ -78,7 +78,8 @@ class DeliveryDataSourceImpl extends DeliveryDataSource {
   Future<List<PriorityDeliveryModel>> getDispatchDeliveryOrdersByDate(
       String date) async {
     var result = await apiService.get(
-        endPoint: 'api/Delivery/Search?FromDate=$date&ToDate=$date&Status=2&PageSize=1000');
+        endPoint:
+            'api/Delivery/Search?FromDate=$date&ToDate=$date&Status=2&PageSize=1000');
     List<PriorityDeliveryModel> dispatchDeliveryOrders = [];
     for (var order in result["data"]["data"]) {
       dispatchDeliveryOrders.add(PriorityDeliveryModel.fromJson(order));

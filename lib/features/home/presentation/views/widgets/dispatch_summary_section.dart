@@ -6,9 +6,10 @@ import 'package:wncc_portal/features/home/data/models/home_summary/month_dispatc
 import 'package:wncc_portal/features/home/presentation/views/widgets/dispatch_chart.dart';
 
 class DispatchSummarySection extends StatelessWidget {
-  const DispatchSummarySection({super.key, required this.chartData, required this.incoterm});
-   final List<MonthDispatch> chartData;
-   final List<String> incoterm;
+  const DispatchSummarySection(
+      {super.key, required this.chartData, required this.incoterm});
+  final List<MonthDispatch> chartData;
+  final List<String> incoterm;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -19,21 +20,21 @@ class DispatchSummarySection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             const Text(
-          'Monthly Dispatch',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-        ),
+              'Monthly Dispatch',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
             CustomButtonWithIcon(
               child: "Dispatch Details",
               bgColor: const Color(0xff06a0f5),
               onHoverColor: const Color.fromARGB(255, 4, 106, 161),
               textColor: Colors.white,
-              onTap: (){
-                GoRouter.of(context).push(AppRouter.dispatchDetailsPerRegionPath);
+              onTap: () {
+                GoRouter.of(context)
+                    .push(AppRouter.dispatchDetailsPerRegionPath);
               },
             )
           ],
         ),
-        
         const SizedBox(height: 5),
         const Opacity(
           opacity: .5,
@@ -52,6 +53,5 @@ class DispatchSummarySection extends StatelessWidget {
         )
       ],
     );
- 
   }
 }

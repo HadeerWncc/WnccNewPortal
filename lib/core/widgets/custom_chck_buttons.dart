@@ -5,7 +5,8 @@ class CustomChckButtons extends StatelessWidget {
     super.key,
     this.onTap,
     required this.buttons,
-    required this.activeTab, this.containerColor,
+    required this.activeTab,
+    this.containerColor,
   });
   final List<String> buttons;
   final int activeTab;
@@ -19,7 +20,7 @@ class CustomChckButtons extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: const Color.fromARGB(255, 222, 221, 221)),
-        color: containerColor?? Colors.white,
+        color: containerColor ?? Colors.white,
       ),
       child: SizedBox(
         height: 40,

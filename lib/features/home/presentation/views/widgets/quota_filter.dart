@@ -28,7 +28,7 @@ class _QuotaFilterState extends State<QuotaFilter> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * .47,
+              width: MediaQuery.of(context).size.width * .49,
               child: CustomRangeDatePicker(
                 title: 'Select Date',
                 onChange: (value) {
@@ -101,14 +101,15 @@ class _QuotaFilterState extends State<QuotaFilter> {
             ),
             const SizedBox(width: 5),
             SizedBox(
-                width: MediaQuery.of(context).size.width * .35,
-                child: CustomMultiSelectDropDown2(
-                  products: const ["Delivery", "Pickup"],
-                  selectedProducts: [],
-                  bgColor: Colors.white,
-                  onChanged: widget.onChangedIncoterm,
-                  title: "Incoterm",
-                )),
+              width: MediaQuery.of(context).size.width * .35,
+              child: CustomMultiSelectDropDown2(
+                products: const ["Delivery", "Pickup"],
+                selectedProducts: [],
+                bgColor: Colors.white,
+                onChanged: widget.onChangedIncoterm,
+                title: "Incoterm",
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 10),

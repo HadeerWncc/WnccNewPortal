@@ -36,21 +36,25 @@ class _PaymentsDetailsSectionState extends State<PaymentsDetailsSection> {
                         children: [
                           const PaymentsDetailsHeader(),
                           const SizedBox(width: 7),
-                          CustomChckButtons(
-                              buttons: const ["EGP", "USD"],
-                              activeTab: activeTab,
-                              onTap: (value) {
-                                if (value == "EGP") {
-                                  activeTab = 0;
-                                } else {
-                                  activeTab = 1;
-                                }
-                                setState(() {});
-                              }),
-                          const SizedBox(width: 7),
-                          CustomToggleButton(
-                              onToggle: (value) =>
-                                  setState(() => openCharts = value)),
+                          Row(
+                            children: [
+                              CustomChckButtons(
+                                  buttons: const ["EGP", "USD"],
+                                  activeTab: activeTab,
+                                  onTap: (value) {
+                                    if (value == "EGP") {
+                                      activeTab = 0;
+                                    } else {
+                                      activeTab = 1;
+                                    }
+                                    setState(() {});
+                                  }),
+                              const SizedBox(width: 7),
+                              CustomToggleButton(
+                                  onToggle: (value) =>
+                                      setState(() => openCharts = value)),
+                            ],
+                          ),
                         ],
                       ),
                       const SizedBox(height: 10),
