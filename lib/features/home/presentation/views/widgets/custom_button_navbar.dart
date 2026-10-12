@@ -58,7 +58,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
               : null;
         } else if (index == 1) {
           (widget.pageIndex != 1)
-              ? GoRouter.of(context).push(AppRouter.toDoList)
+              ? GoRouter.of(context).push(AppRouter.notePage)
               : null;
         } else if (index == 2) {
           (widget.pageIndex != 2)

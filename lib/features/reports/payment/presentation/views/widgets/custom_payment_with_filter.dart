@@ -30,18 +30,12 @@ class CustomerPaymentWithFilter extends StatelessWidget {
                 .where((c) => c.customer == selectedPayer!)
                 .toList();
           }
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: CustomerPaymentTable(
-                  currency: activeTab == 0 ? "EGP" : "USD",
-                  showCharts: openCharts,
-                  customerDepositList: customerDepositList,
-                ),
-              ),
-              // const SizedBox(height: 20),
-            ],
+          return Expanded(
+            child: CustomerPaymentTable(
+              currency: activeTab == 0 ? "EGP" : "USD",
+              showCharts: openCharts,
+              customerDepositList: customerDepositList,
+            ),
           );
         } else if (state is PaymentPerCustomerFailure) {
           return Center(child: Text(state.error));

@@ -22,7 +22,7 @@ class _CreditLimitTableState extends State<CreditLimitTable> {
               )
             : Expanded(
                 child: DataTable2(
-                  minWidth: widget.tableData.first.toMap().length * 120,
+                  minWidth: widget.tableData.first.toMap().length * 140,
                   isVerticalScrollBarVisible: false,
                   horizontalMargin: 0,
                   columnSpacing: 0,

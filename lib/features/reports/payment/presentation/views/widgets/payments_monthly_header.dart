@@ -36,11 +36,12 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
         SizedBox(
           width: (MediaQuery.of(context).orientation == Orientation.landscape)
               ? MediaQuery.of(context).size.width * .2
-              : MediaQuery.of(context).size.width * .35,
+              : MediaQuery.of(context).size.width * .4,
           child: CustomDropDownInput(
             title: 'Select',
             items: [...reportOptionsList, "Per Customer", "Details"],
             selectedValue: 'Monthly',
+            fontSize: 12,
             onChanged: (value) {
               // Handle dropdown change
               if (value == 'Daily') {
@@ -57,8 +58,8 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
         ),
         SizedBox(
           width: (MediaQuery.of(context).orientation == Orientation.landscape)
-              ? MediaQuery.of(context).size.width * .25
-              : MediaQuery.of(context).size.width * .5,
+              ? MediaQuery.of(context).size.width * .2
+              : MediaQuery.of(context).size.width * .4,
           child: CustomYearPicker(
             title: 'Select Year',
             onChange: (value) {
@@ -67,18 +68,17 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
             },
           ),
         ),
-        const SizedBox(
-          width: 10,
-        ),
+       
         BlocBuilder<PayerCubit, PayerState>(
           builder: (context, state) {
             if (state is PayerSuccess) {
               return CustomDropDownInput(
                 items: state.dropdownItems,
                 selectedValue: "All",
-                hintText: "payer",
-                title: "Payer",
-                width: MediaQuery.of(context).size.width * .5,
+                hintText: "Select Customer",
+                fontSize: 13,
+                title: "Select Customer",
+                width: (MediaQuery.of(context).orientation == Orientation.landscape)? MediaQuery.of(context).size.width * .25: MediaQuery.of(context).size.width * .5,
                 onChanged: (value) {
                   if (value!.startsWith("All")) {
                     payer = "";
@@ -90,14 +90,14 @@ class _PaymentsMonthlyHeaderState extends State<PaymentsMonthlyHeader> {
               );
             } else {
               return SizedBox(
-                width: MediaQuery.of(context).size.width * .5,
+                width:(MediaQuery.of(context).orientation == Orientation.landscape)? MediaQuery.of(context).size.width * .25: MediaQuery.of(context).size.width * .5,
                 child: const LoadingInput(),
               );
             }
           },
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * .3,
+          width:(MediaQuery.of(context).orientation == Orientation.landscape)? MediaQuery.of(context).size.width * .15:MediaQuery.of(context).size.width * .3,
           child: CustomButtonWithIcon(
             child: 'Search',
             textColor: Colors.white,

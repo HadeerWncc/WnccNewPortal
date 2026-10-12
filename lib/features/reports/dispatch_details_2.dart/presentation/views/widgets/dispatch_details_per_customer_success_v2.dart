@@ -33,258 +33,260 @@ class _DispatchDetailsPerCustomerSuccessV2State
 
     disList.removeLast();
     return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Column(
-        children: [
-          SizedBox(
-            width: 1900,
-            height: MediaQuery.of(context).size.height * .5,
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              buildHeaderPerCustomerRow(widget.viewType),
-              const Divider(
-                height: .5,
-                color: Color.fromARGB(255, 226, 226, 226),
-              ),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(children: [
-                    ...disList.map((disPerCust) {
-                      final cust = disPerCust.id;
-                      final isExpanded = _expandedCustomer[cust] ?? false;
-
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              setState(() {
-                                _expandedCustomer[cust] = !isExpanded;
-                              });
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              color: const Color.fromARGB(255, 237, 237, 238),
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 14, horizontal: 12),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 1,
-                                    child: Icon(isExpanded
-                                        ? Symbols.keyboard_arrow_down
-                                        : Symbols.keyboard_arrow_right),
-                                  ),
-                                  Expanded(
-                                      flex: 3,
-                                      child: Center(
-                                        child: Text(
-                                          int.parse(disPerCust.id).toString(),
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Column(
+          children: [
+            SizedBox(
+              width: 2200,
+              height: MediaQuery.of(context).size.height * .5,
+              child:
+                  Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                buildHeaderPerCustomerRow(widget.viewType),
+                const Divider(
+                  height: .5,
+                  color: Color.fromARGB(255, 226, 226, 226),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(children: [
+                      ...disList.map((disPerCust) {
+                        final cust = disPerCust.id;
+                        final isExpanded = _expandedCustomer[cust] ?? false;
+      
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _expandedCustomer[cust] = !isExpanded;
+                                });
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                color: const Color.fromARGB(255, 237, 237, 238),
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 14, horizontal: 12),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Icon(isExpanded
+                                          ? Symbols.keyboard_arrow_down
+                                          : Symbols.keyboard_arrow_right),
+                                    ),
+                                    Expanded(
+                                        flex: 3,
+                                        child: Center(
+                                          child: Text(
+                                            int.parse(disPerCust.id).toString(),
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 2,
+                                        child: Center(
+                                          child: Text(
+                                            disPerCust.rank,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 6,
+                                        child: Center(
+                                          child: Text(
+                                            disPerCust.name.toString(),
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )),
+                                    widget.viewType == "Dates"
+                                        ? const Expanded(
+                                            flex: 2,
+                                            child: Center(child: Text("")))
+                                        : const Expanded(
+                                            flex: 3,
+                                            child: Center(child: Text(""))),
+                                    for (var month
+                                        in getMonths(DateTime.now().year))
+                                      Expanded(
+                                        flex: 3,
+                                        child: TableDataItem(
+                                          value: disPerCust.months
+                                              .where((m) => m.name == month)
+                                              .firstOrNull!
+                                              .totalEntity
+                                              .value,
+                                          month: month,
+                                          regions: disPerCust.months
+                                              .where((m) => m.name == month)
+                                              .firstOrNull!
+                                              .totalEntity
+                                              .dispatches!,
                                         ),
-                                      )),
-                                  Expanded(
-                                      flex: 2,
-                                      child: Center(
-                                        child: Text(
-                                          disPerCust.rank,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )),
-                                  Expanded(
-                                      flex: 6,
-                                      child: Center(
-                                        child: Text(
-                                          disPerCust.name.toString(),
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )),
-                                  widget.viewType == "Dates"
-                                      ? const Expanded(
-                                          flex: 2,
-                                          child: Center(child: Text("")))
-                                      : const Expanded(
-                                          flex: 3,
-                                          child: Center(child: Text(""))),
-                                  for (var month
-                                      in getMonths(DateTime.now().year))
+                                      ),
                                     Expanded(
                                       flex: 3,
                                       child: TableDataItem(
-                                        value: disPerCust.months
-                                            .where((m) => m.name == month)
-                                            .firstOrNull!
-                                            .totalEntity
-                                            .value,
-                                        month: month,
-                                        regions: disPerCust.months
-                                            .where((m) => m.name == month)
-                                            .firstOrNull!
-                                            .totalEntity
-                                            .dispatches!,
+                                        value: disPerCust.total.value,
+                                        regions: disPerCust.total.dispatches!,
+                                        month: "Total",
                                       ),
                                     ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: TableDataItem(
-                                      value: disPerCust.total.value,
-                                      regions: disPerCust.total.dispatches!,
-                                      month: "Total",
+                                    Expanded(
+                                      flex: 3,
+                                      child: TableDataItem(
+                                        value: disPerCust.totalToday.value,
+                                        regions:
+                                            disPerCust.totalToday.dispatches!,
+                                        month: "Today",
+                                      ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: TableDataItem(
-                                      value: disPerCust.totalToday.value,
-                                      regions:
-                                          disPerCust.totalToday.dispatches!,
-                                      month: "Today",
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Center(
-                                      child: Text(disPerCust.totalCheckedIn),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 3,
-                                    child: Center(
-                                      child: Text(disPerCust.totalLoading),
-                                    ),
-                                  ),
-                                  Expanded(
-                                      flex: 4,
+                                    Expanded(
+                                      flex: 3,
                                       child: Center(
-                                        child: Text(
-                                          disPerCust.salesName.toString(),
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )),
-                                ],
+                                        child: Text(disPerCust.totalCheckedIn),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: Center(
+                                        child: Text(disPerCust.totalLoading),
+                                      ),
+                                    ),
+                                    Expanded(
+                                        flex: 4,
+                                        child: Center(
+                                          child: Text(
+                                            disPerCust.salesName.toString(),
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          if (isExpanded)
-                            ...(widget.viewType == "Dates"
-                                ? disPerCust.values.map((entry) {
-                                    return _buildDateRow(
-                                      entry,
-                                      widget.year,
-                                    );
-                                  })
-                                : disPerCust.dispatches.map((entry) {
-                                    return _buildRegionRow(
-                                      entry,
-                                    );
-                                  })),
-                        ],
-                      );
-                    }),
-                  ]),
+                            if (isExpanded)
+                              ...(widget.viewType == "Dates"
+                                  ? disPerCust.values.map((entry) {
+                                      return _buildDateRow(
+                                        entry,
+                                        widget.year,
+                                      );
+                                    })
+                                  : disPerCust.dispatches.map((entry) {
+                                      return _buildRegionRow(
+                                        entry,
+                                      );
+                                    })),
+                          ],
+                        );
+                      }),
+                    ]),
+                  ),
                 ),
-              ),
-              InkWell(
-                onTap: null,
-                child: Container(
-                  width: double.infinity,
-                  color: const Color.fromARGB(255, 217, 217, 217),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
-                  child: Row(
-                    children: [
-                      const Expanded(
-                        flex: 1,
-                        child: Icon(Symbols.keyboard_arrow_right),
-                      ),
-                      const Expanded(
-                          flex: 3,
-                          child: Text(
-                            '',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )),
-                      const Expanded(
-                          flex: 2,
-                          child: Text(
-                            '',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )),
-                      Expanded(
-                          flex: 6,
-                          child: Center(
+                InkWell(
+                  onTap: null,
+                  child: Container(
+                    width: double.infinity,
+                    color: const Color.fromARGB(255, 217, 217, 217),
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+                    child: Row(
+                      children: [
+                        const Expanded(
+                          flex: 1,
+                          child: Icon(Symbols.keyboard_arrow_right),
+                        ),
+                        const Expanded(
+                            flex: 3,
                             child: Text(
-                              totalDis.name.toString(),
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
+                              '',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )),
+                        const Expanded(
+                            flex: 2,
+                            child: Text(
+                              '',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            )),
+                        Expanded(
+                            flex: 6,
+                            child: Center(
+                              child: Text(
+                                totalDis.name.toString(),
+                                style:
+                                    const TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                        widget.viewType == "Dates"
+                            ? const Expanded(
+                                flex: 2, child: Center(child: Text("")))
+                            : const Expanded(
+                                flex: 3, child: Center(child: Text(""))),
+                        for (var month in getMonths(DateTime.now().year))
+                          Expanded(
+                            flex: 3,
+                            child: TableDataItem(
+                              value: totalDis.months
+                                  .where((m) => m.name == month)
+                                  .firstOrNull!
+                                  .totalEntity
+                                  .value,
+                              month: month,
+                              regions: totalDis.months
+                                  .where((m) => m.name == month)
+                                  .firstOrNull!
+                                  .totalEntity
+                                  .dispatches!,
                             ),
-                          )),
-                      widget.viewType == "Dates"
-                          ? const Expanded(
-                              flex: 2, child: Center(child: Text("")))
-                          : const Expanded(
-                              flex: 3, child: Center(child: Text(""))),
-                      for (var month in getMonths(DateTime.now().year))
+                          ),
                         Expanded(
                           flex: 3,
                           child: TableDataItem(
-                            value: totalDis.months
-                                .where((m) => m.name == month)
-                                .firstOrNull!
-                                .totalEntity
-                                .value,
-                            month: month,
-                            regions: totalDis.months
-                                .where((m) => m.name == month)
-                                .firstOrNull!
-                                .totalEntity
-                                .dispatches!,
+                            value: totalDis.total.value,
+                            regions: totalDis.total.dispatches!,
+                            month: "Total",
                           ),
                         ),
-                      Expanded(
-                        flex: 3,
-                        child: TableDataItem(
-                          value: totalDis.total.value,
-                          regions: totalDis.total.dispatches!,
-                          month: "Total",
+                        Expanded(
+                          flex: 3,
+                          child: TableDataItem(
+                            value: totalDis.totalToday.value,
+                            regions: totalDis.totalToday.dispatches!,
+                            month: "Today",
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: TableDataItem(
-                          value: totalDis.totalToday.value,
-                          regions: totalDis.totalToday.dispatches!,
-                          month: "Today",
+                        Expanded(
+                          flex: 3,
+                          child: Center(
+                            child: Text(totalDis.totalCheckedIn),
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Center(
-                          child: Text(totalDis.totalCheckedIn),
+                        Expanded(
+                          flex: 3,
+                          child: Center(
+                            child: Text(totalDis.totalLoading),
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: Center(
-                          child: Text(totalDis.totalLoading),
-                        ),
-                      ),
-                      Expanded(
-                          flex: 4,
-                          child: Text(
-                            totalDis.name.toString(),
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          )),
-                    ],
+                        Expanded(
+                            flex: 4,
+                            child: Text(
+                              totalDis.name.toString(),
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            )),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ]),
-          )
-        ],
+              ]),
+            )
+          ],
+        ),
       ),
     );
 

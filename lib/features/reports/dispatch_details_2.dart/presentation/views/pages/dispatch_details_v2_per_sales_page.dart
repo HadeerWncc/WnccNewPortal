@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/core/errors/handel_error.dart';
-import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/loading_page.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/custom_app_bar_action.dart';

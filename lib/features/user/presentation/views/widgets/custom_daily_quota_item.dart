@@ -9,13 +9,15 @@ class CustomDailyQuotaItem extends StatelessWidget {
     super.key,
     required this.landingtitle,
     required this.icon,
-    required this.widthRatio,
+    required this.width,
     required this.data,
   });
+
   final String landingtitle;
   final IconData icon;
   final Map<String, int> data;
-  final double widthRatio;
+  final double width;
+
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
@@ -25,7 +27,7 @@ class CustomDailyQuotaItem extends StatelessWidget {
       radius: const Radius.circular(5),
       borderType: BorderType.RRect,
       child: Container(
-        width: MediaQuery.of(context).size.width * widthRatio,
+        width: width,
         padding: const EdgeInsets.all(10),
         color: const Color(0xfff0f7ec),
         child: Column(
@@ -55,27 +57,24 @@ class CustomDailyQuotaItem extends StatelessWidget {
             const SizedBox(height: 5),
             Row(
               children: [
-                const Text(
-                  "Bags ",
-                  style: TextStyle(),
-                ),
+                const Text("Bags "),
                 CustomQuantityComparing(
-                  mainTitle: NumberFormat.decimalPattern().format(data["Bags"]),
+                  mainTitle:
+                      NumberFormat.decimalPattern().format(data["Bags"]),
                   mainDataFontSize: 13,
                 ),
                 const Opacity(
-                    opacity: .5,
-                    child: CustomVerticalDivider(
-                      color: Color.fromARGB(255, 100, 100, 100),
-                      margin: 0,
-                    )),
-                const SizedBox(width: 5),
-                const Text(
-                  "Bulk ",
-                  style: TextStyle(),
+                  opacity: .5,
+                  child: CustomVerticalDivider(
+                    color: Color.fromARGB(255, 100, 100, 100),
+                    margin: 0,
+                  ),
                 ),
+                const SizedBox(width: 5),
+                const Text("Bulk "),
                 CustomQuantityComparing(
-                  mainTitle: NumberFormat.decimalPattern().format(data["Bulk"]),
+                  mainTitle:
+                      NumberFormat.decimalPattern().format(data["Bulk"]),
                   mainDataFontSize: 13,
                 ),
               ],
@@ -86,3 +85,4 @@ class CustomDailyQuotaItem extends StatelessWidget {
     );
   }
 }
+

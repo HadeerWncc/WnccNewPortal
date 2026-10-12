@@ -20,7 +20,7 @@ class DailyHeader extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Wrap(
-          spacing: 8, // مسافة أفقية بين العناصر
+          spacing: 8, 
           runSpacing: 8,
           children: [
             SizedBox(
@@ -29,6 +29,7 @@ class DailyHeader extends StatelessWidget {
                 title: 'Select',
                 items: factreportOptionsList,
                 selectedValue: 'Daily',
+                fontSize: 13,
                 onChanged: (value) {
                   // Handle dropdown change
                   if (value == 'Hourly') {

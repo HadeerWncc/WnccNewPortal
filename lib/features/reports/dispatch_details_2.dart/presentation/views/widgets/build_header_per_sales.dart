@@ -53,7 +53,7 @@ Widget buildHeaderPerSalesRow(String viewType) {
                 ))),
         for (var month in getMonths(DateTime.now().year))
           Expanded(
-              flex: 3,
+              flex: 4,
               child: Center(
                   child: Text(
                 month,
@@ -63,7 +63,7 @@ Widget buildHeaderPerSalesRow(String viewType) {
                     color: Colors.white),
               ))),
         const Expanded(
-            flex: 3,
+            flex: 4,
             child: Center(
                 child: Text(
               'Total',

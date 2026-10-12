@@ -34,10 +34,10 @@ class DistributeBlocConsumer extends StatelessWidget {
           );
         }
         return CustomButtonWithIcon(
-          child: 'Distribute',
+          child: 'Save Changes',
           textColor: Colors.white,
           bgColor: kBtnColor,
-          icon: Symbols.app_registration,
+          icon: Symbols.save,
           onHoverColor: const Color.fromARGB(255, 20, 96, 37),
           onTap: () {
             tryToDistribute(context);

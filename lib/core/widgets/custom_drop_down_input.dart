@@ -12,6 +12,7 @@ class CustomDropDownInput extends StatelessWidget {
     this.title,
     this.width,
     this.hintText,
+    this.fontSize,
   });
 
   final String? selectedValue;
@@ -20,7 +21,7 @@ class CustomDropDownInput extends StatelessWidget {
   final String? title;
   final double? width;
   final String? hintText;
-
+  final double? fontSize;
   @override
   Widget build(BuildContext context) {
     double defaultWidth =
@@ -32,9 +33,22 @@ class CustomDropDownInput extends StatelessWidget {
         selectedItem: items.contains(selectedValue) ? selectedValue : null,
         items: items,
         dropdownBuilder: (context, selectedItem) {
-          if (selectedItem == null) return Text(hintText ?? "");
-          return Text(selectedItem.split('|').first,
-              style: const TextStyle(fontSize: 9, fontWeight: FontWeight.bold));
+          if (selectedItem == null) {
+            return Text(
+              hintText ?? "",
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            );
+          }
+          return Text(
+            selectedItem.split('|').first,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              fontSize: fontSize ?? 9,
+              fontWeight: FontWeight.bold,
+            ),
+          );
         },
         popupProps: PopupProps.menu(
           showSearchBox: true,
@@ -51,9 +65,9 @@ class CustomDropDownInput extends StatelessWidget {
               title: RichText(
                 text: TextSpan(
                   text: item.split('|').first,
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
-                      fontSize: 9,
+                      fontSize: fontSize ?? 9,
                       overflow: TextOverflow.ellipsis),
                   children: [
                     TextSpan(
@@ -74,7 +88,7 @@ class CustomDropDownInput extends StatelessWidget {
             labelText: title,
             labelStyle: const TextStyle(
               color: Color.fromARGB(255, 83, 83, 83),
-              fontSize: 12,
+              fontSize: 15,
             ),
             enabledBorder: inputBorder(),
             focusedBorder: customfocusedBorder(),

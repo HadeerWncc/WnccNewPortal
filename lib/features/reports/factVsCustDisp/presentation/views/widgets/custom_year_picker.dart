@@ -16,7 +16,7 @@ class CustomYearPicker extends StatefulWidget {
 }
 
 class _CustomYearPicker extends State<CustomYearPicker> {
-  String formattedDate = 'Select Year';
+  String formattedDate = DateFormat('y').format(DateTime.now());
   DateTime currentDate = DateTime.now();
 
   @override

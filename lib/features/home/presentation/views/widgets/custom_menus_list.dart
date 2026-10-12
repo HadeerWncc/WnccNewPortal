@@ -23,6 +23,7 @@ class CustomMenusList extends StatelessWidget {
           DrawerMenuList(
             activeTab: activeTab,
             userPos: user.position ?? "",
+            user: user,
           ),
         ],
       ),

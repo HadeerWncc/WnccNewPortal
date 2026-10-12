@@ -57,11 +57,11 @@ class CustomerBalance extends Equatable {
   Map<String, dynamic> toMap() => {
         'Code': int.parse(customer ?? ""),
         'Customer': customerName,
+        'Region': customerRegionDesc,
         'Balance': amountBalance,
         'Credit limit': parseToInt(effectivelim.toString()),
         'Credit Segment': creditSegment,
         'Sales': salesRepDesc,
-        'Region': customerRegionDesc,
       };
 
   @override

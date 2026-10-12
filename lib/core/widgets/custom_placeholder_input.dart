@@ -42,6 +42,7 @@ class CustomPlaceholderInput extends StatelessWidget {
         SizedBox(
           width: width ?? defaultWidth,
           child: TextFormField(
+            
             textAlignVertical: TextAlignVertical.top,
             autofocus: false,
             onChanged: onChanged,
@@ -65,9 +66,10 @@ class CustomPlaceholderInput extends StatelessWidget {
               fontSize: fontSize,
             ),
             decoration: InputDecoration(
+              
               prefixIcon: icon,
               focusedBorder: customfocusedBorder(),
-              fillColor: const Color(0xffF9F9F9),
+              fillColor:  Colors.white,
               enabledBorder: inputBorder(),
               disabledBorder: inputBorder(),
               filled: true,
@@ -75,7 +77,7 @@ class CustomPlaceholderInput extends StatelessWidget {
               alignLabelWithHint: true,
               labelStyle: const TextStyle(
                 color: Color.fromARGB(255, 83, 83, 83),
-                fontSize: 13,
+                fontSize: 15,
               ),
             ),
           ),

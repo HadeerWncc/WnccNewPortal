@@ -54,12 +54,14 @@ class _DispatchDetailsVsPerCustBodyState
           if (state is DispatchDetailsV2PerCustomerSuccess) {
             // List<DispatchDetailsVsModel> dist_per_sales_list = state.dispatchDetails
             return state.dispatchDetails.length > 1
-                ? DispatchDetailsPerCustomerSuccessV2(
-                    dispatchList: state.dispatchDetails,
-                    viewType: viewActiveTab,
-                    year: DateTime.parse(
-                            state.dispatchDetails[0].months[0].date.toString())
-                        .year)
+                ? Expanded(
+                  child: DispatchDetailsPerCustomerSuccessV2(
+                      dispatchList: state.dispatchDetails,
+                      viewType: viewActiveTab,
+                      year: DateTime.parse(
+                              state.dispatchDetails[0].months[0].date.toString())
+                          .year),
+                )
                 : const Center(child: Text("No Data Avilable"));
           } else if (state is DispatchDetailsV2PerCustomerFailure) {
             return Center(
@@ -68,7 +70,7 @@ class _DispatchDetailsVsPerCustBodyState
               style: const TextStyle(color: Colors.red),
             ));
           }
-          return const LoadingTable();
+          return const Expanded(child: LoadingTable());
         }),
       ],
     );

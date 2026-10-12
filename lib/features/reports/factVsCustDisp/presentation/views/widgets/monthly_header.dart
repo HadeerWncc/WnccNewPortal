@@ -24,6 +24,7 @@ class MonthlyHeader extends StatelessWidget {
           width: 180,
           child: CustomDropDownInput(
             title: 'Select',
+            fontSize: 13,
             items: factreportOptionsList,
             selectedValue: 'Monthly',
             onChanged: (value) {

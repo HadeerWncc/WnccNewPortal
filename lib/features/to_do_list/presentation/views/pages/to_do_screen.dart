@@ -70,7 +70,9 @@ class _ToDoScreenState extends State<ToDoScreen> {
                     const SizedBox(height: 10),
                     // ToDoListTitle(),
                     // SizedBox(height: 10),
-                    const CustomToDoListDate(),
+                    const CustomToDoListDate(
+                      pageHeader: '',
+                    ),
                     const SizedBox(height: 10),
                     Expanded(
                       child: Padding(

@@ -19,6 +19,12 @@ import 'package:wncc_portal/features/home/data/data_sources/home_data_sources.da
 import 'package:wncc_portal/features/home/data/repos_Impl/home_repo_impl.dart';
 import 'package:wncc_portal/features/home/domain/repos/home_repo.dart';
 import 'package:wncc_portal/features/home/presentation/manager/cubites/home_cubit/home_cubit.dart';
+import 'package:wncc_portal/features/notes/data/data_source/note_data_source.dart';
+import 'package:wncc_portal/features/notes/data/repo_impl/notes_repo_impl.dart';
+import 'package:wncc_portal/features/notes/domain/repos/notes_repo.dart';
+import 'package:wncc_portal/features/notes/presentation/manager/cubites/create_new_cubit/create_new_cubit.dart';
+import 'package:wncc_portal/features/notes/presentation/manager/cubites/delete_note_cubit/delete_note_cubit.dart';
+import 'package:wncc_portal/features/notes/presentation/manager/cubites/note_cubit/note_cubit.dart';
 import 'package:wncc_portal/features/payer/data/data_sources/payer_datasource.dart';
 import 'package:wncc_portal/features/payer/data/repos_impl/payer_repo_impl.dart';
 import 'package:wncc_portal/features/payer/domain/repos/payer_repo.dart';
@@ -162,6 +168,10 @@ void setupLocator() {
   getIt.registerLazySingleton<UpdateDataSource>(
       () => UpdateDataSourceImpl(apiService: getIt<ApiService>()));
 
+  //Note
+  getIt.registerLazySingleton<NoteDataSource>(
+      () => NoteDataSourceImpl(apiService: getIt<ApiService>()));
+
   //salesQuotaDataSource
   getIt.registerLazySingleton<SalesQuotaRemoteDatasource>(
       () => SalesQuotaRemoteDatasourceImpl(apiService: getIt<ApiService>()));
@@ -246,6 +256,10 @@ void setupLocator() {
   //UpdatesRepo
   getIt.registerLazySingleton<UpdatesRepo>(
       () => UpdatesRepoImpl(updatesDataSource: getIt<UpdateDataSource>()));
+
+  //NoteRepo
+  getIt.registerLazySingleton<NotesRepo>(
+      () => NotesRepoImpl(noteDataSource: getIt<NoteDataSource>()));
 
   //SalesQuotaRepo
   getIt.registerLazySingleton<DailyQuotaRepo>(() => DailyQuotaRepoImpl(
@@ -408,6 +422,17 @@ void setupLocator() {
   //Home
   //UpdatesCubit
   getIt.registerFactory<UpdatesCubit>(() => UpdatesCubit(getIt<UpdatesRepo>()));
+
+  //NotesCubit
+  getIt.registerFactory<NoteCubit>(() => NoteCubit(getIt<NotesRepo>()));
+
+  //CreateNotesCubit
+  getIt.registerFactory<CreateNewCubit>(
+      () => CreateNewCubit(getIt<NotesRepo>()));
+
+  //deleteNoteCubit
+  getIt.registerFactory<DeleteNoteCubit>(
+      () => DeleteNoteCubit(getIt<NotesRepo>()));
 
   //SalesQuotaCubit
   getIt.registerFactory<SalesQuotaCubit>(

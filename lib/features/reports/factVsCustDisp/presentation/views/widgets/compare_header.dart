@@ -39,6 +39,7 @@ class _CompareHeaderState extends State<CompareHeader> {
           width: MediaQuery.of(context).size.width * .4,
           child: CustomDropDownInput(
             title: 'Select',
+            fontSize: 13,
             items: factreportOptionsList,
             selectedValue: 'Compare',
             onChanged: (value) {

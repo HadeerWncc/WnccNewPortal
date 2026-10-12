@@ -12,6 +12,9 @@ import 'package:wncc_portal/features/authentication/presentation/manager/forget_
 import 'package:wncc_portal/features/authentication/presentation/manager/reset_password_cubit.dart/reset_password_cubit.dart';
 import 'package:wncc_portal/features/authentication/presentation/manager/validate_code_cubit/validate_code_cubit.dart';
 import 'package:wncc_portal/features/home/presentation/manager/cubites/home_cubit/home_cubit.dart';
+import 'package:wncc_portal/features/notes/presentation/manager/cubites/create_new_cubit/create_new_cubit.dart';
+import 'package:wncc_portal/features/notes/presentation/manager/cubites/delete_note_cubit/delete_note_cubit.dart';
+import 'package:wncc_portal/features/notes/presentation/manager/cubites/note_cubit/note_cubit.dart';
 import 'package:wncc_portal/features/payer/presentation/manager/cubites/payer_cubit/payer_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/add_new_dispatcher_cubit/add_new_dispatcher_cubit.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/managers/cubits/delete_agent_cubit/delete_agent_cubit.dart';
@@ -96,6 +99,15 @@ class WnccPortal extends StatelessWidget {
         }),
         BlocProvider(create: (context) {
           return getIt<UserCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<NoteCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<CreateNewCubit>();
+        }),
+        BlocProvider(create: (context) {
+          return getIt<DeleteNoteCubit>();
         }),
         BlocProvider(create: (context) {
           return getIt<CompleteProfileCubit>();

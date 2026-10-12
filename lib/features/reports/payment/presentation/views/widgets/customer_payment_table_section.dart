@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wncc_portal/core/widgets/custom_drop_down_input.dart';
-import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
-import 'package:wncc_portal/core/widgets/loading_widgets/fields/loading_input.dart';
 import 'package:wncc_portal/features/reports/factVsCustDisp/presentation/views/widgets/section_title.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payment_per_customer_cubit/payment_per_customer_cubit.dart';
-import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_payment_with_filter.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/customer_payment_header.dart';
 
@@ -41,52 +35,17 @@ class _CustomerPaymentTablesSectionState
                 selectedPayer = value;
                 setState(() {});
               },
-            ),
-            const SizedBox(width: 7),
-            BlocBuilder<PaymentPerCustomerCubit, PaymentPerCustomerState>(
-              builder: (context, state) {
-                if (state is PaymentPerCustomerSuccess) {
-                  final cubit = context.read<PaymentPerCustomerCubit>();
-
-                  return CustomDropDownInput(
-                    selectedValue: "All",
-                    items: ["All", ...state.sales],
-                    title: "Sales",
-                    hintText: "Sales",
-                    width: MediaQuery.of(context).size.width * 0.28,
-                    onChanged: (value) {
-                      cubit.changeSales(value!);
-                    },
-                  );
-                } else {
-                  return SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.28,
-                    child: const LoadingInput(),
-                  );
-                }
+              onChangeActiveTab: (value) {
+                activeTab = value;
+                setState(() {});
               },
             ),
-            const SizedBox(width: 7),
-            CustomChckButtons(
-                buttons: const ["EGP", "USD"],
-                activeTab: activeTab,
-                onTap: (value) {
-                  if (value == "EGP") {
-                    activeTab = 0;
-                  } else {
-                    activeTab = 1;
-                  }
-                  setState(() {});
-                }),
-            const SizedBox(width: 7),
-            CustomToggleButton(
-                onToggle: (value) => setState(() => openCharts = value)),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         if (!openCharts) ...[
           sectionTitle('Payments Per Customer'),
-          const SizedBox(height: 8),
+          const SizedBox(height: 3),
         ],
         Expanded(
           child: CustomerPaymentWithFilter(

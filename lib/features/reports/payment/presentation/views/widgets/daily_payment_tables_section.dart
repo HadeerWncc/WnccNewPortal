@@ -27,7 +27,7 @@ class _DailyPaymentTablesSectionState extends State<DailyPaymentTablesSection> {
           alignment: WrapAlignment.start,
           children: [
             const PaymentsDailyHeader(),
-            const SizedBox(width: 7),
+            const SizedBox(width: 5),
             Row(
               children: [
                 CustomChckButtons(
@@ -48,14 +48,14 @@ class _DailyPaymentTablesSectionState extends State<DailyPaymentTablesSection> {
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (!openCharts) ...[
                 sectionTitle('Payments Per Bank'),
-                const SizedBox(height: 8),
+                const SizedBox(height: 3),
               ],
               Expanded(
                 child: MonthlyPaymentTable(

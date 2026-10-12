@@ -29,9 +29,11 @@ class CustomBulkTable extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                     child: Text(
-                      'Name',
+                      'Sales',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.white),
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 18),
                     ),
                   ),
                 ),
@@ -41,16 +43,20 @@ class CustomBulkTable extends StatelessWidget {
                   child: Text(
                     'Pickup',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 18),
                   ),
                 )),
                 TableCell(
                     child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                   child: Text(
-                    'delivery',
+                    'Delivery',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 18),
                   ),
                 )),
                 TableCell(
@@ -59,34 +65,42 @@ class CustomBulkTable extends StatelessWidget {
                   child: Text(
                     'Total',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 18),
                   ),
                 )),
                 TableCell(
                     child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                   child: Text(
-                    'Delivery Extra',
+                    'Del_Extra',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 18),
                   ),
                 )),
                 TableCell(
                     child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                   child: Text(
-                    'Pickup Extra',
+                    'Pick_Extra',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 18),
                   ),
                 )),
                 TableCell(
                     child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                   child: Text(
-                    'Settelment',
+                    'Settle',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.white),
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 18),
                   ),
                 )),
               ],
@@ -103,17 +117,18 @@ class CustomBulkTable extends StatelessWidget {
                         children: [
                           Text(
                             salesQuotaList[rowIndex].salesName!,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
                           ),
-                          Opacity(
-                            opacity: .5,
-                            child: Text(
-                              parseToInt(salesQuotaList[rowIndex].salesId!)
-                                  .toString(),
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
-                            ),
-                          ),
+                          // Opacity(
+                          //   opacity: .5,
+                          //   child: Text(
+                          //     parseToInt(salesQuotaList[rowIndex].salesId!)
+                          //         .toString(),
+                          //     style: const TextStyle(
+                          //         fontWeight: FontWeight.bold, fontSize: 14),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

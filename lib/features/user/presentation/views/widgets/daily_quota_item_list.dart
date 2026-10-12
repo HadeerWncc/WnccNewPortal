@@ -10,37 +10,47 @@ class DailyQuotaItemList extends StatelessWidget {
   final DateTime date;
   @override
   Widget build(BuildContext context) {
-    return const Wrap(
-      alignment: WrapAlignment.spaceBetween,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 10,
-      runSpacing: 10,
-      children: [
-        CustomDailyQuotaItem(
-          landingtitle: 'Date',
-          icon: Symbols.calendar_month,
-          widthRatio: 0.4,
-          data: {"Total": 1000, "Bags": 500, "Bulk": 500},
-        ),
-        CustomDailyQuotaItem(
-          widthRatio: 0.4,
-          landingtitle: 'Total',
-          icon: Symbols.weight,
-          data: {"Total": 1000, "Bags": 500, "Bulk": 500},
-        ),
-        CustomDailyQuotaItem(
-          widthRatio: 0.4,
-          landingtitle: 'Bulk',
-          icon: Symbols.local_shipping,
-          data: {"Total": 1000, "Bags": 500, "Bulk": 500},
-        ),
-        CustomDailyQuotaItem(
-          widthRatio: 0.4,
-          landingtitle: 'Bags',
-          icon: Symbols.box,
-          data: {"Total": 1000, "Bags": 500, "Bulk": 500},
-        ),
-      ],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+                   final isLandscape =
+      MediaQuery.orientationOf(context) == Orientation.landscape;
+      
+          final cardWidth = isLandscape
+      ? constraints.maxWidth * 0.30
+      : constraints.maxWidth * 0.45;
+        return Wrap(
+          alignment: WrapAlignment.spaceBetween,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            CustomDailyQuotaItem(
+              landingtitle: 'Date',
+              icon: Symbols.calendar_month,
+              width: cardWidth,
+              data: const {"Total": 1000, "Bags": 500, "Bulk": 500},
+            ),
+            CustomDailyQuotaItem(
+              width: cardWidth,
+              landingtitle: 'Total',
+              icon: Symbols.weight,
+              data: const {"Total": 1000, "Bags": 500, "Bulk": 500},
+            ),
+            CustomDailyQuotaItem(
+              width: cardWidth,
+              landingtitle: 'Bulk',
+              icon: Symbols.local_shipping,
+              data: const {"Total": 1000, "Bags": 500, "Bulk": 500},
+            ),
+            CustomDailyQuotaItem(
+              width: cardWidth,
+              landingtitle: 'Bags',
+              icon: Symbols.box,
+              data: const {"Total": 1000, "Bags": 500, "Bulk": 500},
+            ),
+          ],
+        );
+      },
     );
   }
 }

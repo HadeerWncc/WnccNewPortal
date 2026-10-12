@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 
 class CustomToDoListDate extends StatelessWidget {
-  const CustomToDoListDate({super.key});
-
+  const CustomToDoListDate({super.key, required this.pageHeader});
+  final String pageHeader;
   @override
   Widget build(BuildContext context) {
     return Text(
-      '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}',
+      pageHeader,
       style: const TextStyle(
         decoration: TextDecoration.underline,
         decorationThickness: 2,

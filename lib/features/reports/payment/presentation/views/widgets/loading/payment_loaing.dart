@@ -28,7 +28,7 @@ class PaymentLoaing extends StatelessWidget {
                 ),
               )
               .toList(),
-          rows: [
+          rows: const [
             DataRow(cells: [
               DataCell(
                 Text(""),

@@ -29,6 +29,7 @@ class HourlyHeader extends StatelessWidget {
               width: 180,
               child: CustomDropDownInput(
                 title: 'Select',
+                fontSize: 13,
                 items: factreportOptionsList,
                 selectedValue: 'Hourly',
                 onChanged: (value) {

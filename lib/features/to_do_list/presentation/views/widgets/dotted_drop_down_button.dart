@@ -15,10 +15,11 @@ class DottedDropdownButton extends StatelessWidget {
       underline: const SizedBox(),
       style: const TextStyle(color: toDoListColor),
       onChanged: onChanged,
-      items: ['Done', 'Delete'].map<DropdownMenuItem<String>>((String value) {
+      items: ['Update', 'Delete', 'View']
+          .map<DropdownMenuItem<String>>((String value) {
         Color textColor;
-        if (value == 'Done') {
-          textColor = Colors.green;
+        if (value == 'Update') {
+          textColor = Colors.blueAccent;
         } else if (value == 'Delete') {
           textColor = Colors.red;
         } else {

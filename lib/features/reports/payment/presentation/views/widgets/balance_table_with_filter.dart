@@ -39,7 +39,7 @@ class _BalanceTableWithFilterState extends State<BalanceTableWithFilter> {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CustomPlaceholderInput(
               labelText: 'Customer code',
@@ -53,6 +53,7 @@ class _BalanceTableWithFilterState extends State<BalanceTableWithFilter> {
                 setState(() {});
               },
             ),
+            const SizedBox(width: 5),
             CustomDropDownInput(
               selectedValue: "All",
               items: [
@@ -61,7 +62,9 @@ class _BalanceTableWithFilterState extends State<BalanceTableWithFilter> {
               ],
               title: "Sales",
               hintText: "Sales",
-              width: MediaQuery.of(context).size.width * 0.31,
+              fontSize: 13,
+              
+              width: MediaQuery.of(context).size.width * 0.4,
               onChanged: (value) {
                 selectedSales = value!;
                 setState(() {});
@@ -76,7 +79,7 @@ class _BalanceTableWithFilterState extends State<BalanceTableWithFilter> {
               )
             : Expanded(
                 child: DataTable2(
-                  minWidth: data.first.toMap().length * 120,
+                  minWidth: data.first.toMap().length * 160,
                   isVerticalScrollBarVisible: false,
                   horizontalMargin: 0,
                   columnSpacing: 0,
@@ -102,9 +105,9 @@ class _BalanceTableWithFilterState extends State<BalanceTableWithFilter> {
                                   ),
                                 ),
                               )
-                            : (e == "Credit Segment" || e == "Sales")
+                            : (e == "Credit Segment" || e == "Sales" || e== 'Balance')
                                 ? DataColumn2(
-                                    fixedWidth: 140,
+                                    fixedWidth: 150,
                                     label: Center(
                                       child: Text(
                                         e,

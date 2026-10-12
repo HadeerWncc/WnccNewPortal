@@ -30,10 +30,9 @@ class _MonthlyPaymentTablesSectionState
           alignment: WrapAlignment.spaceBetween,
           children: [
             const PaymentsMonthlyHeader(),
-            const SizedBox(width: 7),
+            const SizedBox(width: 5),
             Row(
               children: [
-              
                 CustomChckButtons(
                   buttons: const ["EGP", "USD"],
                   activeTab: activeTab,
@@ -47,14 +46,14 @@ class _MonthlyPaymentTablesSectionState
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 5),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (!openCharts) ...[
                 sectionTitle('Payments Per Bank'),
-                const SizedBox(height: 8),
+                const SizedBox(height: 3),
               ],
               Expanded(
                 child: MonthlyPaymentTable(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/customer_drawer_menu.dart';
 import 'package:wncc_portal/features/home/presentation/views/widgets/customer_menu_item.dart';
@@ -8,9 +9,10 @@ class DrawerMenuList extends StatelessWidget {
   const DrawerMenuList({
     super.key,
     required this.activeTab,
-    required this.userPos,
+    required this.user, required this.userPos,
   });
   final String activeTab;
+  final UserModel user;
   final String userPos;
   @override
   Widget build(BuildContext context) {
@@ -18,36 +20,6 @@ class DrawerMenuList extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       shrinkWrap: true,
       children: [
-        // CustomDrawerMenu(
-        //   expanded: true,
-        //   icon: Icons.star,
-        //   iconColor: Colors.amber,
-        //   title: 'Favourite List',
-        //   children: [
-        //     CustomMenuItem(
-        //       title: 'Sales Quota',
-        //       active: activeTab == 'Sales Quota',
-        //       onTap: () {
-        //         GoRouter.of(context).push(AppRouter.salesQuotaPath);
-        //       },
-        //     ),
-        //     CustomMenuItem(
-        //       title: 'Delivery',
-        //       active: activeTab == 'Delivery',
-        //       onTap: () {
-        //         GoRouter.of(context).push(AppRouter.deliveryPath);
-        //       },
-        //     ),
-        //     CustomMenuItem(
-        //       title: 'PickUp',
-        //       active: activeTab == 'PickUp',
-        //       onTap: () {
-        //         GoRouter.of(context).push(AppRouter.pickupPath);
-        //       },
-        //     ),
-        //   ],
-        // ),
-        // const Divider(),
         CustomMenuItem(
           title: 'Home',
           active: activeTab == 'Home',
@@ -59,9 +31,7 @@ class DrawerMenuList extends StatelessWidget {
           icon: Icons.keyboard_double_arrow_up,
           title: 'Priority',
           children: [
-            if (userPos != "Sales Agent" &&
-                userPos != "Sales Area Manager" &&
-                userPos != "Dispatch Coordinator")
+            if (user.permissions!.contains("Permissions.Quotas.View"))
               CustomMenuItem(
                 title: 'Sales Quota',
                 active: activeTab == 'Sales Quota',
@@ -69,13 +39,15 @@ class DrawerMenuList extends StatelessWidget {
                   GoRouter.of(context).push(AppRouter.salesQuotaPath);
                 },
               ),
-            CustomMenuItem(
-              title: 'Delivery',
-              active: activeTab == 'Delivery',
-              onTap: () {
-                GoRouter.of(context).push(AppRouter.deliveryPath);
-              },
-            ),
+            if (user.permissions!.contains("Permissions.Deliveries.View"))
+              CustomMenuItem(
+                title: 'Delivery',
+                active: activeTab == 'Delivery',
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.deliveryPath);
+                },
+              ),
+              if (user.permissions!.contains("Permissions.Pickups.View"))
             CustomMenuItem(
               title: 'PickUp',
               active: activeTab == 'PickUp',
@@ -83,6 +55,7 @@ class DrawerMenuList extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.pickupPath);
               },
             ),
+            if (user.permissions!.contains("Permissions.QuotaSummary.View"))
             CustomMenuItem(
               title: 'Summary',
               active: activeTab == 'Summary',
@@ -92,11 +65,12 @@ class DrawerMenuList extends StatelessWidget {
             ),
           ],
         ),
-
+         if (user.permissions!.contains("Permissions.Reports.View"))
         CustomDrawerMenu(
           icon: Icons.article,
           title: 'Reports',
           children: [
+           
             CustomMenuItem(
               title: 'Payments',
               active: activeTab == 'Payments',
@@ -104,7 +78,7 @@ class DrawerMenuList extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.paymentsDailyPath);
               },
             ),
-           
+
             CustomMenuItem(
               title: 'FactoryVsCustDispatch',
               active: activeTab == 'FactoryVsCustDispatch',
@@ -151,9 +125,6 @@ class DrawerMenuList extends StatelessWidget {
                 GoRouter.of(context).push(AppRouter.pendingPath);
               },
             ),
-            // (userPos != "Sales Agent" && userPos != "Sales Area Manager")
-
-            // : const SizedBox(),
           ],
         ),
       ],

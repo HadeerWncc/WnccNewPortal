@@ -16,19 +16,6 @@ class PaymentPerCustomerCubit extends Cubit<PaymentPerCustomerState> {
   final PaymentsRepo paymentsRepo;
   final PayerRepo payerRepo;
 
-  // Future<void> getPaymentPerCustomer(DateTime fromDate, DateTime toDate) async {
-  //   emit(PaymentPerCustomerLoading());
-  //   final deposits =
-  //       await paymentsRepo.fetchPaymentDetailsData(fromDate, toDate);
-  //   deposits
-  //       .fold((failure) => emit(PaymentPerCustomerFailure(error: failure.msg)),
-  //           (paymentDetails) async {
-  //     List<CustomerDeposit> customerDeposite =
-  //         buildCustomerTable(paymentDetails);
-  //     emit(PaymentPerCustomerSuccess(customerDeposit: customerDeposite));
-  //   });
-  // }
-
   /// 🔹 Master Data
   List<PaymentDetailsModel> _allData = [];
 

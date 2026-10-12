@@ -12,29 +12,31 @@ class PickupMainData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateTime date = DateTime.now();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(10),
-          child: DatePicker(
-            title: 'Selected Pickup Date',
-            onChange: (value) {
-              date = value;
-              BlocProvider.of<GetPickupilityCubit>(context).getAllPickup(date);
-            },
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: DatePicker(
+              title: 'Selected Pickup Date',
+              onChange: (value) {
+                date = value;
+                BlocProvider.of<GetPickupilityCubit>(context).getAllPickup(date);
+              },
+            ),
           ),
-        ),
-        // const SizedBox(height: 10),
-        // const PrioritySummary(),
-        const SizedBox(height: 10),
-        const DividerLine(),
-        const SizedBox(height: 10),
-        PickupTableWithFilter(
-          date: date,
-          user: user,
-        ),
-      ],
+          // const SizedBox(height: 10),
+          // const PrioritySummary(),
+          const SizedBox(height: 10),
+          const DividerLine(),
+          const SizedBox(height: 10),
+          PickupTableWithFilter(
+            date: date,
+            user: user,
+          ),
+        ],
+      ),
     );
   }
 }

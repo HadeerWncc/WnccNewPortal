@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/features/authentication/data/models/login_model/favorite_route.dart';
 
 class UserModel extends Equatable {
   final List<dynamic>? subordinates;
   final List<dynamic>? permissions;
+  final List<FavoriteRoute>? favouriteRoutes;
   final String? id;
   final dynamic profileId;
   final String? fullName;
@@ -36,6 +38,7 @@ class UserModel extends Equatable {
   const UserModel({
     this.subordinates,
     this.permissions,
+    this.favouriteRoutes,
     this.id,
     this.profileId,
     this.fullName,
@@ -70,6 +73,9 @@ class UserModel extends Equatable {
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         subordinates: json['subordinates'] as List<dynamic>?,
         permissions: json['permissions'] as List<dynamic>?,
+        favouriteRoutes: (json['favouriteRoutes'] as List?)
+            ?.map((e) => FavoriteRoute.fromJson(e))
+            .toList(),
         id: json['id'] as String?,
         profileId: json['profileId'] as dynamic,
         fullName: json['fullName'] as String?,
@@ -106,6 +112,7 @@ class UserModel extends Equatable {
   Map<String, dynamic> toJson() => {
         'subordinates': subordinates,
         'permissions': permissions,
+        'favouriteRoutes': favouriteRoutes,
         'id': id,
         'profileId': profileId,
         'fullName': fullName,
@@ -142,6 +149,7 @@ class UserModel extends Equatable {
     return [
       subordinates,
       permissions,
+      favouriteRoutes,
       id,
       profileId,
       fullName,

@@ -36,6 +36,8 @@ class _DispatchDetailsPerRegionHeaderState
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<DispatchDetasilsV2PerRegionCubit>();
+    bool isLandScape =
+        (MediaQuery.of(context).orientation == Orientation.landscape);
 
     return Container(
       // width: double.infinity,
@@ -46,7 +48,7 @@ class _DispatchDetailsPerRegionHeaderState
       ),
       child: Wrap(spacing: 8, runSpacing: 8, children: [
         SizedBox(
-          width: (MediaQuery.of(context).orientation == Orientation.landscape)
+          width: isLandScape
               ? MediaQuery.of(context).size.width * .2
               : MediaQuery.of(context).size.width * .35,
           child: CustomDropDownInput(
@@ -66,7 +68,7 @@ class _DispatchDetailsPerRegionHeaderState
           ),
         ),
         SizedBox(
-          width: (MediaQuery.of(context).orientation == Orientation.landscape)
+          width: isLandScape
               ? MediaQuery.of(context).size.width * .25
               : MediaQuery.of(context).size.width * .5,
           child: CustomYearPicker(
@@ -100,7 +102,9 @@ class _DispatchDetailsPerRegionHeaderState
           ),
         ),
         SizedBox(
-            width: MediaQuery.of(context).size.width * .4,
+            width: isLandScape
+                ? MediaQuery.of(context).size.width * .2
+                : MediaQuery.of(context).size.width * .4,
             child: CustomMultiSelectDropDown2(
               products: const ["Delivery", "Pickup"],
               selectedProducts: incotermList,
@@ -113,7 +117,9 @@ class _DispatchDetailsPerRegionHeaderState
               title: "Incoterm",
             )),
         SizedBox(
-          width: MediaQuery.of(context).size.width * .4,
+          width: isLandScape
+              ? MediaQuery.of(context).size.width * .2
+              : MediaQuery.of(context).size.width * .4,
           child: CustomMultiSelectDropDown2(
             products: const ["Bags", "Bulk"],
             selectedProducts: typeList,
@@ -127,7 +133,9 @@ class _DispatchDetailsPerRegionHeaderState
           ),
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * .5,
+          width: isLandScape
+              ? MediaQuery.of(context).size.width * .3
+              : MediaQuery.of(context).size.width * .5,
           child: BlocBuilder<DispatchDetasilsV2PerRegionCubit,
               DispatchDetasilsV2PerRegionState>(builder: (context, state) {
             if (state is DispatchDetasilsV2PerRegionSuccess) {
@@ -143,8 +151,10 @@ class _DispatchDetailsPerRegionHeaderState
               );
             }
             return SizedBox(
-              width: MediaQuery.of(context).size.width * .5,
-              child: const LoadingBtn(title: 'SelectItems'),
+              width: isLandScape
+                  ? MediaQuery.of(context).size.width * .3
+                  : MediaQuery.of(context).size.width * .5,
+              child: const LoadingBtn(title: 'Select Cities'),
             );
           }),
         ),

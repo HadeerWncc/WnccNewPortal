@@ -1,5 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:wncc_portal/core/utils/methods/custom_borders.dart';
 
 class CustomMultiSelectDropDown2 extends StatefulWidget {
   const CustomMultiSelectDropDown2({
@@ -34,6 +35,15 @@ class _CustomMultiSelectDropDown2State
     //     .toList();
 
     return DropdownSearch<String>.multiSelection(
+      dropdownDecoratorProps: DropDownDecoratorProps(
+        
+        dropdownSearchDecoration: 
+         InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+              border: inputBorder(),
+              focusedBorder: customfocusedBorder(),
+            ),
+      ),
       key: _dropdownKey,
       items: widget.products,
       selectedItems: widget.selectedProducts,
@@ -48,16 +58,14 @@ class _CustomMultiSelectDropDown2State
         );
       },
       popupProps: PopupPropsMultiSelection.menu(
+        
         showSearchBox: true,
         showSelectedItems: false,
         selectionWidget: (context, item, isSelected) {
-          return Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Icon(
-              isSelected ? Icons.check_box : Icons.check_box_outline_blank,
-              color: isSelected ? Colors.green : Colors.grey.shade400,
-              size: 22,
-            ),
+          return Icon(
+            isSelected ? Icons.check_box : Icons.check_box_outline_blank,
+            color: isSelected ? Colors.green : Colors.grey.shade400,
+            size: 22,
           );
         },
         itemBuilder: (context, item, isSelected) {
@@ -72,5 +80,7 @@ class _CustomMultiSelectDropDown2State
       ),
       onChanged: widget.onChanged,
     );
+  
+  
   }
 }

@@ -8,7 +8,6 @@ import 'package:wncc_portal/features/priority/delivery/presentation/managers/cub
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/custom_submit_priority_buttons.dart';
 import 'package:wncc_portal/features/priority/comm/widgets/filter_data_input.dart';
 import 'package:wncc_portal/features/priority/delivery/presentation/views/widgets/priority_delivery.dart/priority_delivery_table.dart';
-import 'package:wncc_portal/features/priority/comm/widgets/select_product_radio_button_item.dart';
 
 class PriorityDeliverySection extends StatefulWidget {
   const PriorityDeliverySection({super.key, required this.user});

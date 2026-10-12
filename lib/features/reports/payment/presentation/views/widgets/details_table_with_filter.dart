@@ -82,6 +82,7 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
               title: "Sales",
               hintText: "Sales",
               width: MediaQuery.of(context).size.width * 0.31,
+              fontSize: 13,
               onChanged: (value) {
                 selectedSales = value!;
                 setState(() {});
@@ -96,6 +97,7 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
               title: "Banks",
               hintText: "Banks",
               width: MediaQuery.of(context).size.width * 0.31,
+              fontSize: 13,
               onChanged: (value) {
                 selectedBank = value!;
                 setState(() {});
@@ -110,6 +112,7 @@ class _DetailsTableWithFulterState extends State<DetailsTableWithFulter> {
               )
             : Expanded(
                 child: DataTable2(
+                    scrollController: ScrollController(keepScrollOffset: false),
                     minWidth: data.first.toMap().length * 150,
                     isVerticalScrollBarVisible: false,
                     horizontalMargin: 0,

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wncc_portal/core/widgets/custom_toggle_button.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/manager/cubits/payments_details_cubit/payments_details_cubit.dart';
-import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/details_payment_table.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/loading/details_loading.dart';
 import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/payments_details_header.dart';
@@ -34,26 +32,15 @@ class _PaymentsDetailsSectionState extends State<PaymentsDetailsSection> {
                       Wrap(
                         alignment: WrapAlignment.spaceBetween,
                         children: [
-                          const PaymentsDetailsHeader(),
-                          const SizedBox(width: 7),
-                          Row(
-                            children: [
-                              CustomChckButtons(
-                                  buttons: const ["EGP", "USD"],
-                                  activeTab: activeTab,
-                                  onTap: (value) {
-                                    if (value == "EGP") {
-                                      activeTab = 0;
-                                    } else {
-                                      activeTab = 1;
-                                    }
-                                    setState(() {});
-                                  }),
-                              const SizedBox(width: 7),
-                              CustomToggleButton(
-                                  onToggle: (value) =>
-                                      setState(() => openCharts = value)),
-                            ],
+                          PaymentsDetailsHeader(
+                            onChangeActiveTap: (numOfActiveTab) {
+                              activeTab = numOfActiveTab;
+                              setState(() {});
+                            },
+                            onToggleChange: (toggleValue) {
+                              openCharts = toggleValue;
+                              setState(() {});
+                            },
                           ),
                         ],
                       ),

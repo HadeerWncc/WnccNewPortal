@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:wncc_portal/core/models/user_model.dart';
 
-import 'current_user.dart';
 
 class LoginModel extends Equatable {
   final bool? isAuthenticated;
@@ -8,7 +8,7 @@ class LoginModel extends Equatable {
   final String? refreshToken;
   final DateTime? refreshTokenExpirsOn;
   final bool? is2FaRequred;
-  final CurrentUser? currentUser;
+  final UserModel? currentUser;
 
   const LoginModel({
     this.isAuthenticated,
@@ -29,7 +29,7 @@ class LoginModel extends Equatable {
         is2FaRequred: json['is2FARequred'] as bool?,
         currentUser: json['currentUser'] == null
             ? null
-            : CurrentUser.fromJson(json['currentUser'] as Map<String, dynamic>),
+            : UserModel.fromJson(json['currentUser'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {

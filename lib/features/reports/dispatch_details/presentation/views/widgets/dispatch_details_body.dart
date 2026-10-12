@@ -18,8 +18,6 @@ class DispatchDetailsBody extends StatelessWidget {
           // DispatchDetailsButtonsList(activeTab: 0),
           const DispatchDetailsHeaderTabs(activeTab: 1),
           const SizedBox(height: 8),
-          // DispatchPerRegionTablesBody(),
-
           BlocBuilder<FlatDispatchDetailsCubit, FlatDispatchDetailsState>(
             builder: (context, state) {
               if (state is FlatDispatchDetailsSuccess) {
@@ -81,7 +79,7 @@ class DispatchDetailsBody extends StatelessWidget {
                   ),
                 );
               } else {
-                return const LoadingTable();
+                return const Expanded(child: LoadingTable());
               }
             },
           ),

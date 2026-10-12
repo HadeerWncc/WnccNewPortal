@@ -138,10 +138,18 @@ class _PriorityDeliveryTableState extends State<PriorityDeliveryTable> {
                   ),
                 ),
                 DataCell(
-                  CustomDataCellWidget(
-                      title: DateFormat('MMM d, y').format(DateTime.parse(
+                  Center(
+                    child: Text(
+                      DateFormat('MMM d, y').format(DateTime.parse(
                           item.priorityDate ?? DateTime.now().toString())),
-                      subTitle: "Time: 12:00 PM"),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  // CustomDataCellWidget(
+                  //     title: DateFormat('MMM d, y').format(DateTime.parse(
+                  //         item.priorityDate ?? DateTime.now().toString())),
+                  //     subTitle: DateFormat('hh:mm').format(DateTime.parse(
+                  //         item.priorityDate ?? DateTime.now().toString()))),
                 ),
                 DataCell(
                   Center(
@@ -337,6 +345,8 @@ class _AgentActionsState extends State<AgentActions> {
             );
           },
         );
+   
+   
       },
       icon: const Icon(
         Symbols.add_box,

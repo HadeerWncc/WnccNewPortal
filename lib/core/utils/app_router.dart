@@ -10,8 +10,12 @@ import 'package:wncc_portal/features/customerService/complains/presentation/view
 import 'package:wncc_portal/features/customerService/complains/presentation/views/widgets/edit_complain_page.dart';
 import 'package:wncc_portal/features/customerService/requests/presentation/views/widgets/edit_request_view.dart';
 import 'package:wncc_portal/features/error/presentaion/view/page/error_page.dart';
+import 'package:wncc_portal/features/notes/data/models/note_model/datum.dart';
+import 'package:wncc_portal/features/notes/presentation/view/pages/note_description_page.dart';
+import 'package:wncc_portal/features/notes/presentation/view/pages/note_page.dart';
 import 'package:wncc_portal/features/priority/pickup/presentation/views/pages/pickup_priority_page.dart';
 import 'package:wncc_portal/features/priority/summary/presentation/views/pages/priority_summary_page.dart';
+import 'package:wncc_portal/features/reports/dispatch_details/presentation/views/pages/flat_dispatch_details_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_cust_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_region_page.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/views/pages/dispatch_details_v2_per_sales_page.dart';
@@ -39,7 +43,6 @@ import 'package:wncc_portal/features/reports/payment/presentation/views/pages/pa
 import 'package:wncc_portal/features/reports/pending/presentation/views/pages/pending_page.dart';
 import 'package:wncc_portal/features/reports/pending/presentation/views/pages/pickup_pending_page.dart';
 import 'package:wncc_portal/features/sales_quota/presentation/views/pages/sales_quota_page.dart';
-import 'package:wncc_portal/features/to_do_list/presentation/views/pages/to_do_screen.dart';
 import 'package:wncc_portal/features/updates/presentation/views/pages/updates_page.dart';
 import 'package:wncc_portal/features/user/presentation/views/pages/change_password_page.dart';
 import 'package:wncc_portal/features/authentication/presentation/views/pages/forget_password_page.dart';
@@ -81,7 +84,8 @@ abstract class AppRouter {
   static const bookingPrice = '/bookingPrice';
   static const pricingReport = '/pricingReport';
   static const payer = '/payer';
-  static const toDoList = '/toDoList';
+  static const notePage = '/notePagePath';
+  static const noteDescriptionPage = '/noteDescriptionPagePath';
   static const factVsCustDispatchHourly = '/factvscustDailyHourlypage';
   static const factVsCustDispatchDaily = '/factvscustDailyDailypage';
   static const factVsCustDispatchMonthly = '/factvscustDailyMonthlypage';
@@ -247,8 +251,8 @@ abstract class AppRouter {
         builder: (context, state) => const PayerPage(),
       ),
       GoRoute(
-        path: toDoList,
-        builder: (context, state) => const ToDoScreen(),
+        path: notePage,
+        builder: (context, state) => const NotePage(),
       ),
       GoRoute(
         path: factVsCustDispatchHourly,
@@ -294,7 +298,7 @@ abstract class AppRouter {
         path: paymentsBalancePath,
         builder: (context, state) => const PaymentsBalancePage(),
       ),
-       GoRoute(
+      GoRoute(
         path: creditLimitPath,
         builder: (context, state) => const CreditLimitPage(),
       ),
@@ -309,6 +313,11 @@ abstract class AppRouter {
       GoRoute(
         path: loadingDetailsPath,
         builder: (context, state) => const LoadingDetailspage(),
+      ),
+      
+      GoRoute(
+        path: dispatchDetailsPath,
+        builder: (context, state) => const FlatDispatchDetailsPage(),
       ),
       GoRoute(
         path: dispatchDetailsPerRegionPath,
@@ -341,6 +350,11 @@ abstract class AppRouter {
       GoRoute(
         path: prioritySummaryPath,
         builder: (context, state) => const PrioritySummaryPage(),
+      ),
+      GoRoute(
+        path: noteDescriptionPage,
+        builder: (context, state) =>
+            NoteDescriptionPage(note: state.extra as Datum),
       ),
     ],
   );

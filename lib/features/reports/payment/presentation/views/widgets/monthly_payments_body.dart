@@ -14,7 +14,7 @@ class MonthlyPaymentsBody extends StatelessWidget {
           PaymentReportButtonsList(
             activeTab: 0,
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 5),
           Expanded(child: MonthlyPaymentTablesSection()),
         ],
       ),

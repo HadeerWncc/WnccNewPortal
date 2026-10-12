@@ -11,67 +11,61 @@ class PrioritySummaryLoading extends StatelessWidget {
     return Shimmer.fromColors(
       baseColor: Colors.grey.shade300,
       highlightColor: Colors.grey.shade100,
-      child: const Center(
-        child: Row(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+           final isLandscape =
+      MediaQuery.orientationOf(context) == Orientation.landscape;
+      
+          final cardWidth = isLandscape
+      ? constraints.maxWidth * 0.30
+      : constraints.maxWidth * 0.4;
+          return Row(
           spacing: 10,
           // runSpacing: 10,
           children: [
             CustomDailyQuotaItem(
                 landingtitle: 'Pending',
-                widthRatio: .45,
+                width: cardWidth,
                 icon: Symbols.weight,
-                data: {
+                data: const {
                   "Total": 0,
                   "Bags": 0,
                   "Bulk": 0,
                 }),
             CustomDailyQuotaItem(
                 landingtitle: 'Quota',
-                widthRatio: .45,
+                width: cardWidth,
                 icon: Symbols.more_up,
-                data: {
+                data: const {
                   "Total": 0,
                   "Bags": 0,
                   "Bulk": 0,
                 }),
-            // CustomDailyQuotaItem(
-            //     landingtitle: 'Extra',
-            //     widthRatio: .45,
-            //     icon: Symbols.priority,
-            //     data: {
-            //       "Total": 0,
-            //       "Bags": 0,
-            //       "Bulk": 0,
-            //     }),
-            // CustomDailyQuotaItem(
-            //     landingtitle: 'Priority',
-            //     widthRatio: .45,
-            //     icon: Symbols.hourglass_empty,
-            //     data: {
-            //       "Total": 0,
-            //       "Bags": 0,
-            //       "Bulk": 0,
-            //     }),
-            // CustomDailyQuotaItem(
-            //     landingtitle: 'Dispatched',
-            //     widthRatio: .45,
-            //     icon: Symbols.local_shipping,
-            //     data: {
-            //       "Total": 0,
-            //       "Bags": 0,
-            //       "Bulk": 0,
-            //     }),
-            // CustomDailyQuotaItem(
-            //     landingtitle: 'Remaining',
-            //     widthRatio: .45,
-            //     icon: Symbols.local_shipping,
-            //     data: {
-            //       "Total": 0,
-            //       "Bags": 0,
-            //       "Bulk": 0,
-            //     }),
+            CustomDailyQuotaItem(
+                landingtitle: 'Extra',
+                width: cardWidth,
+                icon: Symbols.priority,
+                data: const {
+                  "Total": 0,
+                  "Bags": 0,
+                  "Bulk": 0,
+                }),
+            CustomDailyQuotaItem(
+                landingtitle: 'Priority',
+                width: cardWidth,
+                icon: Symbols.hourglass_empty,
+                data: const {
+                  "Total": 0,
+                  "Bags": 0,
+                  "Bulk": 0,
+                }),
+         
           ],
-        ),
+        );
+          
+        },
+         
+            
       ),
     );
   }

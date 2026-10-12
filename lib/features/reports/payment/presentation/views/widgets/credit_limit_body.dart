@@ -9,7 +9,6 @@ class CreditLimitBody extends StatefulWidget {
 
   @override
   State<CreditLimitBody> createState() => _CreditLimitBodyState();
-  
 }
 
 class _CreditLimitBodyState extends State<CreditLimitBody> {
@@ -18,6 +17,7 @@ class _CreditLimitBodyState extends State<CreditLimitBody> {
     super.initState();
     BlocProvider.of<CreditLimitCubit>(context).getCreditLimit();
   }
+
   @override
   Widget build(BuildContext context) {
     return const Padding(

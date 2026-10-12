@@ -37,7 +37,7 @@ class _DispatchDetailsPerSalesSuccessV2State
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: SizedBox(
-          width: 1500, // Set a fixed width for the table
+          width: 2000, // Set a fixed width for the table
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -86,7 +86,7 @@ class _DispatchDetailsPerSalesSuccessV2State
                                     flex: 3, child: Center(child: Text(""))),
                             for (var month in getMonths(DateTime.now().year))
                               Expanded(
-                                flex: 3,
+                                flex: 4,
                                 child: TableDataItem(
                                   value: disPerSales.months
                                       .where((m) => m.name == month)
@@ -102,7 +102,7 @@ class _DispatchDetailsPerSalesSuccessV2State
                                 ),
                               ),
                             Expanded(
-                              flex: 3,
+                              flex: 4,
                               child: TableDataItem(
                                 value: disPerSales.total.value,
                                 regions: disPerSales.total.dispatches!,
@@ -143,7 +143,7 @@ class _DispatchDetailsPerSalesSuccessV2State
                                 widget.year,
                               );
                             })
-                          : disPerSales.dispatches!.map((entry) {
+                          : disPerSales.dispatches.map((entry) {
                               return _buildRegionRow(
                                 entry,
                               );
@@ -177,9 +177,9 @@ class _DispatchDetailsPerSalesSuccessV2State
                               flex: 3, child: Center(child: Text(""))),
                       for (var month in getMonths(DateTime.now().year))
                         Expanded(
-                          flex: 3,
+                          flex: 4,
                           child: TableDataItem(
-                            value: totalDis.months!
+                            value: totalDis.months
                                 .where((m) => m.name == month)
                                 .firstOrNull!
                                 .totalEntity
@@ -193,7 +193,7 @@ class _DispatchDetailsPerSalesSuccessV2State
                           ),
                         ),
                       Expanded(
-                        flex: 3,
+                        flex: 4,
                         child: TableDataItem(
                           value: totalDis.total.value,
                           regions: totalDis.total.dispatches!,
@@ -253,7 +253,7 @@ class _DispatchDetailsPerSalesSuccessV2State
           Expanded(flex: 2, child: Center(child: Text('${item.date}|$year'))),
           for (var month in getMonths(DateTime.now().year))
             Expanded(
-              flex: 3,
+              flex: 4,
               child: TableDataItem(
                 value: item.dispatches
                     .where((m) => m.name == month)
@@ -268,7 +268,7 @@ class _DispatchDetailsPerSalesSuccessV2State
                 month: '${item.date}|$month',
               ),
             ),
-          const Expanded(flex: 3, child: Center(child: Text(""))),
+          const Expanded(flex: 4, child: Center(child: Text(""))),
           const Expanded(
             flex: 3,
             child: Center(child: Text("")),
@@ -298,7 +298,7 @@ class _DispatchDetailsPerSalesSuccessV2State
           Expanded(flex: 3, child: Center(child: Text(item.name))),
           for (var month in getMonths(DateTime.now().year))
             Expanded(
-              flex: 3,
+              flex: 4,
               child: TableDataItem(
                 value: item.dispatches
                     .where((m) => m.name == month)
@@ -313,7 +313,7 @@ class _DispatchDetailsPerSalesSuccessV2State
                 month: month,
               ),
             ),
-          const Expanded(flex: 3, child: Center(child: Text(""))),
+          const Expanded(flex: 4, child: Center(child: Text(""))),
           const Expanded(
             flex: 3,
             child: Center(child: Text("")),

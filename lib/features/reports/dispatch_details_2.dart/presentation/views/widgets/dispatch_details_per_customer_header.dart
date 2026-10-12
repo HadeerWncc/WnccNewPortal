@@ -37,7 +37,7 @@ class _DispatchDetailsPerCustomerHeaderState
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<DispatchDetailsV2PerCustomerCubit>();
-
+    bool isLandScape = (MediaQuery.of(context).orientation == Orientation.landscape);
     return Container(
       // width: double.infinity,
       padding: const EdgeInsets.all(8),
@@ -47,7 +47,7 @@ class _DispatchDetailsPerCustomerHeaderState
       ),
       child: Wrap(spacing: 8, runSpacing: 8, children: [
         SizedBox(
-          width: (MediaQuery.of(context).orientation == Orientation.landscape)
+          width: isLandScape
               ? MediaQuery.of(context).size.width * .2
               : MediaQuery.of(context).size.width * .35,
           child: CustomDropDownInput(
@@ -66,7 +66,7 @@ class _DispatchDetailsPerCustomerHeaderState
           ),
         ),
         SizedBox(
-          width: (MediaQuery.of(context).orientation == Orientation.landscape)
+          width: isLandScape
               ? MediaQuery.of(context).size.width * .25
               : MediaQuery.of(context).size.width * .5,
           child: CustomYearPicker(
@@ -115,7 +115,7 @@ class _DispatchDetailsPerCustomerHeaderState
               cubit.changeDisChnl(value);
             }),
         SizedBox(
-            width: MediaQuery.of(context).size.width * .43,
+            width: isLandScape? MediaQuery.of(context).size.width * .23: MediaQuery.of(context).size.width * .43,
             child: CustomMultiSelectDropDown2(
               products: const ["Delivery", "Pickup"],
               selectedProducts: incotermList,
@@ -128,7 +128,7 @@ class _DispatchDetailsPerCustomerHeaderState
               title: "Incoterm",
             )),
         SizedBox(
-            width: MediaQuery.of(context).size.width * .43,
+            width: isLandScape? MediaQuery.of(context).size.width * .23: MediaQuery.of(context).size.width * .43,
             child: CustomMultiSelectDropDown2(
               products: const ["Bags", "Bulk"],
               selectedProducts: typeList,

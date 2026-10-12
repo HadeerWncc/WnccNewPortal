@@ -1,6 +1,5 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:wncc_portal/features/reports/dispatch_details/domain/entities/region_with_area.dart';
 
 class MultiSelectDropDown extends StatefulWidget {
   const MultiSelectDropDown({
@@ -8,8 +7,9 @@ class MultiSelectDropDown extends StatefulWidget {
     required this.items,
     required this.selectedItems,
     this.onChanged,
+    this.itemsType,
   });
-
+  final String? itemsType;
   final List<String> items;
   final List<String> selectedItems;
   final Function(List<String>)? onChanged;
@@ -35,8 +35,8 @@ class _MultiSelectDropDownState extends State<MultiSelectDropDown> {
       dropdownBuilder: (context, selectedItems) {
         return Text(
           widget.selectedItems.isEmpty
-              ? "Select items"
-              : "${widget.selectedItems.length} items selected",
+              ? "Select ${widget.itemsType ?? 'items'}"
+              : "${widget.selectedItems.length} ${widget.itemsType ?? 'items'} selected",
           style: const TextStyle(color: Colors.black),
         );
       },

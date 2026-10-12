@@ -29,4 +29,12 @@ class ApiService {
     final response = await _dio.put('$baseUrl$endPoint', data: data);
     return response.data;
   }
+
+  Future<Map<String, dynamic>> delete({
+    required String endPoint,
+    Object? data,
+  }) async {
+    final response = await _dio.delete('$baseUrl$endPoint', data: data);
+    return response.data;
+  }
 }

@@ -16,18 +16,20 @@ class PickupPriorityBody extends StatelessWidget {
         GetSummaryEntity(
             date: DateTime.now(), salesId: "", regionId: "", matrialId: ""));
 
-    return Column(
-      children: [
-        Card(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: PickupMainData(
-            user: user,
-          ),
-        )
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Card(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: PickupMainData(
+              user: user,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

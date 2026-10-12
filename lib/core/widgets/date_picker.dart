@@ -15,7 +15,7 @@ class DatePicker extends StatefulWidget {
 }
 
 class _DatePickerState extends State<DatePicker> {
-  String formattedDate = DateFormat('MMMM d, y').format(DateTime.now());
+  String formattedDate = DateFormat('MMM d, y').format(DateTime.now());
   DateTime currentDate = DateTime.now();
   Future<void> _pickDate() async {
     final DateTime? picked = await showDatePicker(
@@ -26,7 +26,7 @@ class _DatePickerState extends State<DatePicker> {
     );
     if (picked != null && picked != DateTime.now()) {
       setState(() {
-        formattedDate = DateFormat('MMMM d, y').format(picked);
+        formattedDate = DateFormat('MMM d, y').format(picked);
         currentDate = picked;
         if (widget.onChange != null) {
           widget.onChange!(picked);

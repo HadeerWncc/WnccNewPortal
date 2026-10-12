@@ -36,20 +36,21 @@ class _PaymentsDailyHeaderState extends State<PaymentsDailyHeader> {
         SizedBox(
           width: (MediaQuery.of(context).orientation == Orientation.landscape)
               ? MediaQuery.of(context).size.width * .2
-              : MediaQuery.of(context).size.width * .35,
+              : MediaQuery.of(context).size.width * .4,
           child: CustomDropDownInput(
             title: 'Select',
             items: [...reportOptionsList, "Per Customer", "Details"],
             selectedValue: 'Daily',
+            fontSize: 12,
             onChanged: (value) {
               // Handle dropdown change
               if (value == 'Monthly') {
                 GoRouter.of(context).push(AppRouter.paymentsMonthlyPath);
               } else if (value == "Per Customer") {
                 GoRouter.of(context).push(AppRouter.paymentsPerCustomerPath);
-              }
-              else if (value == "Details") {
-                BlocProvider.of<PaymentsDetailsCubit>(context).getPaymentDetails(DateTime.now(), DateTime.now());
+              } else if (value == "Details") {
+                BlocProvider.of<PaymentsDetailsCubit>(context)
+                    .getPaymentDetails(DateTime.now(), DateTime.now());
                 GoRouter.of(context).push(AppRouter.paymentsDetailsPath);
               }
             },
@@ -57,8 +58,8 @@ class _PaymentsDailyHeaderState extends State<PaymentsDailyHeader> {
         ),
         SizedBox(
           width: (MediaQuery.of(context).orientation == Orientation.landscape)
-              ? MediaQuery.of(context).size.width * .25
-              : MediaQuery.of(context).size.width * .5,
+              ? MediaQuery.of(context).size.width * .2
+              : MediaQuery.of(context).size.width * .4,
           child: CustomMonthYearPicker(
             title: 'Select Date',
             onChange: (value) {
@@ -76,9 +77,10 @@ class _PaymentsDailyHeaderState extends State<PaymentsDailyHeader> {
               return CustomDropDownInput(
                 items: state.dropdownItems,
                 selectedValue: "All",
-                hintText: "payer",
-                title: "Payer",
-                width: MediaQuery.of(context).size.width * .5,
+                hintText: "Select Customer",
+                fontSize: 13,
+                title: "Select Customer",
+                width:(MediaQuery.of(context).orientation == Orientation.landscape)? MediaQuery.of(context).size.width * .25: MediaQuery.of(context).size.width * .5,
                 onChanged: (value) {
                   if (value!.startsWith("All")) {
                     payer = "";
@@ -90,14 +92,14 @@ class _PaymentsDailyHeaderState extends State<PaymentsDailyHeader> {
               );
             } else {
               return SizedBox(
-                width: MediaQuery.of(context).size.width * .5,
+                width:(MediaQuery.of(context).orientation == Orientation.landscape)? MediaQuery.of(context).size.width * .25: MediaQuery.of(context).size.width * .5,
                 child: const LoadingInput(),
               );
             }
           },
         ),
         SizedBox(
-          width: MediaQuery.of(context).size.width * .3,
+          width:(MediaQuery.of(context).orientation == Orientation.landscape)? MediaQuery.of(context).size.width * .15:MediaQuery.of(context).size.width * .3,
           child: CustomButtonWithIcon(
             child: 'Search',
             textColor: Colors.white,

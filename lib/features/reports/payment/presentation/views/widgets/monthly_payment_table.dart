@@ -62,12 +62,11 @@ class MonthlyPaymentTable extends StatelessWidget {
                 )
               : DataTable2(
                   horizontalMargin: 0,
-                  // scrollController: ScrollController(keepScrollOffset: false),
                   columnSpacing: 0,
-                  headingRowHeight: 45,
+                  headingRowHeight: 40,
                   minWidth: tableData.headers.length * 150,
                   fixedLeftColumns: 1,
-                  fixedTopRows: 1,
+                  fixedTopRows: 0,
                   fixedColumnsColor: tableHeaderColor,
                   headingRowColor: WidgetStateProperty.all(tableHeaderColor),
                   border: TableBorder.all(color: Colors.grey.shade300),

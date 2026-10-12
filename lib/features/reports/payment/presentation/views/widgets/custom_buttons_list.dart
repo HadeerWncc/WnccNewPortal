@@ -25,7 +25,10 @@ class CustomButtonsList extends StatelessWidget {
             onSelected: (value) {
               onTap?.call(value);
             },
-            buttonWidth: MediaQuery.of(context).size.width / buttons.length,
+            buttonWidth:
+                (MediaQuery.of(context).orientation == Orientation.landscape)
+                    ? (MediaQuery.of(context).size.width / buttons.length)
+                    : (MediaQuery.of(context).size.width / buttons.length),
             isSelected: index == activeTab,
             title: buttons[index],
             borderRadius: index == 0

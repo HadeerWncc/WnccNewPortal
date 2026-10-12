@@ -13,7 +13,7 @@ class CreditLimitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return BlocConsumer<UserCubit, UserState>(
+    return BlocConsumer<UserCubit, UserState>(
       listener: (context, state) => handelError(state, context),
       builder: (context, state) {
         if (state is UserSuccess) {
