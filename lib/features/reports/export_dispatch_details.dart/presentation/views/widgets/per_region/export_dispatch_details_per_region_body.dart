@@ -5,10 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:wncc_portal/core/constants/colors.dart';
 import 'package:wncc_portal/core/widgets/loading_widgets/tables/loading_table.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/helper/get_dis_value.dart';
-import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/manager/cubits/export_dispatch_per_customer_cubit/export_dispatch_per_customer_cubit.dart';
 import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/manager/cubits/export_dispatch_per_region_cubit/export_dispatch_per_region_cubit.dart';
 import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/manager/helper/get_totals.dart';
-import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/views/widgets/per_customer/export_dispatch_details_per_customer_header.dart';
 import 'package:wncc_portal/features/reports/export_dispatch_details.dart/presentation/views/widgets/per_region/export_dispatch_details_per_region_header.dart';
 // import 'package:collection/collection.dart';
 
@@ -203,7 +201,7 @@ class _ExportDispatchDetailsPerRegionBodyState
               style: const TextStyle(color: Colors.red),
             ));
           }
-          return const LoadingTable();
+          return const Expanded(child: LoadingTable());
         }),
       ],
     );

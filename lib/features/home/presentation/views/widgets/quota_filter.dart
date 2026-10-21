@@ -28,7 +28,7 @@ class _QuotaFilterState extends State<QuotaFilter> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
-              width: MediaQuery.of(context).size.width * .49,
+              width: MediaQuery.of(context).size.width * .52,
               child: CustomRangeDatePicker(
                 title: 'Select Date',
                 onChange: (value) {
@@ -38,7 +38,7 @@ class _QuotaFilterState extends State<QuotaFilter> {
             ),
             // const SizedBox(width: 10),
             CustomPlaceholderInput(
-              width: MediaQuery.of(context).size.width * .23,
+              width: MediaQuery.of(context).size.width * .22,
               labelText: 'Code',
               controller: codeController,
             ),

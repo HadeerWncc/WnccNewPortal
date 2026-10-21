@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wncc_portal/core/utils/app_router.dart';
 import 'package:wncc_portal/features/reports/dispatch_details/presentation/manager/cubites/flat_dispatch_details_cubit/flat_dispatch_details_cubit.dart';
 import 'package:wncc_portal/features/reports/dispatch_details_2.dart/presentation/manager/cubits/dispatch_detasils_v2_per_region_cubit/dispatch_detasils_v2_per_region_cubit.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/custom_buttons_list.dart';
+import 'package:wncc_portal/core/widgets/custom_buttons_list.dart';
 
 class DispatchDetailsHeaderTabs extends StatelessWidget {
   const DispatchDetailsHeaderTabs({

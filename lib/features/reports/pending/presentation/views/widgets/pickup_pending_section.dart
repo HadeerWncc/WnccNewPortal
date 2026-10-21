@@ -42,7 +42,7 @@ class _PickupPendingSectionState extends State<PickupPendingSection> {
                               ? const SizedBox()
                               : CustomPlaceholderInput(
                                   labelText: 'CustomerNo',
-                                  width: MediaQuery.of(context).size.width * .4,
+                                  width: MediaQuery.of(context).size.width * .5,
                                   icon: const Icon(
                                     Symbols.document_search,
                                     color: Colors.grey,

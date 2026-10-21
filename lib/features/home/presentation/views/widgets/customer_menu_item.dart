@@ -16,8 +16,6 @@ class CustomMenuItem extends StatelessWidget {
       color:
           active ? const Color.fromARGB(255, 54, 54, 55) : Colors.transparent,
       child: ListTile(
-        // iconColor: kmutedColors,
-        // textColor: kmutedColors,
         selected: active,
         selectedColor: Colors.white,
         // style: ListTileStyle(),

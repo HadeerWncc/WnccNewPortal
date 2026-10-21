@@ -37,7 +37,8 @@ class _ExportDispatchDetailsPerCustomerHeaderState
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<ExportDispatchPerCustomerCubit>();
-
+    bool isLandScape =
+        (MediaQuery.of(context).orientation == Orientation.landscape);
     return Container(
       // width: double.infinity,
       padding: const EdgeInsets.all(8),
@@ -51,13 +52,13 @@ class _ExportDispatchDetailsPerCustomerHeaderState
           runAlignment: WrapAlignment.center,
           children: [
             SizedBox(
-              width:
-                  (MediaQuery.of(context).orientation == Orientation.landscape)
-                      ? MediaQuery.of(context).size.width * .2
-                      : MediaQuery.of(context).size.width * .35,
+              width: isLandScape
+                  ? MediaQuery.of(context).size.width * .2
+                  : MediaQuery.of(context).size.width * .4,
               child: CustomDropDownInput(
                 title: 'Select',
                 items: const ["Per Customer", "Per Region", "Per Brand"],
+                fontSize: 14,
                 selectedValue: "Per Customer",
                 onChanged: (value) {
                   // Handle dropdown change
@@ -72,13 +73,13 @@ class _ExportDispatchDetailsPerCustomerHeaderState
               ),
             ),
             SizedBox(
-              width:
-                  (MediaQuery.of(context).orientation == Orientation.landscape)
-                      ? MediaQuery.of(context).size.width * .2
-                      : MediaQuery.of(context).size.width * .35,
+              width: isLandScape
+                  ? MediaQuery.of(context).size.width * .2
+                  : MediaQuery.of(context).size.width * .35,
               child: CustomDropDownInput(
                 title: 'Select',
                 items: const ["Daily", "Monthly"],
+                fontSize: 14,
                 selectedValue: "Daily",
                 onChanged: (value) {
                   // Handle dropdown change
@@ -113,7 +114,9 @@ class _ExportDispatchDetailsPerCustomerHeaderState
                       )
                     : const SizedBox(),
             SizedBox(
-                width: MediaQuery.of(context).size.width * .4,
+                width: isLandScape
+                    ? MediaQuery.of(context).size.width * .2
+                    : MediaQuery.of(context).size.width * .4,
                 child: CustomMultiSelectDropDown2(
                   products: const ["Delivery", "Pickup"],
                   selectedProducts: incotermList,
@@ -126,7 +129,9 @@ class _ExportDispatchDetailsPerCustomerHeaderState
                   title: "Incoterm",
                 )),
             SizedBox(
-              width: MediaQuery.of(context).size.width * .3,
+              width: isLandScape
+                  ? MediaQuery.of(context).size.width * .17
+                  : MediaQuery.of(context).size.width * .3,
               child: CustomMultiSelectDropDown2(
                 products: const ["Bags", "Bulk"],
                 selectedProducts: typeList,
@@ -144,7 +149,9 @@ class _ExportDispatchDetailsPerCustomerHeaderState
               builder: (context, state) {
                 if (state is ExportDispatchPerCustomerSuccess) {
                   return SizedBox(
-                    width: MediaQuery.of(context).size.width * .55,
+                    width: isLandScape
+                        ? MediaQuery.of(context).size.width * .35
+                        : MediaQuery.of(context).size.width * .55,
                     child: CustomMultiSelectDropDown2(
                       products: state.exportDispatchList
                           .expand((e) => e.total ?? [])
@@ -163,7 +170,9 @@ class _ExportDispatchDetailsPerCustomerHeaderState
                   );
                 }
                 return SizedBox(
-                  width: MediaQuery.of(context).size.width * .55,
+                  width: isLandScape
+                      ? MediaQuery.of(context).size.width * .35
+                      : MediaQuery.of(context).size.width * .55,
                   child: const LoadingBtn(title: 'Brand'),
                 );
               },

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/manager/loading_details_cubit/loading_details_cubit.dart';
+import 'package:wncc_portal/features/reports/loading_details/presentation/views/widgets/loading_details_loading.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/views/widgets/loading_details_summary.dart';
 import 'package:wncc_portal/features/reports/loading_details/presentation/views/widgets/loading_table_with_filter.dart';
 import 'package:wncc_portal/core/widgets/custom_chck_buttons.dart';
-import 'package:wncc_portal/features/reports/payment/presentation/views/widgets/loading/payment_loaing.dart';
 
 class LoadingDetailsSection extends StatelessWidget {
   const LoadingDetailsSection({super.key});
@@ -63,7 +63,7 @@ class LoadingDetailsSection extends StatelessWidget {
           return Center(child: Text(state.errorMsg));
         }
 
-        return const PaymentLoaing();
+        return const LoadingDetailsLoadingWidget();
       },
     );
   }

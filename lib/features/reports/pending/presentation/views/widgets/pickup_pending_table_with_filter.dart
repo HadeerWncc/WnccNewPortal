@@ -39,6 +39,8 @@ class _PickupPendingTableWithFilterState
 
   @override
   Widget build(BuildContext context) {
+    bool isLandScape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     final data = filteredData;
     Map<String, dynamic> pendingTotal = {
       'Customer': 'Total',
@@ -59,9 +61,10 @@ class _PickupPendingTableWithFilterState
     return Column(
       children: [
         Wrap(
-          spacing: 5,
-          runSpacing: 5,
-          runAlignment: WrapAlignment.start,
+          spacing: 7,
+          runSpacing: 7,
+          runAlignment: WrapAlignment.center,
+          alignment: WrapAlignment.center,
           children: [
             CustomDropDownInput(
               selectedValue: "All",
@@ -71,7 +74,8 @@ class _PickupPendingTableWithFilterState
               ],
               title: "Sales",
               hintText: "Sales",
-              width: MediaQuery.of(context).size.width * 0.31,
+              width: MediaQuery.of(context).size.width *
+                  (isLandScape ? 0.2 : 0.35),
               onChanged: (value) {
                 selectedSales = value!;
                 setState(() {});
@@ -86,7 +90,8 @@ class _PickupPendingTableWithFilterState
               ],
               title: "Region",
               hintText: "Region",
-              width: MediaQuery.of(context).size.width * 0.21,
+              width: MediaQuery.of(context).size.width *
+                  (isLandScape ? 0.2 : 0.35),
               onChanged: (value) {
                 selectedRegion = value!;
                 setState(() {});
@@ -101,7 +106,8 @@ class _PickupPendingTableWithFilterState
               ],
               title: "Matrial",
               hintText: "Matrial",
-              width: MediaQuery.of(context).size.width * 0.39,
+              width: MediaQuery.of(context).size.width *
+                  (isLandScape ? 0.25 : 0.5),
               onChanged: (value) {
                 selectedMatrial = value!;
                 setState(() {});

@@ -15,7 +15,6 @@ class DispatchDetailsBody extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          // DispatchDetailsButtonsList(activeTab: 0),
           const DispatchDetailsHeaderTabs(activeTab: 1),
           const SizedBox(height: 8),
           BlocBuilder<FlatDispatchDetailsCubit, FlatDispatchDetailsState>(
@@ -31,7 +30,8 @@ class DispatchDetailsBody extends StatelessWidget {
                     fixedLeftColumns: 1,
                     fixedColumnsColor: tableHeaderColor,
                     headingRowHeight: 45,
-                    headingRowColor: WidgetStateProperty.all(tableHeaderColor),
+                    headingRowColor: WidgetStateProperty.all(kBtnColor),
+                    headingTextStyle: const TextStyle(color: Colors.white),
                     border: TableBorder.all(color: Colors.grey.shade300),
                     columns: state.dispatchDetails.first
                         .toMap()

@@ -31,6 +31,7 @@ class LoadingDetailsTableWithFilter extends StatelessWidget {
               /// ===== Search =====
               CustomPlaceholderInput(
                 labelText: 'ShipNo',
+                fontSize: 14,
                 width: MediaQuery.of(context).size.width * 0.31,
                 icon: const Icon(Symbols.document_search, color: Colors.grey),
                 onChanged: (value) {
@@ -46,9 +47,10 @@ class LoadingDetailsTableWithFilter extends StatelessWidget {
                   "All",
                   ...allData.map((e) => e.salesName ?? "").toSet()
                 ],
+                fontSize: 14,
                 title: "Sales",
                 hintText: "Sales",
-                width: MediaQuery.of(context).size.width * 0.31,
+                width: MediaQuery.of(context).size.width * 0.35,
                 onChanged: (value) {
                   cubit.changeSales(value!);
                 },
@@ -63,8 +65,9 @@ class LoadingDetailsTableWithFilter extends StatelessWidget {
                   ...allData.map((e) => e.materialName ?? "").toSet()
                 ],
                 title: "Product",
+                fontSize: 14,
                 hintText: "Product",
-                width: MediaQuery.of(context).size.width * 0.35,
+                width: MediaQuery.of(context).size.width * 0.45,
                 onChanged: (value) {
                   cubit.changeProduct(value!);
                 },

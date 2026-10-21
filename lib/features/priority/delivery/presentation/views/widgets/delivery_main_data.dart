@@ -15,13 +15,7 @@ class DeliveryMainData extends StatefulWidget {
 class _DeliveryMainDataState extends State<DeliveryMainData> {
   String selectedTab = 'Pending';
   String currentDate = DateTime.now().toString();
-  // @override
-  // void initState() {
-  //   if (widget.user.position == "Dispatcher") {
-  //     selectedTab = "Priority";
-  //   }
-  //   super.initState();
-  // }
+
 
   @override
   Widget build(BuildContext context) {

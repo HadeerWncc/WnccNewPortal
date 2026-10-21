@@ -189,7 +189,7 @@ class _ExportDispatchDetailsPerBrandBodyState
               style: const TextStyle(color: Colors.red),
             ));
           }
-          return const LoadingTable();
+          return const Expanded(child: LoadingTable());
         }),
       ],
     );
